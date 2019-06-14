@@ -139,7 +139,6 @@ class CreateUser(login.CRPOLogin, work_book.WorkBook):
         self.lambda_headers['APP-NAME'] = 'crpo'
         create_user = requests.post(api.web_api['Create_user'], headers=self.lambda_headers,
                                     data=json.dumps(create_user_request, default=str), verify=False)
-        print(create_user.headers)
         create_user_response = json.loads(create_user.content)
         print(create_user_response)
         print(create_user.content)
@@ -382,8 +381,8 @@ class CreateUser(login.CRPOLogin, work_book.WorkBook):
             self.ws.write(0, 1, 'Fail', self.style25)
         self.ws.write(0, 2, 'Start Time', self.style23)
         self.ws.write(0, 3, self.start_time, self.style26)
-        self.ws.write(0, 2, 'Lambda', self.style23)
-        self.ws.write(0, 3, self.calling_lambda, self.style26)
+        self.ws.write(0, 4, 'Lambda', self.style23)
+        self.ws.write(0, 5, self.calling_lambda, self.style24)
         Obj.wb_Result.save(output_paths.outputpaths['CreateUser_Output_sheet'])
 
 

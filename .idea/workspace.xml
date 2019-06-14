@@ -6,9 +6,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4984ed91-26f4-4ca5-a625-e5a7acf33732" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Output Data/Crpo/CreateUser/.~lock.API_CreateUser.xls#" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Output Data/Crpo/CreateUser/API_CreateUser.xls" beforeDir="false" afterPath="$PROJECT_DIR$/Output Data/Crpo/CreateUser/API_CreateUser.xls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hpro_automation/login.py" beforeDir="false" afterPath="$PROJECT_DIR$/hpro_automation/login.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/crpo/CreateUsers.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/crpo/CreateUsers.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,8 +21,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hpro_automation/login.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="23" column="31" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="31" />
+            <state relative-caret-position="153">
+              <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -32,19 +31,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hpro_automation/identity/credentials.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/dml_scripts/del_users.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="55">
-              <caret line="20" column="44" lean-forward="true" selection-start-line="20" selection-start-column="44" selection-end-line="20" selection-end-column="44" />
+            <state relative-caret-position="75">
+              <caret line="5" column="23" lean-forward="true" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -52,20 +42,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hpro_automation/output_paths.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="80" lean-forward="true" selection-start-line="80" selection-end-line="80" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/crpo/CreateUsers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="165" lean-forward="true" selection-start-line="165" selection-end-line="165" />
+            <state relative-caret-position="28">
+              <caret line="144" column="52" lean-forward="true" selection-start-line="144" selection-start-column="52" selection-end-line="144" selection-end-column="52" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -197,7 +178,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.del_users">
+  <component name="RunManager" selected="Python.CreateUsers">
     <configuration name="Communication_History" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="API Automation" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -305,8 +286,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.del_users" />
         <item itemvalue="Python.CreateUsers" />
+        <item itemvalue="Python.del_users" />
         <item itemvalue="Python.login" />
         <item itemvalue="Python.Communication_History" />
         <item itemvalue="Python.del_communication_history" />
@@ -335,7 +316,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.37890044" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.57206535" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39970282" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -357,11 +338,6 @@
           <url>file://$PROJECT_DIR$/scripts/crpo/Communication_History.py</url>
           <line>305</line>
           <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/scripts/dml_scripts/del_users.py</url>
-          <line>16</line>
-          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -662,32 +638,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hpro_automation/identity/credentials.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
+        <state relative-caret-position="535">
           <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hpro_automation/output_paths.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="80" lean-forward="true" selection-start-line="80" selection-end-line="80" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hpro_automation/login.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="23" column="31" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="31" />
+        <state relative-caret-position="153">
+          <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/hpro_automation/output_paths.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="535">
+          <caret line="80" lean-forward="true" selection-start-line="80" selection-end-line="80" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/dml_scripts/del_users.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="55">
-          <caret line="20" column="44" lean-forward="true" selection-start-line="20" selection-start-column="44" selection-end-line="20" selection-end-column="44" />
+        <state relative-caret-position="75">
+          <caret line="5" column="23" lean-forward="true" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
@@ -696,8 +672,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/crpo/CreateUsers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="165" lean-forward="true" selection-start-line="165" selection-end-line="165" />
+        <state relative-caret-position="28">
+          <caret line="144" column="52" lean-forward="true" selection-start-line="144" selection-start-column="52" selection-end-line="144" selection-end-column="52" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
