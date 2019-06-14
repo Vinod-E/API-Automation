@@ -12,9 +12,7 @@ class CRPOLogin(object):
     def __init__(self):
         super(CRPOLogin, self).__init__()
 
-        # ------------------------
-        # CRPO LOGIN APPLICATION
-        # ------------------------
+# ----------------------------- CRPO LOGIN APPLICATION -----------------------------------------------------------------
 
         print("-------------------------------------------------")
         print("Run Started at :", str(datetime.datetime.now()))
@@ -57,30 +55,56 @@ class CRPOLogin(object):
         except ValueError as login_error:
             print(login_error)
 
-    def lambda_api(self):
-        request = {"pagingCriteria": {"pageSize": 1000,
-                                      "pageNumber": 1,
-                                      "sortOn": "id",
-                                      "sortBy": "desc"}
-                   }
 
-        api = requests.post("https://amsin.hirepro.in/py/common/common_app_utils/api/v1/getAllAppPreference/",
-                            headers=self.header, data=json.dumps(request), verify=False)
+# ------------------------------------- getAllAppPreference / Lambda verification --------------------------------------
+        try:
+            request = {"pagingCriteria": {"pageSize": 1000,
+                                          "pageNumber": 1,
+                                          "sortOn": "id",
+                                          "sortBy": "desc"}
+                       }
 
-        res = json.loads(api.content)
-        data = res.get('data')
-        for i in data:
-            app_preference = i.get('typeText')
+            api = requests.post("https://amsin.hirepro.in/py/common/common_app_utils/api/v1/getAllAppPreference/",
+                                headers=self.header, data=json.dumps(request), verify=False)
 
-            if app_preference == 'crpo.tenantConfigurations':
-                content_text = i.get('contentText')
-                is_lambda = content_text.get('isLambdaRequired')
+            res = json.loads(api.content)
+            data = res.get('data')
+            for i in data:
+                app_preference = i.get('typeText')
 
-                if is_lambda:
-                    print("**----------------------Lambda is enable in tenant---------------------------**")
-                else:
-                    print("**----------------------Lambda is disable in tenant--------------------------**")
+                if app_preference == 'crpo.tenantConfigurations':
+                    content_text = i.get('contentText')
+                    is_lambda = content_text.get('isLambdaRequired')
+
+                    if is_lambda:
+                        if self.calling_lambda == 'On':
+                            print("**----------------------Lambda is enabled in tenant---------------------------**")
+                            print("**--------- Selected - On, APIs calling with lambda function ----------------**")
+
+                            self.lambda_headers = {"content-type": "application/json",
+                                                   'APP-NAME': "crpo",
+                                                   'X-APPLMA': 'true',
+                                                   "X-AUTH-TOKEN": self.response.get("Token")
+                                                   }
+                        elif self.calling_lambda == 'Off':
+                            print("**----------------------Lambda is enabled in tenant--------------------------**")
+                            print("**--------- Selected - Off, APIs calling without lambda function ----------------**")
+
+                            self.lambda_headers = {"content-type": "application/json",
+                                                   'APP-NAME': "crpo",
+                                                   "X-AUTH-TOKEN": self.response.get("Token")
+                                                   }
+                    else:
+                        print("**----------------------Lambda is disabled in tenant--------------------------**")
+                        print("**------------------ APIs calling without Lambda function-------------------------**")
+
+                        self.lambda_headers = {"content-type": "application/json",
+                                               'APP-NAME': "crpo",
+                                               "X-AUTH-TOKEN": self.response.get("Token")
+                                               }
+        except ValueError as app:
+            print(app)
 
 
 ob = CRPOLogin()
-ob.lambda_api()
+print(ob.lambda_headers)
