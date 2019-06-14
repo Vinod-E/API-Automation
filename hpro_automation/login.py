@@ -82,7 +82,6 @@ class CRPOLogin(object):
                             print("**--------- Selected - On, APIs calling with lambda function ----------------**")
 
                             self.lambda_headers = {"content-type": "application/json",
-                                                   'APP-NAME': "crpo",
                                                    'X-APPLMA': 'true',
                                                    "X-AUTH-TOKEN": self.response.get("Token")
                                                    }
@@ -91,7 +90,7 @@ class CRPOLogin(object):
                             print("**--------- Selected - Off, APIs calling without lambda function ----------------**")
 
                             self.lambda_headers = {"content-type": "application/json",
-                                                   'APP-NAME': "crpo",
+                                                   'X-APPLMA': 'false',
                                                    "X-AUTH-TOKEN": self.response.get("Token")
                                                    }
                     else:
@@ -99,12 +98,12 @@ class CRPOLogin(object):
                         print("**------------------ APIs calling without Lambda function-------------------------**")
 
                         self.lambda_headers = {"content-type": "application/json",
-                                               'APP-NAME': "crpo",
+                                               'X-APPLMA': 'false',
                                                "X-AUTH-TOKEN": self.response.get("Token")
                                                }
         except ValueError as app:
             print(app)
 
-
-ob = CRPOLogin()
-print(ob.lambda_headers)
+#
+# ob = CRPOLogin()
+# print(ob.lambda_headers)
