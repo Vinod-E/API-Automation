@@ -23,6 +23,8 @@ class CRPOLogin(object):
             urllib3.disable_warnings()
             self.header = {"content-type": "application/json", 'APP-NAME': "crpo", 'X-APPLMA': 'true'}
             self.type_of_user = str(input("Type of User/application_name:: "))
+            self.calling_lambda = str(input("Lambda On/Off:: "))
+
             login_data = credentials.login_details[self.type_of_user]
 
             login_api = requests.post(web_api.get("Loginto_CRPO"),
@@ -32,6 +34,13 @@ class CRPOLogin(object):
             self.response = login_api.json()
             self.get_token = {"content-type": "application/json",
                               "X-AUTH-TOKEN": self.response.get("Token")}
+
+            self.header = {"content-type": "application/json",
+                           'APP-NAME': "crpo",
+                           'X-APPLMA': 'true',
+                           "X-AUTH-TOKEN": self.response.get("Token")
+                           }
+
             self.var = None
             time.sleep(1)
             resp_dict = json.loads(login_api.content)
@@ -49,14 +58,14 @@ class CRPOLogin(object):
             print(login_error)
 
     def lambda_api(self):
-        request = {"pagingCriteria": {"pageSize": 100,
+        request = {"pagingCriteria": {"pageSize": 1000,
                                       "pageNumber": 1,
                                       "sortOn": "id",
                                       "sortBy": "desc"}
                    }
 
         api = requests.post("https://amsin.hirepro.in/py/common/common_app_utils/api/v1/getAllAppPreference/",
-                            headers=self.get_token, data=json.dumps(request), verify=False)
+                            headers=self.header, data=json.dumps(request), verify=False)
 
         res = json.loads(api.content)
         data = res.get('data')
@@ -65,15 +74,12 @@ class CRPOLogin(object):
 
             if app_preference == 'crpo.tenantConfigurations':
                 content_text = i.get('contentText')
-                print(content_text)
+                is_lambda = content_text.get('isLambdaRequired')
 
-                for j in content_text:
-                    print(j)
-
-                    # if is_lambda:
-                    #     print("Lambda is enable in tenant")
-                    # else:
-                    #     print("Lambda is disable in tenant")
+                if is_lambda:
+                    print("**----------------------Lambda is enable in tenant---------------------------**")
+                else:
+                    print("**----------------------Lambda is disable in tenant--------------------------**")
 
 
 ob = CRPOLogin()
