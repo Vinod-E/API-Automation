@@ -99,8 +99,8 @@ class CRPOLogin(object):
                                                    "X-AUTH-TOKEN": self.response.get("Token")
                                                    }
                         else:
-                            print("**----------------------Lambda is disabled in tenant--------------------------**")
-                            print("**------------------ APIs calling without Lambda function-------------------------**")
+                            print("**----------------------Lambda is enabled in tenant--------------------------**")
+                            print("**--------- Selected - On/Off wrong, APIs calling without Lambda function--------**")
 
                             self.lambda_headers = {"content-type": "application/json",
                                                    'X-APPLMA': 'false',

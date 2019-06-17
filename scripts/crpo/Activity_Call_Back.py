@@ -80,6 +80,7 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
 
         self.Actual_Task_ids = ""
         self.success_case_01 = {}
+        self.headers = {}
 
         # -----------
         # Dictionary
@@ -410,6 +411,22 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
                 self.other_task_06.append(int(rows[10]))
 
     def change_applicant_status(self, loop):
+
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('ChangeApplicant_Status') is not None \
+                    and api.web_api['ChangeApplicant_Status'] in api.lambda_apis.get('ChangeApplicant_Status'):
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
         request = {"ApplicantIds": [self.xl_applicantId[loop]],
                    "EventId": self.xl_eventId[loop],
                    "JobRoleId": self.xl_jobId[loop],
@@ -419,7 +436,7 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
                    "InitiateStaffing": False,
                    "MjrId": self.xl_mjrId[loop]
                    }
-        change_status_api = requests.post(api.web_api['ChangeApplicant_Status'], headers=self.get_token,
+        change_status_api = requests.post(api.web_api['ChangeApplicant_Status'], headers=self.headers,
                                           data=json.dumps(request, default=str), verify=False)
         response = json.loads(change_status_api.content)
         self.chng_app_status = response.get('status')
@@ -429,11 +446,26 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
 
     def applicant_info(self, loop):
 
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('getApplicantsInfo') is not None \
+                    and api.web_api['getApplicantsInfo'] in api.lambda_apis['getApplicantsInfo']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
         if self.xl_Activity_01:
             request = {
                 "CandidateIds": [self.xl_candidateId[loop]]
             }
-            applicant_info_api = requests.post(api.web_api['getApplicantsInfo'], headers=self.get_token,
+            applicant_info_api = requests.post(api.web_api['getApplicantsInfo'], headers=self.headers,
                                                data=json.dumps(request, default=str), verify=False)
             response = json.loads(applicant_info_api.content)
             data = response.get('data')
@@ -446,10 +478,26 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
                         self.applicant_mjr_dict = j
 
     def get_ticket_number(self, loop):
+
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('gettaskbycandidate') is not None \
+                    and api.web_api['gettaskbycandidate'] in api.lambda_apis['gettaskbycandidate']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
         request = {
             "CandidateId": self.xl_candidateId[loop]
         }
-        activity_details_api = requests.post(api.web_api['gettaskbycandidate'], headers=self.get_token,
+        activity_details_api = requests.post(api.web_api['gettaskbycandidate'], headers=self.headers,
                                              data=json.dumps(request, default=str), verify=False)
         response = json.loads(activity_details_api.content)
 
@@ -477,6 +525,21 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
 
     def submit_form_a1(self, loop):
 
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('submitform') is not None \
+                    and api.web_api['submitform'] in api.lambda_apis['submitform']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'staffing'
+
         if self.ticket_number_A1_t1:
             request = {
                 "FormControlValues": [
@@ -489,12 +552,27 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
                 "TicketId": self.ticket_number_A1_t1,
                 "IsCoordinatorSubmittingBehalfOfCandidate": True
             }
-            submit_form_api = requests.post(api.web_api['submitform'], headers=self.get_token,
+            submit_form_api = requests.post(api.web_api['submitform'], headers=self.headers,
                                             data=json.dumps(request, default=str), verify=False)
             response1 = json.loads(submit_form_api.content)
             print(response1)
 
     def submit_form_a2(self, loop):
+
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('submitform') is not None \
+                    and api.web_api['submitform'] in api.lambda_apis['submitform']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'staffing'
 
         if self.ticket_number_A2_t1:
             request = {
@@ -508,7 +586,7 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
                 "TicketId": self.ticket_number_A2_t1,
                 "IsCoordinatorSubmittingBehalfOfCandidate": True
             }
-            submit_form_api = requests.post(api.web_api['submitform'], headers=self.get_token,
+            submit_form_api = requests.post(api.web_api['submitform'], headers=self.headers,
                                             data=json.dumps(request, default=str), verify=False)
             response1 = json.loads(submit_form_api.content)
             print(response1)
@@ -525,7 +603,7 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
                 "TicketId": self.ticket_number_A2_t2,
                 "IsCoordinatorSubmittingBehalfOfCandidate": True
             }
-            submit_form_api = requests.post(api.web_api['submitform'], headers=self.get_token,
+            submit_form_api = requests.post(api.web_api['submitform'], headers=self.headers,
                                             data=json.dumps(request, default=str), verify=False)
             response2 = json.loads(submit_form_api.content)
             print(response2)
@@ -542,7 +620,7 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
                 "TicketId": self.ticket_number_A2_t3,
                 "IsCoordinatorSubmittingBehalfOfCandidate": True
             }
-            submit_form_api = requests.post(api.web_api['submitform'], headers=self.get_token,
+            submit_form_api = requests.post(api.web_api['submitform'], headers=self.headers,
                                             data=json.dumps(request, default=str), verify=False)
             response3 = json.loads(submit_form_api.content)
             print(response3)
@@ -550,10 +628,26 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
         # ---------------------------
         # Approve task by AEE owner
         # ---------------------------
+
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('Approve_task') is not None \
+                    and api.web_api['Approve_task'] in api.lambda_apis['Approve_task']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
         req1 = {"AssignedUserTaskIds": [self.ticket_number_A2_t1],
                 "TaskStatus": self.xl_A2_t1_status[loop],
                 "Comments": self.xl_common_controlvalue[loop]}
-        approve_api = requests.post(api.web_api['Approve_task'], headers=self.get_token,
+        approve_api = requests.post(api.web_api['Approve_task'], headers=self.headers,
                                     data=json.dumps(req1, default=str), verify=False)
         res1 = json.loads(approve_api.content)
         print(res1)
@@ -561,7 +655,7 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
         req2 = {"AssignedUserTaskIds": [self.ticket_number_A2_t2],
                 "TaskStatus": self.xl_A2_t2_status[loop],
                 "Comments": self.xl_common_controlvalue[loop]}
-        approve_api = requests.post(api.web_api['Approve_task'], headers=self.get_token,
+        approve_api = requests.post(api.web_api['Approve_task'], headers=self.headers,
                                     data=json.dumps(req2, default=str), verify=False)
         res2 = json.loads(approve_api.content)
         print(res2)
@@ -569,12 +663,27 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
         req3 = {"AssignedUserTaskIds": [self.ticket_number_A2_t3],
                 "TaskStatus": self.xl_A2_t3_status[loop],
                 "Comments": self.xl_common_controlvalue[loop]}
-        approve_api = requests.post(api.web_api['Approve_task'], headers=self.get_token,
+        approve_api = requests.post(api.web_api['Approve_task'], headers=self.headers,
                                     data=json.dumps(req3, default=str), verify=False)
         res3 = json.loads(approve_api.content)
         print(res3)
 
     def submit_form_a3(self, loop):
+
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('submitform') is not None \
+                    and api.web_api['submitform'] in api.lambda_apis['submitform']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'staffing'
 
         if self.ticket_number_A3_t1:
             request = {
@@ -588,7 +697,7 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
                 "TicketId": self.ticket_number_A3_t1,
                 "IsCoordinatorSubmittingBehalfOfCandidate": True
             }
-            submit_form_api = requests.post(api.web_api['submitform'], headers=self.get_token,
+            submit_form_api = requests.post(api.web_api['submitform'], headers=self.headers,
                                             data=json.dumps(request, default=str), verify=False)
             response1 = json.loads(submit_form_api.content)
             print(response1)
@@ -605,7 +714,7 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
                 "TicketId": self.ticket_number_A3_t2,
                 "IsCoordinatorSubmittingBehalfOfCandidate": True
             }
-            submit_form_api = requests.post(api.web_api['submitform'], headers=self.get_token,
+            submit_form_api = requests.post(api.web_api['submitform'], headers=self.headers,
                                             data=json.dumps(request, default=str), verify=False)
             response2 = json.loads(submit_form_api.content)
             print(response2)
@@ -613,26 +722,58 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
         # ---------------------------
         # Approve task by AEE owner
         # ---------------------------
+
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('Approve_task') is not None \
+                    and api.web_api['Approve_task'] in api.lambda_apis['Approve_task']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
         req = {"AssignedUserTaskIds": [self.ticket_number_A3_t1],
                "TaskStatus": self.xl_A3_t1_status[loop],
                "Comments": self.xl_common_controlvalue[loop]}
-        approve_api = requests.post(api.web_api['Approve_task'], headers=self.get_token,
+        approve_api = requests.post(api.web_api['Approve_task'], headers=self.headers,
                                     data=json.dumps(req, default=str), verify=False)
         res = json.loads(approve_api.content)
         print(res)
         req1 = {"AssignedUserTaskIds": [self.ticket_number_A3_t2],
                 "TaskStatus": self.xl_A3_t2_status[loop],
                 "Comments": self.xl_common_controlvalue[loop]}
-        approve_api = requests.post(api.web_api['Approve_task'], headers=self.get_token,
+        approve_api = requests.post(api.web_api['Approve_task'], headers=self.headers,
                                     data=json.dumps(req1, default=str), verify=False)
         res1 = json.loads(approve_api.content)
         print(res1)
 
     def get_activity_task_details(self, loop):
+
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('gettaskbycandidate') is not None \
+                    and api.web_api['gettaskbycandidate'] in api.lambda_apis['gettaskbycandidate']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
         request = {
             "CandidateId": self.xl_candidateId[loop]
         }
-        activity_details_api = requests.post(api.web_api['gettaskbycandidate'], headers=self.get_token,
+        activity_details_api = requests.post(api.web_api['gettaskbycandidate'], headers=self.headers,
                                              data=json.dumps(request, default=str), verify=False)
         response = json.loads(activity_details_api.content)
 
@@ -677,6 +818,22 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
             self.Actual_Task_ids = self.Actual_Task_ids.lstrip(',')
 
     def reset_applicant_status(self, loop):
+
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('ChangeApplicant_Status') is not None \
+                    and api.web_api['ChangeApplicant_Status'] in api.lambda_apis.get('ChangeApplicant_Status'):
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
         request = {"ApplicantIds": [self.xl_applicantId[loop]],
                    "EventId": self.xl_eventId[loop],
                    "JobRoleId": self.xl_jobId[loop],
@@ -686,7 +843,7 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
                    "InitiateStaffing": False,
                    "MjrId": self.xl_mjrId[loop]
                    }
-        q = requests.post(api.web_api['ChangeApplicant_Status'], headers=self.get_token,
+        q = requests.post(api.web_api['ChangeApplicant_Status'], headers=self.headers,
                           data=json.dumps(request, default=str), verify=False)
         qw = json.loads(q.content)
         print(qw)
@@ -920,8 +1077,10 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
         else:
             self.ws.write(0, 1, 'Fail', self.style25)
 
-        self.ws.write(0, 3, 'Start Time', self.style23)
-        self.ws.write(0, 4, self.start_time, self.style26)
+        self.ws.write(0, 2, 'Start Time', self.style23)
+        self.ws.write(0, 3, self.start_time, self.style26)
+        self.ws.write(0, 4, 'Lambda', self.style23)
+        self.ws.write(0, 5, self.calling_lambda, self.style24)
         Object.wb_Result.save(output_paths.outputpaths['Activity_CallBack_Output_sheet'])
 
 
@@ -983,4 +1142,5 @@ if Object.login == 'OK':
 
         Object.success_case_01 = {}
         Object.Actual_Task_ids = ""
+        Object.headers = {}
 Object.over_status()

@@ -26,6 +26,7 @@ class ClassName(login.CRPOLogin, work_book.WorkBook):
         self.success_case_01 = {}
         self.success_case_02 = {}
         self.success_case_03 = {}
+        self.headers = {}
 
     def excel_headers(self):
 
@@ -55,6 +56,20 @@ class ClassName(login.CRPOLogin, work_book.WorkBook):
             print("File not found or path is incorrect")
 
     def api_call(self, loop):
+
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.web_api['Create_user'] in api.lambda_apis['Create_user']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
         # ----------------------------------- API request --------------------------------------------------------------
         request = {"ABC": self.xl_example[loop]}
 
@@ -113,6 +128,7 @@ if Object.login == 'OK':
         Object.success_case_01 = {}
         Object.success_case_02 = {}
         Object.success_case_03 = {}
+        Object.headers = {}
 
 # ---------------------------- Call this function at last --------------------------------------------------------------
 Object.overall_status()
