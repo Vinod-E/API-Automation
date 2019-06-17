@@ -94,6 +94,8 @@ class ResetCandidateDetails(login.CRPOLogin):
         self.xl_reset_DateCustomField4 = []
         self.xl_reset_DateCustomField5 = []
 
+        self.headers = {}
+
     def read_excel(self):
         workbook = xlrd.open_workbook(input_paths.inputpaths['reset_candi_Input_sheet'])
         sheet1 = workbook.sheet_by_index(0)
@@ -519,6 +521,21 @@ class ResetCandidateDetails(login.CRPOLogin):
 
     def reset_candidate_details(self, loop):
 
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('update_candidate_details') is not None \
+                    and api.web_api['update_candidate_details'] in api.lambda_apis['update_candidate_details']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
         if self.xl_reset_TrueFalse1[loop] == 'true':
             truefalse1 = True
         else:
@@ -639,7 +656,8 @@ class ResetCandidateDetails(login.CRPOLogin):
             "CandidateId": self.xl_reset_candidate_id[loop]
         }
         reset_api = requests.post(api.web_api['update_candidate_details'],
-                                  headers=self.get_token, data=json.dumps(request, default=str), verify=False)
+                                  headers=self.headers, data=json.dumps(request, default=str), verify=False)
+        print(reset_api.headers)
         reset_api_response = json.loads(reset_api.content)
         print(reset_api_response)
 
@@ -651,3 +669,5 @@ if Object.login == 'OK':
     for looping in range(0, Total_count):
         print("Iteration Count is ::", looping)
         Object.reset_candidate_details(looping)
+
+        Object.headers = {}

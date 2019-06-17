@@ -6,17 +6,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4984ed91-26f4-4ca5-a625-e5a7acf33732" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/vinodkumar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/vinodkumar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Output Data/Crpo/Activity Call Back/.~lock.API_Activity_CallBack.xls#" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Output Data/Crpo/Activity Call Back/API_Activity_CallBack.xls" beforeDir="false" afterPath="$PROJECT_DIR$/Output Data/Crpo/Activity Call Back/API_Activity_CallBack.xls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Output Data/Crpo/UploadCandidates/API_UploadCandidates.xls" beforeDir="false" afterPath="$PROJECT_DIR$/Output Data/Crpo/UploadCandidates/API_UploadCandidates.xls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Output Data/Crpo/UploadScore/API_Download_upload_Scores.xls" beforeDir="false" afterPath="$PROJECT_DIR$/Output Data/Crpo/UploadScore/API_Download_upload_Scores.xls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Utilities/SpeedUp.py" beforeDir="false" afterPath="$PROJECT_DIR$/Utilities/SpeedUp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hpro_automation/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/hpro_automation/api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/crpo/CreateUsers.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/crpo/CreateUsers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/crpo/Upload_candidate.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/crpo/Upload_candidate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/crpo/Uploadscore.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/crpo/Uploadscore.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/dml_scripts/del_candidate_applicant_details.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/dml_scripts/del_candidate_applicant_details.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Output Data/Crpo/UpdateCandidates/API_Update_Candidates.xls" beforeDir="false" afterPath="$PROJECT_DIR$/Output Data/Crpo/UpdateCandidates/API_Update_Candidates.xls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Output Data/Crpo/UpdateUser/API_UpdateUser.xls" beforeDir="false" afterPath="$PROJECT_DIR$/Output Data/Crpo/UpdateUser/API_UpdateUser.xls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/crpo/Update_User.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/crpo/Update_User.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/crpo/Update_candidate.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/crpo/Update_candidate.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/dml_scripts/reset_update_candidate_details.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/dml_scripts/reset_update_candidate_details.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/dml_scripts/reset_update_user_details.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/dml_scripts/reset_update_user_details.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,6 +21,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/crpo/CreateUsers.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="419" column="21" lean-forward="true" selection-start-line="419" selection-start-column="21" selection-end-line="419" selection-end-column="21" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hpro_automation/login.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -41,41 +48,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hpro_automation/api.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="102" column="59" lean-forward="true" selection-start-line="102" selection-start-column="59" selection-end-line="102" selection-end-column="59" />
+            <state relative-caret-position="199">
+              <caret line="119" column="21" selection-start-line="119" selection-start-column="5" selection-end-line="119" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/scripts/crpo/CreateUsers.py">
+        <entry file="file://$PROJECT_DIR$/scripts/crpo/Update_candidate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="414" lean-forward="true" selection-start-line="414" selection-end-line="414" />
+            <state relative-caret-position="370">
+              <caret line="1779" column="26" lean-forward="true" selection-start-line="1779" selection-start-column="26" selection-end-line="1779" selection-end-column="26" />
               <folding>
-                <element signature="e#0#15#0" expanded="true" />
+                <element signature="e#0#78#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/crpo/Upload_candidate.py">
+        <entry file="file://$PROJECT_DIR$/scripts/dml_scripts/reset_update_candidate_details.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="58">
-              <caret line="2073" column="36" lean-forward="true" selection-start-line="2073" selection-start-column="36" selection-end-line="2073" selection-end-column="36" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/dml_scripts/del_candidate_applicant_details.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="54" lean-forward="true" selection-start-line="4" selection-start-column="54" selection-end-line="4" selection-end-column="54" />
+            <state relative-caret-position="385">
+              <caret line="537" lean-forward="true" selection-start-line="522" selection-end-line="537" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -104,10 +99,13 @@
       <find>Approve_task</find>
       <find>web_api</find>
       <find>bulkCreateTagCandidates</find>
-      <find>CandidateGetbyId</find>
       <find>Candidate_Educationaldetails</find>
       <find>Candidate_ExperienceDetails</find>
       <find>getAllApplicants</find>
+      <find>UserGetByid</find>
+      <find>Update_user</find>
+      <find>update_candidate_details</find>
+      <find>CandidateGetbyId</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -142,6 +140,10 @@
         <option value="$PROJECT_DIR$/scripts/dml_scripts/del_candidate_applicant_details.py" />
         <option value="$PROJECT_DIR$/hpro_automation/api.py" />
         <option value="$PROJECT_DIR$/scripts/crpo/Upload_candidate.py" />
+        <option value="$PROJECT_DIR$/scripts/crpo/Update_User.py" />
+        <option value="$PROJECT_DIR$/scripts/dml_scripts/reset_update_user_details.py" />
+        <option value="$PROJECT_DIR$/scripts/dml_scripts/reset_update_candidate_details.py" />
+        <option value="$PROJECT_DIR$/scripts/crpo/Update_candidate.py" />
       </list>
     </option>
   </component>
@@ -221,8 +223,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Upload_candidate">
-    <configuration name="Activity_Call_Back" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.Update_candidate">
+    <configuration name="Update_User" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="API Automation" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -234,7 +236,28 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/crpo/Activity_Call_Back.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/crpo/Update_User.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Update_candidate" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="API Automation" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts/crpo" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/crpo/Update_candidate.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -264,28 +287,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Uploadscore" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="API Automation" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts/crpo" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/crpo/Uploadscore.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="del_candidate_applicant_details" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="reset_update_candidate_details" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="API Automation" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -297,7 +299,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/dml_scripts/del_candidate_applicant_details.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/dml_scripts/reset_update_candidate_details.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -306,7 +308,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="del_testuser_scores" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="reset_update_user_details" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="API Automation" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -318,7 +320,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/dml_scripts/del_testuser_scores.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/dml_scripts/reset_update_user_details.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -329,11 +331,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Update_candidate" />
+        <item itemvalue="Python.reset_update_candidate_details" />
+        <item itemvalue="Python.reset_update_user_details" />
+        <item itemvalue="Python.Update_User" />
         <item itemvalue="Python.Upload_candidate" />
-        <item itemvalue="Python.del_candidate_applicant_details" />
-        <item itemvalue="Python.Uploadscore" />
-        <item itemvalue="Python.del_testuser_scores" />
-        <item itemvalue="Python.Activity_Call_Back" />
       </list>
     </recent_temporary>
   </component>
@@ -359,7 +361,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49923196" visible="true" weight="0.6701337" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49923196" weight="0.4947994" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39970282" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -403,30 +405,10 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/scripts/dml_scripts/reset_update_user_details.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-          <folding>
-            <element signature="e#0#53#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/lib/python3.7/codecs.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="156">
           <caret line="311" selection-start-line="311" selection-end-line="311" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/dml_scripts/reset_update_candidate_details.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="14" column="36" lean-forward="true" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -568,16 +550,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/crpo/Update_candidate.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-480">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-          <folding>
-            <element signature="e#0#78#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/crpo/Event_applicant_boundary_search.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="226">
@@ -612,16 +584,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/crpo/Update_User.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#78#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hpro_automation/identity/credentials.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="535">
@@ -633,16 +595,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="535">
           <caret line="80" lean-forward="true" selection-start-line="80" selection-end-line="80" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/dml_scripts/del_users.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="41" lean-forward="true" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -676,16 +628,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hpro_automation/login.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
-          <caret line="118" lean-forward="true" selection-start-line="118" selection-end-line="118" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/crpo/Uploadscore.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-14450">
@@ -703,13 +645,6 @@
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hpro_automation/api.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="102" column="59" lean-forward="true" selection-start-line="102" selection-start-column="59" selection-end-line="102" selection-end-column="59" />
         </state>
       </provider>
     </entry>
@@ -733,12 +668,79 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/dml_scripts/del_users.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="34" lean-forward="true" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hpro_automation/login.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="580">
+          <caret line="118" lean-forward="true" selection-start-line="118" selection-end-line="118" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/crpo/Update_User.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="463">
+          <caret line="175" lean-forward="true" selection-start-line="175" selection-end-line="175" />
+          <folding>
+            <element signature="e#0#78#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/dml_scripts/reset_update_user_details.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="453">
+          <caret line="134" lean-forward="true" selection-start-line="134" selection-end-line="134" />
+          <folding>
+            <element signature="e#0#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hpro_automation/api.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="119" column="21" selection-start-line="119" selection-start-column="5" selection-end-line="119" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/dml_scripts/reset_update_candidate_details.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="537" lean-forward="true" selection-start-line="522" selection-end-line="537" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/crpo/CreateUsers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="414" lean-forward="true" selection-start-line="414" selection-end-line="414" />
+        <state relative-caret-position="220">
+          <caret line="419" column="21" lean-forward="true" selection-start-line="419" selection-start-column="21" selection-end-line="419" selection-end-column="21" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/crpo/Update_candidate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="1779" column="26" lean-forward="true" selection-start-line="1779" selection-start-column="26" selection-end-line="1779" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#78#0" expanded="true" />
           </folding>
         </state>
       </provider>

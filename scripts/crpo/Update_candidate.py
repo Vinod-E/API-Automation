@@ -113,6 +113,7 @@ class UpdateCandidate(login.CRPOLogin, work_book.WorkBook):
         self.error_description = {}
         self.success_case_01 = {}
         self.success_case_02 = {}
+        self.headers = {}
 
     def excel_headers(self):
         self.main_headers = ['Comparison', 'Status', 'Candidate ID', 'Name', 'FirstName', 'MiddleName', 'LastName',
@@ -562,6 +563,21 @@ class UpdateCandidate(login.CRPOLogin, work_book.WorkBook):
 
     def update_candidate(self, loop):
 
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('update_candidate_details') is not None \
+                    and api.web_api['update_candidate_details'] in api.lambda_apis['update_candidate_details']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
         if self.xl_update_TrueFalse1[loop] == 'true':
             truefalse1 = True
         else:
@@ -681,8 +697,9 @@ class UpdateCandidate(login.CRPOLogin, work_book.WorkBook):
             },
             "CandidateId": self.xl_update_candidate_id[loop]
         }
-        update_api = requests.post(api.web_api['update_candidate_details'], headers=self.get_token,
+        update_api = requests.post(api.web_api['update_candidate_details'], headers=self.headers,
                                    data=json.dumps(request, default=str), verify=False)
+        print(update_api.headers)
         update_api_response = json.loads(update_api.content)
         print(update_api_response)
         self.api_updated_CID = update_api_response.get('CandidateId')
@@ -695,14 +712,32 @@ class UpdateCandidate(login.CRPOLogin, work_book.WorkBook):
 
         request = {"CandidateId": self.xl_update_candidate_id[loop],
                    "UpdateUserCandidate": {"Mobile1": self.xl_update_Mobile1[loop]}}
-        mobile_update_api = requests.post(api.web_api['update_candidate_details'], headers=self.get_token,
+        mobile_update_api = requests.post(api.web_api['update_candidate_details'], headers=self.headers,
                                           data=json.dumps(request, default=str), verify=False)
+        print(mobile_update_api.headers)
         mobile_update_api_response = json.loads(mobile_update_api.content)
         print(mobile_update_api_response)
 
     def candidate_get_by_id_details(self, loop):
+
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('CandidateGetbyId') is not None \
+                    and api.web_api['CandidateGetbyId'] in api.lambda_apis['CandidateGetbyId']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
         get_candidate_details = requests.post(api.web_api['CandidateGetbyId'].format(self.xl_update_candidate_id[loop]),
-                                              headers=self.get_token)
+                                              headers=self.headers)
+        print(get_candidate_details.headers)
         candidate_details = json.loads(get_candidate_details.content)
         candidate_dict = candidate_details['Candidate']
         self.update_personal_details_dict = candidate_dict['PersonalDetails']
@@ -1737,7 +1772,8 @@ class UpdateCandidate(login.CRPOLogin, work_book.WorkBook):
             self.ws.write(self.final_status_rowsize, 1, 'Fail', self.style25)
         self.ws.write(self.final_status_rowsize, 2, 'Start Time', self.style23)
         self.ws.write(self.final_status_rowsize, 3, self.start_time, self.style26)
-
+        self.ws.write(0, 4, 'Lambda', self.style23)
+        self.ws.write(0, 5, self.calling_lambda, self.style24)
         Object.wb_Result.save(output_paths.outputpaths['Update_Candidate_Output_sheet'])
 
 
@@ -1768,5 +1804,6 @@ if Object.login == 'OK':
         Object.error_description = {}
         Object.success_case_01 = {}
         Object.success_case_02 = {}
+        Object.headers = {}
 
 Object.overall_status()

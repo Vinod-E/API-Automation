@@ -28,6 +28,7 @@ class ResetUser(login.CRPOLogin):
         self.update_message = {}
         self.success_case_01 = {}
         self.success_case_02 = {}
+        self.headers = {}
 
     def read_excel(self):
         workbook = xlrd.open_workbook(input_paths.inputpaths['resetUser_Input_sheet'])
@@ -96,6 +97,21 @@ class ResetUser(login.CRPOLogin):
 
     def update_user(self, loop):
 
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('Update_user') is not None \
+                    and api.web_api['Update_user'] in api.lambda_apis['Update_user']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
         request = {
             "UserDetails": {
                 "UserName": self.xl_update_username[loop],
@@ -111,7 +127,7 @@ class ResetUser(login.CRPOLogin):
             },
             "UserId": self.xl_update_user_id[loop]
         }
-        update_api = requests.post(api.web_api['Update_user'], headers=self.get_token,
+        update_api = requests.post(api.web_api['Update_user'], headers=self.headers,
                                    data=json.dumps(request, default=str), verify=False)
         update_api_response = json.loads(update_api.content)
         print(update_api_response)
@@ -131,3 +147,4 @@ if Object.login == 'OK':
         Object.update_message = {}
         Object.success_case_01 = {}
         Object.success_case_02 = {}
+        Object.headers = {}
