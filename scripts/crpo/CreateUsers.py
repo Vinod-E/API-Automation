@@ -129,7 +129,8 @@ class CreateUser(login.CRPOLogin, work_book.WorkBook):
 
         # ---------------- Passing headers based on API supports to lambda or not --------------------
         if self.calling_lambda == 'On':
-            if api.web_api['Create_user'] in api.lambda_apis['Create_user']:
+            if api.lambda_apis.get('Create_user') is not None \
+                    and api.web_api['Create_user'] in api.lambda_apis['Create_user']:
                 self.headers = self.lambda_headers
             else:
                 self.headers = self.Non_lambda_headers
@@ -168,7 +169,8 @@ class CreateUser(login.CRPOLogin, work_book.WorkBook):
 
         # ---------------- Passing headers based on API supports to lambda or not --------------------
         if self.calling_lambda == 'On':
-            if api.web_api['Create_user'] in api.lambda_apis['Create_user']:
+            if api.lambda_apis.get('UserGetByid') is not None \
+                    and api.web_api['UserGetByid'] in api.lambda_apis['UserGetByid']:
                 self.headers = self.lambda_headers
             else:
                 self.headers = self.Non_lambda_headers

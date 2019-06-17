@@ -107,6 +107,10 @@ web_api = {
 # ---------------------------------------------Lambda APIS -------------------------------------------------------------
 lambda_apis = {
 
+    "bulkCreateTagCandidates": generic_domain + "py/crpo/candidate/api/v1/bulkCreateTagCandidates/",
+
+    "getAllApplicants": generic_domain + "py/crpo/applicant/api/v1/getAllApplicants/",
+
     "create_update_pwd_policy": generic_domain + "py/common/user/create_update_pwd_policy/",
 
     "remove_pwd_policy": generic_domain + "py/common/user/remove_pwd_policy/",
@@ -142,11 +146,7 @@ non_lambda_apis = {
 
     "change_password": generic_domain + "py/common/user/change_password/",
 
-    "bulkCreateTagCandidates": generic_domain + "py/crpo/candidate/api/v1/bulkCreateTagCandidates/",
-
     "update_candidate_details": generic_domain + "py/rpo/update_candidate_details/",
-
-    "getAllApplicants": generic_domain + "py/crpo/applicant/api/v1/getAllApplicants/",
 
     "getAllEventApplicant": generic_domain + "py/crpo/applicant/api/v1/getAllEventApplicant/",
 

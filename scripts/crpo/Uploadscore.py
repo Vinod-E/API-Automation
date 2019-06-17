@@ -117,6 +117,7 @@ class UploadScoresheet(login.CRPOLogin, work_book.WorkBook):
         self.section_four = self.section4_dict = {}
         self.section4_1_dict = {}
         self.section_four_one = self.section4_1_dict = {}
+        self.headers = {}
 
     def excel_headers(self):
         self.main_headers = ['Comparision', 'Candidate Id', 'Overall_Status', 'CandidateName', 'Email', 'Test Mode',
@@ -258,6 +259,22 @@ class UploadScoresheet(login.CRPOLogin, work_book.WorkBook):
             print("File not found or path is incorrect")
 
     def upload_sheet(self, loop):
+
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('uploadCandidatesScore') is not None \
+                    and api.web_api['uploadCandidatesScore'] in api.lambda_apis['uploadCandidatesScore']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
         # ------------------          ---------------------------------------------
         # Upload Score Sheet ******** Every 30 Days S3 "FilePath" has to be Replace
         # ------------------          ---------------------------------------------
@@ -267,8 +284,9 @@ class UploadScoresheet(login.CRPOLogin, work_book.WorkBook):
                         "assessmentScoreSheets/9d07816d-5d7e-4d07-8205-314f107e3c0fGroup_Section.xlsx",
             "Sync": "False"
         }
-        uploadsheet_api = requests.post(api.web_api['uploadCandidatesScore'], headers=self.get_token,
+        uploadsheet_api = requests.post(api.web_api['uploadCandidatesScore'], headers=self.headers,
                                         data=json.dumps(uploadsheetrequest, default=str), verify=False)
+        print(uploadsheet_api.headers)
         upload_api_dict = json.loads(uploadsheet_api.content)
         print(upload_api_dict)
 
@@ -374,6 +392,22 @@ class UploadScoresheet(login.CRPOLogin, work_book.WorkBook):
             print("File not found or path is incorrect")
 
     def updated_upload_sheet(self, loop):
+
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('uploadCandidatesScore') is not None \
+                    and api.web_api['uploadCandidatesScore'] in api.lambda_apis['uploadCandidatesScore']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
         # ------------------          ---------------------------------------
         # Upload Score Sheet ******** Every 30 Days Replace the S3 "FilePath"
         # ------------------          ---------------------------------------
@@ -383,16 +417,32 @@ class UploadScoresheet(login.CRPOLogin, work_book.WorkBook):
                         "assessmentScoreSheets/98b269f2-e8fb-4a6c-98e2-7feb224de48cUpdated_Group_Section.xlsx",
             "Sync": "False"
         }
-        uploadsheet_api = requests.post(api.web_api['uploadCandidatesScore'], headers=self.get_token,
+        uploadsheet_api = requests.post(api.web_api['uploadCandidatesScore'], headers=self.headers,
                                         data=json.dumps(uploadsheetrequest, default=str), verify=False)
         upload_api_dict = json.loads(uploadsheet_api.content)
         print(upload_api_dict)
 
     def fetching_scores(self, loop):
+
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('getApplicantsInfo') is not None \
+                    and api.web_api['getApplicantsInfo'] in api.lambda_apis['getApplicantsInfo']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
         score_request = {
             "CandidateIds": [self.xl_candidateId[loop]]
         }
-        fetchingscores_api = requests.post(api.web_api['getApplicantsInfo'], headers=self.get_token,
+        fetchingscores_api = requests.post(api.web_api['getApplicantsInfo'], headers=self.headers,
                                            data=json.dumps(score_request, default=str), verify=False)
         fetchingscores_dict = json.loads(fetchingscores_api.content)
         scoredata = fetchingscores_dict['data']
@@ -1158,8 +1208,10 @@ class UploadScoresheet(login.CRPOLogin, work_book.WorkBook):
             self.ws.write(self.final_status_rowsize, 1, 'Pass', self.style24)
         else:
             self.ws.write(self.final_status_rowsize, 1, self.Negitive_Status, self.style25)
-        self.ws.write(self.final_status_rowsize, 3, 'StartTime', self.style23)
-        self.ws.write(self.final_status_rowsize, 4, self.start_time, self.style26)
+        self.ws.write(self.final_status_rowsize, 2, 'StartTime', self.style23)
+        self.ws.write(self.final_status_rowsize, 3, self.start_time, self.style26)
+        self.ws.write(0, 4, 'Lambda', self.style23)
+        self.ws.write(0, 5, self.calling_lambda, self.style24)
         Object.wb_Result.save(output_paths.outputpaths['Score_Output_sheet'])
 
 
@@ -1229,4 +1281,5 @@ if Object.login == 'OK':
         Object.section2_1_dict = {}
         Object.section3_1_dict = {}
         Object.section4_1_dict = {}
+        Object.headers = {}
 Object.overall_status()

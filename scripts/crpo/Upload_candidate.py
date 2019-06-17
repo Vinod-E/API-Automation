@@ -169,6 +169,7 @@ class UploadCandidate(login.CRPOLogin, work_book.WorkBook):
         self.success_case_05 = {}
         self.failure_case_01 = {}
         self.failure_case_02 = {}
+        self.headers = {}
 
     def excel_data(self):
         # ----------------
@@ -592,6 +593,22 @@ class UploadCandidate(login.CRPOLogin, work_book.WorkBook):
                 self.xl_Exception_message.append(rows[80])
 
     def bulk_create_tag_candidates(self, iteration):
+
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('bulkCreateTagCandidates') is not None \
+                    and api.web_api['bulkCreateTagCandidates'] in api.lambda_apis['bulkCreateTagCandidates']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
         # -------------------------
         # Candidate create request
         # -------------------------
@@ -706,8 +723,9 @@ class UploadCandidate(login.CRPOLogin, work_book.WorkBook):
         }],
             "Sync": "True"
         }
-        create_candidate = requests.post(api.web_api['bulkCreateTagCandidates'], headers=self.get_token,
+        create_candidate = requests.post(api.web_api['bulkCreateTagCandidates'], headers=self.headers,
                                          data=json.dumps(create_candidate_request, default=str), verify=False)
+        print(create_candidate.headers)
         create_candidate_response_dict = json.loads(create_candidate.content)
         candidate_response_data = create_candidate_response_dict['data']
 
@@ -739,7 +757,24 @@ class UploadCandidate(login.CRPOLogin, work_book.WorkBook):
                 print("Message ::", self.message)
 
     def candidate_get_by_id_details(self):
-        get_candidate_details = requests.post(api.web_api['CandidateGetbyId'].format(self.CID), headers=self.get_token)
+
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('CandidateGetbyId') is not None \
+                    and api.web_api['CandidateGetbyId'] in api.lambda_apis['CandidateGetbyId']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
+        get_candidate_details = requests.post(api.web_api['CandidateGetbyId'].format(self.CID), headers=self.headers)
+        print(get_candidate_details.headers)
         candidate_details = json.loads(get_candidate_details.content)
         candidate_dict = candidate_details['Candidate']
         self.personal_details_dict = candidate_dict['PersonalDetails']
@@ -747,8 +782,25 @@ class UploadCandidate(login.CRPOLogin, work_book.WorkBook):
         self.custom_details_dict = candidate_dict['CustomDetails']
 
     def candidate_educational_details(self, loop):
+
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('Candidate_Educationaldetails') is not None \
+                    and api.web_api['Candidate_Educationaldetails'] in api.lambda_apis['Candidate_Educationaldetails']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
         get_educational_details = requests.post(api.web_api['Candidate_Educationaldetails'].format(self.CID),
-                                                headers=self.get_token)
+                                                headers=self.headers)
+        print(get_educational_details.headers)
         educational_details = json.loads(get_educational_details.content)
         educational_dict = educational_details['EducationProfile']
         for edu in educational_dict:
@@ -763,14 +815,47 @@ class UploadCandidate(login.CRPOLogin, work_book.WorkBook):
                     (item for item in educational_dict if item['DegreeId'] == self.xl_12thDegreeId[loop]), None)
 
     def candidate_experience_details(self):
+
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('Candidate_ExperienceDetails') is not None \
+                    and api.web_api['Candidate_ExperienceDetails'] in api.lambda_apis['Candidate_ExperienceDetails']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
         get_experience_details = requests.post(api.web_api['Candidate_ExperienceDetails'].format(self.CID),
-                                               headers=self.get_token)
+                                               headers=self.headers)
+        print(get_experience_details.headers)
         experience_details = json.loads(get_experience_details.content)
         experience_dict = experience_details['WorkProfile']
         for exp in experience_dict:
             self.experience_dict = exp
 
     def event_applicants(self, loop):
+
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('getAllApplicants') is not None \
+                    and api.web_api['getAllApplicants'] in api.lambda_apis['getAllApplicants']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
         eventapplicant_request = {
             "RecruitEventId": self.xl_eventId[loop],
             "PagingCriteriaType": {
@@ -778,8 +863,9 @@ class UploadCandidate(login.CRPOLogin, work_book.WorkBook):
                 "PageNumber": 1
             }
         }
-        eventapplicant_api = requests.post(api.web_api['getAllApplicants'], headers=self.get_token,
+        eventapplicant_api = requests.post(api.web_api['getAllApplicants'], headers=self.headers,
                                            data=json.dumps(eventapplicant_request, default=str), verify=False)
+        print(eventapplicant_api.headers)
         applicant_dict = json.loads(eventapplicant_api.content)
         print(applicant_dict)
         applicant_data = applicant_dict['data']
@@ -1963,8 +2049,10 @@ class UploadCandidate(login.CRPOLogin, work_book.WorkBook):
         else:
             self.ws.write(0, 1, 'Fail', self.style25)
 
-        self.ws.write(0, 3, 'Start Time', self.style23)
-        self.ws.write(0, 4, self.start_time, self.style26)
+        self.ws.write(0, 2, 'Start Time', self.style23)
+        self.ws.write(0, 3, self.start_time, self.style26)
+        self.ws.write(0, 4, 'Lambda', self.style23)
+        self.ws.write(0, 5, self.calling_lambda, self.style24)
         Obj.wb_Result.save(output_paths.outputpaths['Candidate_Output_sheet'])
 
 
@@ -2003,6 +2091,7 @@ if Obj.login == 'OK':
         Obj.success_case_03 = {}
         Obj.success_case_04 = {}
         Obj.success_case_05 = {}
+        Obj.headers = {}
 print("Expected_Status_length :: ", len(Obj.Expected_success_cases))
 print("Actual_status_length :: ", len(Obj.Actual_Success_case))
 Obj.overall_status()

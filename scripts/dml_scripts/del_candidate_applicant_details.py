@@ -1,5 +1,5 @@
 import xlrd
-from hpro_automation import (output_paths, input_paths, db_login)
+from hpro_automation import (output_paths, db_login)
 
 
 class DeleteCandidateApplicant(db_login.DBConnection):
