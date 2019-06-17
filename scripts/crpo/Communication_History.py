@@ -93,6 +93,8 @@ class CommunicationHistory(login.CRPOLogin, work_book.WorkBook):
         self.api_GDPR = {}
         self.api_re_rl_done = {}
 
+        self.headers = {}
+
     def excel_data(self):
 
         # -----------------------------
@@ -154,6 +156,21 @@ class CommunicationHistory(login.CRPOLogin, work_book.WorkBook):
             self.xl_API_hits.append(int(rows[24]))
 
     def admit_card(self, loop):
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('sendAdmitCardsToApplicants') is not None \
+                    and api.web_api['sendAdmitCardsToApplicants'] in api.lambda_apis['sendAdmitCardsToApplicants']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
         # ------------------------------------- Admit Card -------------------------------------------------------------
         request = {"Sync": "False",
                    "EventId": '',
@@ -161,41 +178,90 @@ class CommunicationHistory(login.CRPOLogin, work_book.WorkBook):
                    "ForceSend": "True",
                    "EnsureSuccess": "True",
                    "Applicants": [self.xl_applicant_id[loop]]}
-        admitcard = requests.post(api.web_api['sendAdmitCardsToApplicants'], headers=self.get_token,
+        admitcard = requests.post(api.web_api['sendAdmitCardsToApplicants'], headers=self.headers,
                                   data=json.dumps(request, default=str), verify=False)
         admitcard_response = json.loads(admitcard.content)
         print(admitcard_response)
 
     def registration_link(self, loop):
+
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('sendRegistrationLinkToApplicants') is not None \
+                    and api.web_api['sendRegistrationLinkToApplicants'] \
+                    in api.lambda_apis['sendRegistrationLinkToApplicants']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
         # ----------------------------------- Registration Link --------------------------------------------------------
         request = {"ApplicantIds": [self.xl_applicant_id[loop]],
                    "Sync": "False",
                    "ForceSend": True
                    }
-        rl = requests.post(api.web_api['sendRegistrationLinkToApplicants'], headers=self.get_token,
+        rl = requests.post(api.web_api['sendRegistrationLinkToApplicants'], headers=self.headers,
                            data=json.dumps(request, default=str), verify=False)
         rl_response = json.loads(rl.content)
         print(rl_response)
 
     def registration_link_disable(self, loop):
-        # ----------------------------------- flag set for offer pending -----------------------------------------------
+
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('setApplicantCommunicationStatus') is not None \
+                    and api.web_api['setApplicantCommunicationStatus'] \
+                    in api.lambda_apis['setApplicantCommunicationStatus']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
+        # ----------------------------------- registration link disable -----------------------------------------------
         request1 = {"ApplicantId": self.xl_applicant_id[loop],
                     "CommunicationPurpose": self.xl_CommunicationPurpose[loop],
                     "CommunicationStatus": True}
         disable_api = requests.post(api.web_api['setApplicantCommunicationStatus'],
-                                    headers=self.get_token, data=json.dumps(request1, default=str),
-                                    verify=False)
+                                    headers=self.headers, data=json.dumps(request1, default=str), verify=False)
         disable_api_dict = json.loads(disable_api.content)
         print(disable_api_dict)
 
     def registration_link_enable(self, loop):
-        # ----------------------------------- flag set for offer pending -----------------------------------------------
+
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('setApplicantCommunicationStatus') is not None \
+                    and api.web_api['setApplicantCommunicationStatus'] \
+                    in api.lambda_apis['setApplicantCommunicationStatus']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
+        # ----------------------------------- registration link enable-------------------------------------------------
         request1 = {"ApplicantId": self.xl_applicant_id[loop],
                     "CommunicationPurpose": self.xl_CommunicationPurpose[loop],
                     "CommunicationStatus": False}
         enable_api = requests.post(api.web_api['setApplicantCommunicationStatus'],
-                                   headers=self.get_token, data=json.dumps(request1, default=str),
-                                   verify=False)
+                                   headers=self.headers, data=json.dumps(request1, default=str), verify=False)
         enable_api_dict = json.loads(enable_api.content)
         print(enable_api_dict)
 
@@ -254,41 +320,109 @@ class CommunicationHistory(login.CRPOLogin, work_book.WorkBook):
         print(communicationstatus_api_dict)
 
     def mobile_email_verification(self, loop):
+
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('sendVerificationNotification') is not None \
+                    and api.web_api['sendVerificationNotification'] \
+                    in api.lambda_apis['sendVerificationNotification']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
         # ----------------------------------- Mobile/Email Verification ------------------------------------------------
         request = {"candidateIds": [self.xl_applicant_id[loop]],
                    "sync": True,
                    "verificationType": self.xl_verification_type[loop],
                    "isForceSend": True}
-        mobile_email_api = requests.post(api.web_api['sendVerificationNotification'], headers=self.get_token,
+        mobile_email_api = requests.post(api.web_api['sendVerificationNotification'], headers=self.headers,
                                          data=json.dumps(request, default=str), verify=False)
         mobile_email_api_dict = json.loads(mobile_email_api.content)
         print(mobile_email_api_dict)
 
     def email_verification(self, loop):
+
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('sendVerificationNotification') is not None \
+                    and api.web_api['sendVerificationNotification'] \
+                    in api.lambda_apis['sendVerificationNotification']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
         # ----------------------------------- Email Verification ------------------------------------------------------
         request = {"candidateIds": [self.xl_applicant_id[loop]],
                    "sync": True,
                    "verificationType": self.xl_verification_type[loop],
                    "isForceSend": True}
-        email_api = requests.post(api.web_api['sendVerificationNotification'], headers={self.get_token,},
+        email_api = requests.post(api.web_api['sendVerificationNotification'], headers=self.headers,
                                   data=json.dumps(request, default=str), verify=False)
         email_api_dict = json.loads(email_api.content)
         print(email_api_dict)
 
     def flag(self, loop):
+
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('setApplicantCommunicationStatus') is not None \
+                    and api.web_api['setApplicantCommunicationStatus'] \
+                    in api.lambda_apis['setApplicantCommunicationStatus']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
         # ----------------------------------- flag set for offer pending -----------------------------------------------
         request1 = {"ApplicantId": self.xl_applicant_id[loop],
                     "CommunicationPurpose": self.xl_CommunicationPurpose[loop],
                     "CommunicationStatus": True}
         flag_api = requests.post(api.web_api['setApplicantCommunicationStatus'],
-                                 headers=self.get_token, data=json.dumps(request1, default=str),
+                                 headers=self.headers, data=json.dumps(request1, default=str),
                                  verify=False)
         flag_api_dict = json.loads(flag_api.content)
         print(flag_api_dict)
 
     def fetch_r_link(self, loop):
+
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('getRegistrationLinkForApplicants') is not None \
+                    and api.web_api['getRegistrationLinkForApplicants'] \
+                    in api.lambda_apis['getRegistrationLinkForApplicants']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
         request = {"ApplicantIds": [self.xl_applicant_id[loop]]}
-        get_rl_api = requests.post(api.web_api['getRegistrationLinkForApplicants'], headers=self.get_token,
+        get_rl_api = requests.post(api.web_api['getRegistrationLinkForApplicants'], headers=self.headers,
                                    data=json.dumps(request, default=str), verify=False)
         get_rl_api_dict = json.loads(get_rl_api.content)
         data = get_rl_api_dict['data']
@@ -759,5 +893,6 @@ if Object.login == 'OK':
         Object.api_re_rl_done = {}
         Object.api_re_rl_Not_allowed = {}
         Object.api_GDPR = {}
+        Object.headers = {}
 
 Object.overall_status()
