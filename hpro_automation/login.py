@@ -85,9 +85,22 @@ class CRPOLogin(object):
                                                    'X-APPLMA': 'true',
                                                    "X-AUTH-TOKEN": self.response.get("Token")
                                                    }
+
+                            self.Non_lambda_headers = {"content-type": "application/json",
+                                                       "X-APPLMA": 'false',
+                                                       "X-AUTH-TOKEN": self.response.get("Token")
+                                                       }
                         elif self.calling_lambda == 'Off':
                             print("**----------------------Lambda is enabled in tenant--------------------------**")
                             print("**--------- Selected - Off, APIs calling without lambda function ----------------**")
+
+                            self.lambda_headers = {"content-type": "application/json",
+                                                   'X-APPLMA': 'false',
+                                                   "X-AUTH-TOKEN": self.response.get("Token")
+                                                   }
+                        else:
+                            print("**----------------------Lambda is disabled in tenant--------------------------**")
+                            print("**------------------ APIs calling without Lambda function-------------------------**")
 
                             self.lambda_headers = {"content-type": "application/json",
                                                    'X-APPLMA': 'false',
@@ -103,7 +116,3 @@ class CRPOLogin(object):
                                                }
         except ValueError as app:
             print(app)
-
-#
-# ob = CRPOLogin()
-# print(ob.lambda_headers)

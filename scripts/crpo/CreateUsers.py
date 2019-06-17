@@ -59,6 +59,7 @@ class CreateUser(login.CRPOLogin, work_book.WorkBook):
         self.success_case_01 = {}
         self.success_case_02 = {}
         self.status = {}
+        self.headers = {}
 
     def excel_data(self):
 
@@ -125,9 +126,21 @@ class CreateUser(login.CRPOLogin, work_book.WorkBook):
             self.xl_Roles.append(roles)
 
     def create_user(self, loop):
-        # -------------------------
-        # User create request
-        # -------------------------
+
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.web_api['Create_user'] in api.lambda_apis['Create_user']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
         create_user_request = {
             "UserDetails": {"Name": self.xl_Name[loop], "UserName": self.xl_Login_Name[loop],
                             "Email1": self.xl_Email[loop], "Password": self.xl_enter_password[loop],
@@ -136,12 +149,10 @@ class CreateUser(login.CRPOLogin, work_book.WorkBook):
                             "UserRoles": self.xl_Roles[loop], "DepartmentId": self.xl_Department[loop],
                             "UserBelongsTo": self.xl_UserBelongsTo[loop]}
         }
-        self.lambda_headers['APP-NAME'] = 'crpo'
-        create_user = requests.post(api.web_api['Create_user'], headers=self.lambda_headers,
+        create_user = requests.post(api.web_api['Create_user'], headers=self.headers,
                                     data=json.dumps(create_user_request, default=str), verify=False)
         create_user_response = json.loads(create_user.content)
         print(create_user_response)
-        print(create_user.content)
         self.status = create_user_response['status']
         self.userId = create_user_response.get('UserId')
         self.error = create_user_response.get('error', {})
@@ -155,9 +166,23 @@ class CreateUser(login.CRPOLogin, work_book.WorkBook):
 
     def user_getbyid_details(self):
 
-        self.lambda_headers['APP-NAME'] = 'crpo'
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.web_api['Create_user'] in api.lambda_apis['Create_user']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
         get_user_details = requests.get(api.web_api['UserGetByid'].format(self.userId),
-                                        headers=self.lambda_headers)
+                                        headers=self.headers)
+        print(get_user_details.headers)
         user_details = json.loads(get_user_details.content)
         self.user_dict = user_details.get('UserDetails')
 
@@ -409,4 +434,5 @@ if Obj.login == 'OK':
         Obj.status = {}
         Obj.success_case_01 = {}
         Obj.success_case_02 = {}
+        Obj.headers = {}
 Obj.overall_status()
