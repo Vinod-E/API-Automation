@@ -2,7 +2,6 @@ from hpro_automation import (login, api, input_paths, output_paths, db_login, wo
 import xlrd
 import requests
 import json
-import xlwt
 import datetime
 
 
@@ -11,32 +10,6 @@ class PasswordPolicy(login.CRPOLogin, work_book.WorkBook, db_login.DBConnection)
     def __init__(self):
         self.start_time = str(datetime.datetime.now())
         super(PasswordPolicy, self).__init__()
-
-        # -------------------------------------
-        # Excel sheet write for Output results
-        # -------------------------------------
-        self.wb_Result = xlwt.Workbook()
-        self.ws = self.wb_Result.add_sheet('API_Automation')
-
-        self.rowsize = 2
-        self.size = self.rowsize
-        self.col = 0
-
-        index = 0
-        excelheaders = ['Comparision', 'Overall Status',
-                        'TotalCharacters', 'Capital', 'Small', 'Special', 'Numeric', 'ID', 'UserName', 'Password',
-                        'LastLogin', 'Pwd_configuration_status', 'Change_Pwd_Status', 'Login_Status', 'Exception Error']
-        for headers in excelheaders:
-            if headers in ['Comparision', 'Overall Status']:
-                self.ws.write(1, index, headers, self.style2)
-            elif headers in ['TotalCharacters', 'Capital', 'Small', 'Special', 'Numeric', 'ID']:
-                self.ws.write(1, index, headers, self.style19)
-            elif headers in ['Overall Status']:
-                self.ws.write(1, index, headers, self.style2)
-            else:
-                self.ws.write(1, index, headers, self.style15)
-            index += 1
-        print('Excel Headers are printed successfully')
 
         # ----------------------------------------------
         # Password configurations data set initialsation
@@ -87,6 +60,15 @@ class PasswordPolicy(login.CRPOLogin, work_book.WorkBook, db_login.DBConnection)
         self.success_case_01 = {}
         self.success_case_02 = {}
         self.success_case_03 = {}
+
+    def excel_headers(self):
+        self.main_headers = ['Comparision', 'Overall Status',
+                             'TotalCharacters', 'Capital', 'Small', 'Special', 'Numeric', 'ID', 'UserName', 'Password',
+                             'LastLogin', 'Pwd_configuration_status', 'Change_Pwd_Status', 'Login_Status',
+                             'Exception Error']
+        self.headers_with_style2 = ['Comparision', 'Overall Status']
+        self.headers_with_style19 = ['TotalCharacters', 'Capital', 'Small', 'Special', 'Numeric', 'ID']
+        self.file_headers_col_row()
 
     def excel_data(self):
 
@@ -450,6 +432,7 @@ class PasswordPolicy(login.CRPOLogin, work_book.WorkBook, db_login.DBConnection)
 
 
 Object = PasswordPolicy()
+Object.excel_headers()
 Object.excel_data()
 Total_count = len(Object.xl_ID)
 print("Number of rows ::", Total_count)

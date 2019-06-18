@@ -18,7 +18,7 @@ class VerifyDuplicationRule(login.CRPOLogin, work_book.WorkBook):
         self.success_case_01 = {}
 
         # print self.headers
-        self.excelwriteheaders()
+        self.excel_headers()
         file_path = input_paths.inputpaths['Duplication_rule_Input_sheet']
         duplicate_sheet_index = 0
         excel_read_obj.excel_read(file_path, duplicate_sheet_index)
@@ -30,70 +30,18 @@ class VerifyDuplicationRule(login.CRPOLogin, work_book.WorkBook):
             self.updateduplicaterule()
             self.checkDuplicate()
 
-    def excelwriteheaders(self):
-
-        self.ws.write(1, 0, 'Actual_Status', self.style2)
-        self.ws.write(1, 1, 'Name', self.style0)
-        self.ws.write(1, 2, 'Fname', self.style0)
-        self.ws.write(1, 3, 'Mname', self.style0)
-        self.ws.write(1, 4, 'Lname', self.style0)
-        self.ws.write(1, 5, 'Email Address', self.style0)
-        self.ws.write(1, 6, 'Mobile', self.style0)
-        self.ws.write(1, 7, 'Phone', self.style0)
-        self.ws.write(1, 8, 'Marital Status', self.style0)
-        self.ws.write(1, 9, 'Gender', self.style0)
-        self.ws.write(1, 10, 'DOB', self.style0)
-        self.ws.write(1, 11, 'PANCARD', self.style0)
-        self.ws.write(1, 12, 'PASSPORT', self.style0)
-        self.ws.write(1, 13, 'Aadhar', self.style0)
-        self.ws.write(1, 14, 'USN', self.style0)
-        self.ws.write(1, 15, 'College', self.style0)
-        self.ws.write(1, 16, 'Degree', self.style0)
-        self.ws.write(1, 17, 'Location', self.style0)
-        self.ws.write(1, 18, 'Total Experience(in Months)', self.style0)
-
-        self.ws.write(1, 19, 'LinkedIn', self.style0)
-        self.ws.write(1, 20, 'Facebook', self.style0)
-        self.ws.write(1, 21, 'Twitter', self.style0)
-
-        self.ws.write(1, 22, 'Text1', self.style0)
-        self.ws.write(1, 23, 'Text2', self.style0)
-        self.ws.write(1, 24, 'Text3', self.style0)
-        self.ws.write(1, 25, 'Text4', self.style0)
-        self.ws.write(1, 26, 'Text5', self.style0)
-        self.ws.write(1, 27, 'Text6', self.style0)
-        self.ws.write(1, 28, 'Text7', self.style0)
-        self.ws.write(1, 29, 'Text8', self.style0)
-        self.ws.write(1, 30, 'Text9', self.style0)
-        self.ws.write(1, 31, 'Text10', self.style0)
-        self.ws.write(1, 32, 'Text11', self.style0)
-        self.ws.write(1, 33, 'Text12', self.style0)
-        self.ws.write(1, 34, 'Text13', self.style0)
-        self.ws.write(1, 35, 'Text14', self.style0)
-        self.ws.write(1, 36, 'Text15', self.style0)
-
-        self.ws.write(1, 37, 'Integer1', self.style0)
-        self.ws.write(1, 38, 'Integer2', self.style0)
-        self.ws.write(1, 39, 'Integer3', self.style0)
-        self.ws.write(1, 40, 'Integer4', self.style0)
-        self.ws.write(1, 41, 'Integer5', self.style0)
-        self.ws.write(1, 42, 'Integer6', self.style0)
-        self.ws.write(1, 43, 'Integer7', self.style0)
-        self.ws.write(1, 44, 'Integer8', self.style0)
-        self.ws.write(1, 45, 'Integer9', self.style0)
-        self.ws.write(1, 46, 'Integer10', self.style0)
-        self.ws.write(1, 47, 'Integer11', self.style0)
-        self.ws.write(1, 48, 'Integer12', self.style0)
-        self.ws.write(1, 49, 'Integer13', self.style0)
-        self.ws.write(1, 50, 'Integer14', self.style0)
-        self.ws.write(1, 51, 'Integer15', self.style0)
-        self.ws.write(1, 52, 'Duplicate Rule', self.style2)
-
-        self.ws.write(1, 53, 'Expected Status', self.style2)
-        self.ws.write(1, 54, 'Actual Status', self.style2)
-        self.ws.write(1, 55, 'Expected Message', self.style2)
-        self.ws.write(1, 56, 'Actual Message', self.style2)
-        # self.ws.write(0, 55, 'Message', self.__style0)
+    def excel_headers(self):
+        self.main_headers = ['Actual_Status', 'Name', 'Fname', 'Mname', 'Lname', 'Email Address', 'Mobile', 'Phone',
+                             'Marital Status', 'Gender', 'DOB', 'PANCARD', 'PASSPORT', 'Aadhar', 'USN', 'College',
+                             'Degree', 'Location', 'Total Experience(in Months)', 'LinkedIn', 'Facebook', 'Twitter',
+                             'Text1', 'Text2', 'Text3', 'Text4', 'Text5', 'Text6', 'Text7', 'Text8', 'Text9', 'Text10',
+                             'Text11', 'Text12', 'Text13', 'Text14', 'Text15', 'Integer1', 'Integer2', 'Integer3',
+                             'Integer4', 'Integer5', 'Integer6', 'Integer7', 'Integer8', 'Integer9', 'Integer10',
+                             'Integer11', 'Integer12', 'Integer13', 'Integer14',  'Integer15', 'Duplicate Rule',
+                             'Expected Status', 'Actual Status', 'Expected Message', 'Actual Message']
+        self.headers_with_style2 = ['Actual_Status', 'Duplicate Rule', 'Expected Status', 'Actual Status',
+                                    'Expected Message', 'Actual Message']
+        self.file_headers_col_row()
 
     def updateduplicaterule(self):
 

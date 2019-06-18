@@ -11,21 +11,6 @@ class CreateUser(login.CRPOLogin, work_book.WorkBook):
         self.start_time = str(datetime.datetime.now())
         super(CreateUser, self).__init__()
 
-        # -------------------------------------
-        # Excel sheet write for Output results
-        # -------------------------------------
-
-        index = 0
-        excelheaders = ['Comparison', 'Actual_status', 'User Id', 'TypeofUser', 'Name', 'Login_name',
-                        'Email', 'Location', 'Mobile', 'Roles', 'Department', 'TypeofUserId', 'UserBelongs_Id',
-                        'Expected_message']
-        for headers in excelheaders:
-            if headers in ['Comparison', 'Actual_status', 'User Id', 'TypeofUser']:
-                self.ws.write(1, index, headers, self.style2)
-            else:
-                self.ws.write(1, index, headers, self.style0)
-            index += 1
-
         # --------------------------
         # Initialising Excel Data
         # --------------------------
@@ -59,6 +44,15 @@ class CreateUser(login.CRPOLogin, work_book.WorkBook):
         self.success_case_01 = {}
         self.success_case_02 = {}
         self.status = {}
+
+        self.excel_headers()
+
+    def excel_headers(self):
+        self.main_headers = ['Comparison', 'Actual_status', 'User Id', 'TypeofUser', 'Name', 'Login_name',
+                             'Email', 'Location', 'Mobile', 'Roles', 'Department', 'TypeofUserId', 'UserBelongs_Id',
+                             'Expected_message']
+        self.headers_with_style2 = ['Comparison', 'Actual_status', 'User Id', 'TypeofUser']
+        self.file_headers_col_row()
 
     def excel_data(self):
 

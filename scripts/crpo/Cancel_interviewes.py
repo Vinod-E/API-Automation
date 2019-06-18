@@ -11,19 +11,6 @@ class CancelInterview(login.CRPOLogin, work_book.WorkBook):
         self.start_time = str(datetime.datetime.now())
         super(CancelInterview, self).__init__()
 
-        # -------------------------------------
-        # Excel sheet write for Output results
-        # -------------------------------------
-        index = 0
-        excelheaders = ['Comparision', 'Status', 'Interview_Request_ID', 'Message']
-        for headers in excelheaders:
-            if headers in ['Comparision', 'Status']:
-                self.ws.write(1, index, headers, self.style2)
-            else:
-                self.ws.write(1, index, headers, self.style0)
-            index += 1
-        print('Excel Headers are printed successfully')
-
         # -----------------------
         # Initialising Excel Data
         # -----------------------
@@ -47,6 +34,11 @@ class CancelInterview(login.CRPOLogin, work_book.WorkBook):
         self.success_case_01 = {}
         self.success_case_02 = {}
         self.success_case_03 = {}
+
+    def excel_headers(self):
+        self.main_headers = ['Comparision', 'Status', 'Interview_Request_ID', 'Message']
+        self.headers_with_style2 = ['Comparision', 'Status']
+        self.file_headers_col_row()
 
     def excel_data_ir1(self):
         try:
@@ -190,6 +182,7 @@ class CancelInterview(login.CRPOLogin, work_book.WorkBook):
 
 
 Object = CancelInterview()
+Object.excel_headers()
 Object.excel_data_ir1()
 Object.excel_data_ir2()
 Total_count = len(Object.xl_ir_id)

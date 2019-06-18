@@ -16,7 +16,6 @@ class ECAutomation(login.CRPOLogin, db_login.DBConnection, work_book.WorkBook):
 
         now = datetime.datetime.now()
         self.__current_DateTime = now.strftime("%d-%m-%Y-%H-%M-%S")
-        self.rowsize = 2
         # excel values are assigned to local variable
         self.xl_candidate_id = []
         self.xl_applicant_id = []
@@ -34,18 +33,13 @@ class ECAutomation(login.CRPOLogin, db_login.DBConnection, work_book.WorkBook):
         self.Actual_Success_case = []
         self.success_case_01 = {}
 
-        self.wb_Result = xlwt.Workbook()
-        self.ws = self.wb_Result.add_sheet('EC_Verification')
-        self.ws.write(1, 0, 'Actual_status', self.style15)
-        self.ws.write(1, 1, 'Event Id', self.style15)
-        self.ws.write(1, 2, 'Job Id', self.style15)
-        self.ws.write(1, 3, 'CandidateID', self.style15)
-        self.ws.write(1, 4, 'Excel ApplicantId', self.style15)
-        self.ws.write(1, 5, 'DB Applicant ID', self.style15)
-        self.ws.write(1, 6, 'EC ID', self.style15)
-        self.ws.write(1, 7, 'Expected Status', self.style15)
-        self.ws.write(1, 8, 'DB Status', self.style15)
+        self.excel_headers()
 
+    def excel_headers(self):
+        self.main_headers = ['Actual_status', 'Event Id', 'Job Id', 'CandidateID', 'Excel ApplicantId',
+                             'DB Applicant ID', 'EC ID', 'Expected Status', 'DB Status']
+        self.headers_with_style2 = ['DB Status', 'Actual_status']
+        self.file_headers_col_row()
     # -------------------------------------------
     # Reading Input data from excel
     # -------------------------------------------

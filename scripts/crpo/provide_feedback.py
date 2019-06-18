@@ -11,30 +11,6 @@ class InterviewFeedback(login.CRPOLogin, work_book.WorkBook):
         self.start_time = str(datetime.datetime.now())
         super(InterviewFeedback, self).__init__()
 
-        # -------------------------------------
-        # Excel sheet write for Output results
-        # -------------------------------------
-
-        index = 0
-        excelheaders = ['Comparison', 'Status', 'ApplicantID', 'IR_id', 'Feedback_Message',
-                        'Interviewer_Decision', 'Partial_Feedback', 'Partial_Feedback_message',
-                        'Update_decision_message', 'Updated_decision', 'Scheduled_date', 'Interviewed_date', 'Skill_01',
-                        'Score_01', 'Skill_02', 'Score_02', 'Skill_03', 'Score_03', 'Skill_04', 'Score_04', 'Duration',
-                        'Skill_comment', 'OverAllComment', 'Update_Score_01', 'Update_Duration',
-                        'Update_Skill_comment', 'Updated_OverAllComment', 'Exception_Message']
-        for headers in excelheaders:
-            if headers in ['Comparison', 'Status', 'ApplicantID', 'IR_id', 'Feedback_Message',
-                           'Interviewer_Decision', 'Partial_Feedback', 'Partial_Feedback_message',
-                           'Update_decision_message', 'Updated_decision']:
-                self.ws.write(1, index, headers, self.style2)
-            elif headers in ['Scheduled_date', 'Interviewed_date', 'Update_Skill_comment', 'Updated_OverAllComment',
-                             'Update_Duration', 'Update_Score_01']:
-                self.ws.write(1, index, headers, self.style9)
-            else:
-                self.ws.write(1, index, headers, self.style0)
-            index += 1
-        print('Excel Headers are printed successfully')
-
         # --------------------------
         # Initialising Excel Data
         # --------------------------
@@ -160,6 +136,20 @@ class InterviewFeedback(login.CRPOLogin, work_book.WorkBook):
         self.success_case_04 = {}
         self.success_case_05 = {}
         self.success_case_06 = {}
+
+    def excel_headers(self):
+        self.main_headers = ['Comparison', 'Status', 'ApplicantID', 'IR_id', 'Feedback_Message',
+                             'Interviewer_Decision', 'Partial_Feedback', 'Partial_Feedback_message',
+                             'Update_decision_message', 'Updated_decision', 'Scheduled_date', 'Interviewed_date',
+                             'Skill_01', 'Score_01', 'Skill_02', 'Score_02', 'Skill_03', 'Score_03', 'Skill_04',
+                             'Score_04', 'Duration', 'Skill_comment', 'OverAllComment', 'Update_Score_01',
+                             'Update_Duration', 'Update_Skill_comment', 'Updated_OverAllComment', 'Exception_Message']
+        self.headers_with_style2 = ['Comparison', 'Status', 'ApplicantID', 'IR_id', 'Feedback_Message',
+                                    'Interviewer_Decision', 'Partial_Feedback', 'Partial_Feedback_message',
+                                    'Update_decision_message', 'Updated_decision']
+        self.headers_with_style9 = ['Scheduled_date', 'Interviewed_date', 'Update_Skill_comment',
+                                    'Updated_OverAllComment', 'Update_Duration', 'Update_Score_01']
+        self.file_headers_col_row()
 
     def excel_data(self):
         # ----------------
@@ -1004,6 +994,7 @@ class InterviewFeedback(login.CRPOLogin, work_book.WorkBook):
 
 
 Object = InterviewFeedback()
+Object.excel_headers()
 Object.excel_data()
 Total_count = len(Object.xl_Event_id)
 print("Number of Rows ::", Total_count)

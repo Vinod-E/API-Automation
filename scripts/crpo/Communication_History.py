@@ -14,31 +14,6 @@ class CommunicationHistory(login.CRPOLogin, work_book.WorkBook):
         self.start_time = str(datetime.datetime.now())
         super(CommunicationHistory, self).__init__()
 
-        # -------------------------------------
-        # Excel sheet write for Output results
-        # -------------------------------------
-        index = 0
-        excelheaders = ['Actual_Status', 'Name of Flag', 'Event_Id', 'Expected Applicant_Id', 'Actual_Applicant_Id',
-                        'Admit_card', 'Actual_Admit_card', 'RL_sent', 'Actual_RL_sent', 'Disable_RL',
-                        'Actual_Disable_RL', 'Enable_RL', 'Actual_Enable_RL', 'RL_Done', 'Actual_RL_Done', 'Re_RL',
-                        'Actual_Re_RL', 'Re_RL_Done', 'Actual_Re_Rl_Done', 'Re_RL_NotAllowed',
-                        'Actual_Re_RL_NotAllowed', 'GDPR', 'Actual_GDPR', 'Approved_admit_card',
-                        'Actual_Approved_admit_card', 'score_sheet',
-                        'Actual_score_sheet', 'Offer', 'Actual_Offer', 'Email/Mobile', 'Actual_Email/Mobile', 'Email',
-                        'Actual_Email', 'Attachment_Id']
-        for headers in excelheaders:
-            if headers in ['Actual_Status', 'Name of Flag', 'Event_Id']:
-                self.ws.write(1, index, headers, self.style2)
-            elif headers in ['Actual_Applicant_Id', 'Actual_Admit_card', 'Actual_RL_sent', 'Actual_Disable_RL',
-                             'Actual_Enable_RL', 'Actual_RL_Done', 'Actual_Re_RL', 'Actual_Re_Rl_Done',
-                             'Actual_Re_RL_NotAllowed', 'Actual_GDPR', 'Actual_Approved_admit_card',
-                             'Actual_score_sheet', 'Actual_Offer', 'Actual_Email/Mobile', 'Actual_Email']:
-                self.ws.write(1, index, headers, self.style9)
-            else:
-                self.ws.write(1, index, headers, self.style0)
-            index += 1
-
-        # --------------------------------------------------------------------------------------------------------------
         self.driver = ""
         self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 14)))
         self.Actual_Success_case = []
@@ -92,8 +67,25 @@ class CommunicationHistory(login.CRPOLogin, work_book.WorkBook):
         self.api_re_rl_Not_allowed = {}
         self.api_GDPR = {}
         self.api_re_rl_done = {}
-
         self.headers = {}
+
+        self.excel_headers()
+
+    def excel_headers(self):
+        self.main_headers = ['Actual_Status', 'Name of Flag', 'Event_Id', 'Expected Applicant_Id',
+                             'Actual_Applicant_Id', 'Admit_card', 'Actual_Admit_card', 'RL_sent', 'Actual_RL_sent',
+                             'Disable_RL', 'Actual_Disable_RL', 'Enable_RL', 'Actual_Enable_RL', 'RL_Done',
+                             'Actual_RL_Done', 'Re_RL', 'Actual_Re_RL', 'Re_RL_Done', 'Actual_Re_Rl_Done',
+                             'Re_RL_NotAllowed', 'Actual_Re_RL_NotAllowed', 'GDPR', 'Actual_GDPR',
+                             'Approved_admit_card', 'Actual_Approved_admit_card', 'score_sheet', 'Actual_score_sheet',
+                             'Offer', 'Actual_Offer', 'Email/Mobile', 'Actual_Email/Mobile',
+                             'Email', 'Actual_Email', 'Attachment_Id']
+        self.headers_with_style2 = ['Actual_Status', 'Name of Flag', 'Event_Id']
+        self.headers_with_style9 = ['Actual_Applicant_Id', 'Actual_Admit_card', 'Actual_RL_sent', 'Actual_Disable_RL',
+                                    'Actual_Enable_RL', 'Actual_RL_Done', 'Actual_Re_RL', 'Actual_Re_Rl_Done',
+                                    'Actual_Re_RL_NotAllowed', 'Actual_GDPR', 'Actual_Approved_admit_card',
+                                    'Actual_score_sheet', 'Actual_Offer', 'Actual_Email/Mobile', 'Actual_Email']
+        self.file_headers_col_row()
 
     def excel_data(self):
 

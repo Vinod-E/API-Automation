@@ -13,24 +13,6 @@ class LoginCheck(work_book.WorkBook):
         super(LoginCheck, self).__init__()
         self.lambda_call = str(input("Lambda On/Off:: "))
 
-        # -------------------------------------
-        # Excel sheet write for Output results
-        # -------------------------------------
-
-        index = 0
-        excelheaders = ['Actual_Status', 'Tenant', 'Username', 'Password', 'Expected_Login_Status',
-                        'Actual_Login_Status', 'Expected_Password_change', 'Actual_Password_change',
-                        'Expected_Message', 'Actual_Message', 'LastLogin']
-        for headers in excelheaders:
-            if headers in ['Tenant', 'Username', 'Password', 'Actual_Status']:
-                self.ws.write(1, index, headers, self.style2)
-            elif headers in ['Overall_Status']:
-                self.ws.write(1, index, headers, self.style10)
-            else:
-                self.ws.write(1, index, headers, self.style15)
-            index += 1
-        print('Excel Headers are printed successfully')
-
         # --------------------------
         # Initilasing the excel data
         # --------------------------
@@ -56,6 +38,15 @@ class LoginCheck(work_book.WorkBook):
         self.success_case_01 = {}
         self.success_case_02 = {}
         self.headers = {}
+
+        self.excel_headers()
+
+    def excel_headers(self):
+        self.main_headers = ['Actual_Status', 'Tenant', 'Username', 'Password', 'Expected_Login_Status',
+                             'Actual_Login_Status', 'Expected_Password_change', 'Actual_Password_change',
+                             'Expected_Message', 'Actual_Message', 'LastLogin']
+        self.headers_with_style2 = ['Tenant', 'Username', 'Password', 'Actual_Status']
+        self.file_headers_col_row()
 
     def excel_data(self):
 

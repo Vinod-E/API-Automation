@@ -11,33 +11,6 @@ class UploadCandidate(login.CRPOLogin, work_book.WorkBook):
         self.start_time = str(datetime.datetime.now())
         super(UploadCandidate, self).__init__()
 
-        # -------------------------------------------
-        # Excel sheet headers for Output result sheet
-        # -------------------------------------------
-
-        header_column = 0
-        excelheaders = ['Comparison', 'Actual_status', 'Candidate Id', 'Event Id', 'Event Name',
-                        'Job Id', 'Job Name', 'Applicant Id', 'Test Id', 'Test Name',
-                        'Original CId', 'Name', 'FirstName', 'MiddleName', 'LastName', 'Mobile1',
-                        'PhoneOffice', 'Email1', 'Email2', 'Gender', 'MaritalStatus', 'DateOfBirth', 'USN', 'Address1',
-                        'Address2', 'Final%', 'FinalEndYear', 'FinalDegree', 'FinalCollege', 'FinalDegreeType', '10th%',
-                        '10thEndYear', '12th%', '12thEndYear', 'PanNo', 'PassportNo', 'CurrentLocation',
-                        'TotalExperienceInMonths', 'Country', 'HierarchyId', 'Nationality', 'Sensitivity', 'StatusId',
-                        'SourceId', 'CampusId', 'SourceType', 'Experience', 'EmployerId', 'DesignationId', 'Expertise',
-                        'Notice Period', 'Integer1', 'Integer2', 'Integer3', 'Integer4', 'Integer5', 'Integer6',
-                        'Integer7', 'Integer8', 'Integer9', 'Integer10', 'Integer11', 'Integer12', 'Integer13',
-                        'Integer14', 'Integer15', 'Text1', 'Text2', 'Text3', 'Text4', 'Text5', 'Text6', 'Text7',
-                        'Text8', 'Text9', 'Text10', 'Text11', 'Text12', 'Text13', 'Text14', 'Text15', 'TextArea1',
-                        'TextArea2', 'TextArea3', 'TextArea4', 'Expected_message']
-        for headers in excelheaders:
-            if headers in ['Comparison', 'Candidate Id', 'Original CId', 'Event Id', 'Event Name', 'Job Id',
-                           'Job Name', 'Applicant Id', 'Overall_status', 'Message', 'Test Id', 'Test Name',
-                           'Actual_status']:
-                self.ws.write(1, header_column, headers, self.style2)
-            else:
-                self.ws.write(1, header_column, headers, self.style0)
-            header_column += 1
-
         # --------------------------
         # Initialising Excel Data
         # --------------------------
@@ -170,6 +143,27 @@ class UploadCandidate(login.CRPOLogin, work_book.WorkBook):
         self.failure_case_01 = {}
         self.failure_case_02 = {}
         self.headers = {}
+
+    def excel_headers(self):
+        self.main_headers = ['Comparison', 'Actual_status', 'Candidate Id', 'Event Id', 'Event Name',
+                             'Job Id', 'Job Name', 'Applicant Id', 'Test Id', 'Test Name',
+                             'Original CId', 'Name', 'FirstName', 'MiddleName', 'LastName', 'Mobile1',
+                             'PhoneOffice', 'Email1', 'Email2', 'Gender', 'MaritalStatus', 'DateOfBirth', 'USN',
+                             'Address1', 'Address2', 'Final%', 'FinalEndYear', 'FinalDegree', 'FinalCollege',
+                             'FinalDegreeType', '10th%', '10thEndYear', '12th%', '12thEndYear', 'PanNo', 'PassportNo',
+                             'CurrentLocation', 'TotalExperienceInMonths', 'Country', 'HierarchyId', 'Nationality',
+                             'Sensitivity', 'StatusId', 'SourceId', 'CampusId', 'SourceType', 'Experience',
+                             'EmployerId', 'DesignationId', 'Expertise', 'Notice Period', 'Integer1', 'Integer2',
+                             'Integer3', 'Integer4', 'Integer5', 'Integer6', 'Integer7', 'Integer8', 'Integer9',
+                             'Integer10', 'Integer11', 'Integer12', 'Integer13', 'Integer14', 'Integer15', 'Text1',
+                             'Text2', 'Text3', 'Text4', 'Text5', 'Text6', 'Text7', 'Text8', 'Text9', 'Text10', 'Text11',
+                             'Text12', 'Text13', 'Text14', 'Text15', 'TextArea1', 'TextArea2', 'TextArea3',
+                             'TextArea4', 'Expected_message']
+
+        self.headers_with_style2 = ['Comparison', 'Candidate Id', 'Original CId', 'Event Id', 'Event Name', 'Job Id',
+                                    'Job Name', 'Applicant Id', 'Overall_status', 'Message', 'Test Id', 'Test Name',
+                                    'Actual_status']
+        self.file_headers_col_row()
 
     def excel_data(self):
         # ----------------
@@ -1997,6 +1991,7 @@ class UploadCandidate(login.CRPOLogin, work_book.WorkBook):
 
 
 Obj = UploadCandidate()
+Obj.excel_headers()
 Obj.excel_data()
 Total_count = len(Obj.xl_Name)
 print("Number Of Rows ::", Total_count)

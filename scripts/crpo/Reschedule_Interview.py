@@ -11,27 +11,6 @@ class RescheduleInterview(login.CRPOLogin, work_book.WorkBook):
         self.start_time = str(datetime.datetime.now())
         super(RescheduleInterview, self).__init__()
 
-        # -------------------------------------
-        # Excel sheet write for Output results
-        # -------------------------------------
-
-        index = 0
-        excelheaders = ['Comparision', 'Status', 'Interview_Request', 'Interviewers',
-                        'interview_type', 'ScheduleOn', 'interviewStatus', 'Reschedule_ir_id',
-                        'ReSchedule_Interviewers', 'ReSchedule_type', 'ReScheduleOn', 'Reschedule_Status',
-                        'ApplicantId', 'Exception_message']
-        for headers in excelheaders:
-            if headers in ['Comparision', 'Status', 'Interview_Request', 'Interviewers', 'interview_type',
-                           'ScheduleOn', 'interviewStatus']:
-                self.ws.write(1, index, headers, self.style2)
-            elif headers in ['Reschedule_ir_id', 'add_interviewers', 'Removed_interviewers', 'ReSchedule_type',
-                             'Reschedule_Status', 'ReScheduleOn', 'ReSchedule_Interviewers']:
-                self.ws.write(1, index, headers, self.style9)
-            else:
-                self.ws.write(1, index, headers, self.style0)
-            index += 1
-        print('Excel Headers are printed successfully')
-
         # --------------------------
         # Initialising Excel Data
         # --------------------------
@@ -100,6 +79,17 @@ class RescheduleInterview(login.CRPOLogin, work_book.WorkBook):
         self.success_case_01 = {}
         self.success_case_02 = {}
         self.success_case_03 = {}
+
+    def excel_headers(self):
+        self.main_headers = ['Comparision', 'Status', 'Interview_Request', 'Interviewers',
+                             'interview_type', 'ScheduleOn', 'interviewStatus', 'Reschedule_ir_id',
+                             'ReSchedule_Interviewers', 'ReSchedule_type', 'ReScheduleOn', 'Reschedule_Status',
+                             'ApplicantId', 'Exception_message']
+        self.headers_with_style2 = ['Comparision', 'Status', 'Interview_Request', 'Interviewers', 'interview_type',
+                                    'ScheduleOn', 'interviewStatus']
+        self.headers_with_style9 = ['Reschedule_ir_id', 'add_interviewers', 'Removed_interviewers', 'ReSchedule_type',
+                                    'Reschedule_Status', 'ReScheduleOn', 'ReSchedule_Interviewers']
+        self.file_headers_col_row()
 
     def excel_data(self):
         # ----------------
@@ -533,6 +523,7 @@ class RescheduleInterview(login.CRPOLogin, work_book.WorkBook):
 
 
 Object = RescheduleInterview()
+Object.excel_headers()
 Object.excel_data()
 Total_count = len(Object.xl_Event_id)
 print("Number of Rows ::", Total_count)
