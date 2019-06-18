@@ -266,6 +266,22 @@ class CommunicationHistory(login.CRPOLogin, work_book.WorkBook):
         print(enable_api_dict)
 
     def approved_admit_card(self, loop):
+
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('Create_Attachment') is not None and api.web_api['Create_Attachment'] \
+                    in api.lambda_apis['Create_Attachment']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
         # ----------------------------------- Approved admit card ------------------------------------------------------
         request = {
             "Entity": "Applicant",
@@ -275,24 +291,56 @@ class CommunicationHistory(login.CRPOLogin, work_book.WorkBook):
             "LabelOther": "{\"Name\":\"Approved Admitcard\"}"
         }
 
-        approved_api = requests.post(api.web_api['Create_Attachment'], headers=self.get_token,
+        approved_api = requests.post(api.web_api['Create_Attachment'], headers=self.headers,
                                      data=json.dumps(request, default=str), verify=False)
         approved_api_dict = json.loads(approved_api.content)
         print(approved_api_dict)
         data = approved_api_dict.get('data')
         self.AttachmentId = data.get('AttachmentId')
 
-        # -------------------------------- set communication status ------------------------------------------------
+        # -------------------------------- set communication status ----------------------------------------------------
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('setApplicantCommunicationStatus') is not None \
+                    and api.web_api['setApplicantCommunicationStatus'] \
+                    in api.lambda_apis['setApplicantCommunicationStatus']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
         request1 = {"ApplicantId": self.xl_applicant_id[loop],
                     "CommunicationPurpose": self.xl_CommunicationPurpose[loop],
                     "CommunicationStatus": True}
         communicationstatus_api = requests.post(api.web_api['setApplicantCommunicationStatus'],
-                                                headers=self.get_token, data=json.dumps(request1, default=str),
+                                                headers=self.headers, data=json.dumps(request1, default=str),
                                                 verify=False)
         communicationstatus_api_dict = json.loads(communicationstatus_api.content)
         print(communicationstatus_api_dict)
 
     def score_sheet(self, loop):
+
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('Create_Attachment') is not None and api.web_api['Create_Attachment'] \
+                    in api.lambda_apis['Create_Attachment']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
         # ------------------------------------- Score sheet ------------------------------------------------------------
         request = {
             "Entity": "Applicant",
@@ -302,7 +350,7 @@ class CommunicationHistory(login.CRPOLogin, work_book.WorkBook):
             "LabelOther": "{\"Name\":\"Score Sheet\"}"
         }
 
-        score_api = requests.post(api.web_api['Create_Attachment'], headers=self.get_token,
+        score_api = requests.post(api.web_api['Create_Attachment'], headers=self.headers,
                                   data=json.dumps(request, default=str), verify=False)
         score_api_dict = json.loads(score_api.content)
         print(score_api_dict)
@@ -310,11 +358,27 @@ class CommunicationHistory(login.CRPOLogin, work_book.WorkBook):
         self.AttachmentId = data.get('AttachmentId')
 
         # -------------------------------- set communication status ------------------------------------------------
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('setApplicantCommunicationStatus') is not None \
+                    and api.web_api['setApplicantCommunicationStatus'] \
+                    in api.lambda_apis['setApplicantCommunicationStatus']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
         request1 = {"ApplicantId": self.xl_applicant_id[loop],
                     "CommunicationPurpose": self.xl_CommunicationPurpose[loop],
                     "CommunicationStatus": True}
         communicationstatus_api = requests.post(api.web_api['setApplicantCommunicationStatus'],
-                                                headers=self.get_token, data=json.dumps(request1, default=str),
+                                                headers=self.headers, data=json.dumps(request1, default=str),
                                                 verify=False)
         communicationstatus_api_dict = json.loads(communicationstatus_api.content)
         print(communicationstatus_api_dict)
@@ -462,18 +526,49 @@ class CommunicationHistory(login.CRPOLogin, work_book.WorkBook):
 
     def re_registration_link(self, loop):
 
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('applicantRe-Registration') is not None \
+                    and api.web_api['applicantRe-Registration'] \
+                    in api.lambda_apis['applicantRe-Registration']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
+
         if self.purpose[loop] == 'Re-Registration Allowed':
             request = {"applicantIds": [self.xl_applicant_id[loop]],
                        "reasonId": 44609,
                        "comment": "Sending registration link again"}
 
             re_rl_api = requests.post(api.web_api['applicantRe-Registration'],
-                                      headers=self.get_token, data=json.dumps(request, default=str),
+                                      headers=self.headers, data=json.dumps(request, default=str),
                                       verify=False)
             re_rl_api_dict = json.loads(re_rl_api.content)
             print(re_rl_api_dict)
 
     def get_applicants(self, loop):
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get('getAllEventApplicant') is not None \
+                    and api.web_api['getAllEventApplicant'] \
+                    in api.lambda_apis['getAllEventApplicant']:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers
+
+        # ---------------- Updating headers with app name -----------------
+        self.headers['APP-NAME'] = 'crpo'
 
         # --------------------------------------
         # Hitting login API based on input value
@@ -484,7 +579,7 @@ class CommunicationHistory(login.CRPOLogin, work_book.WorkBook):
                                               "ObjectState": 0, "PageNo": 1, "SortOrder": "1", "SortParameter": "1",
                                               "PageNumber": 1},
                        "RecruitEventId": self.xl_expected_event_id[loop]}
-            applicant_api = requests.post(api.web_api['getAllEventApplicant'], headers=self.get_token,
+            applicant_api = requests.post(api.web_api['getAllEventApplicant'], headers=self.headers,
                                           data=json.dumps(request, default=str), verify=False)
             applicant_api_dict = json.loads(applicant_api.content)
             self.data = applicant_api_dict.get('data')
@@ -799,6 +894,8 @@ class CommunicationHistory(login.CRPOLogin, work_book.WorkBook):
             self.ws.write(0, 1, 'Fail', self.style25)
         self.ws.write(0, 2, 'Start Time', self.style23)
         self.ws.write(0, 3, self.start_time, self.style26)
+        self.ws.write(0, 4, 'Lambda', self.style23)
+        self.ws.write(0, 5, self.calling_lambda, self.style24)
         Object.wb_Result.save(output_paths.outputpaths['Communication_output_sheet'])
 
 
