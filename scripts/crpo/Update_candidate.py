@@ -563,19 +563,7 @@ class UpdateCandidate(login.CRPOLogin, work_book.WorkBook):
 
     def update_candidate(self, loop):
 
-        # ---------------- Passing headers based on API supports to lambda or not --------------------
-        if self.calling_lambda == 'On':
-            if api.lambda_apis.get('update_candidate_details') is not None \
-                    and api.web_api['update_candidate_details'] in api.lambda_apis['update_candidate_details']:
-                self.headers = self.lambda_headers
-            else:
-                self.headers = self.Non_lambda_headers
-        elif self.calling_lambda == 'Off':
-            self.headers = self.lambda_headers
-        else:
-            self.headers = self.lambda_headers
-
-        # ---------------- Updating headers with app name -----------------
+        self.lambda_function('update_candidate_details')
         self.headers['APP-NAME'] = 'crpo'
 
         if self.xl_update_TrueFalse1[loop] == 'true':
@@ -720,19 +708,7 @@ class UpdateCandidate(login.CRPOLogin, work_book.WorkBook):
 
     def candidate_get_by_id_details(self, loop):
 
-        # ---------------- Passing headers based on API supports to lambda or not --------------------
-        if self.calling_lambda == 'On':
-            if api.lambda_apis.get('CandidateGetbyId') is not None \
-                    and api.web_api['CandidateGetbyId'] in api.lambda_apis['CandidateGetbyId']:
-                self.headers = self.lambda_headers
-            else:
-                self.headers = self.Non_lambda_headers
-        elif self.calling_lambda == 'Off':
-            self.headers = self.lambda_headers
-        else:
-            self.headers = self.lambda_headers
-
-        # ---------------- Updating headers with app name -----------------
+        self.lambda_function('CandidateGetbyId')
         self.headers['APP-NAME'] = 'crpo'
 
         get_candidate_details = requests.post(api.web_api['CandidateGetbyId'].format(self.xl_update_candidate_id[loop]),

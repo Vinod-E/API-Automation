@@ -324,6 +324,10 @@ class InterviewFeedback(login.CRPOLogin, work_book.WorkBook):
             print("File not found or path is incorrect")
 
     def schedule_interview(self, loop):
+
+        self.lambda_function('Schedule')
+        self.headers['APP-NAME'] = 'crpo'
+
         try:
             schedule_request = [{
                 "isConsultantRound": False,
@@ -339,8 +343,9 @@ class InterviewFeedback(login.CRPOLogin, work_book.WorkBook):
                 "recruitEventId": self.xl_Event_id[loop],
                 "applicantIds": [self.xl_Applicant_id[loop]]
             }]
-            scheduling_interviews = requests.post(api.web_api['Schedule'], headers=self.get_token,
+            scheduling_interviews = requests.post(api.web_api['Schedule'], headers=self.headers,
                                                   data=json.dumps(schedule_request, default=str), verify=False)
+            print(scheduling_interviews.headers)
             schedule_response = json.loads(scheduling_interviews.content)
             # print (json.dumps(schedule_response, indent=2))
             data = schedule_response['data']
@@ -370,6 +375,10 @@ class InterviewFeedback(login.CRPOLogin, work_book.WorkBook):
             print(Schedule_error)
 
     def provide_feedback(self, loop):
+
+        self.lambda_function('givefeedback')
+        self.headers['APP-NAME'] = 'crpo'
+
         if self.xl_int_datetime[loop]:
             if self.xl_partial_feedback[loop] == 1:
                 self.pf = True
@@ -405,8 +414,9 @@ class InterviewFeedback(login.CRPOLogin, work_book.WorkBook):
                         "interviewedDate": self.xl_int_datetime[loop]
                     }]
                 }
-                providing_feedback = requests.post(api.web_api['givefeedback'], headers=self.get_token,
+                providing_feedback = requests.post(api.web_api['givefeedback'], headers=self.headers,
                                                    data=json.dumps(feedback_request, default=str), verify=False)
+                print(providing_feedback.headers)
                 feedback_response = json.loads(providing_feedback.content)
                 # print (json.dumps(feedback_response, indent=2))
                 data = feedback_response.get('data')
@@ -421,8 +431,13 @@ class InterviewFeedback(login.CRPOLogin, work_book.WorkBook):
                 print(feedback_error)
 
     def feedback_details(self, loop):
+
+        self.lambda_function('Interview_details')
+        self.headers['APP-NAME'] = 'crpo'
+
         try:
-            details_url = requests.get(api.web_api['Interview_details'].format(self.ir), headers=self.get_token)
+            details_url = requests.get(api.web_api['Interview_details'].format(self.ir), headers=self.headers)
+            print(details_url.headers)
             details_response = json.loads(details_url.content)
             # print(json.dumps(details_response, indent=2))
             # print('***--------------------------------------------------------***')
@@ -454,8 +469,13 @@ class InterviewFeedback(login.CRPOLogin, work_book.WorkBook):
             print(details_error)
 
     def updated_feedback_details(self, loop):
+
+        self.lambda_function('Interview_details')
+        self.headers['APP-NAME'] = 'crpo'
+
         try:
-            details_url = requests.get(api.web_api['Interview_details'].format(self.ir), headers=self.get_token)
+            details_url = requests.get(api.web_api['Interview_details'].format(self.ir), headers=self.headers)
+            print(details_url.headers)
             details_response = json.loads(details_url.content)
             # print(json.dumps(details_response, indent=2))
             # print('***--------------------------------------------------------***')
@@ -484,13 +504,18 @@ class InterviewFeedback(login.CRPOLogin, work_book.WorkBook):
             print(details_error)
 
     def update_decision(self, loop):
+
+        self.lambda_function('updateinterviewerdecision')
+        self.headers['APP-NAME'] = 'crpo'
+
         if self.xl_update_stage[loop]:
             update_decision_request = {
                 "interviewRequestId": self.ir,
                 "decisionId": self.xl_update_stage[loop]
             }
-            update_decision_url = requests.post(api.web_api['updateinterviewerdecision'], headers=self.get_token,
+            update_decision_url = requests.post(api.web_api['updateinterviewerdecision'], headers=self.headers,
                                                 data=json.dumps(update_decision_request, default=str), verify=False)
+            print(update_decision_url.headers)
             update_decision_response = json.loads(update_decision_url.content)
             decision_response = update_decision_response.get('data')
             decision_error = update_decision_response.get('error')
@@ -498,8 +523,13 @@ class InterviewFeedback(login.CRPOLogin, work_book.WorkBook):
             self.decision_error = decision_error
 
     def decision_updated_feedback_details(self):
+
+        self.lambda_function('Interview_details')
+        self.headers['APP-NAME'] = 'crpo'
+
         try:
-            details_url = requests.get(api.web_api['Interview_details'].format(self.ir), headers=self.get_token)
+            details_url = requests.get(api.web_api['Interview_details'].format(self.ir), headers=self.headers)
+            print(details_url.headers)
             details_response = json.loads(details_url.content)
             # print(json.dumps(details_response, indent=2))
             # print('***--------------------------------------------------------***')
@@ -513,6 +543,10 @@ class InterviewFeedback(login.CRPOLogin, work_book.WorkBook):
             print(decision)
 
     def partial_feedback(self, loop):
+
+        self.lambda_function('updateinterviewerfeedback')
+        self.headers['APP-NAME'] = 'crpo'
+
         if self.feedback['partialFeedback'] == 1:
 
             try:
@@ -543,8 +577,9 @@ class InterviewFeedback(login.CRPOLogin, work_book.WorkBook):
                         "SkillRating": self.xl_Skill_score_04[loop]
                     }]
                 }
-                partial_url = requests.post(api.web_api['updateinterviewerfeedback'], headers=self.get_token,
+                partial_url = requests.post(api.web_api['updateinterviewerfeedback'], headers=self.headers,
                                             data=json.dumps(update_feedback, default=str), verify=False)
+                print(partial_url.headers)
 
                 partial_response = json.loads(partial_url.content)
                 self.partial_data = partial_response['data']
@@ -961,8 +996,10 @@ class InterviewFeedback(login.CRPOLogin, work_book.WorkBook):
         else:
             self.ws.write(0, 1, 'Fail', self.style25)
 
-        self.ws.write(0, 3, 'Start Time', self.style23)
-        self.ws.write(0, 4, self.start_time, self.style26)
+        self.ws.write(0, 2, 'Start Time', self.style23)
+        self.ws.write(0, 3, self.start_time, self.style26)
+        self.ws.write(0, 4, 'Lambda', self.style23)
+        self.ws.write(0, 5, self.calling_lambda, self.style24)
         Object.wb_Result.save(output_paths.outputpaths['Interview_flow_Output_sheet'])
 
 

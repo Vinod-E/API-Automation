@@ -260,19 +260,7 @@ class UploadScoresheet(login.CRPOLogin, work_book.WorkBook):
 
     def upload_sheet(self, loop):
 
-        # ---------------- Passing headers based on API supports to lambda or not --------------------
-        if self.calling_lambda == 'On':
-            if api.lambda_apis.get('uploadCandidatesScore') is not None \
-                    and api.web_api['uploadCandidatesScore'] in api.lambda_apis['uploadCandidatesScore']:
-                self.headers = self.lambda_headers
-            else:
-                self.headers = self.Non_lambda_headers
-        elif self.calling_lambda == 'Off':
-            self.headers = self.lambda_headers
-        else:
-            self.headers = self.lambda_headers
-
-        # ---------------- Updating headers with app name -----------------
+        self.lambda_function('uploadCandidatesScore')
         self.headers['APP-NAME'] = 'crpo'
 
         # ------------------          ---------------------------------------------
@@ -286,6 +274,7 @@ class UploadScoresheet(login.CRPOLogin, work_book.WorkBook):
         }
         uploadsheet_api = requests.post(api.web_api['uploadCandidatesScore'], headers=self.headers,
                                         data=json.dumps(uploadsheetrequest, default=str), verify=False)
+        print(uploadsheet_api.headers)
         print(uploadsheet_api.headers)
         upload_api_dict = json.loads(uploadsheet_api.content)
         print(upload_api_dict)
@@ -393,19 +382,7 @@ class UploadScoresheet(login.CRPOLogin, work_book.WorkBook):
 
     def updated_upload_sheet(self, loop):
 
-        # ---------------- Passing headers based on API supports to lambda or not --------------------
-        if self.calling_lambda == 'On':
-            if api.lambda_apis.get('uploadCandidatesScore') is not None \
-                    and api.web_api['uploadCandidatesScore'] in api.lambda_apis['uploadCandidatesScore']:
-                self.headers = self.lambda_headers
-            else:
-                self.headers = self.Non_lambda_headers
-        elif self.calling_lambda == 'Off':
-            self.headers = self.lambda_headers
-        else:
-            self.headers = self.lambda_headers
-
-        # ---------------- Updating headers with app name -----------------
+        self.lambda_function('uploadCandidatesScore')
         self.headers['APP-NAME'] = 'crpo'
 
         # ------------------          ---------------------------------------
@@ -419,24 +396,13 @@ class UploadScoresheet(login.CRPOLogin, work_book.WorkBook):
         }
         uploadsheet_api = requests.post(api.web_api['uploadCandidatesScore'], headers=self.headers,
                                         data=json.dumps(uploadsheetrequest, default=str), verify=False)
+        print(uploadsheet_api.headers)
         upload_api_dict = json.loads(uploadsheet_api.content)
         print(upload_api_dict)
 
     def fetching_scores(self, loop):
 
-        # ---------------- Passing headers based on API supports to lambda or not --------------------
-        if self.calling_lambda == 'On':
-            if api.lambda_apis.get('getApplicantsInfo') is not None \
-                    and api.web_api['getApplicantsInfo'] in api.lambda_apis['getApplicantsInfo']:
-                self.headers = self.lambda_headers
-            else:
-                self.headers = self.Non_lambda_headers
-        elif self.calling_lambda == 'Off':
-            self.headers = self.lambda_headers
-        else:
-            self.headers = self.lambda_headers
-
-        # ---------------- Updating headers with app name -----------------
+        self.lambda_function('getApplicantsInfo')
         self.headers['APP-NAME'] = 'crpo'
 
         score_request = {
@@ -444,6 +410,7 @@ class UploadScoresheet(login.CRPOLogin, work_book.WorkBook):
         }
         fetchingscores_api = requests.post(api.web_api['getApplicantsInfo'], headers=self.headers,
                                            data=json.dumps(score_request, default=str), verify=False)
+        print(fetchingscores_api.headers)
         fetchingscores_dict = json.loads(fetchingscores_api.content)
         scoredata = fetchingscores_dict['data']
         for testuser in scoredata:

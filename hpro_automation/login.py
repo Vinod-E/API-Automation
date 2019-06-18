@@ -5,12 +5,14 @@ import time
 import requests
 from hpro_automation.identity import credentials
 from hpro_automation.api import *
+from hpro_automation import api
 
 
 class CRPOLogin(object):
 
     def __init__(self):
         super(CRPOLogin, self).__init__()
+        self.headers = {}
 
 # ----------------------------- CRPO LOGIN APPLICATION -----------------------------------------------------------------
 
@@ -25,9 +27,7 @@ class CRPOLogin(object):
 
             login_data = credentials.login_details[self.type_of_user]
 
-            login_api = requests.post(web_api.get("Loginto_CRPO"),
-                                      headers=self.header,
-                                      data=json.dumps(login_data),
+            login_api = requests.post(web_api.get("Loginto_CRPO"), headers=self.header, data=json.dumps(login_data),
                                       verify=False)
             self.response = login_api.json()
             self.get_token = {"content-type": "application/json",
@@ -116,3 +116,15 @@ class CRPOLogin(object):
                                                }
         except ValueError as app:
             print(app)
+
+    def lambda_function(self, api_key):
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.calling_lambda == 'On':
+            if api.lambda_apis.get(api_key) is not None and api.web_api[api_key] in api.lambda_apis[api_key]:
+                self.headers = self.lambda_headers
+            else:
+                self.headers = self.Non_lambda_headers
+        elif self.calling_lambda == 'Off':
+            self.headers = self.lambda_headers
+        else:
+            self.headers = self.lambda_headers

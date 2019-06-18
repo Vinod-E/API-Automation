@@ -176,6 +176,9 @@ class PasswordPolicy(login.CRPOLogin, work_book.WorkBook, db_login.DBConnection)
 
     def update_pwd_policy(self, loop):
 
+        self.lambda_function('create_update_pwd_policy')
+        self.headers['APP-NAME'] = 'crpo'
+
         request = {"NumCapital": self.xl_capital[loop],
                    "NumSmall": self.xl_small[loop],
                    "NumSpecial": self.xl_special[loop],
@@ -185,8 +188,9 @@ class PasswordPolicy(login.CRPOLogin, work_book.WorkBook, db_login.DBConnection)
                    "IsPwdChangeInFirstLogin": False,
                    "Id": self.xl_ID[loop]
                    }
-        update_policy = requests.post(api.web_api['create_update_pwd_policy'], headers=self.get_token,
+        update_policy = requests.post(api.web_api['create_update_pwd_policy'], headers=self.headers,
                                       data=json.dumps(request, default=str), verify=False)
+        print(update_policy.headers)
         update_policy_api_response = json.loads(update_policy.content)
         print(update_policy_api_response)
 
@@ -211,27 +215,37 @@ class PasswordPolicy(login.CRPOLogin, work_book.WorkBook, db_login.DBConnection)
         self.cursor.close()
 
     def change_password(self, loop):
+
+        self.lambda_function('change_password')
+        self.headers['APP-NAME'] = 'crpo'
+
         request = {
             "UserName": self.xl_username[loop],
             "OldPwd": self.xl_old_pwd[loop],
             "NewPwd": self.xl_new_pwd[loop],
             "ConfirmNewPwd": self.xl_confirm_pwd[loop],
             "TenantAlias": "automation"}
-        change_password = requests.post(api.web_api['change_password'], headers=self.get_token,
+        change_password = requests.post(api.web_api['change_password'], headers=self.headers,
                                         data=json.dumps(request, default=str), verify=False)
+        print(change_password.headers)
         change_password_api_response = json.loads(change_password.content)
         print(change_password_api_response)
         self.change_pwd_status = change_password_api_response['status']
         self.change_pwd_error = change_password_api_response.get('error')
 
     def login_check(self, loop):
+
+        self.lambda_function('Loginto_CRPO')
+        self.headers['APP-NAME'] = 'crpo'
+
         request = {"LoginName": self.xl_username[loop],
                    "Password": self.xl_new_pwd[loop],
                    "UserName": self.xl_username[loop],
                    "TenantAlias": 'automation'
                    }
-        login_check = requests.post(api.web_api['Loginto_CRPO'], headers=self.get_token,
+        login_check = requests.post(api.web_api['Loginto_CRPO'], headers=self.headers,
                                     data=json.dumps(request, default=str), verify=False)
+        print(login_check.headers)
         self.login_check_api_response = json.loads(login_check.content)
         self.P_P_dict = self.login_check_api_response.get('PasswordPolicy')
         print(self.P_P_dict.get('NumCharacter'))
@@ -428,8 +442,10 @@ class PasswordPolicy(login.CRPOLogin, work_book.WorkBook, db_login.DBConnection)
         else:
             self.ws.write(0, 1, 'Fail', self.style25)
 
-        self.ws.write(0, 3, 'StartTime', self.style23)
-        self.ws.write(0, 4, self.start_time, self.style26)
+        self.ws.write(0, 2, 'StartTime', self.style23)
+        self.ws.write(0, 3, self.start_time, self.style26)
+        self.ws.write(0, 4, 'Lambda', self.style23)
+        self.ws.write(0, 5, self.calling_lambda, self.style24)
         Object.wb_Result.save(output_paths.outputpaths['Password_policy'])
 
 

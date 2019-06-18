@@ -90,12 +90,17 @@ class CancelInterview(login.CRPOLogin, work_book.WorkBook):
             print("File not found or path is incorrect")
 
     def cancel_interview_request(self, loop):
+
+        self.lambda_function('cancel')
+        self.headers['APP-NAME'] = 'crpo'
+
         cancel_request = {"interviewRequestIds": [self.xl_ir_id[loop]],
                           "interviewCanceledStatusId": self.xl_cancel_statusID,
                           "applicantStatusItemComment": self.xl_interviewer_comment}
 
-        cancel_request_api = requests.post(api.web_api['cancel'], headers=self.get_token,
+        cancel_request_api = requests.post(api.web_api['cancel'], headers=self.headers,
                                            data=json.dumps(cancel_request, default=str), verify=False)
+        print(cancel_request_api.headers)
         cancel_request_api_response = json.loads(cancel_request_api.content)
         data = cancel_request_api_response['data']
 
@@ -179,6 +184,8 @@ class CancelInterview(login.CRPOLogin, work_book.WorkBook):
 
         self.ws.write(0, 2, 'StartTime', self.style23)
         self.ws.write(0, 3, self.start_time, self.style26)
+        self.ws.write(0, 4, 'Lambda', self.style23)
+        self.ws.write(0, 5, self.calling_lambda, self.style24)
         Object.wb_Result.save(output_paths.outputpaths['Cancel_Interview_Output_sheet'])
 
 

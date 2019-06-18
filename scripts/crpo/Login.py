@@ -11,6 +11,7 @@ class LoginCheck(work_book.WorkBook):
     def __init__(self):
         self.start_time = str(datetime.datetime.now())
         super(LoginCheck, self).__init__()
+        self.lambda_call = str(input("Lambda On/Off:: "))
 
         # -------------------------------------
         # Excel sheet write for Output results
@@ -54,6 +55,7 @@ class LoginCheck(work_book.WorkBook):
 
         self.success_case_01 = {}
         self.success_case_02 = {}
+        self.headers = {}
 
     def excel_data(self):
 
@@ -102,6 +104,15 @@ class LoginCheck(work_book.WorkBook):
                 self.xl_expected_status.append(rows[6])
 
     def login_check(self, loop):
+
+        # ---------------- Passing headers based on API supports to lambda or not --------------------
+        if self.lambda_call == 'On':
+            if api.lambda_apis.get('Loginto_CRPO') is not None \
+                    and api.web_api['Loginto_CRPO'] in api.lambda_apis['Loginto_CRPO']:
+                self.headers = {"content-type": "application/json", 'APP-NAME': "crpo", 'X-APPLMA': 'true'}
+        elif self.lambda_call == 'Off':
+            self.headers = {"content-type": "application/json", 'APP-NAME': "crpo", 'X-APPLMA': 'false'}
+
         urllib3.disable_warnings()
         request = {"LoginName": self.xl_username[loop],
                    "Password": self.xl_pwd[loop],
@@ -113,13 +124,14 @@ class LoginCheck(work_book.WorkBook):
         # Hitting login API based on input value
         # --------------------------------------
         for i in range(self.xl_API_hits[loop]):
-            login_check = requests.post(api.web_api['Loginto_CRPO'], data=json.dumps(request, default=str),
-                                        verify=False)
+            login_check = requests.post(api.web_api['Loginto_CRPO'], headers=self.headers,
+                                        data=json.dumps(request, default=str), verify=False)
+            print(login_check.headers)
 
             self.login_check_api_response = json.loads(login_check.content)
             print(self.login_check_api_response)
 
-            if self.login_check_api_response['status'] == 'KO':
+            if self.login_check_api_response.get('status') == 'KO':
                 error = self.login_check_api_response.get('error')
                 self.error_message = error.get('errorDescription')
 
@@ -232,8 +244,10 @@ class LoginCheck(work_book.WorkBook):
         else:
             self.ws.write(0, 1, 'Fail', self.style25)
 
-        self.ws.write(0, 3, 'StartTime', self.style23)
-        self.ws.write(0, 4, self.start_time, self.style26)
+        self.ws.write(0, 2, 'StartTime', self.style23)
+        self.ws.write(0, 3, self.start_time, self.style26)
+        self.ws.write(0, 4, 'Lambda', self.style23)
+        self.ws.write(0, 5, self.lambda_call, self.style24)
         Object.wb_Result.save(output_paths.outputpaths['Login_check_Output_sheet'])
 
 
@@ -255,4 +269,5 @@ for looping in range(0, Total_count):
     Object.error_message = {}
     Object.success_case_01 = {}
     Object.success_case_02 = {}
+    Object.headers = {}
 Object.overall_status()

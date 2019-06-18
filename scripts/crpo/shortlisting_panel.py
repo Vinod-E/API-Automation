@@ -59,6 +59,9 @@ class SCAutomation(login.CRPOLogin, db_login.DBConnection, work_book.WorkBook):
 
     def groupby_MJR_TEST_SLC(self):
 
+        self.lambda_function('ChangeApplicant_Status')
+        self.headers['APP-NAME'] = 'crpo'
+
         # Sort applicant data by `mjrid, Testid,scid,JobId and Eventid` key.
         self.applicant_json_data = sorted(self.applicant_json_data,
                                           key=itemgetter('eventId', 'jobId', 'mjrId', 'testId', 'scId'))
@@ -88,7 +91,8 @@ class SCAutomation(login.CRPOLogin, db_login.DBConnection, work_book.WorkBook):
             print(self.data)
             time.sleep(3)
             r = requests.post(api.web_api['ChangeApplicant_Status'],
-                              headers=self.get_token, data=json.dumps(self.data, default=str), verify=False)
+                              headers=self.headers, data=json.dumps(self.data, default=str), verify=False)
+            print(r.headers)
             resp_dict = json.loads(r.content)
             self.status = resp_dict['status']
             if self.status == 'OK':
@@ -188,8 +192,10 @@ class SCAutomation(login.CRPOLogin, db_login.DBConnection, work_book.WorkBook):
         else:
             self.ws.write(0, 1, 'Fail', self.style25)
 
-        self.ws.write(0, 3, 'StartTime', self.style23)
-        self.ws.write(0, 4, self.start_time, self.style26)
+        self.ws.write(0, 2, 'StartTime', self.style23)
+        self.ws.write(0, 3, self.start_time, self.style26)
+        self.ws.write(0, 4, 'Lambda', self.style23)
+        self.ws.write(0, 5, self.calling_lambda, self.style24)
         ob.wb_Result.save(output_paths.outputpaths['SC_Output_sheet'])
 
 

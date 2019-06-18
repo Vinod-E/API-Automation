@@ -97,19 +97,7 @@ class ResetUser(login.CRPOLogin):
 
     def update_user(self, loop):
 
-        # ---------------- Passing headers based on API supports to lambda or not --------------------
-        if self.calling_lambda == 'On':
-            if api.lambda_apis.get('Update_user') is not None \
-                    and api.web_api['Update_user'] in api.lambda_apis['Update_user']:
-                self.headers = self.lambda_headers
-            else:
-                self.headers = self.Non_lambda_headers
-        elif self.calling_lambda == 'Off':
-            self.headers = self.lambda_headers
-        else:
-            self.headers = self.lambda_headers
-
-        # ---------------- Updating headers with app name -----------------
+        self.lambda_function('Update_user')
         self.headers['APP-NAME'] = 'crpo'
 
         request = {
@@ -129,6 +117,7 @@ class ResetUser(login.CRPOLogin):
         }
         update_api = requests.post(api.web_api['Update_user'], headers=self.headers,
                                    data=json.dumps(request, default=str), verify=False)
+        print(update_api.headers)
         update_api_response = json.loads(update_api.content)
         print(update_api_response)
 

@@ -66,6 +66,10 @@ web_api = {
 
     "applicantRe-Registration":
         generic_domain + "py/crpo/candidatecommunication/api/v1/applicantRe-Registration/",
+
+    "save_app_preferences": generic_domain + "py/common/common_app_utils/save_app_preferences/",
+
+    "candidate_duplicate_check": generic_domain + "py/rpo/candidate_duplicate_check/",
     # ------------------------------------------------------------------------------------------------------------------
 
     "Schedule": generic_domain + "py/crpo/api/v1/interview/schedule/",
@@ -131,6 +135,8 @@ lambda_apis = {
 
     "UserGetByid": generic_domain + "py/common/user/get_user_by_id/{}/",
 
+    "save_app_preferences": generic_domain + "py/common/common_app_utils/save_app_preferences/",
+
     # ---------------------------------- communication history/status --------------------------------------------------
     "Create_Attachment": generic_domain + "py/common/attachment/api/v1/createAttachment/",
 
@@ -159,6 +165,8 @@ non_lambda_apis = {
     "uploadCandidatesScore": generic_domain + "py/crpo/assessment/api/v1/uploadCandidatesScore/",
 
     "oneClickShortlist": generic_domain + "py/crpo/shortlistingcriteria/api/v1/oneClickShortlist",
+
+    "candidate_duplicate_check": generic_domain + "py/rpo/candidate_duplicate_check/",
 
     # ---------------------------------- communication history/status --------------------------------------------------
     "sendAdmitCardsToApplicants":

@@ -92,9 +92,13 @@ class ExcelData(login.CRPOLogin, work_book.WorkBook, db_login.DBConnection):
     # below method is used to get count from the api response
     # ------------------------------------------------------------------------------------------------------------------
     def json_data(self):
-        r = requests.post(api.web_api['getAllApplicants'], headers=self.get_token,
+
+        self.lambda_function('getAllApplicants')
+        self.headers['APP-NAME'] = 'crpo'
+
+        r = requests.post(api.web_api['getAllApplicants'], headers=self.headers,
                           data=json.dumps(self.data, default=str), verify=False)
-        # print r.content
+        print(r.headers)
         resp_dict = json.loads(r.content)
         self.status = resp_dict['status']
 
@@ -109,13 +113,18 @@ class ExcelData(login.CRPOLogin, work_book.WorkBook, db_login.DBConnection):
     # ------------------------------------------------------------------------------------------------------------------
     # below method is used to get all candidate id's from the api response
     # ------------------------------------------------------------------------------------------------------------------
-    def json_data_iteration(self,data,iter):
-        iter +=1
+    def json_data_iteration(self, data, iter):
+
+        self.lambda_function('getAllApplicants')
+        self.headers['APP-NAME'] = 'crpo'
+
+        iter += 1
         self.actual_ids = []
         for i in range(1, iter):
             self.data["PagingCriteria"]["PageNo"] = i
-            r = requests.post(api.web_api['getAllApplicants'], headers=self.get_token,
+            r = requests.post(api.web_api['getAllApplicants'], headers=self.headers,
                               data=json.dumps(data, default=str), verify=False)
+            print(r.headers)
             resp_dict = json.loads(r.content)
             # print resp_dict
             for element in resp_dict["data"]:
@@ -126,7 +135,7 @@ class ExcelData(login.CRPOLogin, work_book.WorkBook, db_login.DBConnection):
 
     def all(self):
         tot_len = len(self.xl_json_request)
-        for i in range(0,tot_len):
+        for i in range(0, tot_len):
             print("Iteration Count :- %s " %i)
 
             # ----------------------------------------------------------------------------------------------------------
@@ -609,8 +618,10 @@ class ExcelData(login.CRPOLogin, work_book.WorkBook, db_login.DBConnection):
         else:
             self.ws.write(0, 1, 'Fail', self.style25)
 
-        self.ws.write(0, 3, 'Start Time', self.style23)
-        self.ws.write(0, 4, self.start_time, self.style26)
+        self.ws.write(0, 2, 'Start Time', self.style23)
+        self.ws.write(0, 3, self.start_time, self.style26)
+        self.ws.write(0, 4, 'Lambda', self.style23)
+        self.ws.write(0, 5, self.calling_lambda, self.style24)
         Object.wb_result.save(output_paths.outputpaths['Applicant_count_Output_sheet_2'])
 
 

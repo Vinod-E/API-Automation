@@ -106,6 +106,9 @@ class ECAutomation(login.CRPOLogin, db_login.DBConnection, work_book.WorkBook):
         # -------------------------------------------
         # Updating EC configuration at event level
         # -------------------------------------------
+        self.lambda_function('createOrUpdateEcConfig')
+        self.headers['APP-NAME'] = 'crpo'
+
         self.data = {"ecConfigurations": [{"id": self.xl_ec_configuration__Id[iteration_count],
                                            "jobRoleId": self.xl_job_Id[iteration_count],
                                            "eventId": self.xl_event_Id[iteration_count],
@@ -114,6 +117,7 @@ class ECAutomation(login.CRPOLogin, db_login.DBConnection, work_book.WorkBook):
                                            "negativeStatusId": self.xl_negative_status__Id[iteration_count]}]}
         r = requests.post(api.web_api['createOrUpdateEcConfig'], headers=self.get_token,
                           data=json.dumps(self.data, default=str), verify=False)
+        print(r.headers)
         time.sleep(1)
         resp_dict = json.loads(r.content)
         self.status = resp_dict['status']
@@ -123,6 +127,9 @@ class ECAutomation(login.CRPOLogin, db_login.DBConnection, work_book.WorkBook):
             # ---------------------------
             # Changing applicant status
             # ---------------------------
+            self.lambda_function('ChangeApplicant_Status')
+            self.headers['APP-NAME'] = 'crpo'
+
             self.data = {"ApplicantIds": [self.applicant_id[iteration_count]],
                          "EventId": self.xl_event_Id[iteration_count],
                          "JobRoleId": self.xl_job_Id[iteration_count],
@@ -133,6 +140,7 @@ class ECAutomation(login.CRPOLogin, db_login.DBConnection, work_book.WorkBook):
                          "MjrId": self.xl_mjr_Id[iteration_count]}
             r = requests.post(api.web_api['ChangeApplicant_Status'], headers=self.get_token,
                               data=json.dumps(self.data, default=str), verify=False)
+            print(r.headers)
             resp_dict = json.loads(r.content)
             self.status = resp_dict['status']
             if self.status == 'OK':
@@ -219,8 +227,10 @@ class ECAutomation(login.CRPOLogin, db_login.DBConnection, work_book.WorkBook):
         else:
             self.ws.write(0, 1, 'Fail', self.style25)
 
-        self.ws.write(0, 3, 'Start Time', self.style23)
-        self.ws.write(0, 4, self.start_time, self.style26)
+        self.ws.write(0, 2, 'Start Time', self.style23)
+        self.ws.write(0, 3, self.start_time, self.style26)
+        self.ws.write(0, 4, 'Lambda', self.style23)
+        self.ws.write(0, 5, self.calling_lambda, self.style24)
         ob.wb_Result.save(output_paths.outputpaths['EC_Output_sheet'])
 
 

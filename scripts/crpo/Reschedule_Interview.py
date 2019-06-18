@@ -196,6 +196,10 @@ class RescheduleInterview(login.CRPOLogin, work_book.WorkBook):
             print("File not found or path is incorrect")
 
     def schedule_interview(self, loop):
+
+        self.lambda_function('Schedule')
+        self.headers['APP-NAME'] = 'crpo'
+
         try:
             schedule_request = [{
                 "isConsultantRound": False,
@@ -211,8 +215,9 @@ class RescheduleInterview(login.CRPOLogin, work_book.WorkBook):
                 "recruitEventId": self.xl_Event_id[loop],
                 "applicantIds": [self.xl_Applicant_id[loop]]
             }]
-            scheduling_interviews = requests.post(api.web_api['Schedule'], headers=self.get_token,
+            scheduling_interviews = requests.post(api.web_api['Schedule'], headers=self.headers,
                                                   data=json.dumps(schedule_request, default=str), verify=False)
+            print(scheduling_interviews.headers)
             schedule_response = json.loads(scheduling_interviews.content)
             # print (json.dumps(schedule_response, indent=2))
             data = schedule_response['data']
@@ -242,6 +247,10 @@ class RescheduleInterview(login.CRPOLogin, work_book.WorkBook):
             print(Schedule_error)
 
     def reschedule_interview(self, loop):
+
+        self.lambda_function('Reschedule')
+        self.headers['APP-NAME'] = 'crpo'
+
         reschedule_request = [{
             "interviewRequestId": self.ir,
             "interviewType": self.xl_Reschedule_type[loop],
@@ -251,8 +260,9 @@ class RescheduleInterview(login.CRPOLogin, work_book.WorkBook):
             "removedInterviewers": self.xl_Reschedule_remove_interviewers[loop]
         }]
 
-        reschedule_api = requests.post(api.web_api['Reschedule'], headers=self.get_token,
+        reschedule_api = requests.post(api.web_api['Reschedule'], headers=self.headers,
                                        data=json.dumps(reschedule_request, default=str), verify=False)
+        print(reschedule_api.headers)
         reschedule_response = json.loads(reschedule_api.content)
         data = reschedule_response['data']
 
@@ -275,12 +285,17 @@ class RescheduleInterview(login.CRPOLogin, work_book.WorkBook):
                     self.is_reschedule_success = False
 
     def interview_request_details(self):
+
+        self.lambda_function('InterviewRequest_details')
+        self.headers['APP-NAME'] = 'crpo'
+
         ir_details_request = {
             "search": {
                 "interviewrequests": [self.ir]
             }}
-        ir_details_api = requests.post(api.web_api['InterviewRequest_details'], headers=self.get_token,
+        ir_details_api = requests.post(api.web_api['InterviewRequest_details'], headers=self.headers,
                                        data=json.dumps(ir_details_request, default=str), verify=False)
+        print(ir_details_api.headers)
         ir_details_response = json.loads(ir_details_api.content)
         data = ir_details_response['data']
         for i in data:
@@ -293,12 +308,17 @@ class RescheduleInterview(login.CRPOLogin, work_book.WorkBook):
             self.interviewers = ', '.join(int1)
 
     def updated_interview_request_details(self):
+
+        self.lambda_function('InterviewRequest_details')
+        self.headers['APP-NAME'] = 'crpo'
+
         ir_details_request = {
             "search": {
                 "interviewrequests": [self.ir]
             }}
-        ir_details_api = requests.post(api.web_api['InterviewRequest_details'], headers=self.get_token,
+        ir_details_api = requests.post(api.web_api['InterviewRequest_details'], headers=self.headers,
                                        data=json.dumps(ir_details_request, default=str), verify=False)
+        print(ir_details_api.headers)
         ir_details_response = json.loads(ir_details_api.content)
         data = ir_details_response['data']
         for i in data:
@@ -483,9 +503,9 @@ class RescheduleInterview(login.CRPOLogin, work_book.WorkBook):
         # --------------------------------------------------------------------------------------------------------------
         if self.xl_Exception_message[loop]:
             if self.message:
-                self.ws.write(self.rowsize, 13, self.message)
+                self.ws.write(self.rowsize, 13, self.message, self.style8)
             elif self.reschedule_message:
-                self.ws.write(self.rowsize, 13, self.reschedule_message)
+                self.ws.write(self.rowsize, 13, self.reschedule_message, self.style8)
         # --------------------------------------------------------------------------------------------------------------
 
         self.rowsize += 1  # Row increment
@@ -505,8 +525,10 @@ class RescheduleInterview(login.CRPOLogin, work_book.WorkBook):
         else:
             self.ws.write(0, 1, 'Fail', self.style25)
 
-        self.ws.write(0, 3, 'StartTime', self.style23)
-        self.ws.write(0, 4, self.start_time, self.style26)
+        self.ws.write(0, 2, 'StartTime', self.style23)
+        self.ws.write(0, 3, self.start_time, self.style26)
+        self.ws.write(0, 4, 'Lambda', self.style23)
+        self.ws.write(0, 5, self.calling_lambda, self.style24)
         Object.wb_Result.save(output_paths.outputpaths['Reschdeule_Output_sheet'])
 
 

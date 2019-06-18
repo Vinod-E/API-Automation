@@ -4,7 +4,7 @@ from hpro_automation.read_excel import *
 import datetime
 import xlrd
 import time
-from hpro_automation import (login, input_paths, output_paths, work_book)
+from hpro_automation import (login, input_paths, output_paths, work_book, api)
 
 
 class VerifyDuplicationRule(login.CRPOLogin, work_book.WorkBook):
@@ -96,14 +96,17 @@ class VerifyDuplicationRule(login.CRPOLogin, work_book.WorkBook):
         # self.ws.write(0, 55, 'Message', self.__style0)
 
     def updateduplicaterule(self):
+
+        self.lambda_function('save_app_preferences')
+        self.headers['APP-NAME'] = 'crpo'
+
         self.update_json_data = self.current_data.get('DuplicationRuleJson')
         # print self.update_json_data
         self.data1 = {"AppPreference": {"Id": 3595, "Content": self.update_json_data,
                                         "Type": "duplication_conf.default"}, "IsTenantGlobal": "true"}
-        r = requests.post("https://amsin.hirepro.in/py/common/common_app_utils/save_app_preferences/",
-                          headers=self.get_token, data=json.dumps(self.data1, default=str), verify=False)
-        # print r.content
-        # print r.status_code
+        r = requests.post(api.web_api['save_app_preferences'],
+                          headers=self.headers, data=json.dumps(self.data1, default=str), verify=False)
+        print(r.headers)
 
     def checkDuplicate(self):
         convert_date_of_birth = self.current_data.get('DateOfBirth')
@@ -167,8 +170,12 @@ class VerifyDuplicationRule(login.CRPOLogin, work_book.WorkBook):
                      }
         # print self.data
 
-        r = requests.post("https://amsin.hirepro.in/py/rpo/candidate_duplicate_check/",
-                          headers=self.get_token, data=json.dumps(self.data, default=str), verify=False)
+        self.lambda_function('candidate_duplicate_check')
+        self.headers['APP-NAME'] = 'crpo'
+
+        r = requests.post(api.web_api['candidate_duplicate_check'],
+                          headers=self.headers, data=json.dumps(self.data, default=str), verify=False)
+        print(r.headers)
 
         time.sleep(1)
         resp_dict = json.loads(r.content)
@@ -280,8 +287,10 @@ class VerifyDuplicationRule(login.CRPOLogin, work_book.WorkBook):
         else:
             self.ws.write(0, 1, 'Fail', self.style25)
 
-        self.ws.write(0, 3, 'Start Time', self.style23)
-        self.ws.write(0, 4, self.start_time, self.style26)
+        self.ws.write(0, 2, 'Start Time', self.style23)
+        self.ws.write(0, 3, self.start_time, self.style26)
+        self.ws.write(0, 4, 'Lambda', self.style23)
+        self.ws.write(0, 5, self.calling_lambda, self.style24)
         ob.wb_Result.save(output_paths.outputpaths['Duplication_rule_Output_sheet'])
 
 

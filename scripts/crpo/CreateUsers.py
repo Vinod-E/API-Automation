@@ -59,7 +59,6 @@ class CreateUser(login.CRPOLogin, work_book.WorkBook):
         self.success_case_01 = {}
         self.success_case_02 = {}
         self.status = {}
-        self.headers = {}
 
     def excel_data(self):
 
@@ -127,19 +126,7 @@ class CreateUser(login.CRPOLogin, work_book.WorkBook):
 
     def create_user(self, loop):
 
-        # ---------------- Passing headers based on API supports to lambda or not --------------------
-        if self.calling_lambda == 'On':
-            if api.lambda_apis.get('Create_user') is not None \
-                    and api.web_api['Create_user'] in api.lambda_apis['Create_user']:
-                self.headers = self.lambda_headers
-            else:
-                self.headers = self.Non_lambda_headers
-        elif self.calling_lambda == 'Off':
-            self.headers = self.lambda_headers
-        else:
-            self.headers = self.lambda_headers
-
-        # ---------------- Updating headers with app name -----------------
+        self.lambda_function('Create_user')
         self.headers['APP-NAME'] = 'crpo'
 
         create_user_request = {
@@ -152,6 +139,7 @@ class CreateUser(login.CRPOLogin, work_book.WorkBook):
         }
         create_user = requests.post(api.web_api['Create_user'], headers=self.headers,
                                     data=json.dumps(create_user_request, default=str), verify=False)
+        print(create_user.headers)
         create_user_response = json.loads(create_user.content)
         print(create_user_response)
         self.status = create_user_response['status']
@@ -167,19 +155,7 @@ class CreateUser(login.CRPOLogin, work_book.WorkBook):
 
     def user_getbyid_details(self):
 
-        # ---------------- Passing headers based on API supports to lambda or not --------------------
-        if self.calling_lambda == 'On':
-            if api.lambda_apis.get('UserGetByid') is not None \
-                    and api.web_api['UserGetByid'] in api.lambda_apis['UserGetByid']:
-                self.headers = self.lambda_headers
-            else:
-                self.headers = self.Non_lambda_headers
-        elif self.calling_lambda == 'Off':
-            self.headers = self.lambda_headers
-        else:
-            self.headers = self.lambda_headers
-
-        # ---------------- Updating headers with app name -----------------
+        self.lambda_function('UserGetByid')
         self.headers['APP-NAME'] = 'crpo'
 
         get_user_details = requests.get(api.web_api['UserGetByid'].format(self.userId),
@@ -436,5 +412,4 @@ if Obj.login == 'OK':
         Obj.status = {}
         Obj.success_case_01 = {}
         Obj.success_case_02 = {}
-        Obj.headers = {}
 Obj.overall_status()

@@ -90,9 +90,13 @@ class ExcelData(login.CRPOLogin, db_login.DBConnection, work_book.WorkBook):
         self.xl_expected = self.new_local
 
     def json_data(self):
-        r = requests.post(api.web_api['get_all_candidates'], headers=self.get_token,
+
+        self.lambda_function('get_all_candidates')
+        self.headers['APP-NAME'] = 'crpo'
+
+        r = requests.post(api.web_api['get_all_candidates'], headers=self.headers,
                           data=json.dumps(self.data, default=str), verify=False)
-        # print r.content
+        print(r.headers)
         resp_dict = json.loads(r.content)
         self.status = resp_dict['status']
         print(resp_dict)
@@ -109,12 +113,17 @@ class ExcelData(login.CRPOLogin, db_login.DBConnection, work_book.WorkBook):
             # print self.count
 
     def json_data_iteration(self, data, iter):
-        iter +=1
+
+        self.lambda_function('get_all_candidates')
+        self.headers['APP-NAME'] = 'crpo'
+
+        iter += 1
         self.actual_ids = []
         for i in range(1, iter):
             self.data["PagingCriteria"]["PageNo"] = i
-            r = requests.post(api.web_api['get_all_candidates'], headers=self.get_token,
+            r = requests.post(api.web_api['get_all_candidates'], headers=self.headers,
                               data=json.dumps(data, default=str), verify=False)
+            print(r.headers)
             resp_dict = json.loads(r.content)
             # print resp_dict
             for element in resp_dict["Candidates"]:
@@ -196,7 +205,6 @@ class ExcelData(login.CRPOLogin, db_login.DBConnection, work_book.WorkBook):
             # ----------------------------------------------------------------------------------------------------------
             # Search API Call
             # ----------------------------------------------------------------------------------------------------------
-            self.headers = {"content-type": "application/json", "X-AUTH-TOKEN": self.get_token}
             self.data = {
                 "PagingCriteria": {"IsRefresh": False, "IsSpecificToUser": False, "MaxResults": 200, "PageNo": 1,
                                    "SortParameter": "0", "SortOrder": "0", "PropertyIds": [], "ObjectState": 0,
@@ -499,6 +507,8 @@ class ExcelData(login.CRPOLogin, db_login.DBConnection, work_book.WorkBook):
 
         self.ws.write(0, 2, 'Start Time', self.style23)
         self.ws.write(0, 3, self.start_time, self.style26)
+        self.ws.write(0, 4, 'Lambda', self.style23)
+        self.ws.write(0, 5, self.calling_lambda, self.style24)
         Object.wb_result.save(output_paths.outputpaths['candidate_search_output_sheet_1'])
 
 

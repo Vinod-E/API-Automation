@@ -40,24 +40,13 @@ class DeleteCommunication(login.CRPOLogin, db_login.DBConnection):
 
     def delete_attachment(self):
 
-        # ---------------- Passing headers based on API supports to lambda or not --------------------
-        if self.calling_lambda == 'On':
-            if api.lambda_apis.get('delete_Attachment') is not None \
-                    and api.web_api['delete_Attachment'] in api.lambda_apis['delete_Attachment']:
-                self.headers = self.lambda_headers
-            else:
-                self.headers = self.Non_lambda_headers
-        elif self.calling_lambda == 'Off':
-            self.headers = self.lambda_headers
-        else:
-            self.headers = self.lambda_headers
-
-        # ---------------- Updating headers with app name -----------------
+        self.lambda_function('delete_Attachment')
         self.headers['APP-NAME'] = 'crpo'
 
         request = {"AttachmentIds": self.xl_attachment_id}
         attachment_api = requests.post(api.web_api['delete_Attachment'], headers=self.headers,
                                        data=json.dumps(request, default=str), verify=False)
+        print(attachment_api.headers)
         attachment_api_dict = json.loads(attachment_api.content)
         print(attachment_api_dict)
 

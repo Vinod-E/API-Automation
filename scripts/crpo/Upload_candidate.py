@@ -594,19 +594,7 @@ class UploadCandidate(login.CRPOLogin, work_book.WorkBook):
 
     def bulk_create_tag_candidates(self, iteration):
 
-        # ---------------- Passing headers based on API supports to lambda or not --------------------
-        if self.calling_lambda == 'On':
-            if api.lambda_apis.get('bulkCreateTagCandidates') is not None \
-                    and api.web_api['bulkCreateTagCandidates'] in api.lambda_apis['bulkCreateTagCandidates']:
-                self.headers = self.lambda_headers
-            else:
-                self.headers = self.Non_lambda_headers
-        elif self.calling_lambda == 'Off':
-            self.headers = self.lambda_headers
-        else:
-            self.headers = self.lambda_headers
-
-        # ---------------- Updating headers with app name -----------------
+        self.lambda_function('bulkCreateTagCandidates')
         self.headers['APP-NAME'] = 'crpo'
 
         # -------------------------
@@ -758,19 +746,7 @@ class UploadCandidate(login.CRPOLogin, work_book.WorkBook):
 
     def candidate_get_by_id_details(self):
 
-        # ---------------- Passing headers based on API supports to lambda or not --------------------
-        if self.calling_lambda == 'On':
-            if api.lambda_apis.get('CandidateGetbyId') is not None \
-                    and api.web_api['CandidateGetbyId'] in api.lambda_apis['CandidateGetbyId']:
-                self.headers = self.lambda_headers
-            else:
-                self.headers = self.Non_lambda_headers
-        elif self.calling_lambda == 'Off':
-            self.headers = self.lambda_headers
-        else:
-            self.headers = self.lambda_headers
-
-        # ---------------- Updating headers with app name -----------------
+        self.lambda_function('CandidateGetbyId')
         self.headers['APP-NAME'] = 'crpo'
 
         get_candidate_details = requests.post(api.web_api['CandidateGetbyId'].format(self.CID), headers=self.headers)
@@ -783,19 +759,7 @@ class UploadCandidate(login.CRPOLogin, work_book.WorkBook):
 
     def candidate_educational_details(self, loop):
 
-        # ---------------- Passing headers based on API supports to lambda or not --------------------
-        if self.calling_lambda == 'On':
-            if api.lambda_apis.get('Candidate_Educationaldetails') is not None \
-                    and api.web_api['Candidate_Educationaldetails'] in api.lambda_apis['Candidate_Educationaldetails']:
-                self.headers = self.lambda_headers
-            else:
-                self.headers = self.Non_lambda_headers
-        elif self.calling_lambda == 'Off':
-            self.headers = self.lambda_headers
-        else:
-            self.headers = self.lambda_headers
-
-        # ---------------- Updating headers with app name -----------------
+        self.lambda_function('Candidate_Educationaldetails')
         self.headers['APP-NAME'] = 'crpo'
 
         get_educational_details = requests.post(api.web_api['Candidate_Educationaldetails'].format(self.CID),
@@ -816,19 +780,7 @@ class UploadCandidate(login.CRPOLogin, work_book.WorkBook):
 
     def candidate_experience_details(self):
 
-        # ---------------- Passing headers based on API supports to lambda or not --------------------
-        if self.calling_lambda == 'On':
-            if api.lambda_apis.get('Candidate_ExperienceDetails') is not None \
-                    and api.web_api['Candidate_ExperienceDetails'] in api.lambda_apis['Candidate_ExperienceDetails']:
-                self.headers = self.lambda_headers
-            else:
-                self.headers = self.Non_lambda_headers
-        elif self.calling_lambda == 'Off':
-            self.headers = self.lambda_headers
-        else:
-            self.headers = self.lambda_headers
-
-        # ---------------- Updating headers with app name -----------------
+        self.lambda_function('Candidate_ExperienceDetails')
         self.headers['APP-NAME'] = 'crpo'
 
         get_experience_details = requests.post(api.web_api['Candidate_ExperienceDetails'].format(self.CID),
@@ -841,19 +793,7 @@ class UploadCandidate(login.CRPOLogin, work_book.WorkBook):
 
     def event_applicants(self, loop):
 
-        # ---------------- Passing headers based on API supports to lambda or not --------------------
-        if self.calling_lambda == 'On':
-            if api.lambda_apis.get('getAllApplicants') is not None \
-                    and api.web_api['getAllApplicants'] in api.lambda_apis['getAllApplicants']:
-                self.headers = self.lambda_headers
-            else:
-                self.headers = self.Non_lambda_headers
-        elif self.calling_lambda == 'Off':
-            self.headers = self.lambda_headers
-        else:
-            self.headers = self.lambda_headers
-
-        # ---------------- Updating headers with app name -----------------
+        self.lambda_function('getAllApplicants')
         self.headers['APP-NAME'] = 'crpo'
 
         eventapplicant_request = {
@@ -2092,6 +2032,5 @@ if Obj.login == 'OK':
         Obj.success_case_04 = {}
         Obj.success_case_05 = {}
         Obj.headers = {}
-print("Expected_Status_length :: ", len(Obj.Expected_success_cases))
-print("Actual_status_length :: ", len(Obj.Actual_Success_case))
+
 Obj.overall_status()

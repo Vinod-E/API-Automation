@@ -84,9 +84,13 @@ class Excel_Data(login.CRPOLogin, work_book.WorkBook, db_login.DBConnection):
     # below method is used to get count from the api response
     # ------------------------------------------------------------------------------------------------------------------
     def json_data(self):
-        r = requests.post(api.web_api['getAllApplicants'], headers=self.get_token, data=json.dumps(self.data, default=str),
-                          verify=False)
-        # print r.content
+
+        self.lambda_function('getAllApplicants')
+        self.headers['APP-NAME'] = 'crpo'
+
+        r = requests.post(api.web_api['getAllApplicants'],
+                          headers=self.headers, data=json.dumps(self.data, default=str), verify=False)
+        print(r.headers)
         resp_dict = json.loads(r.content)
         self.status = resp_dict['status']
 
@@ -601,6 +605,8 @@ class Excel_Data(login.CRPOLogin, work_book.WorkBook, db_login.DBConnection):
 
         self.ws.write(0, 2, 'Start Time', self.style23)
         self.ws.write(0, 3, self.start_time, self.style26)
+        self.ws.write(0, 4, 'Lambda', self.style23)
+        self.ws.write(0, 5, self.calling_lambda, self.style24)
         Object.wb_result.save(output_paths.outputpaths['Applicant_count_Output_sheet_1'])
 
 
