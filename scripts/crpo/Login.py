@@ -102,7 +102,7 @@ class LoginCheck(work_book.WorkBook):
                     and api.web_api['Loginto_CRPO'] in api.lambda_apis['Loginto_CRPO']:
                 self.headers = {"content-type": "application/json", 'APP-NAME': "crpo", 'X-APPLMA': 'true'}
         elif self.lambda_call == 'Off':
-            self.headers = {"content-type": "application/json", 'APP-NAME': "crpo", 'X-APPLMA': 'false'}
+            self.headers = {"content-type": "application/json", 'APP-NAME': "crpo"}
 
         urllib3.disable_warnings()
         request = {"LoginName": self.xl_username[loop],
@@ -111,9 +111,9 @@ class LoginCheck(work_book.WorkBook):
                    "TenantAlias": self.xl_tenant[loop]
                    }
 
-        # --------------------------------------
-        # Hitting login API based on input value
-        # --------------------------------------
+        # -----------------------------------------------------
+        # Hitting login API multiple times based on input value
+        # -----------------------------------------------------
         for i in range(self.xl_API_hits[loop]):
             login_check = requests.post(api.web_api['Loginto_CRPO'], headers=self.headers,
                                         data=json.dumps(request, default=str), verify=False)
