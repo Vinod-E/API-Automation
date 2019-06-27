@@ -192,7 +192,7 @@ class SCAutomation(login.CRPOLogin, db_login.DBConnection, work_book.WorkBook):
         else:
             self.ws.write(0, 1, 'Fail', self.style25)
 
-        self.ws.write(0, 2, 'StartTime', self.style23)
+        self.ws.write(0, 2, 'Start Time', self.style23)
         self.ws.write(0, 3, self.start_time, self.style26)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
