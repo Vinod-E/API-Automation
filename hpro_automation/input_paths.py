@@ -1,7 +1,7 @@
 import os
 path = os.getenv("HOME")
 
-generic_input_path = "%s/PythonProjects/API Automation/Input Data/" % path
+generic_input_path = "%s/hirepro_automation/API-Automation/Input Data/" % path
 
 Uploadscore_Input_sheet = generic_input_path + "CreateUser/CreateUser.xls"
 

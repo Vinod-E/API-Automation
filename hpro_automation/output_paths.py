@@ -5,7 +5,7 @@ import os
 # current_DateTime = now.strftime("%d-%m-%Y-%H-%M-%S")
 
 path = os.getenv("HOME")
-generic_output_path = "%s/PythonProjects/API Automation/Output Data/" % path
+generic_output_path = "%s/hirepro_automation/API-Automation/Output Data/" % path
 
 # -------------------------
 # Creation of Output sheets
