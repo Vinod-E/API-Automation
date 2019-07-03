@@ -6,10 +6,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4984ed91-26f4-4ca5-a625-e5a7acf33732" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/API Automation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/API Automation.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Output Data/Crpo/Login/API_Login_check.xls" beforeDir="false" afterPath="$PROJECT_DIR$/Output Data/Crpo/Login/API_Login_check.xls" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,24 +17,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/crpo/Login.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="61" column="53" lean-forward="true" selection-start-line="61" selection-start-column="53" selection-end-line="61" selection-end-column="53" />
-              <folding>
-                <element signature="e#0#71#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="218">
-                <caret line="30" column="39" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="69" />
+              <first_editor relative-caret-position="443">
+                <caret line="50" column="65" selection-start-line="50" selection-start-column="65" selection-end-line="50" selection-end-column="65" />
               </first_editor>
               <second_editor />
             </state>
@@ -150,13 +135,7 @@
             <path>
               <item name="API-Automation" type="b2602c69:ProjectViewProjectNode" />
               <item name="API-Automation" type="462c0819:PsiDirectoryNode" />
-              <item name="Output Data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="API-Automation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="API-Automation" type="462c0819:PsiDirectoryNode" />
-              <item name="Output Data" type="462c0819:PsiDirectoryNode" />
-              <item name="Crpo" type="462c0819:PsiDirectoryNode" />
+              <item name="hpro_automation" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="API-Automation" type="b2602c69:ProjectViewProjectNode" />
@@ -188,7 +167,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Login">
+  <component name="RunManager" selected="Python.Password_Policy">
     <configuration name="Candidate_Search_Count" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="API Automation" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -231,27 +210,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Event_applicant_boundary_search" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="API Automation" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts/crpo" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/crpo/Event_applicant_boundary_search.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="Login" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="API Automation" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -265,6 +223,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/crpo/Login.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Password_Policy" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="API Automation" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts/crpo" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/crpo/Password_Policy.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -296,11 +275,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Password_Policy" />
         <item itemvalue="Python.Login" />
         <item itemvalue="Python.Uploadscore" />
         <item itemvalue="Python.Candidate_Search_Count" />
         <item itemvalue="Python.Candidate_boundary_search" />
-        <item itemvalue="Python.Event_applicant_boundary_search" />
       </list>
     </recent_temporary>
   </component>
@@ -321,7 +300,7 @@
     <frame x="43" y="-4" width="1323" height="772" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22273426" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17050691" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -332,7 +311,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.30312034" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.29569092" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50076807" side_tool="true" weight="0.46359584" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32986626" />
       <window_info anchor="bottom" id="Inspection Results" order="11" weight="0.32986626" />
@@ -708,8 +687,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/crpo/Login.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="61" column="53" lean-forward="true" selection-start-line="61" selection-start-column="53" selection-end-line="61" selection-end-column="53" />
+        <state relative-caret-position="840">
+          <caret line="61" column="53" selection-start-line="61" selection-start-column="53" selection-end-line="61" selection-end-column="53" />
           <folding>
             <element signature="e#0#71#0" expanded="true" />
           </folding>
@@ -719,8 +698,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="218">
-            <caret line="30" column="39" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="69" />
+          <first_editor relative-caret-position="443">
+            <caret line="50" column="65" selection-start-line="50" selection-start-column="65" selection-end-line="50" selection-end-column="65" />
           </first_editor>
           <second_editor />
         </state>

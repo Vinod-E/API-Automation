@@ -43,7 +43,7 @@ vinodkumar@vinod:~/hirepro_automation/API-Automation$ source  ../api-automation/
 
 Requirement.txt contains packages and their versions which we required in framework
 ----------------------------------------------------------------------------------
-(api-automation) vinodkumar@vinod:~/hirepro_automation/API-Automation$ pip3.7 install requirements.txt 
+(api-automation) vinodkumar@vinod:~/hirepro_automation/API-Automation$ pip3.7 install -r requirements.txt  
 
 Remove folder
 -------------
