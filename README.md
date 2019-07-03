@@ -41,7 +41,7 @@ xyz = any name which you like
 vinodkumar@vinod:~/hirepro_automation$ virtualenv --python=python3.7 xyz
 
 activate your virtual environment
----------------------------------
+----------------------------------
 vinodkumar@vinod:~/hirepro_automation$ source api-automation/bin/activate
 
 vinodkumar@vinod:~/hirepro_automation/API-Automation$ source  ../api-automation/bin/activate
