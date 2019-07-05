@@ -1,4 +1,4 @@
-from hpro_automation import (login, input_paths, work_book, output_paths, api)
+from hpro_automation import (login, input_paths, work_book, output_paths)
 import xlrd
 import datetime
 import json
@@ -685,7 +685,7 @@ class UpdateCandidate(login.CRPOLogin, work_book.WorkBook):
             },
             "CandidateId": self.xl_update_candidate_id[loop]
         }
-        update_api = requests.post(api.web_api['update_candidate_details'], headers=self.headers,
+        update_api = requests.post(self.webapi, headers=self.headers,
                                    data=json.dumps(request, default=str), verify=False)
         print(update_api.headers)
         update_api_response = json.loads(update_api.content)
@@ -700,7 +700,7 @@ class UpdateCandidate(login.CRPOLogin, work_book.WorkBook):
 
         request = {"CandidateId": self.xl_update_candidate_id[loop],
                    "UpdateUserCandidate": {"Mobile1": self.xl_update_Mobile1[loop]}}
-        mobile_update_api = requests.post(api.web_api['update_candidate_details'], headers=self.headers,
+        mobile_update_api = requests.post(self.webapi, headers=self.headers,
                                           data=json.dumps(request, default=str), verify=False)
         print(mobile_update_api.headers)
         mobile_update_api_response = json.loads(mobile_update_api.content)
@@ -711,7 +711,7 @@ class UpdateCandidate(login.CRPOLogin, work_book.WorkBook):
         self.lambda_function('CandidateGetbyId')
         self.headers['APP-NAME'] = 'crpo'
 
-        get_candidate_details = requests.post(api.web_api['CandidateGetbyId'].format(self.xl_update_candidate_id[loop]),
+        get_candidate_details = requests.post(self.webapi.format(self.xl_update_candidate_id[loop]),
                                               headers=self.headers)
         print(get_candidate_details.headers)
         candidate_details = json.loads(get_candidate_details.content)

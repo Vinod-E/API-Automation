@@ -1,4 +1,4 @@
-from hpro_automation import (login, input_paths, api, output_paths, work_book)
+from hpro_automation import (login, input_paths, output_paths, work_book)
 import requests
 import json
 import xlrd
@@ -424,7 +424,7 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
                    "InitiateStaffing": False,
                    "MjrId": self.xl_mjrId[loop]
                    }
-        change_status_api = requests.post(api.web_api['ChangeApplicant_Status'], headers=self.headers,
+        change_status_api = requests.post(self.webapi, headers=self.headers,
                                           data=json.dumps(request, default=str), verify=False)
         print(change_status_api.headers)
         response = json.loads(change_status_api.content)
@@ -442,7 +442,7 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
             request = {
                 "CandidateIds": [self.xl_candidateId[loop]]
             }
-            applicant_info_api = requests.post(api.web_api['getApplicantsInfo'], headers=self.headers,
+            applicant_info_api = requests.post(self.webapi, headers=self.headers,
                                                data=json.dumps(request, default=str), verify=False)
             print(applicant_info_api.headers)
             response = json.loads(applicant_info_api.content)
@@ -463,7 +463,7 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
         request = {
             "CandidateId": self.xl_candidateId[loop]
         }
-        activity_details_api = requests.post(api.web_api['gettaskbycandidate'], headers=self.headers,
+        activity_details_api = requests.post(self.webapi, headers=self.headers,
                                              data=json.dumps(request, default=str), verify=False)
         print(activity_details_api.headers)
         response = json.loads(activity_details_api.content)
@@ -507,7 +507,7 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
                 "TicketId": self.ticket_number_A1_t1,
                 "IsCoordinatorSubmittingBehalfOfCandidate": True
             }
-            submit_form_api = requests.post(api.web_api['submitform'], headers=self.headers,
+            submit_form_api = requests.post(self.webapi, headers=self.headers,
                                             data=json.dumps(request, default=str), verify=False)
             print('submit_form_api')
             response1 = json.loads(submit_form_api.content)
@@ -530,7 +530,7 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
                 "TicketId": self.ticket_number_A2_t1,
                 "IsCoordinatorSubmittingBehalfOfCandidate": True
             }
-            submit_form_api = requests.post(api.web_api['submitform'], headers=self.headers,
+            submit_form_api = requests.post(self.webapi, headers=self.headers,
                                             data=json.dumps(request, default=str), verify=False)
             print(submit_form_api.headers)
             response1 = json.loads(submit_form_api.content)
@@ -548,7 +548,7 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
                 "TicketId": self.ticket_number_A2_t2,
                 "IsCoordinatorSubmittingBehalfOfCandidate": True
             }
-            submit_form_api = requests.post(api.web_api['submitform'], headers=self.headers,
+            submit_form_api = requests.post(self.webapi, headers=self.headers,
                                             data=json.dumps(request, default=str), verify=False)
             print(submit_form_api.headers)
             response2 = json.loads(submit_form_api.content)
@@ -566,7 +566,7 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
                 "TicketId": self.ticket_number_A2_t3,
                 "IsCoordinatorSubmittingBehalfOfCandidate": True
             }
-            submit_form_api = requests.post(api.web_api['submitform'], headers=self.headers,
+            submit_form_api = requests.post(self.webapi, headers=self.headers,
                                             data=json.dumps(request, default=str), verify=False)
             print(submit_form_api.headers)
             response3 = json.loads(submit_form_api.content)
@@ -582,7 +582,7 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
         req1 = {"AssignedUserTaskIds": [self.ticket_number_A2_t1],
                 "TaskStatus": self.xl_A2_t1_status[loop],
                 "Comments": self.xl_common_controlvalue[loop]}
-        approve_api = requests.post(api.web_api['Approve_task'], headers=self.headers,
+        approve_api = requests.post(self.webapi, headers=self.headers,
                                     data=json.dumps(req1, default=str), verify=False)
         print(approve_api.headers)
         res1 = json.loads(approve_api.content)
@@ -591,7 +591,7 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
         req2 = {"AssignedUserTaskIds": [self.ticket_number_A2_t2],
                 "TaskStatus": self.xl_A2_t2_status[loop],
                 "Comments": self.xl_common_controlvalue[loop]}
-        approve_api = requests.post(api.web_api['Approve_task'], headers=self.headers,
+        approve_api = requests.post(self.webapi, headers=self.headers,
                                     data=json.dumps(req2, default=str), verify=False)
         print(approve_api.headers)
         res2 = json.loads(approve_api.content)
@@ -600,7 +600,7 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
         req3 = {"AssignedUserTaskIds": [self.ticket_number_A2_t3],
                 "TaskStatus": self.xl_A2_t3_status[loop],
                 "Comments": self.xl_common_controlvalue[loop]}
-        approve_api = requests.post(api.web_api['Approve_task'], headers=self.headers,
+        approve_api = requests.post(self.webapi, headers=self.headers,
                                     data=json.dumps(req3, default=str), verify=False)
         print(approve_api.headers)
         res3 = json.loads(approve_api.content)
@@ -623,7 +623,7 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
                 "TicketId": self.ticket_number_A3_t1,
                 "IsCoordinatorSubmittingBehalfOfCandidate": True
             }
-            submit_form_api = requests.post(api.web_api['submitform'], headers=self.headers,
+            submit_form_api = requests.post(self.webapi, headers=self.headers,
                                             data=json.dumps(request, default=str), verify=False)
             print(submit_form_api.headers)
             response1 = json.loads(submit_form_api.content)
@@ -641,7 +641,7 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
                 "TicketId": self.ticket_number_A3_t2,
                 "IsCoordinatorSubmittingBehalfOfCandidate": True
             }
-            submit_form_api = requests.post(api.web_api['submitform'], headers=self.headers,
+            submit_form_api = requests.post(self.webapi, headers=self.headers,
                                             data=json.dumps(request, default=str), verify=False)
             print(submit_form_api.headers)
             response2 = json.loads(submit_form_api.content)
@@ -657,7 +657,7 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
         req = {"AssignedUserTaskIds": [self.ticket_number_A3_t1],
                "TaskStatus": self.xl_A3_t1_status[loop],
                "Comments": self.xl_common_controlvalue[loop]}
-        approve_api = requests.post(api.web_api['Approve_task'], headers=self.headers,
+        approve_api = requests.post(self.webapi, headers=self.headers,
                                     data=json.dumps(req, default=str), verify=False)
         print(approve_api.headers)
         res = json.loads(approve_api.content)
@@ -665,7 +665,7 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
         req1 = {"AssignedUserTaskIds": [self.ticket_number_A3_t2],
                 "TaskStatus": self.xl_A3_t2_status[loop],
                 "Comments": self.xl_common_controlvalue[loop]}
-        approve_api = requests.post(api.web_api['Approve_task'], headers=self.headers,
+        approve_api = requests.post(self.webapi, headers=self.headers,
                                     data=json.dumps(req1, default=str), verify=False)
         print(approve_api.headers)
         res1 = json.loads(approve_api.content)
@@ -679,7 +679,7 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
         request = {
             "CandidateId": self.xl_candidateId[loop]
         }
-        activity_details_api = requests.post(api.web_api['gettaskbycandidate'], headers=self.headers,
+        activity_details_api = requests.post(self.webapi, headers=self.headers,
                                              data=json.dumps(request, default=str), verify=False)
         print(activity_details_api.headers)
         response = json.loads(activity_details_api.content)
@@ -738,7 +738,7 @@ class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
                    "InitiateStaffing": False,
                    "MjrId": self.xl_mjrId[loop]
                    }
-        q = requests.post(api.web_api['ChangeApplicant_Status'], headers=self.headers,
+        q = requests.post(self.webapi, headers=self.headers,
                           data=json.dumps(request, default=str), verify=False)
         print(q.headers)
         qw = json.loads(q.content)

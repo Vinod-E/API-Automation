@@ -52,8 +52,7 @@ class VerifyDuplicationRule(login.CRPOLogin, work_book.WorkBook):
         # print self.update_json_data
         self.data1 = {"AppPreference": {"Id": 3595, "Content": self.update_json_data,
                                         "Type": "duplication_conf.default"}, "IsTenantGlobal": "true"}
-        r = requests.post(api.web_api['save_app_preferences'],
-                          headers=self.headers, data=json.dumps(self.data1, default=str), verify=False)
+        r = requests.post(self.webapi, headers=self.headers, data=json.dumps(self.data1, default=str), verify=False)
         print(r.headers)
 
     def checkDuplicate(self):
@@ -121,8 +120,7 @@ class VerifyDuplicationRule(login.CRPOLogin, work_book.WorkBook):
         self.lambda_function('candidate_duplicate_check')
         self.headers['APP-NAME'] = 'crpo'
 
-        r = requests.post(api.web_api['candidate_duplicate_check'],
-                          headers=self.headers, data=json.dumps(self.data, default=str), verify=False)
+        r = requests.post(self.webapi, headers=self.headers, data=json.dumps(self.data, default=str), verify=False)
         print(r.headers)
 
         time.sleep(1)

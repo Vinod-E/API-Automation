@@ -1,4 +1,4 @@
-from hpro_automation import (login, input_paths, work_book, output_paths, api)
+from hpro_automation import (login, input_paths, work_book, output_paths)
 import xlrd
 import datetime
 import json
@@ -127,7 +127,7 @@ class UpdateUser(login.CRPOLogin, work_book.WorkBook):
             },
             "UserId": self.xl_update_user_id[loop]
         }
-        update_api = requests.post(api.web_api['Update_user'], headers=self.headers,
+        update_api = requests.post(self.webapi, headers=self.headers,
                                    data=json.dumps(request, default=str), verify=False)
         print(update_api.headers)
         update_api_response = json.loads(update_api.content)
@@ -144,7 +144,7 @@ class UpdateUser(login.CRPOLogin, work_book.WorkBook):
         self.lambda_function('UserGetByid')
         self.headers['APP-NAME'] = 'crpo'
 
-        get_user_details = requests.get(api.web_api['UserGetByid'].format(self.xl_update_user_id[loop]),
+        get_user_details = requests.get(self.webapi.format(self.xl_update_user_id[loop]),
                                         headers=self.headers)
         print(get_user_details.headers)
         user_details = json.loads(get_user_details.content)

@@ -2,7 +2,7 @@ import json
 import requests
 import datetime
 import xlrd
-from hpro_automation import (api, login, input_paths, output_paths, work_book)
+from hpro_automation import (login, input_paths, output_paths, work_book)
 
 
 class UploadCandidate(login.CRPOLogin, work_book.WorkBook):
@@ -705,7 +705,7 @@ class UploadCandidate(login.CRPOLogin, work_book.WorkBook):
         }],
             "Sync": "True"
         }
-        create_candidate = requests.post(api.web_api['bulkCreateTagCandidates'], headers=self.headers,
+        create_candidate = requests.post(self.webapi, headers=self.headers,
                                          data=json.dumps(create_candidate_request, default=str), verify=False)
         print(create_candidate.headers)
         create_candidate_response_dict = json.loads(create_candidate.content)
@@ -743,7 +743,7 @@ class UploadCandidate(login.CRPOLogin, work_book.WorkBook):
         self.lambda_function('CandidateGetbyId')
         self.headers['APP-NAME'] = 'crpo'
 
-        get_candidate_details = requests.post(api.web_api['CandidateGetbyId'].format(self.CID), headers=self.headers)
+        get_candidate_details = requests.post(self.webapi.format(self.CID), headers=self.headers)
         print(get_candidate_details.headers)
         candidate_details = json.loads(get_candidate_details.content)
         candidate_dict = candidate_details['Candidate']
@@ -756,7 +756,7 @@ class UploadCandidate(login.CRPOLogin, work_book.WorkBook):
         self.lambda_function('Candidate_Educationaldetails')
         self.headers['APP-NAME'] = 'crpo'
 
-        get_educational_details = requests.post(api.web_api['Candidate_Educationaldetails'].format(self.CID),
+        get_educational_details = requests.post(self.webapi.format(self.CID),
                                                 headers=self.headers)
         print(get_educational_details.headers)
         educational_details = json.loads(get_educational_details.content)
@@ -777,7 +777,7 @@ class UploadCandidate(login.CRPOLogin, work_book.WorkBook):
         self.lambda_function('Candidate_ExperienceDetails')
         self.headers['APP-NAME'] = 'crpo'
 
-        get_experience_details = requests.post(api.web_api['Candidate_ExperienceDetails'].format(self.CID),
+        get_experience_details = requests.post(self.webapi.format(self.CID),
                                                headers=self.headers)
         print(get_experience_details.headers)
         experience_details = json.loads(get_experience_details.content)
@@ -797,7 +797,7 @@ class UploadCandidate(login.CRPOLogin, work_book.WorkBook):
                 "PageNumber": 1
             }
         }
-        eventapplicant_api = requests.post(api.web_api['getAllApplicants'], headers=self.headers,
+        eventapplicant_api = requests.post(self.webapi, headers=self.headers,
                                            data=json.dumps(eventapplicant_request, default=str), verify=False)
         print(eventapplicant_api.headers)
         applicant_dict = json.loads(eventapplicant_api.content)

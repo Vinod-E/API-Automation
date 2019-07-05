@@ -1,4 +1,4 @@
-from hpro_automation import (login, api, input_paths, output_paths, work_book)
+from hpro_automation import (login, input_paths, output_paths, work_book)
 import json
 import requests
 import xlrd
@@ -272,7 +272,7 @@ class UploadScoresheet(login.CRPOLogin, work_book.WorkBook):
                         "assessmentScoreSheets/9d07816d-5d7e-4d07-8205-314f107e3c0fGroup_Section.xlsx",
             "Sync": "False"
         }
-        uploadsheet_api = requests.post(api.web_api['uploadCandidatesScore'], headers=self.headers,
+        uploadsheet_api = requests.post(self.webapi, headers=self.headers,
                                         data=json.dumps(uploadsheetrequest, default=str), verify=False)
         print(uploadsheet_api.headers)
         print(uploadsheet_api.headers)
@@ -394,7 +394,7 @@ class UploadScoresheet(login.CRPOLogin, work_book.WorkBook):
                         "assessmentScoreSheets/98b269f2-e8fb-4a6c-98e2-7feb224de48cUpdated_Group_Section.xlsx",
             "Sync": "False"
         }
-        uploadsheet_api = requests.post(api.web_api['uploadCandidatesScore'], headers=self.headers,
+        uploadsheet_api = requests.post(self.webapi, headers=self.headers,
                                         data=json.dumps(uploadsheetrequest, default=str), verify=False)
         print(uploadsheet_api.headers)
         upload_api_dict = json.loads(uploadsheet_api.content)
@@ -408,7 +408,7 @@ class UploadScoresheet(login.CRPOLogin, work_book.WorkBook):
         score_request = {
             "CandidateIds": [self.xl_candidateId[loop]]
         }
-        fetchingscores_api = requests.post(api.web_api['getApplicantsInfo'], headers=self.headers,
+        fetchingscores_api = requests.post(self.webapi, headers=self.headers,
                                            data=json.dumps(score_request, default=str), verify=False)
         print(fetchingscores_api.headers)
         fetchingscores_dict = json.loads(fetchingscores_api.content)

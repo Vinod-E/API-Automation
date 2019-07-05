@@ -13,6 +13,7 @@ class CRPOLogin(object):
     def __init__(self):
         super(CRPOLogin, self).__init__()
         self.headers = {}
+        self.webapi = ""
 
 # ----------------------------- CRPO LOGIN APPLICATION -----------------------------------------------------------------
 
@@ -95,15 +96,13 @@ class CRPOLogin(object):
                             print("**--------- Selected - Off, APIs calling without lambda function ----------------**")
 
                             self.lambda_headers = {"content-type": "application/json",
-                                                   'X-APPLMA': 'false',
                                                    "X-AUTH-TOKEN": self.response.get("Token")
                                                    }
                         else:
                             print("**----------------------Lambda is enabled in tenant--------------------------**")
-                            print("**--------- Selected - On/Off wrong, APIs calling without Lambda function--------**")
+                            print("**------ Selected - On/Off is wrong, APIs calling without Lambda function--------**")
 
                             self.lambda_headers = {"content-type": "application/json",
-                                                   'X-APPLMA': 'false',
                                                    "X-AUTH-TOKEN": self.response.get("Token")
                                                    }
                     else:
@@ -111,7 +110,6 @@ class CRPOLogin(object):
                         print("**------------------ APIs calling without Lambda function-------------------------**")
 
                         self.lambda_headers = {"content-type": "application/json",
-                                               'X-APPLMA': 'false',
                                                "X-AUTH-TOKEN": self.response.get("Token")
                                                }
         except ValueError as app:
@@ -120,11 +118,21 @@ class CRPOLogin(object):
     def lambda_function(self, api_key):
         # ---------------- Passing headers based on API supports to lambda or not --------------------
         if self.calling_lambda == 'On':
-            if api.lambda_apis.get(api_key) is not None and api.web_api[api_key] in api.lambda_apis[api_key]:
+            if api.lambda_apis.get(api_key) is not None:
                 self.headers = self.lambda_headers
+                self.webapi = api.lambda_apis[api_key]
             else:
                 self.headers = self.Non_lambda_headers
+                self.webapi = api.non_lambda_apis[api_key]
         elif self.calling_lambda == 'Off':
             self.headers = self.lambda_headers
+            if api.lambda_apis.get(api_key) is not None:
+                self.webapi = api.lambda_apis[api_key]
+            else:
+                self.webapi = api.non_lambda_apis[api_key]
         else:
             self.headers = self.lambda_headers
+            if api.lambda_apis.get(api_key) is not None:
+                self.webapi = api.lambda_apis[api_key]
+            else:
+                self.webapi = api.non_lambda_apis[api_key]

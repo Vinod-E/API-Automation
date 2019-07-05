@@ -2,7 +2,7 @@ import requests
 import json
 import datetime
 import xlrd
-from hpro_automation import (input_paths, output_paths, api, login, work_book)
+from hpro_automation import (input_paths, output_paths, login, work_book)
 
 
 class CreateUser(login.CRPOLogin, work_book.WorkBook):
@@ -131,7 +131,7 @@ class CreateUser(login.CRPOLogin, work_book.WorkBook):
                             "UserRoles": self.xl_Roles[loop], "DepartmentId": self.xl_Department[loop],
                             "UserBelongsTo": self.xl_UserBelongsTo[loop]}
         }
-        create_user = requests.post(api.web_api['Create_user'], headers=self.headers,
+        create_user = requests.post(self.webapi, headers=self.headers,
                                     data=json.dumps(create_user_request, default=str), verify=False)
         print(create_user.headers)
         create_user_response = json.loads(create_user.content)
@@ -152,8 +152,7 @@ class CreateUser(login.CRPOLogin, work_book.WorkBook):
         self.lambda_function('UserGetByid')
         self.headers['APP-NAME'] = 'crpo'
 
-        get_user_details = requests.get(api.web_api['UserGetByid'].format(self.userId),
-                                        headers=self.headers)
+        get_user_details = requests.get(self.webapi.format(self.userId), headers=self.headers)
         print(get_user_details.headers)
         user_details = json.loads(get_user_details.content)
         self.user_dict = user_details.get('UserDetails')
