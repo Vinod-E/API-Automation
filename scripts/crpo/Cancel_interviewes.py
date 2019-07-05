@@ -1,4 +1,4 @@
-from hpro_automation import (login, api, output_paths, input_paths, work_book)
+from hpro_automation import (login, output_paths, input_paths, work_book)
 import json
 import requests
 import xlrd
@@ -90,7 +90,7 @@ class CancelInterview(login.CRPOLogin, work_book.WorkBook):
                           "interviewCanceledStatusId": self.xl_cancel_statusID,
                           "applicantStatusItemComment": self.xl_interviewer_comment}
 
-        cancel_request_api = requests.post(api.web_api['cancel'], headers=self.headers,
+        cancel_request_api = requests.post(self.webapi, headers=self.headers,
                                            data=json.dumps(cancel_request, default=str), verify=False)
         print(cancel_request_api.headers)
         cancel_request_api_response = json.loads(cancel_request_api.content)

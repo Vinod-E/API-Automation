@@ -1,4 +1,4 @@
-from hpro_automation import (login, api, input_paths, output_paths, work_book)
+from hpro_automation import (login, input_paths, output_paths, work_book)
 import json
 import requests
 import xlrd
@@ -333,7 +333,7 @@ class InterviewFeedback(login.CRPOLogin, work_book.WorkBook):
                 "recruitEventId": self.xl_Event_id[loop],
                 "applicantIds": [self.xl_Applicant_id[loop]]
             }]
-            scheduling_interviews = requests.post(api.web_api['Schedule'], headers=self.headers,
+            scheduling_interviews = requests.post(self.webapi, headers=self.headers,
                                                   data=json.dumps(schedule_request, default=str), verify=False)
             print(scheduling_interviews.headers)
             schedule_response = json.loads(scheduling_interviews.content)
@@ -404,7 +404,7 @@ class InterviewFeedback(login.CRPOLogin, work_book.WorkBook):
                         "interviewedDate": self.xl_int_datetime[loop]
                     }]
                 }
-                providing_feedback = requests.post(api.web_api['givefeedback'], headers=self.headers,
+                providing_feedback = requests.post(self.webapi, headers=self.headers,
                                                    data=json.dumps(feedback_request, default=str), verify=False)
                 print(providing_feedback.headers)
                 feedback_response = json.loads(providing_feedback.content)
@@ -426,7 +426,7 @@ class InterviewFeedback(login.CRPOLogin, work_book.WorkBook):
         self.headers['APP-NAME'] = 'crpo'
 
         try:
-            details_url = requests.get(api.web_api['Interview_details'].format(self.ir), headers=self.headers)
+            details_url = requests.get(self.webapi.format(self.ir), headers=self.headers)
             print(details_url.headers)
             details_response = json.loads(details_url.content)
             # print(json.dumps(details_response, indent=2))
@@ -464,7 +464,7 @@ class InterviewFeedback(login.CRPOLogin, work_book.WorkBook):
         self.headers['APP-NAME'] = 'crpo'
 
         try:
-            details_url = requests.get(api.web_api['Interview_details'].format(self.ir), headers=self.headers)
+            details_url = requests.get(self.webapi.format(self.ir), headers=self.headers)
             print(details_url.headers)
             details_response = json.loads(details_url.content)
             # print(json.dumps(details_response, indent=2))
@@ -503,7 +503,7 @@ class InterviewFeedback(login.CRPOLogin, work_book.WorkBook):
                 "interviewRequestId": self.ir,
                 "decisionId": self.xl_update_stage[loop]
             }
-            update_decision_url = requests.post(api.web_api['updateinterviewerdecision'], headers=self.headers,
+            update_decision_url = requests.post(self.webapi, headers=self.headers,
                                                 data=json.dumps(update_decision_request, default=str), verify=False)
             print(update_decision_url.headers)
             update_decision_response = json.loads(update_decision_url.content)
@@ -518,7 +518,7 @@ class InterviewFeedback(login.CRPOLogin, work_book.WorkBook):
         self.headers['APP-NAME'] = 'crpo'
 
         try:
-            details_url = requests.get(api.web_api['Interview_details'].format(self.ir), headers=self.headers)
+            details_url = requests.get(self.webapi.format(self.ir), headers=self.headers)
             print(details_url.headers)
             details_response = json.loads(details_url.content)
             # print(json.dumps(details_response, indent=2))
@@ -567,7 +567,7 @@ class InterviewFeedback(login.CRPOLogin, work_book.WorkBook):
                         "SkillRating": self.xl_Skill_score_04[loop]
                     }]
                 }
-                partial_url = requests.post(api.web_api['updateinterviewerfeedback'], headers=self.headers,
+                partial_url = requests.post(self.webapi, headers=self.headers,
                                             data=json.dumps(update_feedback, default=str), verify=False)
                 print(partial_url.headers)
 

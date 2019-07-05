@@ -1,4 +1,4 @@
-from hpro_automation import (login, api, input_paths, output_paths, work_book)
+from hpro_automation import (login, input_paths, output_paths, work_book)
 import json
 import requests
 import xlrd
@@ -205,7 +205,7 @@ class RescheduleInterview(login.CRPOLogin, work_book.WorkBook):
                 "recruitEventId": self.xl_Event_id[loop],
                 "applicantIds": [self.xl_Applicant_id[loop]]
             }]
-            scheduling_interviews = requests.post(api.web_api['Schedule'], headers=self.headers,
+            scheduling_interviews = requests.post(self.webapi, headers=self.headers,
                                                   data=json.dumps(schedule_request, default=str), verify=False)
             print(scheduling_interviews.headers)
             schedule_response = json.loads(scheduling_interviews.content)
@@ -250,7 +250,7 @@ class RescheduleInterview(login.CRPOLogin, work_book.WorkBook):
             "removedInterviewers": self.xl_Reschedule_remove_interviewers[loop]
         }]
 
-        reschedule_api = requests.post(api.web_api['Reschedule'], headers=self.headers,
+        reschedule_api = requests.post(self.webapi, headers=self.headers,
                                        data=json.dumps(reschedule_request, default=str), verify=False)
         print(reschedule_api.headers)
         reschedule_response = json.loads(reschedule_api.content)
@@ -283,7 +283,7 @@ class RescheduleInterview(login.CRPOLogin, work_book.WorkBook):
             "search": {
                 "interviewrequests": [self.ir]
             }}
-        ir_details_api = requests.post(api.web_api['InterviewRequest_details'], headers=self.headers,
+        ir_details_api = requests.post(self.webapi, headers=self.headers,
                                        data=json.dumps(ir_details_request, default=str), verify=False)
         print(ir_details_api.headers)
         ir_details_response = json.loads(ir_details_api.content)
@@ -306,7 +306,7 @@ class RescheduleInterview(login.CRPOLogin, work_book.WorkBook):
             "search": {
                 "interviewrequests": [self.ir]
             }}
-        ir_details_api = requests.post(api.web_api['InterviewRequest_details'], headers=self.headers,
+        ir_details_api = requests.post(self.webapi, headers=self.headers,
                                        data=json.dumps(ir_details_request, default=str), verify=False)
         print(ir_details_api.headers)
         ir_details_response = json.loads(ir_details_api.content)

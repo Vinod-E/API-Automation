@@ -2,7 +2,6 @@ import requests
 import json
 import xlrd
 import datetime
-import xlwt
 import time
 from hpro_automation import (login, api, input_paths, output_paths, db_login, work_book)
 
@@ -109,7 +108,7 @@ class ECAutomation(login.CRPOLogin, db_login.DBConnection, work_book.WorkBook):
                                            "ecId": self.ec_id[iteration_count],
                                            "positiveStatusId": self.xl_positive_status__Id[iteration_count],
                                            "negativeStatusId": self.xl_negative_status__Id[iteration_count]}]}
-        r = requests.post(api.web_api['createOrUpdateEcConfig'], headers=self.get_token,
+        r = requests.post(self.webapi, headers=self.headers,
                           data=json.dumps(self.data, default=str), verify=False)
         print(r.headers)
         time.sleep(1)
@@ -132,7 +131,7 @@ class ECAutomation(login.CRPOLogin, db_login.DBConnection, work_book.WorkBook):
                          "Comments": "",
                          "InitiateStaffing": False,
                          "MjrId": self.xl_mjr_Id[iteration_count]}
-            r = requests.post(api.web_api['ChangeApplicant_Status'], headers=self.get_token,
+            r = requests.post(self.webapi, headers=self.headers,
                               data=json.dumps(self.data, default=str), verify=False)
             print(r.headers)
             resp_dict = json.loads(r.content)

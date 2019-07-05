@@ -170,8 +170,8 @@ class PasswordPolicy(login.CRPOLogin, work_book.WorkBook, db_login.DBConnection)
                    "IsPwdChangeInFirstLogin": False,
                    "Id": self.xl_ID[loop]
                    }
-        update_policy = requests.post(api.web_api['create_update_pwd_policy'], headers=self.headers,
-                                      data=json.dumps(request, default=str), verify=False)
+        update_policy = requests.post(self.webapi, headers=self.headers, data=json.dumps(request, default=str),
+                                      verify=False)
         print(update_policy.headers)
         update_policy_api_response = json.loads(update_policy.content)
         print(update_policy_api_response)
@@ -207,8 +207,8 @@ class PasswordPolicy(login.CRPOLogin, work_book.WorkBook, db_login.DBConnection)
             "NewPwd": self.xl_new_pwd[loop],
             "ConfirmNewPwd": self.xl_confirm_pwd[loop],
             "TenantAlias": "automation"}
-        change_password = requests.post(api.web_api['change_password'], headers=self.headers,
-                                        data=json.dumps(request, default=str), verify=False)
+        change_password = requests.post(self.webapi, headers=self.headers, data=json.dumps(request, default=str),
+                                        verify=False)
         print(change_password.headers)
         change_password_api_response = json.loads(change_password.content)
         print(change_password_api_response)
@@ -225,8 +225,8 @@ class PasswordPolicy(login.CRPOLogin, work_book.WorkBook, db_login.DBConnection)
                    "UserName": self.xl_username[loop],
                    "TenantAlias": 'automation'
                    }
-        login_check = requests.post(api.web_api['Loginto_CRPO'], headers=self.headers,
-                                    data=json.dumps(request, default=str), verify=False)
+        login_check = requests.post(self.webapi, headers=self.headers, data=json.dumps(request, default=str),
+                                    verify=False)
         print(login_check.headers)
         self.login_check_api_response = json.loads(login_check.content)
         self.P_P_dict = self.login_check_api_response.get('PasswordPolicy')

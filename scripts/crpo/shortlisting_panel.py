@@ -90,7 +90,7 @@ class SCAutomation(login.CRPOLogin, db_login.DBConnection, work_book.WorkBook):
                          "MjrId": key[2]}
             print(self.data)
             time.sleep(3)
-            r = requests.post(api.web_api['ChangeApplicant_Status'],
+            r = requests.post(self.webapi,
                               headers=self.headers, data=json.dumps(self.data, default=str), verify=False)
             print(r.headers)
             resp_dict = json.loads(r.content)
