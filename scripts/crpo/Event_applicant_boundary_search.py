@@ -1,4 +1,4 @@
-from hpro_automation import (login, db_login, api, input_paths, output_paths, work_book)
+from hpro_automation import (login, db_login, input_paths, output_paths, work_book)
 import dateutil.parser
 import requests
 import json
@@ -96,8 +96,7 @@ class ExcelData(login.CRPOLogin, work_book.WorkBook, db_login.DBConnection):
         self.lambda_function('getAllApplicants')
         self.headers['APP-NAME'] = 'crpo'
 
-        r = requests.post(api.web_api['getAllApplicants'], headers=self.headers,
-                          data=json.dumps(self.data, default=str), verify=False)
+        r = requests.post(self.webapi, headers=self.headers, data=json.dumps(self.data, default=str), verify=False)
         print(r.headers)
         resp_dict = json.loads(r.content)
         self.status = resp_dict['status']
@@ -122,8 +121,7 @@ class ExcelData(login.CRPOLogin, work_book.WorkBook, db_login.DBConnection):
         self.actual_ids = []
         for i in range(1, iter):
             self.data["PagingCriteria"]["PageNo"] = i
-            r = requests.post(api.web_api['getAllApplicants'], headers=self.headers,
-                              data=json.dumps(data, default=str), verify=False)
+            r = requests.post(self.webapi, headers=self.headers, data=json.dumps(data, default=str), verify=False)
             print(r.headers)
             resp_dict = json.loads(r.content)
             # print resp_dict

@@ -44,7 +44,7 @@ class DeleteCommunication(login.CRPOLogin, db_login.DBConnection):
         self.headers['APP-NAME'] = 'crpo'
 
         request = {"AttachmentIds": self.xl_attachment_id}
-        attachment_api = requests.post(api.web_api['delete_Attachment'], headers=self.headers,
+        attachment_api = requests.post(self.webapi, headers=self.headers,
                                        data=json.dumps(request, default=str), verify=False)
         print(attachment_api.headers)
         attachment_api_dict = json.loads(attachment_api.content)

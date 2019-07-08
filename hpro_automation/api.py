@@ -137,6 +137,8 @@ lambda_apis = {
 
     "save_app_preferences": generic_domain + "py/common/common_app_utils/save_app_preferences/",
 
+    "getAllAppPreference": generic_domain + 'py/common/common_app_utils/api/v1/getAllAppPreference/',
+
     # ---------------------------------- communication history/status --------------------------------------------------
     "Create_Attachment": generic_domain + "py/common/attachment/api/v1/createAttachment/",
 
@@ -167,6 +169,8 @@ non_lambda_apis = {
     "oneClickShortlist": generic_domain + "py/crpo/shortlistingcriteria/api/v1/oneClickShortlist",
 
     "candidate_duplicate_check": generic_domain + "py/rpo/candidate_duplicate_check/",
+
+    "get_all_candidates": generic_domain + "py/rpo/get_all_candidates/",
 
     # ---------------------------------- communication history/status --------------------------------------------------
     "sendAdmitCardsToApplicants":
