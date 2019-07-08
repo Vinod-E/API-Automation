@@ -1,4 +1,4 @@
-from hpro_automation import (login, api, input_paths, output_paths, work_book)
+from hpro_automation import (login, input_paths, output_paths, work_book)
 import requests
 import json
 import xlrd
@@ -158,8 +158,8 @@ class CommunicationHistory(login.CRPOLogin, work_book.WorkBook):
                    "ForceSend": "True",
                    "EnsureSuccess": "True",
                    "Applicants": [self.xl_applicant_id[loop]]}
-        admitcard = requests.post(api.web_api['sendAdmitCardsToApplicants'], headers=self.headers,
-                                  data=json.dumps(request, default=str), verify=False)
+        admitcard = requests.post(self.webapi, headers=self.headers, data=json.dumps(request, default=str),
+                                  verify=False)
         print(admitcard.headers)
         admitcard_response = json.loads(admitcard.content)
         print(admitcard_response)
@@ -174,8 +174,7 @@ class CommunicationHistory(login.CRPOLogin, work_book.WorkBook):
                    "Sync": "False",
                    "ForceSend": True
                    }
-        rl = requests.post(api.web_api['sendRegistrationLinkToApplicants'], headers=self.headers,
-                           data=json.dumps(request, default=str), verify=False)
+        rl = requests.post(self.webapi, headers=self.headers, data=json.dumps(request, default=str), verify=False)
         print(rl.headers)
         rl_response = json.loads(rl.content)
         print(rl_response)
@@ -189,7 +188,7 @@ class CommunicationHistory(login.CRPOLogin, work_book.WorkBook):
         request1 = {"ApplicantId": self.xl_applicant_id[loop],
                     "CommunicationPurpose": self.xl_CommunicationPurpose[loop],
                     "CommunicationStatus": True}
-        disable_api = requests.post(api.web_api['setApplicantCommunicationStatus'],
+        disable_api = requests.post(self.webapi,
                                     headers=self.headers, data=json.dumps(request1, default=str), verify=False)
         print(disable_api.headers)
         disable_api_dict = json.loads(disable_api.content)
@@ -204,8 +203,8 @@ class CommunicationHistory(login.CRPOLogin, work_book.WorkBook):
         request1 = {"ApplicantId": self.xl_applicant_id[loop],
                     "CommunicationPurpose": self.xl_CommunicationPurpose[loop],
                     "CommunicationStatus": False}
-        enable_api = requests.post(api.web_api['setApplicantCommunicationStatus'],
-                                   headers=self.headers, data=json.dumps(request1, default=str), verify=False)
+        enable_api = requests.post(self.webapi, headers=self.headers, data=json.dumps(request1, default=str),
+                                   verify=False)
         print(enable_api.headers)
         enable_api_dict = json.loads(enable_api.content)
         print(enable_api_dict)
@@ -224,8 +223,8 @@ class CommunicationHistory(login.CRPOLogin, work_book.WorkBook):
             "LabelOther": "{\"Name\":\"Approved Admitcard\"}"
         }
 
-        approved_api = requests.post(api.web_api['Create_Attachment'], headers=self.headers,
-                                     data=json.dumps(request, default=str), verify=False)
+        approved_api = requests.post(self.webapi, headers=self.headers, data=json.dumps(request, default=str),
+                                     verify=False)
         print(approved_api.headers)
         approved_api_dict = json.loads(approved_api.content)
         print(approved_api_dict)
@@ -239,9 +238,8 @@ class CommunicationHistory(login.CRPOLogin, work_book.WorkBook):
         request1 = {"ApplicantId": self.xl_applicant_id[loop],
                     "CommunicationPurpose": self.xl_CommunicationPurpose[loop],
                     "CommunicationStatus": True}
-        communicationstatus_api = requests.post(api.web_api['setApplicantCommunicationStatus'],
-                                                headers=self.headers, data=json.dumps(request1, default=str),
-                                                verify=False)
+        communicationstatus_api = requests.post(self.webapi, headers=self.headers,
+                                                data=json.dumps(request1, default=str), verify=False)
         print(communicationstatus_api.headers)
         communicationstatus_api_dict = json.loads(communicationstatus_api.content)
         print(communicationstatus_api_dict)
@@ -260,7 +258,7 @@ class CommunicationHistory(login.CRPOLogin, work_book.WorkBook):
             "LabelOther": "{\"Name\":\"Score Sheet\"}"
         }
 
-        score_api = requests.post(api.web_api['Create_Attachment'], headers=self.headers,
+        score_api = requests.post(self.webapi, headers=self.headers,
                                   data=json.dumps(request, default=str), verify=False)
         print(score_api.headers)
         score_api_dict = json.loads(score_api.content)
@@ -275,9 +273,8 @@ class CommunicationHistory(login.CRPOLogin, work_book.WorkBook):
         request1 = {"ApplicantId": self.xl_applicant_id[loop],
                     "CommunicationPurpose": self.xl_CommunicationPurpose[loop],
                     "CommunicationStatus": True}
-        communicationstatus_api = requests.post(api.web_api['setApplicantCommunicationStatus'],
-                                                headers=self.headers, data=json.dumps(request1, default=str),
-                                                verify=False)
+        communicationstatus_api = requests.post(self.webapi, headers=self.headers,
+                                                data=json.dumps(request1, default=str), verify=False)
         print(communicationstatus_api.headers)
         communicationstatus_api_dict = json.loads(communicationstatus_api.content)
         print(communicationstatus_api_dict)
@@ -292,7 +289,7 @@ class CommunicationHistory(login.CRPOLogin, work_book.WorkBook):
                    "sync": True,
                    "verificationType": self.xl_verification_type[loop],
                    "isForceSend": True}
-        mobile_email_api = requests.post(api.web_api['sendVerificationNotification'], headers=self.headers,
+        mobile_email_api = requests.post(self.webapi, headers=self.headers,
                                          data=json.dumps(request, default=str), verify=False)
         print(mobile_email_api.headers)
         mobile_email_api_dict = json.loads(mobile_email_api.content)
@@ -308,8 +305,8 @@ class CommunicationHistory(login.CRPOLogin, work_book.WorkBook):
                    "sync": True,
                    "verificationType": self.xl_verification_type[loop],
                    "isForceSend": True}
-        email_api = requests.post(api.web_api['sendVerificationNotification'], headers=self.headers,
-                                  data=json.dumps(request, default=str), verify=False)
+        email_api = requests.post(self.webapi, headers=self.headers, data=json.dumps(request, default=str),
+                                  verify=False)
         print(email_api.headers)
         email_api_dict = json.loads(email_api.content)
         print(email_api_dict)
@@ -323,8 +320,7 @@ class CommunicationHistory(login.CRPOLogin, work_book.WorkBook):
         request1 = {"ApplicantId": self.xl_applicant_id[loop],
                     "CommunicationPurpose": self.xl_CommunicationPurpose[loop],
                     "CommunicationStatus": True}
-        flag_api = requests.post(api.web_api['setApplicantCommunicationStatus'],
-                                 headers=self.headers, data=json.dumps(request1, default=str),
+        flag_api = requests.post(self.webapi, headers=self.headers, data=json.dumps(request1, default=str),
                                  verify=False)
         print(flag_api.headers)
         flag_api_dict = json.loads(flag_api.content)
@@ -336,8 +332,8 @@ class CommunicationHistory(login.CRPOLogin, work_book.WorkBook):
         self.headers['APP-NAME'] = 'crpo'
 
         request = {"ApplicantIds": [self.xl_applicant_id[loop]]}
-        get_rl_api = requests.post(api.web_api['getRegistrationLinkForApplicants'], headers=self.headers,
-                                   data=json.dumps(request, default=str), verify=False)
+        get_rl_api = requests.post(self.webapi, headers=self.headers, data=json.dumps(request, default=str),
+                                   verify=False)
         print(get_rl_api.headers)
         get_rl_api_dict = json.loads(get_rl_api.content)
         data = get_rl_api_dict['data']
@@ -385,7 +381,7 @@ class CommunicationHistory(login.CRPOLogin, work_book.WorkBook):
                        "reasonId": 44609,
                        "comment": "Sending registration link again"}
 
-            re_rl_api = requests.post(api.web_api['applicantRe-Registration'],
+            re_rl_api = requests.post(self.webapi,
                                       headers=self.headers, data=json.dumps(request, default=str), verify=False)
             print(re_rl_api.headers)
             re_rl_api_dict = json.loads(re_rl_api.content)
@@ -404,7 +400,7 @@ class CommunicationHistory(login.CRPOLogin, work_book.WorkBook):
                                               "ObjectState": 0, "PageNo": 1, "SortOrder": "1", "SortParameter": "1",
                                               "PageNumber": 1},
                        "RecruitEventId": self.xl_expected_event_id[loop]}
-            applicant_api = requests.post(api.web_api['getAllEventApplicant'], headers=self.headers,
+            applicant_api = requests.post(self.webapi, headers=self.headers,
                                           data=json.dumps(request, default=str), verify=False)
             print(applicant_api.headers)
             applicant_api_dict = json.loads(applicant_api.content)

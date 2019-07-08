@@ -4,7 +4,7 @@ import json
 import xlrd
 import xlwt
 import datetime
-from hpro_automation import (login, api, input_paths, output_paths, db_login, work_book)
+from hpro_automation import (login, input_paths, output_paths, db_login, work_book)
 
 
 class Excel_Data(login.CRPOLogin, work_book.WorkBook, db_login.DBConnection):
@@ -88,7 +88,7 @@ class Excel_Data(login.CRPOLogin, work_book.WorkBook, db_login.DBConnection):
         self.lambda_function('getAllApplicants')
         self.headers['APP-NAME'] = 'crpo'
 
-        r = requests.post(api.web_api['getAllApplicants'],
+        r = requests.post(self.webapi,
                           headers=self.headers, data=json.dumps(self.data, default=str), verify=False)
         print(r.headers)
         resp_dict = json.loads(r.content)

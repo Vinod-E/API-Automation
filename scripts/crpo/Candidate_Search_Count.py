@@ -92,8 +92,7 @@ class ExcelData(login.CRPOLogin, styles.FontColor, db_login.DBConnection):
         self.lambda_function('get_all_candidates')
         self.headers['APP-NAME'] = 'crpo'
 
-        r = requests.post(api.web_api['get_all_candidates'], headers=self.headers,
-                          data=json.dumps(self.data, default=str), verify=False)
+        r = requests.post(self.webapi, headers=self.headers, data=json.dumps(self.data, default=str), verify=False)
         print(r.headers)
         resp_dict = json.loads(r.content)
         self.status = resp_dict['status']
@@ -118,8 +117,7 @@ class ExcelData(login.CRPOLogin, styles.FontColor, db_login.DBConnection):
         self.actual_ids = []
         for i in range(1, iter):
             self.data["PagingCriteria"]["PageNo"] = i
-            r = requests.post(api.web_api['get_all_candidates'], headers=self.headers,
-                              data=json.dumps(data, default=str), verify=False)
+            r = requests.post(self.webapi, headers=self.headers, data=json.dumps(data, default=str), verify=False)
             print(r.headers)
             resp_dict = json.loads(r.content)
             # print resp_dict
