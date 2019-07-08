@@ -115,7 +115,7 @@ class ResetUser(login.CRPOLogin):
             },
             "UserId": self.xl_update_user_id[loop]
         }
-        update_api = requests.post(api.web_api['Update_user'], headers=self.headers,
+        update_api = requests.post(self.webapi, headers=self.headers,
                                    data=json.dumps(request, default=str), verify=False)
         print(update_api.headers)
         update_api_response = json.loads(update_api.content)
