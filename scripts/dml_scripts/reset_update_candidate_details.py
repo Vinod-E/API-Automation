@@ -643,8 +643,8 @@ class ResetCandidateDetails(login.CRPOLogin):
             },
             "CandidateId": self.xl_reset_candidate_id[loop]
         }
-        reset_api = requests.post(api.web_api['update_candidate_details'],
-                                  headers=self.headers, data=json.dumps(request, default=str), verify=False)
+        reset_api = requests.post(self.webapi, headers=self.headers, data=json.dumps(request, default=str),
+                                  verify=False)
         print(reset_api.headers)
         reset_api_response = json.loads(reset_api.content)
         print(reset_api_response)
