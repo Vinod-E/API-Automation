@@ -69,3 +69,13 @@ vinodkumar@vinod:~/hirepro_automation/API-Automation$ git add .
 vinodkumar@vinod:~/hirepro_automation/API-Automation$ git status
 
 vinodkumar@vinod:~/hirepro_automation/API-Automation$ git commit -m "removed virtual env"
+
+switch to new branch
+--------------------
+vinodkumar@vinod:~/hirepro_automation/API-Automation$ git fetch origin
+
+vinodkumar@vinod:~/hirepro_automation/API-Automation$ git branch
+
+vinodkumar@vinod:~/hirepro_automation/API-Automation$ git checkout develop
+
+vinodkumar@vinod:~/hirepro_automation/API-Automation$ git push origin develop
