@@ -8,11 +8,12 @@ import datetime
 from hpro_automation import (login, api, output_paths, input_paths, db_login, work_book)
 
 
-class ExcelData(login.CRPOLogin, db_login.DBConnection, work_book.WorkBook):
+class ExcelData(login.CommonLogin, db_login.DBConnection, work_book.WorkBook):
 
     def __init__(self):
         self.start_time = str(datetime.datetime.now())
         super(ExcelData, self).__init__()
+        self.common_login('crpo')
         self.db_connection()
 
         # This Script works for below fields

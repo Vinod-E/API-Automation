@@ -1,4 +1,4 @@
-from hpro_automation import (api, input_paths, output_paths, work_book)
+from hpro_automation import (input_paths, output_paths, work_book, login)
 import json
 import requests
 import xlrd
@@ -6,12 +6,12 @@ import urllib3
 import datetime
 
 
-class LoginCheck(work_book.WorkBook):
+class LoginCheck(work_book.WorkBook, login.CommonLogin):
 
     def __init__(self):
         self.start_time = str(datetime.datetime.now())
         super(LoginCheck, self).__init__()
-        self.lambda_call = str(input("Lambda On/Off:: "))
+        # self.lambda_call = str(input("Lambda On/Off:: "))
 
         # --------------------------
         # Initilasing the excel data
@@ -37,7 +37,6 @@ class LoginCheck(work_book.WorkBook):
 
         self.success_case_01 = {}
         self.success_case_02 = {}
-        self.headers = {}
 
         self.excel_headers()
 
@@ -96,26 +95,18 @@ class LoginCheck(work_book.WorkBook):
 
     def login_check(self, loop):
 
-        # ---------------- Passing headers based on API supports to lambda or not --------------------
-        if self.lambda_call == 'On':
-            if api.lambda_apis.get('Loginto_CRPO') is not None \
-                    and api.web_api['Loginto_CRPO'] in api.lambda_apis['Loginto_CRPO']:
-                self.headers = {"content-type": "application/json", 'APP-NAME': "crpo", 'X-APPLMA': 'true'}
-        elif self.lambda_call == 'Off':
-            self.headers = {"content-type": "application/json", 'APP-NAME': "crpo"}
-
+        self.lambda_function('Loginto_CRPO')
         urllib3.disable_warnings()
         request = {"LoginName": self.xl_username[loop],
                    "Password": self.xl_pwd[loop],
                    "UserName": self.xl_username[loop],
                    "TenantAlias": self.xl_tenant[loop]
                    }
-
         # -----------------------------------------------------
         # Hitting login API multiple times based on input value
         # -----------------------------------------------------
         for i in range(self.xl_API_hits[loop]):
-            login_check = requests.post(api.web_api['Loginto_CRPO'], headers=self.headers,
+            login_check = requests.post(self.webapi, headers=self.headers,
                                         data=json.dumps(request, default=str), verify=False)
             print(login_check.headers)
 
@@ -238,7 +229,7 @@ class LoginCheck(work_book.WorkBook):
         self.ws.write(0, 2, 'StartTime', self.style23)
         self.ws.write(0, 3, self.start_time, self.style26)
         self.ws.write(0, 4, 'Lambda', self.style23)
-        self.ws.write(0, 5, self.lambda_call, self.style24)
+        self.ws.write(0, 5, self.calling_lambda, self.style24)
         Object.wb_Result.save(output_paths.outputpaths['Login_check_Output_sheet'])
 
 
@@ -260,5 +251,5 @@ for looping in range(0, Total_count):
     Object.error_message = {}
     Object.success_case_01 = {}
     Object.success_case_02 = {}
-    Object.headers = {}
+
 Object.overall_status()

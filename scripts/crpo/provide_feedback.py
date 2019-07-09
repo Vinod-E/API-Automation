@@ -5,11 +5,12 @@ import xlrd
 import datetime
 
 
-class InterviewFeedback(login.CRPOLogin, work_book.WorkBook):
+class InterviewFeedback(login.CommonLogin, work_book.WorkBook):
 
     def __init__(self):
         self.start_time = str(datetime.datetime.now())
         super(InterviewFeedback, self).__init__()
+        self.common_login('int')
 
         # --------------------------
         # Initialising Excel Data

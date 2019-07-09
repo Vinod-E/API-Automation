@@ -1,13 +1,14 @@
 import requests
 import json
 import xlrd
-from hpro_automation import (login, api, input_paths, output_paths, db_login)
+from hpro_automation import (login, input_paths, output_paths, db_login)
 
 
-class DeleteCommunication(login.CRPOLogin, db_login.DBConnection):
+class DeleteCommunication(login.CommonLogin, db_login.DBConnection):
 
     def __init__(self):
         super(DeleteCommunication, self).__init__()
+        self.common_login('crpo')
 
         self.xl_attachment_id = []
         self.xl_CommunicationPurpose = []

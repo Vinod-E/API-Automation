@@ -4,14 +4,15 @@ from hpro_automation.read_excel import *
 import datetime
 import xlrd
 import time
-from hpro_automation import (login, input_paths, output_paths, work_book, api)
+from hpro_automation import (login, input_paths, output_paths, work_book)
 
 
-class VerifyDuplicationRule(login.CRPOLogin, work_book.WorkBook):
+class VerifyDuplicationRule(login.CommonLogin, work_book.WorkBook):
 
     def __init__(self):
         self.start_time = str(datetime.datetime.now())
         super(VerifyDuplicationRule, self).__init__()
+        self.common_login('crpo')
 
         self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 97)))
         self.Actual_Success_case = []

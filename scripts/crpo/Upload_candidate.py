@@ -5,11 +5,12 @@ import xlrd
 from hpro_automation import (login, input_paths, output_paths, work_book)
 
 
-class UploadCandidate(login.CRPOLogin, work_book.WorkBook):
+class UploadCandidate(login.CommonLogin, work_book.WorkBook):
 
     def __init__(self):
         self.start_time = str(datetime.datetime.now())
         super(UploadCandidate, self).__init__()
+        self.common_login('crpo')
 
         # --------------------------
         # Initialising Excel Data

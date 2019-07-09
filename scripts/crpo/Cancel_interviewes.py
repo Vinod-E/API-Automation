@@ -5,11 +5,12 @@ import xlrd
 import datetime
 
 
-class CancelInterview(login.CRPOLogin, work_book.WorkBook):
+class CancelInterview(login.CommonLogin, work_book.WorkBook):
 
     def __init__(self):
         self.start_time = str(datetime.datetime.now())
         super(CancelInterview, self).__init__()
+        self.crpo_login('crpo')
 
         # -----------------------
         # Initialising Excel Data

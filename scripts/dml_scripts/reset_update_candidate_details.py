@@ -1,14 +1,15 @@
 import xlrd
 import json
 import requests
-from hpro_automation import (api, login, input_paths)
+from hpro_automation import (login, input_paths)
 
 
-class ResetCandidateDetails(login.CRPOLogin):
+class ResetCandidateDetails(login.CommonLogin):
 
     def __init__(self):
 
         super(ResetCandidateDetails, self).__init__()
+        self.common_login('crpo')
 
         self.xl_reset_candidate_id = []
         self.xl_reset_Name = []

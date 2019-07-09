@@ -3,14 +3,15 @@ import json
 import xlrd
 import datetime
 import time
-from hpro_automation import (login, api, input_paths, output_paths, db_login, work_book)
+from hpro_automation import (login, input_paths, output_paths, db_login, work_book)
 
 
-class ECAutomation(login.CRPOLogin, db_login.DBConnection, work_book.WorkBook):
+class ECAutomation(login.CommonLogin, db_login.DBConnection, work_book.WorkBook):
 
     def __init__(self):
         self.start_time = str(datetime.datetime.now())
         super(ECAutomation, self).__init__()
+        self.common_login('crpo')
         self.db_connection()
 
         now = datetime.datetime.now()

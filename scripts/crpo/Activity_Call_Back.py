@@ -5,12 +5,14 @@ import xlrd
 import datetime
 
 
-class ActivityCallBack(login.CRPOLogin, work_book.WorkBook):
+class ActivityCallBack(login.CommonLogin, work_book.WorkBook):
 
     def __init__(self):
 
         self.start_time = str(datetime.datetime.now())
         super(ActivityCallBack, self).__init__()
+        self.common_login('crpo')
+
         # -----------------------------------------
         # Activity Call Back data set initialsation
         # -----------------------------------------

@@ -1,14 +1,15 @@
-from hpro_automation import (login, input_paths, api)
+from hpro_automation import (login, input_paths)
 import xlrd
 import json
 import requests
 
 
-class ResetUser(login.CRPOLogin):
+class ResetUser(login.CommonLogin):
 
     def __init__(self):
 
         super(ResetUser, self).__init__()
+        self.common_login('crpo')
 
         self.xl_update_user_id = []
         self.xl_update_TypeOfUser = []

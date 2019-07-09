@@ -8,11 +8,12 @@ import datetime
 from hpro_automation import (login, api, input_paths, output_paths, db_login, work_book)
 
 
-class SCAutomation(login.CRPOLogin, db_login.DBConnection, work_book.WorkBook):
+class SCAutomation(login.CommonLogin, db_login.DBConnection, work_book.WorkBook):
     def __init__(self):
         self.start_time = str(datetime.datetime.now())
         super(SCAutomation, self).__init__()
         self.db_connection()
+        self.common_login('crpo')
 
         self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 24)))
         self.Actual_Success_case = []
@@ -105,8 +106,8 @@ class SCAutomation(login.CRPOLogin, db_login.DBConnection, work_book.WorkBook):
                              "shortlistingCriteriaIds": key[4]}
                 print(self.data)
                 # time.sleep(3)
-                r = requests.post(api.web_api['oneClickShortlist'],
-                                  headers=self.get_token, data=json.dumps(self.data, default=str), verify=False)
+                r = requests.post(api.non_lambda_apis['oneClickShortlist'],
+                                  headers=self.headers, data=json.dumps(self.data, default=str), verify=False)
                 resp_dict = json.loads(r.content)
                 # print resp_dict
 

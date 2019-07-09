@@ -7,11 +7,12 @@ import datetime
 from hpro_automation import (login, input_paths, output_paths, db_login, work_book)
 
 
-class Excel_Data(login.CRPOLogin, work_book.WorkBook, db_login.DBConnection):
+class Excel_Data(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
     # This Script is used to get event applicant data from entire database which is related to the mentioned Event id
     def __init__(self):
         super(Excel_Data, self).__init__()
         self.start_time = str(datetime.datetime.now())
+        self.common_login('crpo')
         self.db_connection()
 
         # This Script works for below fields
@@ -183,7 +184,7 @@ class Excel_Data(login.CRPOLogin, work_book.WorkBook, db_login.DBConnection):
             # ----------------------------------------------------------------------------------------------------------
             # Search API Call
             # ----------------------------------------------------------------------------------------------------------
-            self.headers = {"content-type": "application/json", "X-AUTH-TOKEN": self.get_token.get("Token")}
+            # self.headers = {"content-type": "application/json", "X-AUTH-TOKEN": self.get_token.get("Token")}
             self.data = {
                 "PagingCriteria": {"IsRefresh": False, "IsSpecificToUser": False, "MaxResults": 200, "PageNo": 1,
                                    "SortParameter": "0", "SortOrder": "0", "PropertyIds": [], "ObjectState": 0,
