@@ -1,4 +1,4 @@
-from hpro_automation import (input_paths, output_paths, work_book, login)
+from hpro_automation import (input_paths, api, output_paths, work_book, login)
 import json
 import requests
 import xlrd
@@ -95,7 +95,14 @@ class LoginCheck(work_book.WorkBook, login.CommonLogin):
 
     def login_check(self, loop):
 
-        self.lambda_function('Loginto_CRPO')
+        if self.calling_lambda == 'On' or self.calling_lambda == 'on':
+            if api.lambda_apis.get('Loginto_CRPO') is not None:
+                self.headers = self.lambda_headers
+                self.webapi = api.lambda_apis['Loginto_CRPO']
+        else:
+            self.headers = self.Non_lambda_headers
+            self.webapi = api.lambda_apis['Loginto_CRPO']
+
         urllib3.disable_warnings()
         request = {"LoginName": self.xl_username[loop],
                    "Password": self.xl_pwd[loop],
