@@ -5,10 +5,7 @@
     <option name="CUSTOM_SCOPE_NAME" value="Current File" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4984ed91-26f4-4ca5-a625-e5a7acf33732" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hpro_automation/identity/credentials.py" beforeDir="false" afterPath="$PROJECT_DIR$/hpro_automation/identity/credentials.py" afterDir="false" />
-    </list>
+    <list default="true" id="4984ed91-26f4-4ca5-a625-e5a7acf33732" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,19 +15,13 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/hpro_automation/identity/credentials.py">
+        <entry file="file://$PROJECT_DIR$/scripts/crpo/provide_feedback.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="36" selection-start-line="36" selection-end-line="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+            <state relative-caret-position="193">
+              <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+              <folding>
+                <element signature="e#0#73#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -105,7 +96,6 @@
         <option value="$PROJECT_DIR$/scripts/crpo/Update_candidate.py" />
         <option value="$PROJECT_DIR$/scripts/crpo/shortlisting_panel.py" />
         <option value="$PROJECT_DIR$/scripts/crpo/Reschedule_Interview.py" />
-        <option value="$PROJECT_DIR$/scripts/crpo/provide_feedback.py" />
         <option value="$PROJECT_DIR$/scripts/crpo/Password_Policy.py" />
         <option value="$PROJECT_DIR$/scripts/crpo/Event_Applicant_Search_Count.py" />
         <option value="$PROJECT_DIR$/scripts/crpo/Event_applicant_boundary_search.py" />
@@ -121,6 +111,7 @@
         <option value="$PROJECT_DIR$/scripts/crpo/duplication_rule_verification.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/hpro_automation/identity/credentials.py" />
+        <option value="$PROJECT_DIR$/scripts/crpo/provide_feedback.py" />
       </list>
     </option>
   </component>
@@ -166,12 +157,6 @@
               <item name="scripts" type="462c0819:PsiDirectoryNode" />
               <item name="crpo" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="API-Automation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="API-Automation" type="462c0819:PsiDirectoryNode" />
-              <item name="scripts" type="462c0819:PsiDirectoryNode" />
-              <item name="dml_scripts" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -201,7 +186,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.duplication_rule_verification">
+  <component name="RunManager" selected="Python.provide_feedback">
     <configuration name="Activity_Call_Back" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="API Automation" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -286,7 +271,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="reset_update_user_details" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="provide_feedback" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="API Automation" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -294,11 +279,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts/dml_scripts" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts/crpo" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/dml_scripts/reset_update_user_details.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/crpo/provide_feedback.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -309,11 +294,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.provide_feedback" />
         <item itemvalue="Python.duplication_rule_verification" />
         <item itemvalue="Python.del_candidate_applicant_details" />
         <item itemvalue="Python.Activity_Call_Back" />
         <item itemvalue="Python.del_Activity_details" />
-        <item itemvalue="Python.reset_update_user_details" />
       </list>
     </recent_temporary>
   </component>
@@ -332,7 +317,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="43" y="-4" width="1323" height="772" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23502304" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -722,16 +706,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/crpo/provide_feedback.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-          <folding>
-            <element signature="e#0#73#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/crpo/Password_Policy.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -772,14 +746,24 @@
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hpro_automation/identity/credentials.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        <state relative-caret-position="236">
+          <caret line="31" column="51" selection-start-line="31" selection-start-column="51" selection-end-line="31" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/crpo/provide_feedback.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+          <folding>
+            <element signature="e#0#73#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
