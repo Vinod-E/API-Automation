@@ -12,7 +12,7 @@ class ECAutomation(login.CommonLogin, db_login.DBConnection, work_book.WorkBook)
         self.start_time = str(datetime.datetime.now())
         super(ECAutomation, self).__init__()
         self.common_login('crpo')
-        self.db_connection()
+        self.db_connection('amsin')
 
         now = datetime.datetime.now()
         self.__current_DateTime = now.strftime("%d-%m-%Y-%H-%M-%S")

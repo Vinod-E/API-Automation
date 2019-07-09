@@ -14,7 +14,7 @@ class ExcelData(login.CommonLogin, db_login.DBConnection, work_book.WorkBook):
         self.start_time = str(datetime.datetime.now())
         super(ExcelData, self).__init__()
         self.common_login('crpo')
-        self.db_connection()
+        self.db_connection('amsin')
 
         # This Script works for below fields
         self.candidate_filter = ['CandidateIds', 'Name', 'Email', 'Phone', 'USN', 'CreatedBy', 'PanNo', 'AadhaarNo',

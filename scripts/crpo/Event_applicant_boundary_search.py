@@ -14,7 +14,7 @@ class ExcelData(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
         self.start_time = str(datetime.datetime.now())
         super(ExcelData, self).__init__()
         self.common_login('crpo')
-        self.db_connection()
+        self.db_connection('amsin')
 
         # This Script works for below fields
         self.xl_json_request = []

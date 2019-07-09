@@ -1,4 +1,4 @@
-from hpro_automation import (login, db_login, api, input_paths, output_paths, styles)
+from hpro_automation import (login, db_login, input_paths, output_paths, styles)
 import dateutil.parser
 import requests
 import json
@@ -13,7 +13,7 @@ class ExcelData(login.CommonLogin, styles.FontColor, db_login.DBConnection):
         self.start_time = str(datetime.datetime.now())
         super(ExcelData, self).__init__()
         self.common_login('crpo')
-        self.db_connection()
+        self.db_connection('amsin')
 
         # This Script works for below fields
         self.candidate_filter = ['CandidateIds', 'Name', 'Email', 'Phone', 'USN', 'CreatedBy', 'PanNo', 'AadhaarNo',

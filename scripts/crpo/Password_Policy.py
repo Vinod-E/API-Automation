@@ -182,7 +182,7 @@ class PasswordPolicy(login.CommonLogin, work_book.WorkBook, db_login.DBConnectio
 
     def db_pwd_policy(self, loop):
 
-        self.db_connection()
+        self.db_connection('amsin1')
         query = 'select num_character,num_capital,num_small,num_special,num_numeric ' \
                 'from pwd_policy_configurations where id={};'.format(self.xl_ID[loop])
         self.cursor.execute(query)

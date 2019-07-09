@@ -6,10 +6,9 @@ class DBConnection(object):
 
     def __init__(self):
         super(DBConnection, self).__init__()
-        self.user = str(input("DB name:: "))
 
-    def db_connection(self):
+    def db_connection(self, db_name):
 
-        self.DB_data = credentials.db_details[self.user]
+        self.DB_data = credentials.db_details[db_name]
         self.connection = pymysql.connect(**self.DB_data)
         self.cursor = self.connection.cursor()
