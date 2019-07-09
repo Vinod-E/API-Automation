@@ -6,7 +6,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4984ed91-26f4-4ca5-a625-e5a7acf33732" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hpro_automation/identity/credentials.py" beforeDir="false" afterPath="$PROJECT_DIR$/hpro_automation/identity/credentials.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,7 +19,20 @@
     <leaf>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hpro_automation/identity/credentials.py">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="540">
+              <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -105,6 +119,7 @@
         <option value="$PROJECT_DIR$/scripts/dml_scripts/reset_update_user_details.py" />
         <option value="$PROJECT_DIR$/scripts/crpo/Activity_Call_Back.py" />
         <option value="$PROJECT_DIR$/scripts/crpo/duplication_rule_verification.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/hpro_automation/identity/credentials.py" />
       </list>
     </option>
@@ -406,13 +421,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="156">
           <caret line="311" selection-start-line="311" selection-end-line="311" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
         </state>
       </provider>
     </entry>
@@ -761,8 +769,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/hpro_automation/identity/credentials.py">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
