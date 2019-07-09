@@ -5,13 +5,14 @@ import json
 import requests
 
 
-class UpdateCandidate(login.CRPOLogin, work_book.WorkBook):
+class UpdateCandidate(login.CommonLogin, work_book.WorkBook):
 
     def __init__(self):
 
         self.start_time = str(datetime.datetime.now())
 
         super(UpdateCandidate, self).__init__()
+        self.common_login('crpo')
 
         self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 37)))
         self.Actual_Success_case = []

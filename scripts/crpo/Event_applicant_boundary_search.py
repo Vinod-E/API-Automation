@@ -8,11 +8,12 @@ import xlwt
 import datetime
 
 
-class ExcelData(login.CRPOLogin, work_book.WorkBook, db_login.DBConnection):
+class ExcelData(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
 
     def __init__(self):
         self.start_time = str(datetime.datetime.now())
         super(ExcelData, self).__init__()
+        self.common_login('crpo')
         self.db_connection()
 
         # This Script works for below fields
@@ -206,7 +207,7 @@ class ExcelData(login.CRPOLogin, work_book.WorkBook, db_login.DBConnection):
             # ----------------------------------------------------------------------------------------------------------
             # Search API Call
             # ----------------------------------------------------------------------------------------------------------
-            self.headers = {"content-type": "application/json", "X-AUTH-TOKEN": self.get_token}
+            # self.headers = {"content-type": "application/json", "X-AUTH-TOKEN": self.get_token}
             self.data = {
                 "PagingCriteria": {"IsRefresh": False, "IsSpecificToUser": False, "MaxResults": 200, "PageNo": 1,
                                    "SortParameter": "0", "SortOrder": "0", "PropertyIds": [], "ObjectState": 0,

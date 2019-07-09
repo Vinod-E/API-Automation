@@ -8,11 +8,12 @@ from selenium import webdriver
 from selenium.common import exceptions
 
 
-class CommunicationHistory(login.CRPOLogin, work_book.WorkBook):
+class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
 
     def __init__(self):
         self.start_time = str(datetime.datetime.now())
         super(CommunicationHistory, self).__init__()
+        self.common_login('crpo')
 
         self.driver = ""
         self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 14)))

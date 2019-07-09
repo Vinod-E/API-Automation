@@ -5,11 +5,12 @@ import xlrd
 import datetime
 
 
-class RescheduleInterview(login.CRPOLogin, work_book.WorkBook):
+class RescheduleInterview(login.CommonLogin, work_book.WorkBook):
 
     def __init__(self):
         self.start_time = str(datetime.datetime.now())
         super(RescheduleInterview, self).__init__()
+        self.common_login('crpo')
 
         # --------------------------
         # Initialising Excel Data
@@ -362,17 +363,21 @@ class RescheduleInterview(login.CRPOLogin, work_book.WorkBook):
         if self.final_status:
             self.ws.write(self.rowsize, 1, 'Pass', self.style26)
             self.success_case_01 = 'Pass'
-        elif self.message:
-            if self.xl_Exception_message[loop] and 'already scheduled for interview' in self.message:
-                self.ws.write(self.rowsize, 1, 'Pass', self.style26)
-                self.success_case_02 = 'Pass'
-            else:
-                self.ws.write(self.rowsize, 1, 'Fail', self.style3)
 
-        elif self.reschedule_message:
-            if self.xl_Exception_message[loop] and 'Unable to reschedule' in self.reschedule_message:
-                self.ws.write(self.rowsize, 1, 'Pass', self.style26)
-                self.success_case_03 = 'Pass'
+        elif self.xl_Exception_message[loop]:
+            if self.message:
+                if self.xl_Exception_message[loop] and 'already scheduled for interview' in self.message:
+                    self.ws.write(self.rowsize, 1, 'Pass', self.style26)
+                    self.success_case_02 = 'Pass'
+                else:
+                    self.ws.write(self.rowsize, 1, 'Fail', self.style3)
+
+            elif self.reschedule_message:
+                if self.xl_Exception_message[loop] and 'Unable to reschedule' in self.reschedule_message:
+                    self.ws.write(self.rowsize, 1, 'Pass', self.style26)
+                    self.success_case_03 = 'Pass'
+                else:
+                    self.ws.write(self.rowsize, 1, 'Fail', self.style3)
             else:
                 self.ws.write(self.rowsize, 1, 'Fail', self.style3)
         else:
@@ -492,10 +497,19 @@ class RescheduleInterview(login.CRPOLogin, work_book.WorkBook):
             self.ws.write(self.rowsize, 12, None)
         # --------------------------------------------------------------------------------------------------------------
         if self.xl_Exception_message[loop]:
-            if self.message:
-                self.ws.write(self.rowsize, 13, self.message, self.style8)
-            elif self.reschedule_message:
-                self.ws.write(self.rowsize, 13, self.reschedule_message, self.style8)
+            if self.message is not None:
+                if 'Unable to' in self.message:
+                    self.ws.write(self.rowsize, 13, self.message, self.style8)
+                elif self.reschedule_message:
+                    self.ws.write(self.rowsize, 13, self.reschedule_message, self.style8)
+                else:
+                    self.ws.write(self.rowsize, 13, self.message, self.style3)
+            else:
+                self.ws.write(self.rowsize, 13, self.message, self.style3)
+        elif self.reschedule_message:
+            self.ws.write(self.rowsize, 13, self.reschedule_message, self.style3)
+        else:
+            self.ws.write(self.rowsize, 13, self.message, self.style3)
         # --------------------------------------------------------------------------------------------------------------
 
         self.rowsize += 1  # Row increment

@@ -1,15 +1,16 @@
-from hpro_automation import (login, api, input_paths, output_paths, db_login, work_book)
+from hpro_automation import (login, input_paths, output_paths, db_login, work_book)
 import xlrd
 import requests
 import json
 import datetime
 
 
-class PasswordPolicy(login.CRPOLogin, work_book.WorkBook, db_login.DBConnection):
+class PasswordPolicy(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
 
     def __init__(self):
         self.start_time = str(datetime.datetime.now())
         super(PasswordPolicy, self).__init__()
+        self.common_login('crpo')
 
         # ----------------------------------------------
         # Password configurations data set initialsation

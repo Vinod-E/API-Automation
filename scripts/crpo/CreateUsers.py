@@ -5,11 +5,12 @@ import xlrd
 from hpro_automation import (input_paths, output_paths, login, work_book)
 
 
-class CreateUser(login.CRPOLogin, work_book.WorkBook):
+class CreateUser(login.CommonLogin, work_book.WorkBook):
 
     def __init__(self):
         self.start_time = str(datetime.datetime.now())
         super(CreateUser, self).__init__()
+        self.common_login('crpo')
 
         # --------------------------
         # Initialising Excel Data

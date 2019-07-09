@@ -7,11 +7,12 @@ import xlwt
 import datetime
 
 
-class ExcelData(login.CRPOLogin, styles.FontColor, db_login.DBConnection):
+class ExcelData(login.CommonLogin, styles.FontColor, db_login.DBConnection):
 
     def __init__(self):
         self.start_time = str(datetime.datetime.now())
         super(ExcelData, self).__init__()
+        self.common_login('crpo')
         self.db_connection()
 
         # This Script works for below fields

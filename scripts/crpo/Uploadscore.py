@@ -5,11 +5,12 @@ import xlrd
 import datetime
 
 
-class UploadScoresheet(login.CRPOLogin, work_book.WorkBook):
+class UploadScoresheet(login.CommonLogin, work_book.WorkBook):
 
     def __init__(self):
         self.start_time = str(datetime.datetime.now())
         super(UploadScoresheet, self).__init__()
+        self.common_login('crpo')
 
         self.rowsize1 = 18
         self.size1 = self.rowsize1
@@ -117,7 +118,6 @@ class UploadScoresheet(login.CRPOLogin, work_book.WorkBook):
         self.section_four = self.section4_dict = {}
         self.section4_1_dict = {}
         self.section_four_one = self.section4_1_dict = {}
-        self.headers = {}
 
     def excel_headers(self):
         self.main_headers = ['Comparision', 'Candidate Id', 'Overall_Status', 'CandidateName', 'Email', 'Test Mode',
@@ -412,7 +412,7 @@ class UploadScoresheet(login.CRPOLogin, work_book.WorkBook):
                                            data=json.dumps(score_request, default=str), verify=False)
         print(fetchingscores_api.headers)
         fetchingscores_dict = json.loads(fetchingscores_api.content)
-        scoredata = fetchingscores_dict['data']
+        scoredata = fetchingscores_dict.get('data')
         for testuser in scoredata:
             if testuser['CandidateId'] == self.xl_candidateId[loop]:
                 self.testuser_dict = next(
@@ -1248,5 +1248,4 @@ if Object.login == 'OK':
         Object.section2_1_dict = {}
         Object.section3_1_dict = {}
         Object.section4_1_dict = {}
-        Object.headers = {}
 Object.overall_status()
