@@ -53,7 +53,7 @@ class DeleteCommunication(login.CommonLogin, db_login.DBConnection):
 
     def update_communication_history(self):
         app_can_ids = tuple(self.xl_applicant_id)
-        self.db_connection()
+        self.db_connection('amsin')
 
         query0 = "DELETE FROM entity_communication_history WHERE entitycommunication_id in" \
                  " (SELECT id from entity_communications " \

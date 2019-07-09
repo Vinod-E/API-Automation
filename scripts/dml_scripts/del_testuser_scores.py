@@ -5,7 +5,7 @@ from hpro_automation import (input_paths, db_login)
 class TestUserScores(db_login.DBConnection):
     def __init__(self):
         super(TestUserScores, self).__init__()
-        self.db_connection()
+        self.db_connection('amsin')
 
         # ------------------------
         # Initialising Excel Data

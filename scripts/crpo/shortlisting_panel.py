@@ -12,7 +12,7 @@ class SCAutomation(login.CommonLogin, db_login.DBConnection, work_book.WorkBook)
     def __init__(self):
         self.start_time = str(datetime.datetime.now())
         super(SCAutomation, self).__init__()
-        self.db_connection()
+        self.db_connection('amsin')
         self.common_login('crpo')
 
         self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 24)))

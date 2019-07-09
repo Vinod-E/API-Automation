@@ -5,7 +5,7 @@ from hpro_automation import (output_paths, db_login)
 class DeleteCandidateApplicant(db_login.DBConnection):
     def __init__(self):
         super(DeleteCandidateApplicant, self).__init__()
-        self.db_connection()
+        self.db_connection('amsin')
 
         # ------------------------
         # Initialising Excel Data
