@@ -91,6 +91,11 @@ class UpdateCandidate:
         self.__style8 = xlwt.easyxf('font: name Arial, color light_orange, bold on')
         self.__style9 = xlwt.easyxf('font: name Arial, color green, bold on')
         self.__style10 = xlwt.easyxf('font: name Arial, color Red, bold on;')
+        self.style24 = xlwt.easyxf('font: name Arial, color green, bold on, height 400;'
+                                   'align: vert centre, horiz centre;')
+        self.style25 = xlwt.easyxf('font: name Arial, color red, bold on, height 400;'
+                                   'align: vert centre, horiz centre;')
+        self.style11 = xlwt.easyxf('font: name Arial, color black')
 
         # -------------------------------------
         # Excel sheet write for Output results
@@ -103,27 +108,26 @@ class UpdateCandidate:
         self.size = self.rowsize
         self.col = 0
 
-        index = 0
-        excelheaders = ['Comparison', 'Current_status', 'Remark', 'CandidateId',
+        self.index = 0
+        self.excelheaders = ['Comparison', 'Current_status', 'CandidateId',
                         'Name', 'Email', 'Mobile1', 'Gender', 'DateOfBirth', 'OfferedBUId', 'OwingDepartmentId',
                         'OfferedDesignationId', 'PassportNo', 'LevelId', 'PanNo', 'LocationOfferedId', 'ExpectedDOJ',
                         'TentativeDoj', 'Integer1', 'Integer2', 'Integer3', 'Integer10', 'Integer12', 'Text1', 'Text2',
-                        'Text10', 'Text11']
+                        'Text10', 'Text11', 'Remark']
 
-        for headers in excelheaders:
+        for headers in self.excelheaders:
             if headers in ['Comparison', 'Current_status', 'Remark']:
-                self.ws.write(1, index, headers, self.__style2)
+                self.ws.write(1, self.index, headers, self.__style2)
             else:
-                self.ws.write(1, index, headers, self.__style0)
-            index += 1
+                self.ws.write(1, self.index, headers, self.__style0)
+            self.index += 1
 
     def excel_data(self):
         # ----------------
         # Excel Data Read
         # ----------------
 
-        self.wb = xlrd.open_workbook('/home/vinodkumar/PycharmProjects/API_Automation/Input Data/Pofu/Upload_candidates'
-                                     '/BulkUpdate_kmbdemo.xls')
+        self.wb = xlrd.open_workbook('/home/vinodkumar/hirepro_automation/API-Automation/Input Data/Pofu/BulkUpdate/BulkUpdate_kmbdemo.xls')
         self.sheet1 = self.wb.sheet_by_index(0)
         for i in range(1, self.sheet1.nrows):
             number = i
@@ -285,7 +289,7 @@ class UpdateCandidate:
     def api_call_bulk_update(self, iteration_count):
         try:
 
-            # conn = pymysql.connector.connect(host='35.154.36.218',
+            # conn = mysql.connector.connect(host='35.154.36.218',
             # database='core1776',
             # user='qauser',
             # password='qauser')
@@ -339,81 +343,81 @@ class UpdateCandidate:
                         if isinstance(error, dict) is True:
                             if error.get("IsDuplicate") is True and error.get("DuplicateInfo"):
                                 self.ws.write(self.rowsize, 1, 'Fail', self.__style10)
-                                self.ws.write(self.rowsize, 2, 'Duplicate with Mobile', self.__style3)
+                                self.ws.write(self.rowsize, 26, 'Duplicate with Mobile', self.__style3)
                                 self.ws.write(self.rowsize, self.col, 'Input', self.__style4)
-                                self.ws.write(self.rowsize, 3, self.xl_CandidateId[Iteration_Count], self.__style2)
-                                self.ws.write(self.rowsize, 4, self.xl_Name[Iteration_Count], self.__style2)
-                                self.ws.write(self.rowsize, 5, self.xl_Email[Iteration_Count], self.__style2)
-                                self.ws.write(self.rowsize, 6, self.xl_Mobile1[Iteration_Count], self.__style2)
-                                self.ws.write(self.rowsize, 7, self.xl_Gender[Iteration_Count], self.__style2)
-                                self.ws.write(self.rowsize, 8, self.xl_DateOfBirth[Iteration_Count], self.__style2)
-                                self.ws.write(self.rowsize, 9, self.xl_BusinessUnit[Iteration_Count], self.__style2)
-                                self.ws.write(self.rowsize, 10, self.xl_Department[Iteration_Count], self.__style2)
-                                self.ws.write(self.rowsize, 11, self.xl_OfferedRole[Iteration_Count], self.__style2)
-                                self.ws.write(self.rowsize, 12, self.xl_PassportNo[Iteration_Count], self.__style2)
-                                self.ws.write(self.rowsize, 13, self.xl_Level[Iteration_Count], self.__style2)
-                                self.ws.write(self.rowsize, 14, self.xl_PanNo[Iteration_Count], self.__style2)
-                                self.ws.write(self.rowsize, 15, self.xl_OfferedLocation[Iteration_Count], self.__style2)
-                                self.ws.write(self.rowsize, 16, self.xl_ExpectedDOJ[Iteration_Count], self.__style2)
-                                self.ws.write(self.rowsize, 17, self.xl_TentativeDOJ[Iteration_Count], self.__style2)
-                                self.ws.write(self.rowsize, 18, self.xl_Integer1[Iteration_Count], self.__style2)
-                                self.ws.write(self.rowsize, 19, self.xl_Integer2[Iteration_Count], self.__style2)
-                                self.ws.write(self.rowsize, 20, self.xl_Integer3[Iteration_Count], self.__style2)
-                                self.ws.write(self.rowsize, 21, self.xl_Integer10[Iteration_Count], self.__style2)
-                                self.ws.write(self.rowsize, 22, self.xl_Integer12[Iteration_Count], self.__style2)
-                                self.ws.write(self.rowsize, 23, self.xl_Text1[Iteration_Count], self.__style2)
-                                self.ws.write(self.rowsize, 24, self.xl_Text2[Iteration_Count], self.__style2)
-                                self.ws.write(self.rowsize, 25, self.xl_Text10[Iteration_Count], self.__style2)
-                                self.ws.write(self.rowsize, 26, self.xl_Text11[Iteration_Count], self.__style2)
+                                self.ws.write(self.rowsize, 2, self.xl_CandidateId[Iteration_Count], self.__style9)
+                                self.ws.write(self.rowsize, 3, self.xl_Name[Iteration_Count], self.__style9)
+                                self.ws.write(self.rowsize, 4, self.xl_Email[Iteration_Count], self.__style9)
+                                self.ws.write(self.rowsize, 5, self.xl_Mobile1[Iteration_Count], self.__style9)
+                                self.ws.write(self.rowsize, 6, self.xl_Gender[Iteration_Count], self.__style9)
+                                self.ws.write(self.rowsize, 7, self.xl_DateOfBirth[Iteration_Count], self.__style9)
+                                self.ws.write(self.rowsize, 8, self.xl_BusinessUnit[Iteration_Count], self.__style9)
+                                self.ws.write(self.rowsize, 9, self.xl_Department[Iteration_Count], self.__style9)
+                                self.ws.write(self.rowsize, 10, self.xl_OfferedRole[Iteration_Count], self.__style9)
+                                self.ws.write(self.rowsize, 11, self.xl_PassportNo[Iteration_Count], self.__style9)
+                                self.ws.write(self.rowsize, 12, self.xl_Level[Iteration_Count], self.__style9)
+                                self.ws.write(self.rowsize, 13, self.xl_PanNo[Iteration_Count], self.__style9)
+                                self.ws.write(self.rowsize, 14, self.xl_OfferedLocation[Iteration_Count], self.__style9)
+                                self.ws.write(self.rowsize, 15, self.xl_ExpectedDOJ[Iteration_Count], self.__style9)
+                                self.ws.write(self.rowsize, 16, self.xl_TentativeDOJ[Iteration_Count], self.__style9)
+                                self.ws.write(self.rowsize, 17, self.xl_Integer1[Iteration_Count], self.__style9)
+                                self.ws.write(self.rowsize, 18, self.xl_Integer2[Iteration_Count], self.__style9)
+                                self.ws.write(self.rowsize, 19, self.xl_Integer3[Iteration_Count], self.__style9)
+                                self.ws.write(self.rowsize, 20, self.xl_Integer10[Iteration_Count], self.__style9)
+                                self.ws.write(self.rowsize, 21, self.xl_Integer12[Iteration_Count], self.__style9)
+                                self.ws.write(self.rowsize, 22, self.xl_Text1[Iteration_Count], self.__style9)
+                                self.ws.write(self.rowsize, 23, self.xl_Text2[Iteration_Count], self.__style9)
+                                self.ws.write(self.rowsize, 24, self.xl_Text10[Iteration_Count], self.__style9)
+                                self.ws.write(self.rowsize, 25, self.xl_Text11[Iteration_Count], self.__style9)
                                 # self.ws.write(self.rowsize, 26, self.xl_Text12[Iteration_Count], self.__style1)
                                 self.rowsize += 1
                                 # Row increment
                                 self.ws.write(self.rowsize, self.col, 'Output', self.__style5)
                                 self.rowsize += 1  # Row increment
                                 ob.wb_Result.save(
-                                    '/home/vinodkumar/PycharmProjects/API_Automation/Input Data/Pofu/Upload_candidates'
-                                    '/BulkUpdate_kmbdemo_output.xls')
+                                    '/home/vinodkumar/hirepro_automation/API-Automation/Output Data/Pofu/BulkUpdate/BulkUpdate_kmbdemo_output.xls')
                         else:
                             #self.ws.write(self.rowsize, 1, 'Fail', self.__style10)
-                            self.ws.write(self.rowsize, 2, failed_data.get('error'), self.__style9)
+                            #self.ws.write(self.rowsize, 26, failed_data.get('error'), self.__style9)
                             self.ws.write(self.rowsize, self.col, 'Input', self.__style4)
-                            self.ws.write(self.rowsize, 3, self.xl_CandidateId[Iteration_Count], self.__style2)
-                            self.ws.write(self.rowsize, 4, self.xl_Name[Iteration_Count], self.__style2)
-                            self.ws.write(self.rowsize, 5, self.xl_Email[Iteration_Count], self.__style2)
-                            self.ws.write(self.rowsize, 6, self.xl_Mobile1[Iteration_Count], self.__style2)
-                            self.ws.write(self.rowsize, 7, self.xl_Gender[Iteration_Count], self.__style2)
-                            self.ws.write(self.rowsize, 8, self.xl_DateOfBirth[Iteration_Count], self.__style2)
-                            self.ws.write(self.rowsize, 9, self.xl_BusinessUnit[Iteration_Count], self.__style2)
-                            self.ws.write(self.rowsize, 10, self.xl_Department[Iteration_Count], self.__style2)
-                            self.ws.write(self.rowsize, 11, self.xl_OfferedRole[Iteration_Count], self.__style2)
-                            self.ws.write(self.rowsize, 12, self.xl_PassportNo[Iteration_Count], self.__style2)
-                            self.ws.write(self.rowsize, 13, self.xl_Level[Iteration_Count], self.__style2)
-                            self.ws.write(self.rowsize, 14, self.xl_PanNo[Iteration_Count], self.__style2)
-                            self.ws.write(self.rowsize, 15, self.xl_OfferedLocation[Iteration_Count], self.__style2)
-                            self.ws.write(self.rowsize, 16, self.xl_ExpectedDOJ[Iteration_Count], self.__style2)
-                            self.ws.write(self.rowsize, 17, self.xl_TentativeDOJ[Iteration_Count], self.__style2)
-                            self.ws.write(self.rowsize, 18, self.xl_Integer1[Iteration_Count], self.__style2)
-                            self.ws.write(self.rowsize, 19, self.xl_Integer2[Iteration_Count], self.__style2)
-                            self.ws.write(self.rowsize, 20, self.xl_Integer3[Iteration_Count], self.__style2)
-                            self.ws.write(self.rowsize, 21, self.xl_Integer10[Iteration_Count], self.__style2)
-                            self.ws.write(self.rowsize, 22, self.xl_Integer12[Iteration_Count], self.__style2)
-                            self.ws.write(self.rowsize, 23, self.xl_Text1[Iteration_Count], self.__style2)
-                            self.ws.write(self.rowsize, 24, self.xl_Text2[Iteration_Count], self.__style2)
-                            self.ws.write(self.rowsize, 25, self.xl_Text10[Iteration_Count], self.__style2)
-                            self.ws.write(self.rowsize, 26, self.xl_Text11[Iteration_Count], self.__style2)
+                            self.ws.write(self.rowsize, 2, self.xl_CandidateId[Iteration_Count], self.style11)
+                            self.ws.write(self.rowsize, 3, self.xl_Name[Iteration_Count], self.style11)
+                            self.ws.write(self.rowsize, 4, self.xl_Email[Iteration_Count], self.style11)
+                            self.ws.write(self.rowsize, 5, self.xl_Mobile1[Iteration_Count], self.style11)
+                            self.ws.write(self.rowsize, 6, self.xl_Gender[Iteration_Count], self.style11)
+                            self.ws.write(self.rowsize, 7, self.xl_DateOfBirth[Iteration_Count], self.style11)
+                            self.ws.write(self.rowsize, 8, self.xl_BusinessUnit[Iteration_Count], self.style11)
+                            self.ws.write(self.rowsize, 9, self.xl_Department[Iteration_Count], self.style11)
+                            self.ws.write(self.rowsize, 10, self.xl_OfferedRole[Iteration_Count], self.style11)
+                            self.ws.write(self.rowsize, 11, self.xl_PassportNo[Iteration_Count], self.style11)
+                            self.ws.write(self.rowsize, 12, self.xl_Level[Iteration_Count], self.style11)
+                            self.ws.write(self.rowsize, 13, self.xl_PanNo[Iteration_Count], self.style11)
+                            self.ws.write(self.rowsize, 14, self.xl_OfferedLocation[Iteration_Count], self.style11)
+                            self.ws.write(self.rowsize, 15, self.xl_ExpectedDOJ[Iteration_Count], self.style11)
+                            self.ws.write(self.rowsize, 16, self.xl_TentativeDOJ[Iteration_Count], self.style11)
+                            self.ws.write(self.rowsize, 17, self.xl_Integer1[Iteration_Count], self.style11)
+                            self.ws.write(self.rowsize, 18, self.xl_Integer2[Iteration_Count], self.style11)
+                            self.ws.write(self.rowsize, 19, self.xl_Integer3[Iteration_Count], self.style11)
+                            self.ws.write(self.rowsize, 20, self.xl_Integer10[Iteration_Count], self.style11)
+                            self.ws.write(self.rowsize, 21, self.xl_Integer12[Iteration_Count], self.style11)
+                            self.ws.write(self.rowsize, 22, self.xl_Text1[Iteration_Count], self.style11)
+                            self.ws.write(self.rowsize, 23, self.xl_Text2[Iteration_Count], self.style11)
+                            self.ws.write(self.rowsize, 24, self.xl_Text10[Iteration_Count], self.style11)
+                            self.ws.write(self.rowsize, 25, self.xl_Text11[Iteration_Count], self.style11)
+
+                            self.ws.write(self.rowsize, 26, failed_data.get('error'), self.style11)
                             # self.ws.write(self.rowsize, 26, self.xl_Text12[Iteration_Count], self.__style1)
                             self.rowsize += 1  # Row increment
                             self.ws.write(self.rowsize, self.col, 'Output', self.__style5)
                             if failed_data:
                                 if self.xl_Expected_msg[Iteration_Count] in error:
-                                    self.ws.write(self.rowsize, 2, failed_data.get('error'), self.__style9)
+                                    self.ws.write(self.rowsize, 26, failed_data.get('error'), self.__style9)
                                 else:
-                                    self.ws.write(self.rowsize, 2, failed_data.get('error'), self.__style7)
+                                    self.ws.write(self.rowsize, 26, failed_data.get('error'), self.__style7)
                                 self.ws.write(self.rowsize, 1, 'pass', self.__style9)
                             self.rowsize += 1  # Row increment
                             ob.wb_Result.save(
-                                '/home/vinodkumar/PycharmProjects/API_Automation/Input Data/Pofu/Upload_candidates'
-                                '/BulkUpdate_kmbdemo_output.xls')
+                                '/home/vinodkumar/hirepro_automation/API-Automation/Output Data/Pofu/BulkUpdate/BulkUpdate_kmbdemo_output.xls')
 
                             print("email Is duplicate")
 
@@ -483,103 +487,103 @@ class UpdateCandidate:
 
                     self.ws.write(self.rowsize, self.col, 'Input', self.__style4)
                     # self.ws.write(self.rowsize, 1, 'Pass', self.__style9)
-                    self.ws.write(self.rowsize, 2, 'Excel Input', self.__style9)
+                    self.ws.write(self.rowsize, 1, 'Excel Input', self.__style9)
                     if self.xl_CandidateId[Iteration_Count]:
-                        self.ws.write(self.rowsize, 3, self.xl_CandidateId[Iteration_Count], self.__style9)
+                        self.ws.write(self.rowsize, 2, self.xl_CandidateId[Iteration_Count], self.style11)
+                    else:
+                        self.ws.write(self.rowsize, 2, 'Empty', self.__style9)
+                    if self.xl_Name[Iteration_Count]:
+                        self.ws.write(self.rowsize, 3, self.xl_Name[Iteration_Count], self.style11)
                     else:
                         self.ws.write(self.rowsize, 3, 'Empty', self.__style9)
-                    if self.xl_Name[Iteration_Count]:
-                        self.ws.write(self.rowsize, 4, self.xl_Name[Iteration_Count], self.__style9)
+                    if self.xl_Email[Iteration_Count]:
+                        self.ws.write(self.rowsize, 4, self.xl_Email[Iteration_Count], self.style11)
                     else:
                         self.ws.write(self.rowsize, 4, 'Empty', self.__style9)
-                    if self.xl_Email[Iteration_Count]:
-                        self.ws.write(self.rowsize, 5, self.xl_Email[Iteration_Count], self.__style9)
+                    if self.xl_Mobile1[Iteration_Count]:
+                        self.ws.write(self.rowsize, 5, self.xl_Mobile1[Iteration_Count], self.style11)
                     else:
                         self.ws.write(self.rowsize, 5, 'Empty', self.__style9)
-                    if self.xl_Mobile1[Iteration_Count]:
-                        self.ws.write(self.rowsize, 6, self.xl_Mobile1[Iteration_Count], self.__style9)
+                    if self.xl_Gender[Iteration_Count]:
+                        self.ws.write(self.rowsize, 6, self.xl_Gender[Iteration_Count], self.style11)
                     else:
                         self.ws.write(self.rowsize, 6, 'Empty', self.__style9)
-                    if self.xl_Gender[Iteration_Count]:
-                        self.ws.write(self.rowsize, 7, self.xl_Gender[Iteration_Count], self.__style9)
+                    if self.xl_DateOfBirth[Iteration_Count]:
+                        self.ws.write(self.rowsize, 7, self.xl_DateOfBirth[Iteration_Count], self.style11)
                     else:
                         self.ws.write(self.rowsize, 7, 'Empty', self.__style9)
-                    if self.xl_DateOfBirth[Iteration_Count]:
-                        self.ws.write(self.rowsize, 8, self.xl_DateOfBirth[Iteration_Count], self.__style9)
+                    if self.xl_BusinessUnit[Iteration_Count]:
+                        self.ws.write(self.rowsize, 8, self.xl_BusinessUnit[Iteration_Count], self.style11)
                     else:
                         self.ws.write(self.rowsize, 8, 'Empty', self.__style9)
-                    if self.xl_BusinessUnit[Iteration_Count]:
-                        self.ws.write(self.rowsize, 9, self.xl_BusinessUnit[Iteration_Count], self.__style9)
+                    if self.xl_Department[Iteration_Count]:
+                        self.ws.write(self.rowsize, 9, self.xl_Department[Iteration_Count], self.style11)
                     else:
                         self.ws.write(self.rowsize, 9, 'Empty', self.__style9)
-                    if self.xl_Department[Iteration_Count]:
-                        self.ws.write(self.rowsize, 10, self.xl_Department[Iteration_Count], self.__style9)
+                    if self.xl_OfferedRole[Iteration_Count]:
+                        self.ws.write(self.rowsize, 10, self.xl_OfferedRole[Iteration_Count], self.style11)
                     else:
                         self.ws.write(self.rowsize, 10, 'Empty', self.__style9)
-                    if self.xl_OfferedRole[Iteration_Count]:
-                        self.ws.write(self.rowsize, 11, self.xl_OfferedRole[Iteration_Count], self.__style9)
+                    if self.xl_PassportNo[Iteration_Count]:
+                        self.ws.write(self.rowsize, 11, self.xl_PassportNo[Iteration_Count], self.style11)
                     else:
                         self.ws.write(self.rowsize, 11, 'Empty', self.__style9)
-                    if self.xl_PassportNo[Iteration_Count]:
-                        self.ws.write(self.rowsize, 12, self.xl_PassportNo[Iteration_Count], self.__style9)
+                    if self.xl_Level[Iteration_Count]:
+                        self.ws.write(self.rowsize, 12, self.xl_Level[Iteration_Count], self.style11)
                     else:
                         self.ws.write(self.rowsize, 12, 'Empty', self.__style9)
-                    if self.xl_Level[Iteration_Count]:
-                        self.ws.write(self.rowsize, 13, self.xl_Level[Iteration_Count], self.__style9)
+                    if self.xl_PanNo[Iteration_Count]:
+                        self.ws.write(self.rowsize, 13, self.xl_PanNo[Iteration_Count], self.style11)
                     else:
                         self.ws.write(self.rowsize, 13, 'Empty', self.__style9)
-                    if self.xl_PanNo[Iteration_Count]:
-                        self.ws.write(self.rowsize, 14, self.xl_PanNo[Iteration_Count], self.__style9)
+                    if self.xl_OfferedLocation[Iteration_Count]:
+                        self.ws.write(self.rowsize, 14, self.xl_OfferedLocation[Iteration_Count], self.style11)
                     else:
                         self.ws.write(self.rowsize, 14, 'Empty', self.__style9)
-                    if self.xl_OfferedLocation[Iteration_Count]:
-                        self.ws.write(self.rowsize, 15, self.xl_OfferedLocation[Iteration_Count], self.__style9)
+                    if self.xl_ExpectedDOJ[Iteration_Count]:
+                        self.ws.write(self.rowsize, 15, self.xl_ExpectedDOJ[Iteration_Count], self.style11)
                     else:
                         self.ws.write(self.rowsize, 15, 'Empty', self.__style9)
-                    if self.xl_ExpectedDOJ[Iteration_Count]:
-                        self.ws.write(self.rowsize, 16, self.xl_ExpectedDOJ[Iteration_Count], self.__style9)
+                    if self.xl_TentativeDOJ[Iteration_Count]:
+                        self.ws.write(self.rowsize, 16, self.xl_TentativeDOJ[Iteration_Count], self.style11)
                     else:
                         self.ws.write(self.rowsize, 16, 'Empty', self.__style9)
-                    if self.xl_TentativeDOJ[Iteration_Count]:
-                        self.ws.write(self.rowsize, 17, self.xl_TentativeDOJ[Iteration_Count], self.__style9)
+                    if self.xl_Integer1[Iteration_Count]:
+                        self.ws.write(self.rowsize, 17, self.xl_Integer1[Iteration_Count], self.style11)
                     else:
                         self.ws.write(self.rowsize, 17, 'Empty', self.__style9)
-                    if self.xl_Integer1[Iteration_Count]:
-                        self.ws.write(self.rowsize, 18, self.xl_Integer1[Iteration_Count], self.__style9)
+                    if self.xl_Integer2[Iteration_Count]:
+                        self.ws.write(self.rowsize, 18, self.xl_Integer2[Iteration_Count], self.style11)
                     else:
                         self.ws.write(self.rowsize, 18, 'Empty', self.__style9)
-                    if self.xl_Integer2[Iteration_Count]:
-                        self.ws.write(self.rowsize, 19, self.xl_Integer2[Iteration_Count], self.__style9)
+                    if self.xl_Integer3[Iteration_Count]:
+                        self.ws.write(self.rowsize, 19, self.xl_Integer3[Iteration_Count], self.style11)
                     else:
                         self.ws.write(self.rowsize, 19, 'Empty', self.__style9)
-                    if self.xl_Integer3[Iteration_Count]:
-                        self.ws.write(self.rowsize, 20, self.xl_Integer3[Iteration_Count], self.__style9)
+                    if self.xl_Integer10[Iteration_Count]:
+                        self.ws.write(self.rowsize, 20, self.xl_Integer10[Iteration_Count], self.style11)
                     else:
                         self.ws.write(self.rowsize, 20, 'Empty', self.__style9)
-                    if self.xl_Integer10[Iteration_Count]:
-                        self.ws.write(self.rowsize, 21, self.xl_Integer10[Iteration_Count], self.__style9)
+                    if self.xl_Integer12[Iteration_Count]:
+                        self.ws.write(self.rowsize, 21, self.xl_Integer12[Iteration_Count], self.style11)
                     else:
                         self.ws.write(self.rowsize, 21, 'Empty', self.__style9)
-                    if self.xl_Integer12[Iteration_Count]:
-                        self.ws.write(self.rowsize, 22, self.xl_Integer12[Iteration_Count], self.__style9)
+                    if self.xl_Text1[Iteration_Count]:
+                        self.ws.write(self.rowsize, 22, self.xl_Text1[Iteration_Count], self.style11)
                     else:
                         self.ws.write(self.rowsize, 22, 'Empty', self.__style9)
-                    if self.xl_Text1[Iteration_Count]:
-                        self.ws.write(self.rowsize, 23, self.xl_Text1[Iteration_Count], self.__style9)
+                    if self.xl_Text2[Iteration_Count]:
+                        self.ws.write(self.rowsize, 23, self.xl_Text2[Iteration_Count], self.style11)
                     else:
                         self.ws.write(self.rowsize, 23, 'Empty', self.__style9)
-                    if self.xl_Text2[Iteration_Count]:
-                        self.ws.write(self.rowsize, 24, self.xl_Text2[Iteration_Count], self.__style9)
+                    if self.xl_Text10[Iteration_Count]:
+                        self.ws.write(self.rowsize, 24, self.xl_Text10[Iteration_Count], self.style11)
                     else:
                         self.ws.write(self.rowsize, 24, 'Empty', self.__style9)
-                    if self.xl_Text10[Iteration_Count]:
-                        self.ws.write(self.rowsize, 25, self.xl_Text10[Iteration_Count], self.__style9)
+                    if self.xl_Text11[Iteration_Count]:
+                        self.ws.write(self.rowsize, 25, self.xl_Text11[Iteration_Count], self.style11)
                     else:
                         self.ws.write(self.rowsize, 25, 'Empty', self.__style9)
-                    if self.xl_Text11[Iteration_Count]:
-                        self.ws.write(self.rowsize, 26, self.xl_Text11[Iteration_Count], self.__style9)
-                    else:
-                        self.ws.write(self.rowsize, 26, 'Empty', self.__style9)
                     # self.ws.write(self.rowsize, 26, self.xl_Text12[Iteration_Count], self.__style1)
 
                     # ----------------------
@@ -601,217 +605,220 @@ class UpdateCandidate:
                     # Comparing API Data with Excel Data and Printing into Output Excel
                     # ------------------------------------------------------------------
 
+
+
+
                     if self.api_candidate_CandidateName:
                         if self.xl_Name[Iteration_Count] == str(self.api_candidate_CandidateName):
-                            self.ws.write(self.rowsize, 4, str(self.api_candidate_CandidateName), self.__style9)
+                            self.ws.write(self.rowsize, 3, str(self.api_candidate_CandidateName), self.__style9)
                         else:
-                            self.ws.write(self.rowsize, 4, str(self.api_candidate_CandidateName), self.__style7)
+                            self.ws.write(self.rowsize, 3, str(self.api_candidate_CandidateName), self.__style7)
                     else:
-                        self.ws.write(self.rowsize, 4, 'Empty', self.__style9)
+                        self.ws.write(self.rowsize, 3, 'Empty', self.__style9)
                     # --------------------------------------------------------------------------
                     #   Email
                     # --------------------------------------------------------------------------
                     if self.api_candidate_Email:
                         if self.xl_Email[Iteration_Count] == str(self.api_candidate_Email):
-                            self.ws.write(self.rowsize, 5, str(self.api_candidate_Email), self.__style9)
+                            self.ws.write(self.rowsize, 4, str(self.api_candidate_Email), self.__style9)
                         else:
-                            self.ws.write(self.rowsize, 5, 'Fail', self.__style7)
+                            self.ws.write(self.rowsize, 4, 'Fail', self.__style7)
                             isSuccess = False
                     else:
-                        self.ws.write(self.rowsize, 5, 'Empty', self.__style9)
+                        self.ws.write(self.rowsize, 4, 'Empty', self.__style9)
                     # -----------------------------------------------------------------------------
                     #   Mobile1
                     # -----------------------------------------------------------------------------
 
                     if self.api_candidate_Mobile1:
                         if str(self.xl_Mobile1[Iteration_Count]) == str(self.api_candidate_Mobile1):
-                            self.ws.write(self.rowsize, 6, str(self.api_candidate_Mobile1), self.__style9)
+                            self.ws.write(self.rowsize, 5, str(self.api_candidate_Mobile1), self.__style9)
                         else:
-                            self.ws.write(self.rowsize, 6, 'Fail', self.__style7)
+                            self.ws.write(self.rowsize, 5, 'Fail', self.__style7)
                             isSuccess = False
                     else:
-                        self.ws.write(self.rowsize, 6, 'Empty', self.__style9)
+                        self.ws.write(self.rowsize, 5, 'Empty', self.__style9)
 
                     if self.api_candidate_Gender:
-                        if self.api_candidate_Gender == self.api_candidate_Gender:
-                            self.ws.write(self.rowsize, 7, self.api_candidate_Gender, self.__style10)
+                        if self.xl_Gender[Iteration_Count] == self.api_candidate_Gender:
+                            self.ws.write(self.rowsize, 6, self.api_candidate_Gender, self.__style9)
                         else:
-                            self.ws.write(self.rowsize, 7, 'Fail', self.__style7)
+                            self.ws.write(self.rowsize, 6, self.api_candidate_Gender, self.__style10)
                             isSuccess = False
                     else:
-                        self.ws.write(self.rowsize, 7, 'Empty', self.__style9)
+                        self.ws.write(self.rowsize, 6, 'Empty', self.__style7)
 
                     if self.api_candidate_DateOfBirth:
                         if str(self.xl_DateOfBirth[Iteration_Count]) == str(self.api_candidate_DateOfBirth):
-                            self.ws.write(self.rowsize, 8, str(self.api_candidate_DateOfBirth), self.__style9)
+                            self.ws.write(self.rowsize, 7, str(self.api_candidate_DateOfBirth), self.__style9)
                         else:
-                            self.ws.write(self.rowsize, 8, 'Fail', self.__style7)
+                            self.ws.write(self.rowsize, 7, 'Fail', self.__style7)
                             isSuccess = False
 
                     else:
-                        self.ws.write(self.rowsize, 8, 'Empty', self.__style9)
+                        self.ws.write(self.rowsize, 7, 'Empty', self.__style9)
 
                     if self.api_candidate_BusinessUnit:
                         if self.xl_BusinessUnit[Iteration_Count] == self.api_candidate_BusinessUnit:
-                            self.ws.write(self.rowsize, 9, self.api_candidate_BusinessUnit, self.__style9)
+                            self.ws.write(self.rowsize, 8, self.api_candidate_BusinessUnit, self.__style9)
+                        else:
+                            self.ws.write(self.rowsize, 8, 'Fail', self.__style7)
+                            isSuccess = False
+                    else:
+                        self.ws.write(self.rowsize, 8, 'Empty', self.__style9)
+
+                    if self.api_candidate_Department:
+                        if self.xl_Department[Iteration_Count] == self.api_candidate_Department:
+                            self.ws.write(self.rowsize, 9, self.api_candidate_Department, self.__style9)
                         else:
                             self.ws.write(self.rowsize, 9, 'Fail', self.__style7)
                             isSuccess = False
                     else:
                         self.ws.write(self.rowsize, 9, 'Empty', self.__style9)
 
-                    if self.api_candidate_Department:
-                        if self.xl_Department[Iteration_Count] == self.api_candidate_Department:
-                            self.ws.write(self.rowsize, 10, self.api_candidate_Department, self.__style9)
+                    if self.api_candidate_OfferedRole:
+                        if self.xl_OfferedRole[Iteration_Count] == self.api_candidate_OfferedRole:
+                            self.ws.write(self.rowsize, 10, self.api_candidate_OfferedRole, self.__style9)
                         else:
                             self.ws.write(self.rowsize, 10, 'Fail', self.__style7)
                             isSuccess = False
                     else:
                         self.ws.write(self.rowsize, 10, 'Empty', self.__style9)
 
-                    if self.api_candidate_OfferedRole:
-                        if self.xl_OfferedRole[Iteration_Count] == self.api_candidate_OfferedRole:
-                            self.ws.write(self.rowsize, 11, self.api_candidate_OfferedRole, self.__style9)
+                    if self.api_candidate_PassportNo:
+                        if self.api_candidate_PassportNo == str(self.api_candidate_PassportNo):
+                            self.ws.write(self.rowsize, 11, str(self.api_candidate_PassportNo), self.__style10)
                         else:
                             self.ws.write(self.rowsize, 11, 'Fail', self.__style7)
                             isSuccess = False
                     else:
                         self.ws.write(self.rowsize, 11, 'Empty', self.__style9)
 
-                    if self.api_candidate_PassportNo:
-                        if self.api_candidate_PassportNo == str(self.api_candidate_PassportNo):
-                            self.ws.write(self.rowsize, 12, str(self.api_candidate_PassportNo), self.__style10)
+                    if self.api_candidate_Level:
+                        if self.xl_Level[Iteration_Count] == self.api_candidate_Level:
+                            self.ws.write(self.rowsize, 12, self.api_candidate_Level, self.__style9)
                         else:
                             self.ws.write(self.rowsize, 12, 'Fail', self.__style7)
                             isSuccess = False
                     else:
                         self.ws.write(self.rowsize, 12, 'Empty', self.__style9)
 
-                    if self.api_candidate_Level:
-                        if self.xl_Level[Iteration_Count] == self.api_candidate_Level:
-                            self.ws.write(self.rowsize, 13, self.api_candidate_Level, self.__style9)
+                    if self.api_candidate_PanNo:
+                        if self.api_candidate_PanNo == str(self.api_candidate_PanNo):
+                            self.ws.write(self.rowsize, 13, str(self.api_candidate_PanNo), self.__style10)
                         else:
                             self.ws.write(self.rowsize, 13, 'Fail', self.__style7)
                             isSuccess = False
                     else:
                         self.ws.write(self.rowsize, 13, 'Empty', self.__style9)
 
-                    if self.api_candidate_PanNo:
-                        if self.api_candidate_PanNo == str(self.api_candidate_PanNo):
-                            self.ws.write(self.rowsize, 14, str(self.api_candidate_PanNo), self.__style10)
+                    if self.api_candidate_OfferedLocation:
+                        if self.xl_OfferedLocation[Iteration_Count] == self.api_candidate_OfferedLocation:
+                            self.ws.write(self.rowsize, 14, self.api_candidate_OfferedLocation, self.__style9)
                         else:
                             self.ws.write(self.rowsize, 14, 'Fail', self.__style7)
                             isSuccess = False
                     else:
                         self.ws.write(self.rowsize, 14, 'Empty', self.__style9)
 
-                    if self.api_candidate_OfferedLocation:
-                        if self.xl_OfferedLocation[Iteration_Count] == self.api_candidate_OfferedLocation:
-                            self.ws.write(self.rowsize, 15, self.api_candidate_OfferedLocation, self.__style9)
+                    if self.api_candidate_ExpectedDOJ:
+                        if self.xl_ExpectedDOJ[Iteration_Count] == str(self.api_candidate_ExpectedDOJ):
+                            self.ws.write(self.rowsize, 15, str(self.api_candidate_ExpectedDOJ), self.__style9)
                         else:
                             self.ws.write(self.rowsize, 15, 'Fail', self.__style7)
                             isSuccess = False
                     else:
                         self.ws.write(self.rowsize, 15, 'Empty', self.__style9)
 
-                    if self.api_candidate_ExpectedDOJ:
-                        if self.xl_ExpectedDOJ[Iteration_Count] == str(self.api_candidate_ExpectedDOJ):
-                            self.ws.write(self.rowsize, 16, str(self.api_candidate_ExpectedDOJ), self.__style9)
+                    if self.api_candidate_TentativeDOJ:
+                        if self.xl_TentativeDOJ[Iteration_Count] == str(self.api_candidate_TentativeDOJ):
+                            self.ws.write(self.rowsize, 16, str(self.api_candidate_TentativeDOJ), self.__style9)
                         else:
                             self.ws.write(self.rowsize, 16, 'Fail', self.__style7)
                             isSuccess = False
                     else:
                         self.ws.write(self.rowsize, 16, 'Empty', self.__style9)
 
-                    if self.api_candidate_TentativeDOJ:
-                        if self.xl_TentativeDOJ[Iteration_Count] == str(self.api_candidate_TentativeDOJ):
-                            self.ws.write(self.rowsize, 17, str(self.api_candidate_TentativeDOJ), self.__style9)
+                    if self.api_candidate_Integer1:
+                        if self.xl_Integer1[Iteration_Count] == self.api_candidate_Integer1:
+                            self.ws.write(self.rowsize, 17, self.api_candidate_Integer1, self.__style9)
                         else:
                             self.ws.write(self.rowsize, 17, 'Fail', self.__style7)
                             isSuccess = False
                     else:
                         self.ws.write(self.rowsize, 17, 'Empty', self.__style9)
 
-                    if self.api_candidate_Integer1:
-                        if self.xl_Integer1[Iteration_Count] == self.api_candidate_Integer1:
-                            self.ws.write(self.rowsize, 18, self.api_candidate_Integer1, self.__style9)
+                    if self.api_candidate_Integer2:
+                        if self.xl_Integer2[Iteration_Count] == self.api_candidate_Integer2:
+                            self.ws.write(self.rowsize, 18, self.api_candidate_Integer2, self.__style9)
                         else:
                             self.ws.write(self.rowsize, 18, 'Fail', self.__style7)
                             isSuccess = False
                     else:
                         self.ws.write(self.rowsize, 18, 'Empty', self.__style9)
 
-                    if self.api_candidate_Integer2:
-                        if self.xl_Integer2[Iteration_Count] == self.api_candidate_Integer2:
-                            self.ws.write(self.rowsize, 19, self.api_candidate_Integer2, self.__style9)
+                    if self.api_candidate_Integer3:
+                        if self.xl_Integer3[Iteration_Count] == self.api_candidate_Integer3:
+                            self.ws.write(self.rowsize, 19, self.api_candidate_Integer3, self.__style9)
                         else:
                             self.ws.write(self.rowsize, 19, 'Fail', self.__style7)
                             isSuccess = False
                     else:
                         self.ws.write(self.rowsize, 19, 'Empty', self.__style9)
 
-                    if self.api_candidate_Integer3:
-                        if self.xl_Integer3[Iteration_Count] == self.api_candidate_Integer3:
-                            self.ws.write(self.rowsize, 20, self.api_candidate_Integer3, self.__style9)
+                    if self.api_candidate_Integer10:
+                        if self.xl_Integer10[Iteration_Count] == self.api_candidate_Integer10:
+                            self.ws.write(self.rowsize, 20, self.api_candidate_Integer10, self.__style9)
                         else:
                             self.ws.write(self.rowsize, 20, 'Fail', self.__style7)
                             isSuccess = False
                     else:
                         self.ws.write(self.rowsize, 20, 'Empty', self.__style9)
 
-                    if self.api_candidate_Integer10:
-                        if self.xl_Integer10[Iteration_Count] == self.api_candidate_Integer10:
-                            self.ws.write(self.rowsize, 21, self.api_candidate_Integer10, self.__style9)
+                    if self.api_candidate_Integer12:
+                        if self.xl_Integer12[Iteration_Count] == self.api_candidate_Integer12:
+                            self.ws.write(self.rowsize, 21, self.api_candidate_Integer12, self.__style9)
                         else:
                             self.ws.write(self.rowsize, 21, 'Fail', self.__style7)
                             isSuccess = False
                     else:
                         self.ws.write(self.rowsize, 21, 'Empty', self.__style9)
 
-                    if self.api_candidate_Integer12:
-                        if self.xl_Integer12[Iteration_Count] == self.api_candidate_Integer12:
-                            self.ws.write(self.rowsize, 22, self.api_candidate_Integer12, self.__style9)
+                    if self.api_candidate_Text1:
+                        if self.xl_Text1[Iteration_Count] == str(self.api_candidate_Text1):
+                            self.ws.write(self.rowsize, 22, str(self.api_candidate_Text1), self.__style9)
                         else:
                             self.ws.write(self.rowsize, 22, 'Fail', self.__style7)
                             isSuccess = False
                     else:
                         self.ws.write(self.rowsize, 22, 'Empty', self.__style9)
 
-                    if self.api_candidate_Text1:
-                        if self.xl_Text1[Iteration_Count] == str(self.api_candidate_Text1):
-                            self.ws.write(self.rowsize, 23, str(self.api_candidate_Text1), self.__style9)
+                    if self.api_candidate_Text2:
+                        if self.xl_Text2[Iteration_Count] == str(self.api_candidate_Text2):
+                            self.ws.write(self.rowsize, 23, str(self.api_candidate_Text2), self.__style9)
                         else:
                             self.ws.write(self.rowsize, 23, 'Fail', self.__style7)
                             isSuccess = False
                     else:
                         self.ws.write(self.rowsize, 23, 'Empty', self.__style9)
 
-                    if self.api_candidate_Text2:
-                        if self.xl_Text2[Iteration_Count] == str(self.api_candidate_Text2):
-                            self.ws.write(self.rowsize, 24, str(self.api_candidate_Text2), self.__style9)
+                    if self.api_candidate_Text10:
+                        if self.xl_Text10[Iteration_Count] == str(self.api_candidate_Text10):
+                            self.ws.write(self.rowsize, 24, str(self.api_candidate_Text10), self.__style9)
                         else:
                             self.ws.write(self.rowsize, 24, 'Fail', self.__style7)
                             isSuccess = False
                     else:
                         self.ws.write(self.rowsize, 24, 'Empty', self.__style9)
 
-                    if self.api_candidate_Text10:
-                        if self.xl_Text10[Iteration_Count] == str(self.api_candidate_Text10):
-                            self.ws.write(self.rowsize, 25, str(self.api_candidate_Text10), self.__style9)
+                    if self.api_candidate_Text11:
+                        if self.xl_Text11[Iteration_Count] == str(self.api_candidate_Text11):
+                            self.ws.write(self.rowsize, 25, str(self.api_candidate_Text11), self.__style9)
                         else:
                             self.ws.write(self.rowsize, 25, 'Fail', self.__style7)
                             isSuccess = False
                     else:
                         self.ws.write(self.rowsize, 25, 'Empty', self.__style9)
-
-                    if self.api_candidate_Text11:
-                        if self.xl_Text11[Iteration_Count] == str(self.api_candidate_Text11):
-                            self.ws.write(self.rowsize, 26, str(self.api_candidate_Text11), self.__style9)
-                        else:
-                            self.ws.write(self.rowsize, 26, 'Fail', self.__style7)
-                            isSuccess = False
-                    else:
-                        self.ws.write(self.rowsize, 26, 'Empty', self.__style9)
 
                     # if self.api_candidate_Text12:
                     #     if self.xl_Text12[Iteration_Count] == str(self.api_candidate_Text12):
@@ -825,25 +832,26 @@ class UpdateCandidate:
                     #     self.ws.write(self.rowsize, 27, 'Fail', self.__style7)
 
                     self.rowsize += 1  # Row increment
-                    ob.wb_Result.save(
-                        '/home/vinodkumar/PycharmProjects/API_Automation/Input Data/Pofu/Upload_candidates'
-                        '/BulkUpdate_kmbdemo_output.xls')
+                    ob.wb_Result.save('/home/vinodkumar/hirepro_automation/API-Automation/Output Data/Pofu/BulkUpdate/BulkUpdate_kmbdemo_output.xls')
+
+
 
         except Exception as e:
             print(e)
             print("DB Connection Error - Exception Block")
 
+
+
     def over_status(self):
         self.ws.write(0, 0, 'BU_Candidates', self.__style9)
         if self.Expected_success_cases == self.Expected_success_cases:
-            self.ws.write(0, 1, 'Fail', self.__style9)
+            self.ws.write(0, 1, 'Fail', self.style25)
         else:
-            self.ws.write(0, 1, 'pass', self.__style7)
+            self.ws.write(0, 1, 'pass', self.style24)
 
         self.ws.write(0, 3, 'StartTime', self.__style9)
         self.ws.write(0, 4, self.start_time)
-        ob.wb_Result.save('/home/vinodkumar/PycharmProjects/API_Automation/Input Data/Pofu/Upload_candidates'
-                          '/BulkUpdate_kmbdemo_output.xls')
+        ob.wb_Result.save('/home/vinodkumar/hirepro_automation/API-Automation/Output Data/Pofu/BulkUpdate/BulkUpdate_kmbdemo_output.xls')
 
 
 ob = UpdateCandidate()
