@@ -16,26 +16,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/hpro_automation/identity/credentials.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="36" selection-start-line="36" selection-end-line="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -143,34 +124,6 @@
             <path>
               <item name="API-Automation" type="b2602c69:ProjectViewProjectNode" />
               <item name="API-Automation" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="API-Automation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="API-Automation" type="462c0819:PsiDirectoryNode" />
-              <item name="hpro_automation" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="API-Automation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="API-Automation" type="462c0819:PsiDirectoryNode" />
-              <item name="hpro_automation" type="462c0819:PsiDirectoryNode" />
-              <item name="identity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="API-Automation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="API-Automation" type="462c0819:PsiDirectoryNode" />
-              <item name="scripts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="API-Automation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="API-Automation" type="462c0819:PsiDirectoryNode" />
-              <item name="scripts" type="462c0819:PsiDirectoryNode" />
-              <item name="crpo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="API-Automation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="API-Automation" type="462c0819:PsiDirectoryNode" />
-              <item name="scripts" type="462c0819:PsiDirectoryNode" />
-              <item name="dml_scripts" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -332,7 +285,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="43" y="-4" width="1323" height="772" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23502304" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -345,7 +297,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.4769688" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.65676075" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50076807" side_tool="true" weight="0.46359584" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32986626" />
       <window_info anchor="bottom" id="Inspection Results" order="11" weight="0.32986626" />
