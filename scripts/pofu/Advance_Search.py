@@ -6,8 +6,9 @@ import xlwt
 import datetime
 
 
-class ExcelData:
+class Excel_Data:
     def __init__(self):
+        self.start_time = str(datetime.datetime.now())
         # This Script works for below fields
         self.candidate_search = ['CandidateIds', 'CandidatName', 'Email', 'ContactNumber', 'Integer1']
         self.entity_search = []
@@ -22,7 +23,7 @@ class ExcelData:
                                  #1219947, 1219948, 1219951]
         self.xl_json_request = []
         self.xl_exceted_candidate_id = []
-        self.rownum = 1
+        self.rownum = 2
         # --------------------------------------------------------------------------------------------------------------
         # CSS to differentiate Correct and Wrong data in Excel
         # --------------------------------------------------------------------------------------------------------------
@@ -30,16 +31,21 @@ class ExcelData:
         self.__style1 = xlwt.easyxf('font: name Times New Roman, color-index black, bold off')
         self.__style2 = xlwt.easyxf('font: name Times New Roman, color-index red, bold on')
         self.__style3 = xlwt.easyxf('font: name Times New Roman, color-index green, bold on')
+        self.style24 = xlwt.easyxf('font: name Arial, color green, bold on, height 400;'
+                                   'align: vert centre, horiz centre;')
+        self.style25 = xlwt.easyxf('font: name Arial, color red, bold on, height 400;'
+                                   'align: vert centre, horiz centre;')
         # --------------------------------------------------------------------------------------------------------------
         # Write Excel Header's
         # --------------------------------------------------------------------------------------------------------------
         self.wb_result = xlwt.Workbook()
         self.ws = self.wb_result.add_sheet('Candidate Search Result')
-        self.ws.write(0, 0, 'Request', self.__style0)
-        self.ws.write(0, 1, 'API Count', self.__style0)
-        self.ws.write(0, 2, 'DB Count', self.__style0)
-        self.ws.write(0, 3, 'Expected Candidate Id\'s', self.__style0)
-        self.ws.write(0, 4, 'Not Matched Id\'s', self.__style0)
+        self.ws.write(1, 0, 'Request', self.__style0)
+        self.ws.write(1, 1, 'Status', self.__style0)
+        self.ws.write(1, 2, 'API Count', self.__style0)
+        self.ws.write(1, 3, 'DB Count', self.__style0)
+        self.ws.write(1, 4, 'Expected Candidate Id\'s', self.__style0)
+        self.ws.write(1, 5, 'Not Matched Id\'s', self.__style0)
         # self.ws.write(0, 5, 'API Id\'s', self.__style0)
         # --------------------------------------------------------------------------------------------------------------
         # DB Connection
@@ -64,8 +70,9 @@ class ExcelData:
     # ------------------------------------------------------------------------------------------------------------------
     # Read Excel Data
     # ------------------------------------------------------------------------------------------------------------------
-        wb = xlrd.open_workbook('/home/vinodkumar/PycharmProjects/API_Automation/Input Data/Pofu/Upload_candidates/'
-                                'Candidate_Combined_Search_Boundary_Condition_01-automation.xls')
+        wb = xlrd.open_workbook('/home/vinodkumar/hirepro_automation/API-Automation/Input Data/Pofu/AdvanceSearch/Candidate_Combined_Search_Boundary_Condition_01-automation.xls')
+
+
         sheetname = wb.sheet_names()  # Reading XLS Sheet names
         # print(sheetname)
         sh1 = wb.sheet_by_index(0)  #
@@ -94,7 +101,7 @@ class ExcelData:
         # print r.content
         resp_dict = json.loads(r.content)
         self.status = resp_dict['count']
-        print(resp_dict)
+        print (resp_dict)
 
         if self.status != 'count':
             self.count = resp_dict['count']
@@ -218,19 +225,6 @@ class ExcelData:
                  elif x.get('RoleId'):
                      search_request["EntityOwnerIds"]["RoleId"] = x.get('RoleId')
 
-
-
-                 # if x.get('FilledFormSearch'):
-                 #     search_request["FilledFormSearch"]["Integer11"] = x.get('Integer11')
-                 # if x.get('Integer12'):
-                 #     search_request["CandidateCustoms"]["Integer12"] = x.get('Integer12')
-                 # if x.get('Integer13'):
-                 #     search_request["Integer13"] = x.get('Integer13')
-                 # if x.get('Integer14'):
-                 #     search_request["Integer14"] = x.get('Integer14')
-                 # if x.get('Integer15'):
-                 #     search_request["Integer15"] = x.get('Integer15')
-
                  if x.get('Text1'):
                      search_request["CandidateCustoms"]["Text1"] = x.get('Text1')
                  if x.get('Text2'):
@@ -252,20 +246,21 @@ class ExcelData:
                  if x.get('Text10'):
                      search_request["CandidateCustoms"]["Text10"] = x.get('Text10')
 
-#--------------------------Tommorow i need to do--------------
+                 self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 59)))
+
                  search_request_list.append(search_request)
 
                  for m in search_request_list:
                     self.headers = {"content-type": "application/json", "X-AUTH-TOKEN": self.TokenVal.get("Token")}
                     self.data = {
-                        "PagingCriteria": {"MaxResults": 20, "PageNo": 1, "IsSpecificToUser": False, "ObjectState": 0},
+                        "PagingCriteria": {"MaxResults": 60, "PageNo": 1, "IsSpecificToUser": False, "ObjectState": 0},
                         "IsTotalCountRequired": True, "CandiateSearch": m,
                         "UserSpecificCandidates": False,
                         "LeadSpecificCandidates": False,
                         "IsDashboardCountRequired": False,
                         "IsOnlyCountRequired": True}
 
-                    print(self.data)
+                    print (self.data)
                     self.json_data()
                     self.total_api_count = self.count
                     if self.count != "400000000000000":
@@ -276,7 +271,7 @@ class ExcelData:
                     self.actual_ids = []
                     self.headers = {"content-type": "application/json", "X-AUTH-TOKEN": self.TokenVal.get("Token")}
                     self.data = {
-                        "PagingCriteria": {"MaxResults": 20, "PageNo": 1, "IsSpecificToUser": False, "ObjectState": 0},
+                        "PagingCriteria": {"MaxResults": 60, "PageNo": 1, "IsSpecificToUser": False, "ObjectState": 0},
                         "IsTotalCountRequired": False, "CandiateSearch": m,
                         "UserSpecificCandidates": False,
                         "LeadSpecificCandidates": False,
@@ -287,7 +282,7 @@ class ExcelData:
                                   data=json.dumps(self.data, default=str), verify=False)
 
                     cou_resp_dict = json.loads(r.content)
-                    print(cou_resp_dict)
+                    print (cou_resp_dict)
 
                     for element in cou_resp_dict["Candidates"]:
                         self.actual_ids.append(element["Id"])
@@ -310,71 +305,31 @@ class ExcelData:
                  self.ws.write(self.rownum, 0, str(x))
                  if self.total_api_count == self.Query_Result1:
                      self.ws.write(self.rownum, 1, 'Pass', self.__style3)
-                     self.ws.write(self.rownum, 2, self.total_api_count, self.__style3)
+                     self.ws.write(self.rownum, 2, self.total_api_count, self.__style1)
                      self.ws.write(self.rownum, 3, self.Query_Result1, self.__style3)
                      self.ws.write(self.rownum, 4, expected_id, self.__style3)
                      self.ws.write(self.rownum, 5, mismatched_id, self.__style2)
 
                  elif self.total_api_count == '400000000000000':
-                     print("API Failed")
+                     print ("API Failed")
                      self.ws.write(self.rownum, 1, 'Fail', self.__style2)
                      self.ws.write(self.rownum, 2, "API Failed", self.__style2)
                      self.ws.write(self.rownum, 3, self.Query_Result1, self.__style2)
                      self.ws.write(self.rownum, 4, expected_id, self.__style3)
                      self.ws.write(self.rownum, 5, "API Failed", self.__style2)
-                     print(self.query)
+                     print (self.query)
                  else:
-                     print("this is else part \ n")
+                     print ("this is else part \ n")
                      self.ws.write(self.rownum, 1, 'Fail', self.__style2)
                      self.ws.write(self.rownum, 2, self.total_api_count, self.__style2)
                      self.ws.write(self.rownum, 3, self.Query_Result1, self.__style2)
                      self.ws.write(self.rownum, 4, expected_id, self.__style3)
                      self.ws.write(self.rownum, 5, mismatched_id, self.__style2)
-                     print(self.query)
+                     print (self.query)
                  self.wb_result.save(
-                     '/home/vinodkumar/PycharmProjects/API_Automation/Output Data/Pofu/Upload_candidates'
-                     '/Advance_Search_01.xls')
+                     '/home/vinodkumar/hirepro_automation/API-Automation/Output Data/Pofu/AdvanceSearch/Advance_Search_01.xls')
                  self.rownum = self.rownum + 1
                  i =i+1
-
-            # self.Query_Generation()
-            # #  ----------------------------------------------------------------------------------------------------------
-            # # Generating Dynamic query based on combinations and execute
-            # #  ----------------------------------------------------------------------------------------------------------
-            # expected_id = str(self.xl_expected[i])
-            # expected_id = expected_id.strip('[]')
-            # mismatched_id = str(list(self.mismatched_id))
-            # mismatched_id = mismatched_id.strip('[]')
-            # #
-            # #
-            # # self.ws.write(self.rownum , 0, str(self.xl_request1))
-            # # if self.total_api_count  == self.Query_Result1:
-            # #     self.ws.write(self.rownum , 1, self.total_api_count, self.__style3)
-            # #     self.ws.write(self.rownum , 2, self.Query_Result1, self.__style3)
-            # #     self.ws.write(self.rownum, 3, expected_id, self.__style3)
-            # #     self.ws.write(self.rownum, 4, mismatched_id, self.__style2)
-            # #     # self.ws.write(self.rownum, 5, str(self.actual_ids), self.__style3)
-            # #
-            # # elif self.total_api_count=='400000000000000':
-            # #     print "API Failed"
-            # #     self.ws.write(self.rownum , 1, "API Failed", self.__style2)
-            # #     self.ws.write(self.rownum , 2, self.Query_Result1, self.__style2)
-            # #     self.ws.write(self.rownum, 3, expected_id, self.__style3)
-            # #     self.ws.write(self.rownum, 4, "API Failed", self.__style2)
-            # #     # self.ws.write(self.rownum, 5, str(self.actual_ids), self.__style2)
-            # #     print self.query
-            # # else:
-            # #     print "this is else part \ n"
-            # #     self.ws.write(self.rownum , 1, self.total_api_count, self.__style2)
-            # #     self.ws.write(self.rownum , 2, self.Query_Result1, self.__style2)
-            # #     self.ws.write(self.rownum, 3, expected_id, self.__style3)
-            # #     self.ws.write(self.rownum, 4, mismatched_id, self.__style2)
-            # #     # self.ws.write(self.rownum, 5, str(self.actual_ids), self.__style2)
-            # #     print self.query
-            # # self.wb_result.save(
-            # #     '/home/vikas/Desktop/PythonScripts/Advance_Search/Output/Advance_Search_01.xls')
-            # # # print statusCode, " -- ", b
-            # # self.rownum = self.rownum  + 1
 
     def Query_Generation(self, req):
         select_str = "select count(distinct(ca.id)) from candidates ca" \
@@ -396,9 +351,6 @@ class ExcelData:
 
 
         if req.get("CandidatName"):
-            # candidateName = req.get("CandidatName")
-            # values = ','.join(str(v) for v in candidateName)
-            # where_str += " and c.id in ( %s ) " % values
             where_str += "  and  hp_dec(ca.first_name) like \'%{}%\' ".format(req.get("CandidatName"))
         if req.get("Email"):
             where_str += " and hp_dec(ca.email1) like '%{}%' ".format(req.get("Email"))
@@ -478,10 +430,6 @@ class ExcelData:
         elif req.get("EntityOwnerIds").get("RoleId"):
             where_str += " and eo.role_id = {} ".format(req.get("EntityOwnerIds").get("RoleId"))
 
-
-
-
-
         if req.get("TaskIds"):
             task_ids = req.get("TaskIds")
             values = ','.join(str(v) for v in task_ids)
@@ -558,7 +506,7 @@ class ExcelData:
         if where_str:
             final_qur = select_str + " where " + where_str
             self.query = final_qur
-            print(self.query)
+            print (self.query)
         if final_qur:
             try:
                 # print self.query
@@ -567,10 +515,22 @@ class ExcelData:
                 # print final_qur
                 self.Query_Result1 = Query_Result[0]
             except Exception as e:
-                print(e)
+                print (e)
+
+    def over_status(self):
+        self.ws.write(0, 0, 'U_Candidates')
+        if self.Expected_success_cases == self.Expected_success_cases:
+            self.ws.write(0, 1, 'Pass',  self.style24)
+        else:
+            self.ws.write(0, 1, 'Fail',  self.style25)
+
+        self.ws.write(0, 3, 'StartTime')
+        self.ws.write(0, 4, self.start_time)
+        xlob.wb_result.save('/home/vinodkumar/hirepro_automation/API-Automation/Output Data/Pofu/AdvanceSearch/Advance_Search_01.xls')
 
 
 print("Combined Search Script Started")
-xlob = ExcelData()
+xlob = Excel_Data()
 xlob.all()
+xlob.over_status()
 print("Completed Successfully ")
