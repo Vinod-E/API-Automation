@@ -1,5 +1,6 @@
+from hpro_automation.identity import credentials
 
-generic_domain = "https://amsin.hirepro.in/"
+generic_domain = credentials.generic_domain['domain']
 
 web_api = {
 
