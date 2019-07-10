@@ -8,211 +8,211 @@ web_api = {
     # CRPO APIS
     # ----------
 
-    "create_update_pwd_policy": generic_domain + "py/common/user/create_update_pwd_policy/",
+    "create_update_pwd_policy": generic_domain + "common/user/create_update_pwd_policy/",
 
-    "remove_pwd_policy": generic_domain + "py/common/user/remove_pwd_policy/",
+    "remove_pwd_policy": generic_domain + "common/user/remove_pwd_policy/",
 
-    "change_password": generic_domain + "py/common/user/change_password/",
+    "change_password": generic_domain + "common/user/change_password/",
 
-    "Loginto_CRPO": generic_domain + "py/common/user/login_user/",
+    "Loginto_CRPO": generic_domain + "common/user/login_user/",
 
-    "bulkCreateTagCandidates": generic_domain + "py/crpo/candidate/api/v1/bulkCreateTagCandidates/",
+    "bulkCreateTagCandidates": generic_domain + "crpo/candidate/api/v1/bulkCreateTagCandidates/",
 
-    "CandidateGetbyId": generic_domain + "py/rpo/get_candidate_by_id/{}/",
+    "CandidateGetbyId": generic_domain + "rpo/get_candidate_by_id/{}/",
 
-    "Candidate_Educationaldetails": generic_domain + "py/rpo/get_candidate_education_details/{}/",
+    "Candidate_Educationaldetails": generic_domain + "rpo/get_candidate_education_details/{}/",
 
-    "Candidate_ExperienceDetails": generic_domain + "py/rpo/get_candidate_experience_details/{}/",
+    "Candidate_ExperienceDetails": generic_domain + "rpo/get_candidate_experience_details/{}/",
 
-    "update_candidate_details": generic_domain + "py/rpo/update_candidate_details/",
+    "update_candidate_details": generic_domain + "rpo/update_candidate_details/",
 
-    "getAllApplicants": generic_domain + "py/crpo/applicant/api/v1/getAllApplicants/",
+    "getAllApplicants": generic_domain + "crpo/applicant/api/v1/getAllApplicants/",
 
-    "getAllEventApplicant": generic_domain + "py/crpo/applicant/api/v1/getAllEventApplicant/",
+    "getAllEventApplicant": generic_domain + "crpo/applicant/api/v1/getAllEventApplicant/",
 
-    "getApplicantsInfo": generic_domain + "py/crpo/applicant/api/v1/getApplicantsInfo/",
+    "getApplicantsInfo": generic_domain + "crpo/applicant/api/v1/getApplicantsInfo/",
 
-    "ChangeApplicant_Status": generic_domain + "py/crpo/applicant/api/v1/applicantStatusChange/",
+    "ChangeApplicant_Status": generic_domain + "crpo/applicant/api/v1/applicantStatusChange/",
 
-    "createOrUpdateEcConfig": generic_domain + "py/crpo/dynamicec/api/v1/createOrUpdateEcConfig/",
+    "createOrUpdateEcConfig": generic_domain + "crpo/dynamicec/api/v1/createOrUpdateEcConfig/",
 
-    "Create_user": generic_domain + "py/common/user/create_user/",
+    "Create_user": generic_domain + "common/user/create_user/",
 
-    "Update_user": generic_domain + 'py/common/user/update_user/',
+    "Update_user": generic_domain + 'common/user/update_user/',
 
-    "UserGetByid": generic_domain + "py/common/user/get_user_by_id/{}/",
+    "UserGetByid": generic_domain + "common/user/get_user_by_id/{}/",
 
-    "uploadCandidatesScore": generic_domain + "py/crpo/assessment/api/v1/uploadCandidatesScore/",
+    "uploadCandidatesScore": generic_domain + "crpo/assessment/api/v1/uploadCandidatesScore/",
 
-    "oneClickShortlist": generic_domain + "py/crpo/shortlistingcriteria/api/v1/oneClickShortlist",
+    "oneClickShortlist": generic_domain + "crpo/shortlistingcriteria/api/v1/oneClickShortlist",
 
     # ---------------------------------- communication history/status --------------------------------------------------
     "sendAdmitCardsToApplicants":
-        generic_domain + "py/crpo/candidatecommunication/api/v1/sendAdmitCardsToApplicants",
+        generic_domain + "crpo/candidatecommunication/api/v1/sendAdmitCardsToApplicants",
 
     "sendRegistrationLinkToApplicants":
-        generic_domain + "py/crpo/candidatecommunication/api/v1/sendRegistrationLinkToApplicants/",
+        generic_domain + "crpo/candidatecommunication/api/v1/sendRegistrationLinkToApplicants/",
 
-    "Create_Attachment": generic_domain + "py/common/attachment/api/v1/createAttachment/",
+    "Create_Attachment": generic_domain + "common/attachment/api/v1/createAttachment/",
 
-    "delete_Attachment": generic_domain + "py/common/attachment/api/v1/deleteAttachmentsForIds/",
+    "delete_Attachment": generic_domain + "common/attachment/api/v1/deleteAttachmentsForIds/",
 
     "setApplicantCommunicationStatus":
-        generic_domain + "py/crpo/candidatecommunication/api/v1/setApplicantCommunicationStatus",
+        generic_domain + "crpo/candidatecommunication/api/v1/setApplicantCommunicationStatus",
 
-    "sendVerificationNotification": generic_domain + "py/crpo/candidate/api/v1/sendVerificationNotification/",
+    "sendVerificationNotification": generic_domain + "crpo/candidate/api/v1/sendVerificationNotification/",
 
     "getRegistrationLinkForApplicants":
-        generic_domain + "py/crpo/candidatecommunication/api/v1/getRegistrationLinkForApplicants/",
+        generic_domain + "crpo/candidatecommunication/api/v1/getRegistrationLinkForApplicants/",
 
     "applicantRe-Registration":
-        generic_domain + "py/crpo/candidatecommunication/api/v1/applicantRe-Registration/",
+        generic_domain + "crpo/candidatecommunication/api/v1/applicantRe-Registration/",
 
-    "save_app_preferences": generic_domain + "py/common/common_app_utils/save_app_preferences/",
+    "save_app_preferences": generic_domain + "common/common_app_utils/save_app_preferences/",
 
-    "candidate_duplicate_check": generic_domain + "py/rpo/candidate_duplicate_check/",
+    "candidate_duplicate_check": generic_domain + "rpo/candidate_duplicate_check/",
     # ------------------------------------------------------------------------------------------------------------------
 
-    "Schedule": generic_domain + "py/crpo/api/v1/interview/schedule/",
+    "Schedule": generic_domain + "crpo/api/v1/interview/schedule/",
 
-    "givefeedback": generic_domain + "py/crpo/api/v1/interview/givefeedback/",
+    "givefeedback": generic_domain + "crpo/api/v1/interview/givefeedback/",
 
-    "Interview_details": generic_domain + "py/crpo/api/v1/interview/get/{}",
+    "Interview_details": generic_domain + "crpo/api/v1/interview/get/{}",
 
-    "updateinterviewerdecision": generic_domain + "py/crpo/api/v1/interview/updateinterviewerdecision",
+    "updateinterviewerdecision": generic_domain + "crpo/api/v1/interview/updateinterviewerdecision",
 
-    "updateinterviewerfeedback": generic_domain + "py/crpo/api/v1/interview/updateinterviewerfeedback",
+    "updateinterviewerfeedback": generic_domain + "crpo/api/v1/interview/updateinterviewerfeedback",
 
-    "Reschedule": generic_domain + "py/crpo/api/v1/interview/reschedule/",
+    "Reschedule": generic_domain + "crpo/api/v1/interview/reschedule/",
 
-    "InterviewRequest_details": generic_domain + "py/crpo/api/v1/view/interviews",
+    "InterviewRequest_details": generic_domain + "crpo/api/v1/view/interviews",
 
-    "cancel": generic_domain + "py/crpo/api/v1/interview/cancel/",
+    "cancel": generic_domain + "crpo/api/v1/interview/cancel/",
 
-    "get_all_candidates": generic_domain + "py/rpo/get_all_candidates/",
+    "get_all_candidates": generic_domain + "rpo/get_all_candidates/",
 
-    "gettaskbycandidate": generic_domain + "py/pofu/api/v1/get-task-by-candidate/",
+    "gettaskbycandidate": generic_domain + "pofu/api/v1/get-task-by-candidate/",
 
-    "submitform": generic_domain + "py/pofu/api/v1/submit-form/",
+    "submitform": generic_domain + "pofu/api/v1/submit-form/",
 
-    "Approve_task": generic_domain + "py/pofu/api/v1/update-candidate-task-status/",
+    "Approve_task": generic_domain + "pofu/api/v1/update-candidate-task-status/",
 
     # ----------
     # POFU APIS
     # ----------
-    "bulkimport": generic_domain + "py/pofu/api/v1/bulkimport",
+    "bulkimport": generic_domain + "pofu/api/v1/bulkimport",
 
     # ----------
     # Rpo APIS
     # ----------
-    "get_all_jobs": generic_domain + "py/rpo/get_all_jobs/"
+    "get_all_jobs": generic_domain + "rpo/get_all_jobs/"
 
            }
 
 # ---------------------------------------------Lambda APIS -------------------------------------------------------------
 lambda_apis = {
 
-    "bulkCreateTagCandidates": generic_domain + "py/crpo/candidate/api/v1/bulkCreateTagCandidates/",
+    "bulkCreateTagCandidates": generic_domain + "crpo/candidate/api/v1/bulkCreateTagCandidates/",
 
-    "getAllApplicants": generic_domain + "py/crpo/applicant/api/v1/getAllApplicants/",
+    "getAllApplicants": generic_domain + "crpo/applicant/api/v1/getAllApplicants/",
 
-    "create_update_pwd_policy": generic_domain + "py/common/user/create_update_pwd_policy/",
+    "create_update_pwd_policy": generic_domain + "common/user/create_update_pwd_policy/",
 
-    "remove_pwd_policy": generic_domain + "py/common/user/remove_pwd_policy/",
+    "remove_pwd_policy": generic_domain + "common/user/remove_pwd_policy/",
 
-    "Loginto_CRPO": generic_domain + "py/common/user/login_user/",
+    "Loginto_CRPO": generic_domain + "common/user/login_user/",
 
-    "CandidateGetbyId": generic_domain + "py/rpo/get_candidate_by_id/{}/",
+    "CandidateGetbyId": generic_domain + "rpo/get_candidate_by_id/{}/",
 
-    "get_all_jobs": generic_domain + "py/rpo/get_all_jobs/",
+    "get_all_jobs": generic_domain + "rpo/get_all_jobs/",
 
-    "Candidate_Educationaldetails": generic_domain + "py/rpo/get_candidate_education_details/{}/",
+    "Candidate_Educationaldetails": generic_domain + "rpo/get_candidate_education_details/{}/",
 
-    "Candidate_ExperienceDetails": generic_domain + "py/rpo/get_candidate_experience_details/{}/",
+    "Candidate_ExperienceDetails": generic_domain + "rpo/get_candidate_experience_details/{}/",
 
-    "Create_user": generic_domain + "py/common/user/create_user/",
+    "Create_user": generic_domain + "common/user/create_user/",
 
-    "Update_user": generic_domain + "py/common/user/update_user/",
+    "Update_user": generic_domain + "common/user/update_user/",
 
-    "UserGetByid": generic_domain + "py/common/user/get_user_by_id/{}/",
+    "UserGetByid": generic_domain + "common/user/get_user_by_id/{}/",
 
-    "save_app_preferences": generic_domain + "py/common/common_app_utils/save_app_preferences/",
+    "save_app_preferences": generic_domain + "common/common_app_utils/save_app_preferences/",
 
-    "getAllAppPreference": generic_domain + 'py/common/common_app_utils/api/v1/getAllAppPreference/',
+    "getAllAppPreference": generic_domain + 'common/common_app_utils/api/v1/getAllAppPreference/',
 
     # ---------------------------------- communication history/status --------------------------------------------------
-    "Create_Attachment": generic_domain + "py/common/attachment/api/v1/createAttachment/",
+    "Create_Attachment": generic_domain + "common/attachment/api/v1/createAttachment/",
 
-    "delete_Attachment": generic_domain + "py/common/attachment/api/v1/deleteAttachmentsForIds/",
+    "delete_Attachment": generic_domain + "common/attachment/api/v1/deleteAttachmentsForIds/",
 
     # --------------------------------------------- Staffing -----------------------------------------------------------
-    "gettaskbycandidate": generic_domain + "py/pofu/api/v1/get-task-by-candidate/",
+    "gettaskbycandidate": generic_domain + "pofu/api/v1/get-task-by-candidate/",
 
 }
 
 # -------------------------------------------- Non Lambda APIS ---------------------------------------------------------
 non_lambda_apis = {
 
-    "change_password": generic_domain + "py/common/user/change_password/",
+    "change_password": generic_domain + "common/user/change_password/",
 
-    "update_candidate_details": generic_domain + "py/rpo/update_candidate_details/",
+    "update_candidate_details": generic_domain + "rpo/update_candidate_details/",
 
-    "getAllEventApplicant": generic_domain + "py/crpo/applicant/api/v1/getAllEventApplicant/",
+    "getAllEventApplicant": generic_domain + "crpo/applicant/api/v1/getAllEventApplicant/",
 
-    "getApplicantsInfo": generic_domain + "py/crpo/applicant/api/v1/getApplicantsInfo/",
+    "getApplicantsInfo": generic_domain + "crpo/applicant/api/v1/getApplicantsInfo/",
 
-    "ChangeApplicant_Status": generic_domain + "py/crpo/applicant/api/v1/applicantStatusChange/",
+    "ChangeApplicant_Status": generic_domain + "crpo/applicant/api/v1/applicantStatusChange/",
 
-    "createOrUpdateEcConfig": generic_domain + "py/crpo/dynamicec/api/v1/createOrUpdateEcConfig/",
+    "createOrUpdateEcConfig": generic_domain + "crpo/dynamicec/api/v1/createOrUpdateEcConfig/",
 
-    "uploadCandidatesScore": generic_domain + "py/crpo/assessment/api/v1/uploadCandidatesScore/",
+    "uploadCandidatesScore": generic_domain + "crpo/assessment/api/v1/uploadCandidatesScore/",
 
-    "oneClickShortlist": generic_domain + "py/crpo/shortlistingcriteria/api/v1/oneClickShortlist",
+    "oneClickShortlist": generic_domain + "crpo/shortlistingcriteria/api/v1/oneClickShortlist",
 
-    "candidate_duplicate_check": generic_domain + "py/rpo/candidate_duplicate_check/",
+    "candidate_duplicate_check": generic_domain + "rpo/candidate_duplicate_check/",
 
-    "get_all_candidates": generic_domain + "py/rpo/get_all_candidates/",
+    "get_all_candidates": generic_domain + "rpo/get_all_candidates/",
 
     # ---------------------------------- communication history/status --------------------------------------------------
     "sendAdmitCardsToApplicants":
-        generic_domain + "py/crpo/candidatecommunication/api/v1/sendAdmitCardsToApplicants",
+        generic_domain + "crpo/candidatecommunication/api/v1/sendAdmitCardsToApplicants",
 
     "sendRegistrationLinkToApplicants":
-        generic_domain + "py/crpo/candidatecommunication/api/v1/sendRegistrationLinkToApplicants/",
+        generic_domain + "crpo/candidatecommunication/api/v1/sendRegistrationLinkToApplicants/",
 
     "setApplicantCommunicationStatus":
-        generic_domain + "py/crpo/candidatecommunication/api/v1/setApplicantCommunicationStatus",
+        generic_domain + "crpo/candidatecommunication/api/v1/setApplicantCommunicationStatus",
 
-    "sendVerificationNotification": generic_domain + "py/crpo/candidate/api/v1/sendVerificationNotification/",
+    "sendVerificationNotification": generic_domain + "crpo/candidate/api/v1/sendVerificationNotification/",
 
     "getRegistrationLinkForApplicants":
-        generic_domain + "py/crpo/candidatecommunication/api/v1/getRegistrationLinkForApplicants/",
+        generic_domain + "crpo/candidatecommunication/api/v1/getRegistrationLinkForApplicants/",
 
     "applicantRe-Registration":
-        generic_domain + "py/crpo/candidatecommunication/api/v1/applicantRe-Registration/",
+        generic_domain + "crpo/candidatecommunication/api/v1/applicantRe-Registration/",
 
     # ------------------------------------------- Interview ------------------------------------------------------------
-    "Schedule": generic_domain + "py/crpo/api/v1/interview/schedule/",
+    "Schedule": generic_domain + "crpo/api/v1/interview/schedule/",
 
-    "givefeedback": generic_domain + "py/crpo/api/v1/interview/givefeedback/",
+    "givefeedback": generic_domain + "crpo/api/v1/interview/givefeedback/",
 
-    "Interview_details": generic_domain + "py/crpo/api/v1/interview/get/{}",
+    "Interview_details": generic_domain + "crpo/api/v1/interview/get/{}",
 
-    "updateinterviewerdecision": generic_domain + "py/crpo/api/v1/interview/updateinterviewerdecision",
+    "updateinterviewerdecision": generic_domain + "crpo/api/v1/interview/updateinterviewerdecision",
 
-    "updateinterviewerfeedback": generic_domain + "py/crpo/api/v1/interview/updateinterviewerfeedback",
+    "updateinterviewerfeedback": generic_domain + "crpo/api/v1/interview/updateinterviewerfeedback",
 
-    "Reschedule": generic_domain + "py/crpo/api/v1/interview/reschedule/",
+    "Reschedule": generic_domain + "crpo/api/v1/interview/reschedule/",
 
-    "InterviewRequest_details": generic_domain + "py/crpo/api/v1/view/interviews",
+    "InterviewRequest_details": generic_domain + "crpo/api/v1/view/interviews",
 
-    "cancel": generic_domain + "py/crpo/api/v1/interview/cancel/",
+    "cancel": generic_domain + "crpo/api/v1/interview/cancel/",
 
     # --------------------------------------------- Staffing -----------------------------------------------------------
-    "submitform": generic_domain + "py/pofu/api/v1/submit-form/",
+    "submitform": generic_domain + "pofu/api/v1/submit-form/",
 
-    "Approve_task": generic_domain + "py/pofu/api/v1/update-candidate-task-status/",
+    "Approve_task": generic_domain + "pofu/api/v1/update-candidate-task-status/",
 
-    "bulkimport": generic_domain + "py/pofu/api/v1/bulkimport",
+    "bulkimport": generic_domain + "pofu/api/v1/bulkimport",
 
 }
