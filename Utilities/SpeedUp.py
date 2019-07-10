@@ -1,11 +1,11 @@
-from hpro_automation import (login, work_book, input_paths, output_paths, api)
+from hpro_automation import (login, work_book, input_paths, output_paths, db_login)
 import datetime
 import requests
 import json
 import xlrd
 
 
-class ClassName(login.CRPOLogin, work_book.WorkBook):
+class ClassName(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
 
     def __init__(self):
 
@@ -14,6 +14,8 @@ class ClassName(login.CRPOLogin, work_book.WorkBook):
 
         # --------------------------------- Inheritance Class Instance -------------------------------------------------
         super(ClassName, self).__init__()
+        self.common_login('crpo')
+        self.db_connection('amsin')
 
         # --------------------------------- Overall status initialize variables ----------------------------------------
         self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 66)))
@@ -63,7 +65,7 @@ class ClassName(login.CRPOLogin, work_book.WorkBook):
         # ----------------------------------- API request --------------------------------------------------------------
         request = {"ABC": self.xl_example[loop]}
 
-        hit_api = requests.post(api.web_api['example_api'], headers=self.headers,
+        hit_api = requests.post(self.webapi, headers=self.headers,
                                 data=json.dumps(request, default=str), verify=False)
         hitted_api_response = json.loads(hit_api.content)
         print(hitted_api_response)
