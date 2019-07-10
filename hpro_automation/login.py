@@ -3,7 +3,6 @@ import datetime
 import json
 import time
 import requests
-from hpro_automation.identity import credentials
 from hpro_automation.api import *
 
 
