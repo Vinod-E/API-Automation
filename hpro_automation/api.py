@@ -24,7 +24,7 @@ web_api = {
 
     "Candidate_ExperienceDetails": generic_domain + "py/rpo/get_candidate_experience_details/{}/",
 
-    "update_candidate_details": 'https://amsin.hirepro.in/py/rpo/update_candidate_details/',
+    "update_candidate_details": generic_domain + "py/rpo/update_candidate_details/",
 
     "getAllApplicants": generic_domain + "py/crpo/applicant/api/v1/getAllApplicants/",
 
@@ -38,7 +38,7 @@ web_api = {
 
     "Create_user": generic_domain + "py/common/user/create_user/",
 
-    "Update_user": 'https://amsin.hirepro.in/py/common/user/update_user/',
+    "Update_user": generic_domain + 'py/common/user/update_user/',
 
     "UserGetByid": generic_domain + "py/common/user/get_user_by_id/{}/",
 
