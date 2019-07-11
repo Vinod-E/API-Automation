@@ -27,10 +27,7 @@ class CancelInterview(login.CommonLogin, work_book.WorkBook):
         # Dictionaries for Interview_cancel
         # ---------------------------------
         self.api_ir = {}
-        self.api_int_req = self.api_ir
-
         self.Exception_message_api = {}
-        self.E_Msg = self.Exception_message_api
 
         self.success_case_01 = {}
         self.success_case_02 = {}

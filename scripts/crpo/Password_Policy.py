@@ -47,17 +47,12 @@ class PasswordPolicy(login.CommonLogin, work_book.WorkBook, db_login.DBConnectio
         # Dictionary
         # -----------
         self.policy_status = {}
-        self.p_stat = self.policy_status
         self.policyid = {}
-        self.P_id = self.policyid
         self.change_pwd_status = {}
-        self.change_pwd_stat = self.change_pwd_status
         self.change_pwd_error = {}
-        self.c_pwd_error = self.change_pwd_error
         self.login_check_api_response = {}
-        self.login_check_api_response_dict = self.login_check_api_response
         self.P_P_dict = {}
-        self.pwd_p_dict = self.P_P_dict
+
         self.success_case_01 = {}
         self.success_case_02 = {}
         self.success_case_03 = {}

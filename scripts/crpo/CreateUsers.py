@@ -34,13 +34,9 @@ class CreateUser(login.CommonLogin, work_book.WorkBook):
         # Dictionary for CandidateGetbyIdDetails, CandidateEducationalDetails, CandidateExperienceDetails
         # -----------------------------------------------------------------------------------------------
         self.user_dict = {}
-        self.user_get_details = self.user_dict
         self.userId = {}
-        self.uid = self.userId
         self.error = {}
-        self.er = self.error
         self.message = {}
-        self.me = self.message
         self.status = {}
         self.success_case_01 = {}
         self.success_case_02 = {}

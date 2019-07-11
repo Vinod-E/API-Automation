@@ -83,41 +83,25 @@ class UploadScoresheet(login.CommonLogin, work_book.WorkBook):
         # Dictionary for CandidateGetbyIdDetails, CandidateEducationalDetails, CandidateExperienceDetails
         # -----------------------------------------------------------------------------------------------
         self.testuser_dict = {}
-        self.testuser_details = self.testuser_dict
         self.test_details_dict = {}
-        self.test_details = self.test_details_dict
         self.candidate_info_dict = {}
-        self.can_info = self.candidate_info_dict
 
         self.group1_dict = {}
-        self.group_one = self.group1_dict
         self.section1_dict = {}
-        self.section_one = self.section1_dict = {}
         self.section1_1_dict = {}
-        self.section_one_one = self.section1_1_dict = {}
         self.section1_2_dict = {}
-        self.section_one_two = self.section1_2_dict = {}
 
         self.group2_dict = {}
-        self.group_two = self.group2_dict
         self.section2_dict = {}
-        self.section_two = self.section2_dict = {}
         self.section2_1_dict = {}
-        self.section_two_one = self.section2_1_dict = {}
 
         self.group3_dict = {}
-        self.group_three = self.group3_dict
         self.section3_dict = {}
-        self.section_three = self.section3_dict = {}
         self.section3_1_dict = {}
-        self.section_three_one = self.section3_1_dict = {}
 
         self.group4_dict = {}
-        self.group_four = self.group4_dict
         self.section4_dict = {}
-        self.section_four = self.section4_dict = {}
         self.section4_1_dict = {}
-        self.section_four_one = self.section4_1_dict = {}
 
     def excel_headers(self):
         self.main_headers = ['Comparision', 'Candidate Id', 'Overall_Status', 'CandidateName', 'Email', 'Test Mode',

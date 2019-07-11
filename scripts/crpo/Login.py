@@ -31,9 +31,7 @@ class LoginCheck(work_book.WorkBook, login.CommonLogin):
         # Intialising the dict
         # --------------------
         self.login_check_api_response = {}
-        self.login_d = self.login_check_api_response
         self.error_message = {}
-        self.e_m = self.error_message
 
         self.success_case_01 = {}
         self.success_case_02 = {}

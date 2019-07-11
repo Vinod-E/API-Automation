@@ -42,40 +42,25 @@ class RescheduleInterview(login.CommonLogin, work_book.WorkBook):
         # Dictionaries for Interview_schedule, interview_feedback, interview_feedback_details
         # -----------------------------------------------------------------------------------
         self.ir = {}
-        self.i_r = self.ir
         self.reschedule_ir = {}
-        self.r_ir = self.reschedule_ir
 
         self.is_success = {}
-        self.i_s = self.is_success
         self.is_reschedule_success = {}
-        self.i_s = self.is_reschedule_success
 
         self.message = {}
-        self.msg = self.message
         self.reschedule_message = {}
-        self.msg1 = self.reschedule_message
 
         self.candidate_details_dict = {}
-        self.cdd = self.candidate_details_dict
         self.applicant_details_dict = {}
-        self.add = self.applicant_details_dict
         self.data = {}
-        self.d = self.data
         self.interviewers = {}
-        self.int = self.interviewers
 
         self.updated_candidate_details_dict = {}
-        self.u_cdd = self.updated_candidate_details_dict
         self.updated_applicant_details_dict = {}
-        self.u_add = self.updated_applicant_details_dict
         self.updated_data = {}
-        self.ud = self.updated_data
         self.updated_interviewers = {}
-        self.u_i = self.updated_interviewers
 
         self.final_status = {}
-        self.f_s = self.final_status
 
         self.success_case_01 = {}
         self.success_case_02 = {}
