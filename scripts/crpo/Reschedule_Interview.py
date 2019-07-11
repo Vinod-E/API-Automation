@@ -500,10 +500,12 @@ class RescheduleInterview(login.CommonLogin, work_book.WorkBook):
             if self.message is not None:
                 if 'Unable to' in self.message:
                     self.ws.write(self.rowsize, 13, self.message, self.style8)
-                elif self.reschedule_message:
-                    self.ws.write(self.rowsize, 13, self.reschedule_message, self.style8)
+                elif 'Applicant has' in self.message:
+                    self.ws.write(self.rowsize, 13, self.message, self.style8)
                 else:
                     self.ws.write(self.rowsize, 13, self.message, self.style3)
+            elif self.reschedule_message:
+                self.ws.write(self.rowsize, 13, self.reschedule_message, self.style8)
             else:
                 self.ws.write(self.rowsize, 13, self.message, self.style3)
         elif self.reschedule_message:
