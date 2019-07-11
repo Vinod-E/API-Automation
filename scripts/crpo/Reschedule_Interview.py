@@ -492,7 +492,7 @@ class RescheduleInterview(login.CommonLogin, work_book.WorkBook):
                 else:
                     self.ws.write(self.rowsize, 12, self.applicant_details_dict.get('applicantId'), self.style8)
             else:
-                self.ws.write(self.rowsize, 12, None)
+                self.ws.write(self.rowsize, 12, self.xl_Applicant_id[loop], self.style8)
         else:
             self.ws.write(self.rowsize, 12, None)
         # --------------------------------------------------------------------------------------------------------------

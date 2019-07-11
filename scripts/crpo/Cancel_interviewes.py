@@ -149,13 +149,15 @@ class CancelInterview(login.CommonLogin, work_book.WorkBook):
             else:
                 self.ws.write(self.rowsize, 3, self.Exception_message_api, self.style3)
         elif 'Cancelled Interview' and self.xl_expected_message[loop] in self.xl_expected_message[loop]:
-            self.ws.write(self.rowsize, 3, self.xl_expected_message[loop], self.style8)
+            self.ws.write(self.rowsize, 3, self.xl_expected_message[loop].format(self.api_ir), self.style8)
         else:
             self.ws.write(self.rowsize, 3, self.Exception_message_api, self.style7)
         # --------------------------------------------------------------------------------------------------------------
 
         if self.api_ir:
             self.ws.write(self.rowsize, 2, self.api_ir, self.style8)
+        else:
+            self.ws.write(self.rowsize, 2, self.xl_ir_id[loop], self.style8)
         # --------------------------------------------------------------------------------------------------------------
 
         self.rowsize += 1  # Row increment
