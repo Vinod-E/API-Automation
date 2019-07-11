@@ -58,78 +58,50 @@ class InterviewFeedback(login.CommonLogin, work_book.WorkBook):
         # Dictionaries for Interview_schedule, interview_feedback, interview_feedback_details
         # -----------------------------------------------------------------------------------
         self.ir = {}
-        self.i_r = self.ir
         self.is_success = {}
-        self.is_s = self.is_success
         self.is_feedback = {}
-        self.i_f = self.is_feedback
         self.message = {}
-        self.m = self.message
 
         self.feedback = {}
-        self.f = self.feedback
         self.feedback_data = {}
-        self.fd = self.feedback_data
 
         self.updated_feedback_data = {}
-        self.u_fd = self.updated_feedback_data
         self.updated_feedback = {}
-        self.u_feed = self.updated_feedback
 
         self.partial_data = {}
-        self.pd = self.partial_data
         self.feedback_message = {}
-        self.fm = self.feedback_message
         self.applicant_details = {}
-        self.ad = self.applicant_details
 
         # -------------------
         # Skill dictionaries
         # -------------------
         self.skill_dict_1 = {}
-        self.skill_1 = self.skill_dict_1
         self.skill_dict_2 = {}
-        self.skill_2 = self.skill_dict_2
         self.skill_dict_3 = {}
-        self.skill_3 = self.skill_dict_3
         self.skill_dict_4 = {}
-        self.skill_4 = self.skill_dict_4
 
         self.filledFeedbackDetails = {}
-        self.ffd = self.filledFeedbackDetails
         self.skillAssessed_details = {}
-        self.sad = self.skillAssessed_details
 
         # ---------------------------
         # Skill updated dictionaries
         # ---------------------------
         self.updated_skill_dict_1 = {}
-        self.updated_skill_1 = self.updated_skill_dict_1
         self.updated_skill_dict_2 = {}
-        self.updated_skill_2 = self.updated_skill_dict_2
         self.updated_skill_dict_3 = {}
-        self.updated_skill_3 = self.updated_skill_dict_3
         self.updated_skill_dict_4 = {}
-        self.updated_skill_4 = self.updated_skill_dict_4
 
         self.updated_filledFeedbackDetails = {}
-        self.updated_ffd = self.updated_filledFeedbackDetails
         self.updated_skillAssessed_details = {}
-        self.u_sad = self.updated_skillAssessed_details
         self.decision_update = {}
-        self.dr = self.decision_update
         self.updatedecision = {}
-        self.ud = self.updatedecision
         self.decision_error = {}
-        self.de = self.decision_error
         self.decision_updated_feedback = {}
-        self.duf = self.decision_updated_feedback
 
         # ----------------------------
         # Partial/updated Dictionaries
         # ----------------------------
         self.pf = {}
-        self.p_f = self.pf
 
         self.success_case_01 = {}
         self.success_case_02 = {}

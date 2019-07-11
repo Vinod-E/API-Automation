@@ -104,37 +104,21 @@ class UploadCandidate(login.CommonLogin, work_book.WorkBook):
         # Dictionary for candidate_get_by_id_details, candidate_educational_details, candidate_experience_details
         # --------------------------------------------------------------------------------------------------------
         self.personal_details_dict = {}
-        self.candidate_personal_details = self.personal_details_dict
         self.source_details_dict = {}
-        self.candidate_source_details = self.source_details_dict
         self.custom_details_dict = {}
-        self.candidate_custom_details = self.custom_details_dict
         self.final_degree_dict = {}
-        self.candidate_final_degree_dict = self.final_degree_dict
         self.tenth_dict = {}
-        self.candidate_tenth_dict = self.tenth_dict
         self.twelfth_dict = {}
-        self.candidate_twelfth_dict = self.twelfth_dict
         self.experience_dict = {}
-        self.candidate_experience_dict = self.experience_dict
         self.app_dict = {}
-        self.event_applicant_dict = self.app_dict
         self.test_dict = {}
-        self.test_detail = self.test_dict
         self.isCreated = {}
-        self.isc = self.isCreated
         self.OrginalCID = {}
-        self.O_cid = self.OrginalCID
         self.message = {}
-        self.me = self.message
         self.CID = {}
-        self.c_id = self.CID
         self.candidatesavemessage = {}
-        self.c_s_m = self.candidatesavemessage
         self.applicantDetails = {}
-        self.app_details = self.applicantDetails
         self.partialmessage = {}
-        self.p_m = self.partialmessage
 
         self.success_case_01 = {}
         self.success_case_02 = {}

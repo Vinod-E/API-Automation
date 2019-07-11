@@ -88,60 +88,33 @@ class ActivityCallBack(login.CommonLogin, work_book.WorkBook):
         # Dictionary
         # -----------
         self.success = {}
-        self.suc = self.success = {}
         self.chng_app_status = {}
-        self.c_a_s = self.chng_app_status
         self.applicant_dict_details = {}
-        self.a_d_d = self.applicant_dict_details
         self.applicant_mjr_dict = {}
-        self.app_d1 = self.applicant_mjr_dict
 
         self.ticket_number_A1_t1 = {}
-        self.ticket1 = self.ticket_number_A1_t1
-
         self.ticket_number_A2_t1 = {}
-        self.ticket2 = self.ticket_number_A2_t1
         self.ticket_number_A2_t2 = {}
-        self.ticket3 = self.ticket_number_A2_t2
         self.ticket_number_A2_t3 = {}
-        self.ticket4 = self.ticket_number_A2_t3
-
         self.ticket_number_A3_t1 = {}
-        self.ticket5 = self.ticket_number_A3_t1
         self.ticket_number_A3_t2 = {}
-        self.ticket6 = self.ticket_number_A3_t2
 
         self.A1 = {}
-        self.a1 = self.A1 = {}
         self.A1_t1 = {}
-        self.a1t1 = self.A1_t1 = {}
         self.A2 = {}
-        self.a2 = self.A2 = {}
         self.A2_t1 = {}
-        self.a2t1 = self.A2_t1 = {}
         self.A2_t2 = {}
-        self.a2t2 = self.A2_t2 = {}
         self.A2_t3 = {}
-        self.a2t3 = self.A2_t3 = {}
         self.A3 = {}
-        self.a3 = self.A3 = {}
         self.A3_t1 = {}
-        self.a3t1 = self.A3_t1 = {}
         self.A3_t2 = {}
-        self.a3t2 = self.A3_t2 = {}
 
         self.A1_t1_status = {}
-        self.a1_t1_s = self.A1_t1_status = {}
         self.A2_t1_status = {}
-        self.a2_t1_s = self.A2_t1_status = {}
         self.A2_t2_status = {}
-        self.a2_t2_s = self.A2_t2_status = {}
         self.A2_t3_status = {}
-        self.a2_t3_s = self.A2_t3_status = {}
         self.A3_t1_status = {}
-        self.a3_t1_s = self.A3_t1_status = {}
         self.A3_t2_status = {}
-        self.a3_t2_s = self.A3_t2_status = {}
 
     def excel_headers(self):
 
