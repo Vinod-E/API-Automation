@@ -67,16 +67,16 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
 
         # ----------------------------------- API request --------------------------------------------------------------
         request = {
-            "eventId": self.xl_event_id[loop],
+            "eventId": 1610,
             "eligibilityCriteria": [{
-                "id": 43946,
+                "id": 43947,
                 "locationIds": [],
                 "compositeKey": 1,
                 "actualOpenings": 1,
                 "maxCountOfNominations": 1,
                 "nominationsClosingDate": "16/07/2019"
             }],
-            "remove": False
+            "remove": True
         }
 
         hit_api = requests.post(self.webapi, headers=self.headers, data=json.dumps(request, default=str), verify=False)
