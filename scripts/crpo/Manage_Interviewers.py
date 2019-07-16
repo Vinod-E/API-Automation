@@ -1,28 +1,31 @@
-from hpro_automation import (login, work_book, input_paths, output_paths, db_login)
+from hpro_automation import (login, work_book, input_paths, output_paths)
 import datetime
 import requests
 import json
 import xlrd
 
 
-class ClassName(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
+class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
 
     def __init__(self):
 
-        # ---------------------------------- Overall Status Run Date ---------------------------------------------------
+        # ---------------------------- Overall Status Current Run Date -------------------------------------------------
         self.start_time = str(datetime.datetime.now())
 
         # --------------------------------- Inheritance Class Instance -------------------------------------------------
-        super(ClassName, self).__init__()
+        super(ManageInterviewers, self).__init__()
         self.common_login('crpo')
-        self.db_connection('amsin')
 
         # --------------------------------- Overall status initialize variables ----------------------------------------
         self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 66)))
         self.Actual_Success_case = []
 
         # --------------------------------- Excel Data initialize variables --------------------------------------------
-        self.xl_example = []
+        self.xl_event_id = []
+        self.xl_skill_id = []
+        self.xl_required_int = []
+        self.xl_required_nom = []
+        self.xl_closing_date = []
 
         # --------------------------------- Dictionary initialize variables --------------------------------------------
         self.success_case_01 = {}
@@ -43,47 +46,57 @@ class ClassName(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
 
         # ------------------------------- Excel Data Read --------------------------------------------------------------
         try:
-            workbook = xlrd.open_workbook(input_paths.inputpaths['Example_Input_sheet'])
+            workbook = xlrd.open_workbook(input_paths.inputpaths['Manage_Int_Input_sheet'])
             sheet1 = workbook.sheet_by_index(0)
             for i in range(1, sheet1.nrows):
                 number = i  # Counting number of rows
                 rows = sheet1.row_values(number)
 
                 if not rows[0]:
-                    self.xl_example.append(None)
+                    self.xl_event_id.append(None)
                 else:
-                    self.xl_example.append(rows[0])
+                    self.xl_event_id.append(int(rows[0]))
 
         except IOError:
             print("File not found or path is incorrect")
 
-    def api_call(self, loop):
+    def set_interviewer_nomination(self, loop):
 
-        self.lambda_function('example_api')
+        self.lambda_function('set_interviewer_nomination')
         self.headers['APP-NAME'] = 'crpo'
 
         # ----------------------------------- API request --------------------------------------------------------------
-        request = {"ABC": self.xl_example[loop]}
+        request = {
+            "eventId": self.xl_event_id[loop],
+            "eligibilityCriteria": [{
+                "id": 43946,
+                "locationIds": [],
+                "compositeKey": 1,
+                "actualOpenings": 1,
+                "maxCountOfNominations": 1,
+                "nominationsClosingDate": "16/07/2019"
+            }],
+            "remove": False
+        }
 
-        hit_api = requests.post(self.webapi, headers=self.headers,
-                                data=json.dumps(request, default=str), verify=False)
+        hit_api = requests.post(self.webapi, headers=self.headers, data=json.dumps(request, default=str), verify=False)
+        print(hit_api.headers)
         hitted_api_response = json.loads(hit_api.content)
         print(hitted_api_response)
 
     def output_report(self, loop):
 
         # --------------------------------- Writing Input Data ---------------------------------------------------------
-
         self.ws.write(self.rowsize, self.col, 'Input', self.style4)
-        self.ws.write(self.rowsize, 1, self.xl_example[loop] if self.xl_example[loop] else 'Empty')
-        self.rowsize += 1
+        self.ws.write(self.rowsize, 1, self.xl_event_id[loop] if self.xl_event_id[loop] else 'Empty')
 
         # --------------------------------- Writing Output Data --------------------------------------------------------
+        self.rowsize += 1
         self.ws.write(self.rowsize, self.col, 'Output', self.style5)
         self.rowsize += 1
 
         # ------------------------------------ OutPut File save --------------------------------------------------------
-        Object.wb_Result.save(output_paths.outputpaths['Example_Output_sheet'])
+        Object.wb_Result.save(output_paths.outputpaths['MI_output_sheet'])
 
         if self.success_case_01 == 'Pass':
             self.Actual_Success_case.append(self.success_case_01)
@@ -93,7 +106,7 @@ class ClassName(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
             self.Actual_Success_case.append(self.success_case_03)
 
     def overall_status(self):
-        self.ws.write(0, 0, 'Upload Candidates', self.style23)
+        self.ws.write(0, 0, 'Manage Interviewers', self.style23)
         if self.Expected_success_cases == self.Actual_Success_case:
             self.ws.write(0, 1, 'Pass', self.style24)
         else:
@@ -103,18 +116,18 @@ class ClassName(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
         self.ws.write(0, 4, self.start_time, self.style26)
 
         # ---------------------------- OutPut File save with Overall Status --------------------------------------------
-        Object.wb_Result.save(output_paths.outputpaths['Example_Output_sheet'])
+        Object.wb_Result.save(output_paths.outputpaths['MI_output_sheet'])
 
 
-Object = ClassName()
+Object = ManageInterviewers()
 Object.excel_headers()
 Object.excel_data()
-Total_count = len(Object.xl_example)
+Total_count = len(Object.xl_event_id)
 print("Number Of Rows ::", Total_count)
 if Object.login == 'OK':
     for looping in range(0, Total_count):
         print("Iteration Count is ::", looping)
-        Object.api_call(looping)
+        Object.set_interviewer_nomination(looping)
         Object.output_report(looping)
 
         # ----------------- Make Dictionaries clear for each loop ------------------------------------------------------
