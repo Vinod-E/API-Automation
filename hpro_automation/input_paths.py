@@ -52,6 +52,8 @@ inputpaths = {
 
     'Login_check_Input_sheet': generic_input_path + "Crpo/Login/Login.xls",
 
+    'Manage_Int_Input_sheet': generic_input_path + "Crpo/Manage Interviewers/Manage_Interviewers.xls",
+
     # ------------
     # Pofu Inputs
     # ------------

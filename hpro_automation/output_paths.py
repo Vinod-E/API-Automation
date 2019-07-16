@@ -55,7 +55,9 @@ outputpaths = {
 
     'Login_check_Output_sheet': generic_output_path + "Crpo/Login/API_Login_check.xls",
 
-    'Communication_output_sheet': generic_output_path + "Crpo/Communication_history/Communication_history.xls",
+    'Communication_output_sheet': generic_output_path + "Crpo/Communication_history/API_Communication_history.xls",
+
+    'MI_output_sheet': generic_output_path + "Crpo/Manage Interviewers/API_Manage_Interviewers.xls",
 
     # ------------------
     # Pofu output sheets
