@@ -14,7 +14,7 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
 
         # --------------------------------- Inheritance Class Instance -------------------------------------------------
         super(ManageInterviewers, self).__init__()
-        self.common_login('crpo')
+        self.common_login('v')
 
         # --------------------------------- Overall status initialize variables ----------------------------------------
         self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 66)))
@@ -22,10 +22,11 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
 
         # --------------------------------- Excel Data initialize variables --------------------------------------------
         self.xl_event_id = []
-        self.xl_skill_id = []
-        self.xl_required_int = []
-        self.xl_required_nom = []
-        self.xl_closing_date = []
+        self.xl_compositeKey = []
+        self.xl_interviewer_id = []
+        self.xl_email_id = []
+        self.xl_interviewer_decision = []
+        self.xl_manager_decision = []
 
         # --------------------------------- Dictionary initialize variables --------------------------------------------
         self.success_case_01 = {}
@@ -56,33 +57,49 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
                     self.xl_event_id.append(None)
                 else:
                     self.xl_event_id.append(int(rows[0]))
+                if not rows[1]:
+                    self.xl_compositeKey.append(None)
+                else:
+                    self.xl_compositeKey.append(int(rows[1]))
+                if not rows[2]:
+                    self.xl_interviewer_id.append(None)
+                else:
+                    self.xl_interviewer_id.append(int(rows[2]))
+                if not rows[3]:
+                    self.xl_email_id.append(None)
+                else:
+                    self.xl_email_id.append(str(rows[3]))
+                if not rows[4]:
+                    self.xl_interviewer_decision.append(None)
+                else:
+                    self.xl_interviewer_decision.append(int(rows[4]))
+                if not rows[5]:
+                    self.xl_manager_decision.append(None)
+                else:
+                    self.xl_manager_decision.append(int(rows[5]))
 
         except IOError:
             print("File not found or path is incorrect")
 
-    def set_interviewer_nomination(self, loop):
+    def send_nomination_mails(self, loop):
 
-        self.lambda_function('set_interviewer_nomination')
+        self.lambda_function('send_nomination_mails_to_selected_interviewers')
         self.headers['APP-NAME'] = 'crpo'
 
         # ----------------------------------- API request --------------------------------------------------------------
-        request = {
-            "eventId": 1610,
-            "eligibilityCriteria": [{
-                "id": 43947,
-                "locationIds": [],
-                "compositeKey": 1,
-                "actualOpenings": 1,
-                "maxCountOfNominations": 1,
-                "nominationsClosingDate": "16/07/2019"
-            }],
-            "remove": True
-        }
+        request = {"eventId": self.xl_event_id[loop],
+                   "data": {
+                       self.xl_compositeKey[loop]: [{
+                           "interviewerId": self.xl_interviewer_id[loop],
+                           "emailId": self.xl_email_id[loop]
+                       }]
+                   }}
 
-        hit_api = requests.post(self.webapi, headers=self.headers, data=json.dumps(request, default=str), verify=False)
-        print(hit_api.headers)
-        hitted_api_response = json.loads(hit_api.content)
-        print(hitted_api_response)
+        send_nomination_api = requests.post(self.webapi, headers=self.headers, data=json.dumps(request, default=str),
+                                            verify=False)
+        print(send_nomination_api.headers)
+        send_nomination_api_response = json.loads(send_nomination_api.content)
+        print(send_nomination_api_response)
 
     def output_report(self, loop):
 
@@ -127,7 +144,7 @@ print("Number Of Rows ::", Total_count)
 if Object.login == 'OK':
     for looping in range(0, Total_count):
         print("Iteration Count is ::", looping)
-        Object.set_interviewer_nomination(looping)
+        Object.send_nomination_mails(looping)
         Object.output_report(looping)
 
         # ----------------- Make Dictionaries clear for each loop ------------------------------------------------------
