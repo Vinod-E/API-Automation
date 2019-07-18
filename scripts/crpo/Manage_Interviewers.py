@@ -17,7 +17,7 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
         self.common_login('v')
 
         # --------------------------------- Overall status initialize variables ----------------------------------------
-        self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 66)))
+        self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 10)))
         self.Actual_Success_case = []
 
         # --------------------------------- Excel Data initialize variables --------------------------------------------
@@ -26,21 +26,37 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
         self.xl_interviewer_id = []
         self.xl_email_id = []
         self.xl_interviewer_decision = []
+        self.xl_withdrawn_After_int = []
         self.xl_manager_decision = []
+        self.xl_withdrawn_After_manager = []
+        self.xl_manager_rejected = []
+        self.xl_sync_interviewers = []
+        self.xl_withdrawn_After_sync = []
+        self.xl_success_message = []
+        self.xl_waring_message = []
 
         # --------------------------------- Dictionary initialize variables --------------------------------------------
         self.success_case_01 = {}
         self.success_case_02 = {}
         self.success_case_03 = {}
         self.headers = {}
+        self.invited_interviewers_dict = {}
+        self.invited_interviewers_dict_after_rejected = {}
+        self.sync_data = {}
 
     def excel_headers(self):
 
         # --------------------------------- Excel Headers and Cell color, styles ---------------------------------------
-        self.main_headers = ['S.No', 'Name', 'Designation']
-        self.headers_with_style2 = ['S.No']
-        self.headers_with_style9 = ['Name']
-        self.headers_with_style19 = ['Designation']
+        self.main_headers = ['Comparision', 'Status', 'InterviewerID', 'EmailID', 'InterviewerDecision',
+                             'Withdraw-AfterInterviewerRequest', 'ManagerDecision', 'Withdraw-AfterManagerRequest',
+                             'ApproveAndRejectedByManager', 'Sync', 'Withdraw-AfterSyncInterviewers',
+                             'Tagged InterviewIDs', 'successMessage', 'WaringMessage']
+        self.headers_with_style2 = ['Comparision', 'Status']
+        self.headers_with_style9 = ['InterviewerID', 'EmailID', 'InterviewerDecision',
+                                    'Withdraw-AfterInterviewerRequest', 'ManagerDecision',
+                                    'Withdraw-AfterManagerRequest', 'Sync', 'Withdraw-AfterSyncInterviewers',
+                                    'Tagged InterviewIDs', 'ApproveAndRejectedByManager', 'successMessage',
+                                    'WaringMessage']
         self.file_headers_col_row()
 
     def excel_data(self):
@@ -57,26 +73,66 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
                     self.xl_event_id.append(None)
                 else:
                     self.xl_event_id.append(int(rows[0]))
+
                 if not rows[1]:
                     self.xl_compositeKey.append(None)
                 else:
                     self.xl_compositeKey.append(int(rows[1]))
+
                 if not rows[2]:
                     self.xl_interviewer_id.append(None)
                 else:
                     self.xl_interviewer_id.append(int(rows[2]))
+
                 if not rows[3]:
                     self.xl_email_id.append(None)
                 else:
                     self.xl_email_id.append(str(rows[3]))
-                if not rows[4]:
+
+                if rows[4] is not None and rows[4] == '':
                     self.xl_interviewer_decision.append(None)
                 else:
                     self.xl_interviewer_decision.append(int(rows[4]))
-                if not rows[5]:
+
+                if rows[5] is not None and rows[5] == '':
+                    self.xl_withdrawn_After_int.append(None)
+                else:
+                    self.xl_withdrawn_After_int.append(int(rows[5]))
+
+                if rows[6] is not None and rows[6] == '':
                     self.xl_manager_decision.append(None)
                 else:
-                    self.xl_manager_decision.append(int(rows[5]))
+                    self.xl_manager_decision.append(int(rows[6]))
+
+                if rows[7] is not None and rows[7] == '':
+                    self.xl_withdrawn_After_manager.append(None)
+                else:
+                    self.xl_withdrawn_After_manager.append(int(rows[7]))
+
+                if rows[8] is not None and rows[8] == '':
+                    self.xl_manager_rejected.append(None)
+                else:
+                    self.xl_manager_rejected.append(int(rows[8]))
+
+                if not rows[9]:
+                    self.xl_sync_interviewers.append(None)
+                else:
+                    self.xl_sync_interviewers.append(str(rows[9]))
+
+                if rows[10] is not None and rows[10] == '':
+                    self.xl_withdrawn_After_sync.append(None)
+                else:
+                    self.xl_withdrawn_After_sync.append(int(rows[10]))
+
+                if rows[11] is not None and rows[11] == '':
+                    self.xl_success_message.append(None)
+                else:
+                    self.xl_success_message.append(str(rows[11]))
+
+                if rows[12] is not None and rows[12] == '':
+                    self.xl_waring_message.append(None)
+                else:
+                    self.xl_waring_message.append(str(rows[12]))
 
         except IOError:
             print("File not found or path is incorrect")
@@ -101,18 +157,323 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
         send_nomination_api_response = json.loads(send_nomination_api.content)
         print(send_nomination_api_response)
 
+    def interviewer_request(self, loop):
+
+        self.lambda_function('update_interviewer_nomination_status')
+        self.headers['APP-NAME'] = 'crpo'
+
+        # ----------------------------------- API request --------------------------------------------------------------
+        request = {"eventId": self.xl_event_id[loop],
+                   "data": {
+                       self.xl_compositeKey[loop]: [{
+                           "interviewerId": self.xl_interviewer_id[loop],
+                           "emailId": self.xl_email_id[loop],
+                           "decisionByInterviewer": self.xl_interviewer_decision[loop]
+                       }]
+                   }}
+
+        interviewer_request_api = requests.post(self.webapi, headers=self.headers,
+                                                data=json.dumps(request, default=str), verify=False)
+        print(interviewer_request_api.headers)
+        interviewer_request_api_response = json.loads(interviewer_request_api.content)
+        print(interviewer_request_api_response)
+
+    def withdraw_after_int_decision(self, loop):
+        self.lambda_function('update_interviewer_nomination_status')
+        self.headers['APP-NAME'] = 'crpo'
+
+        # ----------------------------------- API request --------------------------------------------------------------
+        request = {"eventId": self.xl_event_id[loop],
+                   "data": {
+                       self.xl_compositeKey[loop]: [{
+                           "interviewerId": self.xl_interviewer_id[loop],
+                           "emailId": self.xl_email_id[loop],
+                           "decisionByInterviewer": self.xl_withdrawn_After_int[loop]
+                       }]
+                   }}
+
+        interviewer_req_wd_api = requests.post(self.webapi, headers=self.headers,
+                                               data=json.dumps(request, default=str), verify=False)
+        interviewer_req_wd_api_response = json.loads(interviewer_req_wd_api.content)
+        print(interviewer_req_wd_api_response)
+
+    def withdraw_after_sync(self, loop):
+        self.lambda_function('update_interviewer_nomination_status')
+        self.headers['APP-NAME'] = 'crpo'
+
+        # ----------------------------------- API request --------------------------------------------------------------
+        request = {"eventId": self.xl_event_id[loop],
+                   "data": {
+                       self.xl_compositeKey[loop]: [{
+                           "interviewerId": self.xl_interviewer_id[loop],
+                           "emailId": self.xl_email_id[loop],
+                           "decisionByInterviewer": self.xl_withdrawn_After_sync[loop]
+                       }]
+                   }}
+
+        withdraw_after_sync_api = requests.post(self.webapi, headers=self.headers,
+                                                data=json.dumps(request, default=str), verify=False)
+        withdraw_after_sync_api_response = json.loads(withdraw_after_sync_api.content)
+        print(withdraw_after_sync_api_response)
+
+    def event_manager_request(self, loop):
+
+        self.lambda_function('update_interviewer_nomination_status')
+        self.headers['APP-NAME'] = 'crpo'
+
+        # ----------------------------------- API request --------------------------------------------------------------
+        request = {"eventId": self.xl_event_id[loop],
+                   "data": {
+                       self.xl_compositeKey[loop]: [{
+                           "interviewerId": self.xl_interviewer_id[loop],
+                           "emailId": self.xl_email_id[loop],
+                           "compositeKey": self.xl_compositeKey[loop],
+                           "statusCode": 4,
+                           "decisionByEventManager": self.xl_manager_decision[loop]
+                       }]
+                   }}
+
+        event_manager_api = requests.post(self.webapi, headers=self.headers, data=json.dumps(request, default=str),
+                                          verify=False)
+        print(event_manager_api.headers)
+        event_manager_api_response = json.loads(event_manager_api.content)
+        print(event_manager_api_response)
+
+    def reject_event_manager_request(self, loop):
+
+        self.lambda_function('update_interviewer_nomination_status')
+        self.headers['APP-NAME'] = 'crpo'
+
+        # ----------------------------------- API request --------------------------------------------------------------
+        request = {"eventId": self.xl_event_id[loop],
+                   "data": {
+                       self.xl_compositeKey[loop]: [{
+                           "interviewerId": self.xl_interviewer_id[loop],
+                           "emailId": self.xl_email_id[loop],
+                           "compositeKey": self.xl_compositeKey[loop],
+                           "statusCode": 4,
+                           "decisionByEventManager": self.xl_manager_rejected[loop]
+                       }]
+                   }}
+
+        reject_event_manager_api = requests.post(self.webapi, headers=self.headers,
+                                                 data=json.dumps(request, default=str), verify=False)
+        print(reject_event_manager_api.headers)
+        reject_event_manager_api_response = json.loads(reject_event_manager_api.content)
+        print(reject_event_manager_api_response)
+
+    def withdraw_after_manager_decision(self, loop):
+        self.lambda_function('update_interviewer_nomination_status')
+        self.headers['APP-NAME'] = 'crpo'
+
+        # ----------------------------------- API request --------------------------------------------------------------
+        request = {"eventId": self.xl_event_id[loop],
+                   "data": {
+                       self.xl_compositeKey[loop]: [{
+                           "interviewerId": self.xl_interviewer_id[loop],
+                           "emailId": self.xl_email_id[loop],
+                           "decisionByInterviewer": self.xl_withdrawn_After_manager[loop]
+                       }]
+                   }}
+
+        manager_req_wd_api = requests.post(self.webapi, headers=self.headers,
+                                           data=json.dumps(request, default=str), verify=False)
+        manager_req_wd_api_response = json.loads(manager_req_wd_api.content)
+        print(manager_req_wd_api_response)
+
+    def sync_interviewers(self, loop):
+
+        self.lambda_function('sync_interviewers')
+        self.headers['APP-NAME'] = 'crpo'
+
+        # ----------------------------------- API request --------------------------------------------------------------
+        request = {"eventId": self.xl_event_id[loop]}
+
+        sync_interviewers_api = requests.post(self.webapi, headers=self.headers,
+                                              data=json.dumps(request, default=str), verify=False)
+        sync_interviewers_api_response = json.loads(sync_interviewers_api.content)
+        self.sync_data = sync_interviewers_api_response.get('data')
+        print(self.sync_data)
+
+    def get_all_invited_interviewers(self, loop):
+
+        self.lambda_function('get_all_invited_interviewers')
+        self.headers['APP-NAME'] = 'crpo'
+
+        # ----------------------------------- API request --------------------------------------------------------------
+        request = {"eventId": self.xl_event_id[loop],
+                   "pagingCriteria": {"pageSize": 100, "pageNumber": 1}
+                   }
+
+        invited_interviewers_api = requests.post(self.webapi, headers=self.headers,
+                                                 data=json.dumps(request, default=str), verify=False)
+        print(invited_interviewers_api.headers)
+        invited_interviewers_response = json.loads(invited_interviewers_api.content)
+        data = invited_interviewers_response.get('data')
+        for i in data:
+            if i['interviewerId'] == self.xl_interviewer_id[loop]:
+                self.invited_interviewers_dict = i
+                print(self.invited_interviewers_dict)
+
+    def get_all_invited_interviewers_after_manager_reject(self, loop):
+
+        self.lambda_function('get_all_invited_interviewers')
+        self.headers['APP-NAME'] = 'crpo'
+
+        # ----------------------------------- API request --------------------------------------------------------------
+        request = {"eventId": self.xl_event_id[loop],
+                   "pagingCriteria": {"pageSize": 100, "pageNumber": 1}
+                   }
+
+        invited_interviewers_api = requests.post(self.webapi, headers=self.headers,
+                                                 data=json.dumps(request, default=str), verify=False)
+        print(invited_interviewers_api.headers)
+        invited_interviewers_response = json.loads(invited_interviewers_api.content)
+        data = invited_interviewers_response.get('data')
+        for i in data:
+            if i['interviewerId'] == self.xl_interviewer_id[loop]:
+                self.invited_interviewers_dict_after_rejected = i
+
     def output_report(self, loop):
 
         # --------------------------------- Writing Input Data ---------------------------------------------------------
         self.ws.write(self.rowsize, self.col, 'Input', self.style4)
-        self.ws.write(self.rowsize, 1, self.xl_event_id[loop] if self.xl_event_id[loop] else 'Empty')
+        self.ws.write(self.rowsize, 2, self.xl_interviewer_id[loop] if self.xl_interviewer_id[loop] else 'Empty')
+        self.ws.write(self.rowsize, 3, self.xl_email_id[loop] if self.xl_email_id[loop] else 'Empty')
+        self.ws.write(self.rowsize, 9, self.xl_sync_interviewers[loop])
+        self.ws.write(self.rowsize, 12, self.xl_success_message[loop] if self.xl_success_message[loop] else 'Empty')
+        self.ws.write(self.rowsize, 13, self.xl_waring_message[loop] if self.xl_waring_message[loop] else 'Empty')
+        # --------------------------------------------------------------------------------------------------------------
+        if self.xl_interviewer_decision[loop] == 1:
+            int_decision = 'Confirm'
+            self.ws.write(self.rowsize, 4, int_decision)
+        elif self.xl_interviewer_decision[loop] == 0:
+            int_decision = 'Decline'
+            self.ws.write(self.rowsize, 4, int_decision)
+        elif self.xl_interviewer_decision[loop] == 2:
+            int_decision = 'Withdrawn'
+            self.ws.write(self.rowsize, 4, int_decision)
+        else:
+            self.ws.write(self.rowsize, 4, 'Pending')
+        # --------------------------------------------------------------------------------------------------------------
+        if self.xl_withdrawn_After_int[loop] is None:
+            self.ws.write(self.rowsize, 5, 'NA')
+        else:
+            if self.xl_withdrawn_After_int[loop] == 2:
+                withdrawn_decision_by_int = 'Withdrawn'
+                self.ws.write(self.rowsize, 5, withdrawn_decision_by_int)
+        # --------------------------------------------------------------------------------------------------------------
+        if self.xl_manager_decision[loop] is None:
+            self.ws.write(self.rowsize, 6, 'NA')
+        else:
+            if self.xl_manager_decision[loop] == 1:
+                manager_decision = 'Approved'
+                self.ws.write(self.rowsize, 6, manager_decision)
+            else:
+                manager_decision = 'Rejected'
+                self.ws.write(self.rowsize, 6, manager_decision)
 
-        # --------------------------------- Writing Output Data --------------------------------------------------------
+        # --------------------------------------------------------------------------------------------------------------
+        if self.xl_withdrawn_After_manager[loop] is None:
+            self.ws.write(self.rowsize, 7, 'NA')
+        else:
+            if self.xl_withdrawn_After_manager[loop] == 2:
+                withdrawn_decision_by_man = 'Withdrawn'
+                self.ws.write(self.rowsize, 7, withdrawn_decision_by_man)
+        # --------------------------------------------------------------------------------------------------------------
+        if self.xl_manager_rejected[loop] is None:
+            self.ws.write(self.rowsize, 8, 'NA')
+        else:
+            if self.xl_manager_rejected[loop] == 0:
+                approve_rejected_manager = 'Rejected'
+                self.ws.write(self.rowsize, 8, approve_rejected_manager)
+        # --------------------------------------------------------------------------------------------------------------
+        if self.xl_withdrawn_After_sync[loop] is None:
+            self.ws.write(self.rowsize, 10, 'NA')
+        else:
+            if self.xl_withdrawn_After_sync[loop] == 2:
+                withdrawn_after_sync = 'Withdrawn'
+                self.ws.write(self.rowsize, 10, withdrawn_after_sync)
+
+        # --------------------------------------------------------------------------------------------------------------
+        # ---------------------------------------- Writing Output Data -------------------------------------------------
+        # --------------------------------------------------------------------------------------------------------------
         self.rowsize += 1
         self.ws.write(self.rowsize, self.col, 'Output', self.style5)
-        self.rowsize += 1
+        self.ws.write(self.rowsize, 1, 'Pass', self.style26)
+        self.success_case_01 = 'Pass'
+        # --------------------------------------------------------------------------------------------------------------
+
+        if self.invited_interviewers_dict['interviewerId'] == self.xl_interviewer_id[loop]:
+            self.ws.write(self.rowsize, 2, self.invited_interviewers_dict['interviewerId'], self.style8)
+        else:
+            self.ws.write(self.rowsize, 2, self.invited_interviewers_dict.get('interviewerId', None), self.style3)
+        # --------------------------------------------------------------------------------------------------------------
+
+        if self.invited_interviewers_dict['emailId'] == self.xl_email_id[loop]:
+            self.ws.write(self.rowsize, 3, self.invited_interviewers_dict['emailId'], self.style8)
+        else:
+            self.ws.write(self.rowsize, 3, self.invited_interviewers_dict.get('emailId', None), self.style3)
+        # --------------------------------------------------------------------------------------------------------------
+        if self.xl_interviewer_decision[loop] == 0 or self.xl_interviewer_decision[loop] == 1\
+                or self.xl_interviewer_decision[loop] == 2 or self.xl_interviewer_decision[loop] is None:
+            if self.invited_interviewers_dict['isNominatedSelf']:
+                self.ws.write(self.rowsize, 4, 'Confirm', self.style8)
+            elif self.invited_interviewers_dict['isNominatedSelf'] is None:
+                self.ws.write(self.rowsize, 4, 'Pending', self.style8)
+            else:
+                self.ws.write(self.rowsize, 4, 'Decline', self.style8)
+        # --------------------------------------------------------------------------------------------------------------
+        if self.xl_withdrawn_After_int[loop] == 2:
+            if self.invited_interviewers_dict['isRefusedByInterviewerAfterAcceptance']:
+                self.ws.write(self.rowsize, 5, 'Withdraw', self.style8)
+        elif self.xl_withdrawn_After_int[loop] is None:
+            self.ws.write(self.rowsize, 5, 'NA', self.style8)
+        # --------------------------------------------------------------------------------------------------------------
+        if self.xl_manager_decision[loop] == 1:
+            if self.invited_interviewers_dict['isNominationAccepted']:
+                self.ws.write(self.rowsize, 6, 'Approved', self.style8)
+        elif self.xl_manager_decision[loop] == 0:
+            self.ws.write(self.rowsize, 6, 'Rejected', self.style8)
+        else:
+            self.ws.write(self.rowsize, 6, 'NA', self.style8)
+        # --------------------------------------------------------------------------------------------------------------
+        if self.xl_withdrawn_After_manager[loop] == 2:
+            if self.invited_interviewers_dict['isRefusedByInterviewerAfterAcceptance']:
+                self.ws.write(self.rowsize, 7, 'Withdraw', self.style8)
+        elif self.xl_withdrawn_After_manager[loop] is None:
+            self.ws.write(self.rowsize, 7, 'NA', self.style8)
+        # --------------------------------------------------------------------------------------------------------------
+        if self.xl_manager_rejected[loop] == 0:
+            if self.invited_interviewers_dict_after_rejected['isNominationAccepted']:
+                self.ws.write(self.rowsize, 8, 'Approved', self.style3)
+            elif self.invited_interviewers_dict_after_rejected['isNominationAccepted'] is None:
+                self.ws.write(self.rowsize, 8, 'Pending', self.style3)
+            else:
+                self.ws.write(self.rowsize, 8, 'Rejected', self.style8)
+        else:
+            self.ws.write(self.rowsize, 8, 'NA', self.style8)
+        # --------------------------------------------------------------------------------------------------------------
+        if self.sync_data:
+            if self.sync_data['successMessage']:
+                self.ws.write(self.rowsize, 9, 'Yes', self.style8)
+        # --------------------------------------------------------------------------------------------------------------
+        if self.xl_withdrawn_After_sync[loop] == 2:
+            if self.invited_interviewers_dict['isRefusedByInterviewerAfterAcceptance']:
+                self.ws.write(self.rowsize, 10, 'Withdraw', self.style8)
+        elif self.xl_withdrawn_After_sync[loop] is None:
+            self.ws.write(self.rowsize, 10, 'NA', self.style8)
+        # --------------------------------------------------------------------------------------------------------------
+        if self.sync_data:
+            if self.xl_success_message[loop] == self.sync_data['successMessage']:
+                self.ws.write(self.rowsize, 12, self.sync_data['successMessage'], self.style8)
+        # --------------------------------------------------------------------------------------------------------------
+        if self.sync_data:
+            if self.xl_waring_message[loop] == self.sync_data.get('warningMessage'):
+                self.ws.write(self.rowsize, 13, self.sync_data.get('warningMessage', 'Empty'), self.style8)
 
         # ------------------------------------ OutPut File save --------------------------------------------------------
+        self.rowsize += 1
         Object.wb_Result.save(output_paths.outputpaths['MI_output_sheet'])
 
         if self.success_case_01 == 'Pass':
@@ -129,9 +490,10 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
         else:
             self.ws.write(0, 1, 'Fail', self.style25)
 
-        self.ws.write(0, 3, 'Start Time', self.style23)
-        self.ws.write(0, 4, self.start_time, self.style26)
-
+        self.ws.write(0, 2, 'Start Time', self.style23)
+        self.ws.write(0, 3, self.start_time, self.style26)
+        self.ws.write(0, 4, 'Lambda', self.style23)
+        self.ws.write(0, 5, self.calling_lambda, self.style24)
         # ---------------------------- OutPut File save with Overall Status --------------------------------------------
         Object.wb_Result.save(output_paths.outputpaths['MI_output_sheet'])
 
@@ -145,6 +507,27 @@ if Object.login == 'OK':
     for looping in range(0, Total_count):
         print("Iteration Count is ::", looping)
         Object.send_nomination_mails(looping)
+        Object.interviewer_request(looping)
+
+        if Object.xl_withdrawn_After_int[looping] == 2:
+            Object.withdraw_after_int_decision(looping)
+
+        Object.event_manager_request(looping)
+
+        if Object.xl_withdrawn_After_manager[looping] == 2:
+            Object.withdraw_after_manager_decision(looping)
+
+        Object.get_all_invited_interviewers(looping)
+
+        if Object.xl_manager_rejected[looping] == 0:
+            Object.reject_event_manager_request(looping)
+            Object.get_all_invited_interviewers_after_manager_reject(looping)
+
+        if Object.xl_withdrawn_After_sync[looping] == 2:
+            Object.withdraw_after_sync(looping)
+            Object.get_all_invited_interviewers(looping)
+
+        Object.sync_interviewers(looping)
         Object.output_report(looping)
 
         # ----------------- Make Dictionaries clear for each loop ------------------------------------------------------
@@ -152,6 +535,9 @@ if Object.login == 'OK':
         Object.success_case_02 = {}
         Object.success_case_03 = {}
         Object.headers = {}
+        Object.invited_interviewers_dict = {}
+        Object.invited_interviewers_dict_after_rejected = {}
+        Object.sync_data = {}
 
 # ---------------------------- Call this function at last --------------------------------------------------------------
 Object.overall_status()
