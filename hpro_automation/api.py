@@ -76,6 +76,10 @@ non_lambda_apis = {
     "update_interviewer_nomination_status": generic_domain + "crpo/interviewer_nomination/api/v1/"
                                                              "update_interviewer_nomination_status/",
 
+    "get_all_invited_interviewers": generic_domain + "crpo/interviewer_nomination/api/v1/get_all_invited_interviewers/",
+
+    "sync_interviewers": generic_domain + "crpo/interviewer_nomination/api/v1/sync_interviewers/",
+
     # ---------------------------------- communication history/status --------------------------------------------------
     "sendAdmitCardsToApplicants":
         generic_domain + "crpo/candidatecommunication/api/v1/sendAdmitCardsToApplicants",
