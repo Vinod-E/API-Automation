@@ -17,7 +17,7 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
         self.common_login('v')
 
         # --------------------------------- Overall status initialize variables ----------------------------------------
-        self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 10)))
+        self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 16)))
         self.Actual_Success_case = []
 
         # --------------------------------- Excel Data initialize variables --------------------------------------------
@@ -34,15 +34,32 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
         self.xl_withdrawn_After_sync = []
         self.xl_success_message = []
         self.xl_waring_message = []
+        self.xl_tagged_interviewers = []
+
+        self.xl_nomi_sent = []
+        self.xl_nomi_total_response = []
+        self.xl_nomi_confirm_int = []
+        self.xl_nomi_withdrawn = []
+        self.xl_nomi_approve = []
+        self.xl_nomi_rejected = []
+        self.xl_report_event_id = []
 
         # --------------------------------- Dictionary initialize variables --------------------------------------------
         self.success_case_01 = {}
         self.success_case_02 = {}
         self.success_case_03 = {}
+        self.success_case_04 = {}
+        self.success_case_05 = {}
+        self.success_case_06 = {}
+        self.success_case_07 = {}
+        self.success_case_08 = {}
+        self.success_case_09 = {}
         self.headers = {}
         self.invited_interviewers_dict = {}
         self.invited_interviewers_dict_after_rejected = {}
         self.sync_data = {}
+        self.owners_dict = {}
+        self.composite_key_1 = {}
 
     def excel_headers(self):
 
@@ -133,6 +150,29 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
                     self.xl_waring_message.append(None)
                 else:
                     self.xl_waring_message.append(str(rows[12]))
+
+                if rows[13] is not None and rows[13] == '':
+                    self.xl_tagged_interviewers.append(None)
+                else:
+                    self.xl_tagged_interviewers.append(str(rows[13]))
+
+        except IOError:
+            print("File not found or path is incorrect")
+
+        try:
+            workbook1 = xlrd.open_workbook(input_paths.inputpaths['Manage_Int_Input_sheet'])
+            sheet1 = workbook1.sheet_by_index(1)
+            for i in range(1, sheet1.nrows):
+                number = i  # Counting number of rows
+                rows = sheet1.row_values(number)
+
+                self.xl_nomi_sent.append(int(rows[0]))
+                self.xl_nomi_total_response.append(int(rows[1]))
+                self.xl_nomi_confirm_int.append(int(rows[2]))
+                self.xl_nomi_withdrawn.append(int(rows[3]))
+                self.xl_nomi_approve.append(int(rows[4]))
+                self.xl_nomi_rejected.append(int(rows[5]))
+                self.xl_report_event_id.append(int(rows[6]))
 
         except IOError:
             print("File not found or path is incorrect")
@@ -334,6 +374,40 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
             if i['interviewerId'] == self.xl_interviewer_id[loop]:
                 self.invited_interviewers_dict_after_rejected = i
 
+    def get_partial_get_event_id(self, loop):
+
+        self.lambda_function('getPartialGetEventForId')
+        self.headers['APP-NAME'] = 'crpo'
+
+        # ----------------------------------- API request --------------------------------------------------------------
+        request = {"EId": self.xl_event_id[loop], "EOptions": [5]}
+
+        get_event_id_api = requests.post(self.webapi, headers=self.headers,
+                                         data=json.dumps(request, default=str), verify=False)
+        print(get_event_id_api.headers)
+        get_event_id_response = json.loads(get_event_id_api.content)
+        owners = get_event_id_response.get('Owners')
+        for i in owners:
+            if i['UserId'] == self.xl_interviewer_id[loop]:
+                self.owners_dict = i
+
+    def get_event_wise_nominations_summary_count(self, loop):
+
+        self.lambda_function('get_event_wise_nominations_summary_count')
+        self.headers['APP-NAME'] = 'crpo'
+
+        # ----------------------------------- API request --------------------------------------------------------------
+        request = {"eventId": self.xl_report_event_id[loop]}
+
+        event_wise_nominations_api = requests.post(self.webapi, headers=self.headers,
+                                                   data=json.dumps(request, default=str), verify=False)
+        print(event_wise_nominations_api.headers)
+        event_wise_nominations_response = json.loads(event_wise_nominations_api.content)
+        data = event_wise_nominations_response.get('data')
+        event = data[str(self.xl_report_event_id[loop])]
+        composite_key = event[str(self.xl_compositeKey[loop])]
+        self.composite_key_1 = composite_key
+
     def output_report(self, loop):
 
         # --------------------------------- Writing Input Data ---------------------------------------------------------
@@ -394,14 +468,24 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
             if self.xl_withdrawn_After_sync[loop] == 2:
                 withdrawn_after_sync = 'Withdrawn'
                 self.ws.write(self.rowsize, 10, withdrawn_after_sync)
+        # --------------------------------------------------------------------------------------------------------------
+        if self.xl_tagged_interviewers[loop] == 'Not Tagged':
+            self.ws.write(self.rowsize, 11, 'Not Tagged')
+        elif self.owners_dict:
+            self.ws.write(self.rowsize, 11, self.xl_tagged_interviewers[loop].format(self.xl_interviewer_id[loop]))
 
         # --------------------------------------------------------------------------------------------------------------
         # ---------------------------------------- Writing Output Data -------------------------------------------------
         # --------------------------------------------------------------------------------------------------------------
         self.rowsize += 1
+
         self.ws.write(self.rowsize, self.col, 'Output', self.style5)
-        self.ws.write(self.rowsize, 1, 'Pass', self.style26)
-        self.success_case_01 = 'Pass'
+
+        if self.invited_interviewers_dict['interviewerId'] == self.xl_interviewer_id[loop]:
+            self.ws.write(self.rowsize, 1, 'Pass', self.style26)
+            self.success_case_01 = 'Pass'
+        else:
+            self.ws.write(self.rowsize, 1, 'Fail', self.style3)
         # --------------------------------------------------------------------------------------------------------------
 
         if self.invited_interviewers_dict['interviewerId'] == self.xl_interviewer_id[loop]:
@@ -464,6 +548,15 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
         elif self.xl_withdrawn_After_sync[loop] is None:
             self.ws.write(self.rowsize, 10, 'NA', self.style8)
         # --------------------------------------------------------------------------------------------------------------
+        if self.xl_tagged_interviewers[loop]:
+            if self.owners_dict:
+                if self.xl_interviewer_id[loop] == self.owners_dict['UserId']:
+                    self.ws.write(self.rowsize, 11, 'Tagged_{}'.format(self.owners_dict['UserId']), self.style8)
+                else:
+                    self.ws.write(self.rowsize, 11, 'Tagged_{}'.format(self.owners_dict['UserId']), self.style3)
+            else:
+                self.ws.write(self.rowsize, 11, self.xl_tagged_interviewers[loop], self.style8)
+        # --------------------------------------------------------------------------------------------------------------
         if self.sync_data:
             if self.xl_success_message[loop] == self.sync_data['successMessage']:
                 self.ws.write(self.rowsize, 12, self.sync_data['successMessage'], self.style8)
@@ -482,6 +575,72 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
             self.Actual_Success_case.append(self.success_case_02)
         if self.success_case_03 == 'Pass':
             self.Actual_Success_case.append(self.success_case_03)
+
+    def report_count(self, loop):
+        self.ws.write(24, 0, 'Nominations Sent', self.style27)
+        self.ws.write(24, 1, 'Total Response from Interviewer', self.style27)
+        self.ws.write(24, 2, 'Confirm by Interviewer', self.style27)
+        self.ws.write(24, 3, 'Withdrawn by Interviewer', self.style27)
+        self.ws.write(24, 4, 'Approve by EM', self.style27)
+        self.ws.write(24, 5, 'Rejected by EM', self.style27)
+
+        self.ws.write(25, 0, self.xl_nomi_sent[loop], self.style28)
+        self.ws.write(25, 1, self.xl_nomi_total_response[loop], self.style28)
+        self.ws.write(25, 2, self.xl_nomi_confirm_int[loop], self.style28)
+        self.ws.write(25, 3, self.xl_nomi_withdrawn[loop], self.style28)
+        self.ws.write(25, 4, self.xl_nomi_approve[loop], self.style28)
+        self.ws.write(25, 5, self.xl_nomi_rejected[loop], self.style28)
+        # --------------------------------------------------------------------------------------------------------------
+        if self.xl_nomi_sent[loop] == self.composite_key_1['nominationsSentCount']:
+            self.ws.write(26, 0, self.composite_key_1['nominationsSentCount'], self.style24)
+            self.success_case_04 = 'Pass'
+        else:
+            self.ws.write(26, 0, self.composite_key_1['nominationsSentCount'], self.style25)
+        # --------------------------------------------------------------------------------------------------------------
+        if self.xl_nomi_total_response[loop] == self.composite_key_1['selfNominatedRespondCount']:
+            self.ws.write(26, 1, self.composite_key_1['selfNominatedRespondCount'], self.style24)
+            self.success_case_05 = 'Pass'
+        else:
+            self.ws.write(26, 1, self.composite_key_1['selfNominatedRespondCount'], self.style25)
+        # --------------------------------------------------------------------------------------------------------------
+        if self.xl_nomi_confirm_int[loop] == self.composite_key_1['selfNominatedCount']:
+            self.ws.write(26, 2, self.composite_key_1['selfNominatedCount'], self.style24)
+            self.success_case_06 = 'Pass'
+        else:
+            self.ws.write(26, 2, self.composite_key_1['selfNominatedCount'], self.style25)
+        # --------------------------------------------------------------------------------------------------------------
+        if self.xl_nomi_withdrawn[loop] == self.composite_key_1['refusedByInterviewerAfterAcceptanceCount']:
+            self.ws.write(26, 3, self.composite_key_1['refusedByInterviewerAfterAcceptanceCount'], self.style24)
+            self.success_case_07 = 'Pass'
+        else:
+            self.ws.write(26, 3, self.composite_key_1['refusedByInterviewerAfterAcceptanceCount'], self.style25)
+        # --------------------------------------------------------------------------------------------------------------
+        if self.xl_nomi_approve[loop] == self.composite_key_1['nominationApprovedByEMCount']:
+            self.ws.write(26, 4, self.composite_key_1['nominationApprovedByEMCount'], self.style24)
+            self.success_case_08 = 'Pass'
+        else:
+            self.ws.write(26, 4, self.composite_key_1['nominationApprovedByEMCount'], self.style25)
+        # --------------------------------------------------------------------------------------------------------------
+        if self.xl_nomi_rejected[loop] == self.composite_key_1['nominationRejectedByEMCount']:
+            self.ws.write(26, 5, self.composite_key_1['nominationRejectedByEMCount'], self.style24)
+            self.success_case_09 = 'Pass'
+        else:
+            self.ws.write(26, 5, self.composite_key_1['nominationRejectedByEMCount'], self.style25)
+
+        Object.wb_Result.save(output_paths.outputpaths['MI_output_sheet'])
+
+        if self.success_case_04 == 'Pass':
+            self.Actual_Success_case.append(self.success_case_04)
+        if self.success_case_05 == 'Pass':
+            self.Actual_Success_case.append(self.success_case_05)
+        if self.success_case_06 == 'Pass':
+            self.Actual_Success_case.append(self.success_case_06)
+        if self.success_case_07 == 'Pass':
+            self.Actual_Success_case.append(self.success_case_07)
+        if self.success_case_08 == 'Pass':
+            self.Actual_Success_case.append(self.success_case_08)
+        if self.success_case_09 == 'Pass':
+            self.Actual_Success_case.append(self.success_case_09)
 
     def overall_status(self):
         self.ws.write(0, 0, 'Manage Interviewers', self.style23)
@@ -528,6 +687,7 @@ if Object.login == 'OK':
             Object.get_all_invited_interviewers(looping)
 
         Object.sync_interviewers(looping)
+        Object.get_partial_get_event_id(looping)
         Object.output_report(looping)
 
         # ----------------- Make Dictionaries clear for each loop ------------------------------------------------------
@@ -538,6 +698,20 @@ if Object.login == 'OK':
         Object.invited_interviewers_dict = {}
         Object.invited_interviewers_dict_after_rejected = {}
         Object.sync_data = {}
+        Object.owners_dict = {}
 
-# ---------------------------- Call this function at last --------------------------------------------------------------
+Total_count1 = len(Object.xl_report_event_id)
+for looping in range(0, Total_count1):
+    print("Report Iteration Count is ::", looping)
+    Object.get_event_wise_nominations_summary_count(looping)
+    Object.report_count(looping)
+
+    Object.composite_key_1 = {}
+    Object.success_case_04 = {}
+    Object.success_case_05 = {}
+    Object.success_case_06 = {}
+    Object.success_case_07 = {}
+    Object.success_case_08 = {}
+    Object.success_case_09 = {}
+
 Object.overall_status()
