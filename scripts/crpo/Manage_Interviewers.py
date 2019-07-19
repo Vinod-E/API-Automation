@@ -577,57 +577,60 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
             self.Actual_Success_case.append(self.success_case_03)
 
     def report_count(self, loop):
-        self.ws.write(24, 0, 'Nominations Sent', self.style27)
-        self.ws.write(24, 1, 'Total Response from Interviewer', self.style27)
-        self.ws.write(24, 2, 'Confirm by Interviewer', self.style27)
-        self.ws.write(24, 3, 'Withdrawn by Interviewer', self.style27)
-        self.ws.write(24, 4, 'Approve by EM', self.style27)
-        self.ws.write(24, 5, 'Rejected by EM', self.style27)
+        self.ws.write(24, self.col, 'Comparison', self.style23)
+        self.ws.write(24, 1, 'Status', self.style23)
+        self.ws.write(24, 2, 'Nominations Sent', self.style27)
+        self.ws.write(24, 3, 'Total Response from Interviewer', self.style27)
+        self.ws.write(24, 4, 'Confirm by Interviewer', self.style27)
+        self.ws.write(24, 5, 'Withdrawn by Interviewer', self.style27)
+        self.ws.write(24, 6, 'Approve by EM', self.style27)
+        self.ws.write(24, 7, 'Rejected by EM', self.style27)
 
-        self.ws.write(25, 0, self.xl_nomi_sent[loop], self.style28)
-        self.ws.write(25, 1, self.xl_nomi_total_response[loop], self.style28)
-        self.ws.write(25, 2, self.xl_nomi_confirm_int[loop], self.style28)
-        self.ws.write(25, 3, self.xl_nomi_withdrawn[loop], self.style28)
-        self.ws.write(25, 4, self.xl_nomi_approve[loop], self.style28)
-        self.ws.write(25, 5, self.xl_nomi_rejected[loop], self.style28)
+        self.ws.write(25, self.col, 'Input', self.style4)
+        self.ws.write(25, 2, self.xl_nomi_sent[loop], self.style28)
+        self.ws.write(25, 3, self.xl_nomi_total_response[loop], self.style28)
+        self.ws.write(25, 4, self.xl_nomi_confirm_int[loop], self.style28)
+        self.ws.write(25, 5, self.xl_nomi_withdrawn[loop], self.style28)
+        self.ws.write(25, 6, self.xl_nomi_approve[loop], self.style28)
+        self.ws.write(25, 7, self.xl_nomi_rejected[loop], self.style28)
         # --------------------------------------------------------------------------------------------------------------
+        self.ws.write(26, self.col, 'Output', self.style5)
+
         if self.xl_nomi_sent[loop] == self.composite_key_1['nominationsSentCount']:
-            self.ws.write(26, 0, self.composite_key_1['nominationsSentCount'], self.style24)
+            self.ws.write(26, 2, self.composite_key_1['nominationsSentCount'], self.style24)
             self.success_case_04 = 'Pass'
         else:
-            self.ws.write(26, 0, self.composite_key_1['nominationsSentCount'], self.style25)
+            self.ws.write(26, 2, self.composite_key_1['nominationsSentCount'], self.style25)
         # --------------------------------------------------------------------------------------------------------------
         if self.xl_nomi_total_response[loop] == self.composite_key_1['selfNominatedRespondCount']:
-            self.ws.write(26, 1, self.composite_key_1['selfNominatedRespondCount'], self.style24)
+            self.ws.write(26, 3, self.composite_key_1['selfNominatedRespondCount'], self.style24)
             self.success_case_05 = 'Pass'
         else:
-            self.ws.write(26, 1, self.composite_key_1['selfNominatedRespondCount'], self.style25)
+            self.ws.write(26, 3, self.composite_key_1['selfNominatedRespondCount'], self.style25)
         # --------------------------------------------------------------------------------------------------------------
         if self.xl_nomi_confirm_int[loop] == self.composite_key_1['selfNominatedCount']:
-            self.ws.write(26, 2, self.composite_key_1['selfNominatedCount'], self.style24)
+            self.ws.write(26, 4, self.composite_key_1['selfNominatedCount'], self.style24)
             self.success_case_06 = 'Pass'
         else:
-            self.ws.write(26, 2, self.composite_key_1['selfNominatedCount'], self.style25)
+            self.ws.write(26, 4, self.composite_key_1['selfNominatedCount'], self.style25)
         # --------------------------------------------------------------------------------------------------------------
         if self.xl_nomi_withdrawn[loop] == self.composite_key_1['refusedByInterviewerAfterAcceptanceCount']:
-            self.ws.write(26, 3, self.composite_key_1['refusedByInterviewerAfterAcceptanceCount'], self.style24)
+            self.ws.write(26, 5, self.composite_key_1['refusedByInterviewerAfterAcceptanceCount'], self.style24)
             self.success_case_07 = 'Pass'
         else:
-            self.ws.write(26, 3, self.composite_key_1['refusedByInterviewerAfterAcceptanceCount'], self.style25)
+            self.ws.write(26, 5, self.composite_key_1['refusedByInterviewerAfterAcceptanceCount'], self.style25)
         # --------------------------------------------------------------------------------------------------------------
         if self.xl_nomi_approve[loop] == self.composite_key_1['nominationApprovedByEMCount']:
-            self.ws.write(26, 4, self.composite_key_1['nominationApprovedByEMCount'], self.style24)
+            self.ws.write(26, 6, self.composite_key_1['nominationApprovedByEMCount'], self.style24)
             self.success_case_08 = 'Pass'
         else:
-            self.ws.write(26, 4, self.composite_key_1['nominationApprovedByEMCount'], self.style25)
+            self.ws.write(26, 6, self.composite_key_1['nominationApprovedByEMCount'], self.style25)
         # --------------------------------------------------------------------------------------------------------------
         if self.xl_nomi_rejected[loop] == self.composite_key_1['nominationRejectedByEMCount']:
-            self.ws.write(26, 5, self.composite_key_1['nominationRejectedByEMCount'], self.style24)
+            self.ws.write(26, 7, self.composite_key_1['nominationRejectedByEMCount'], self.style24)
             self.success_case_09 = 'Pass'
         else:
-            self.ws.write(26, 5, self.composite_key_1['nominationRejectedByEMCount'], self.style25)
-
-        Object.wb_Result.save(output_paths.outputpaths['MI_output_sheet'])
+            self.ws.write(26, 7, self.composite_key_1['nominationRejectedByEMCount'], self.style25)
 
         if self.success_case_04 == 'Pass':
             self.Actual_Success_case.append(self.success_case_04)
@@ -641,6 +644,13 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
             self.Actual_Success_case.append(self.success_case_08)
         if self.success_case_09 == 'Pass':
             self.Actual_Success_case.append(self.success_case_09)
+
+        if self.Expected_success_cases == self.Actual_Success_case:
+            self.ws.write(26, 1, 'Pass', self.style26)
+        else:
+            self.ws.write(26, 1, 'Fail', self.style3)
+
+        Object.wb_Result.save(output_paths.outputpaths['MI_output_sheet'])
 
     def overall_status(self):
         self.ws.write(0, 0, 'Manage Interviewers', self.style23)
@@ -682,11 +692,12 @@ if Object.login == 'OK':
             Object.reject_event_manager_request(looping)
             Object.get_all_invited_interviewers_after_manager_reject(looping)
 
+        Object.sync_interviewers(looping)
+
         if Object.xl_withdrawn_After_sync[looping] == 2:
             Object.withdraw_after_sync(looping)
             Object.get_all_invited_interviewers(looping)
 
-        Object.sync_interviewers(looping)
         Object.get_partial_get_event_id(looping)
         Object.output_report(looping)
 
