@@ -11,25 +11,30 @@ class DeleteManageInterviewers(db_login.DBConnection):
         # -----------------------
         # Initialising the values
         # -----------------------
-        self.xl_EventId = []
+        self.xl_deleted_event_id = []
 
     def mi_excel_data(self):
-        workbook = xlrd.open_workbook(input_paths.inputpaths[''])
-        sheet1 = workbook.sheet_by_index(0)
-        for i in range(1, sheet1.nrows):
-            number = i  # Counting number of rows
-            rows = sheet1.row_values(number)
-            if rows[0]:
-                self.xl_EventId.append(int(rows[0]))
+        try:
+            workbook = xlrd.open_workbook(input_paths.inputpaths['Manage_Int_Input_sheet'])
+            sheet1 = workbook.sheet_by_index(1)
+            for i in range(1, sheet1.nrows):
+                number = i  # Counting number of rows
+                rows = sheet1.row_values(number)
+
+                self.xl_deleted_event_id.append(int(rows[6]))
+
+        except IOError:
+            print("File not found or path is incorrect")
 
     def delete_rows(self):
 
-        query = "DELETE FROM interview_nominees_status_for_events WHERE event_id={};".format(self.xl_EventId)
+        query = "DELETE FROM interview_nominees_status_for_events WHERE event_id={};".format(self.xl_deleted_event_id)
         self.cursor.execute(query)
         print(query)
 
 
 Object = DeleteManageInterviewers()
+Object.mi_excel_data()
 Object.delete_rows()
 Object.connection.commit()
 Object.connection.close()

@@ -33,6 +33,8 @@ lambda_apis = {
 
     "getAllAppPreference": generic_domain + 'common/common_app_utils/api/v1/getAllAppPreference/',
 
+    "getPartialGetEventForId": generic_domain + "crpo/event/api/v1/getPartialGetEventForId/",
+
     # ---------------------------------- communication history/status --------------------------------------------------
     "Create_Attachment": generic_domain + "common/attachment/api/v1/createAttachment/",
 
@@ -79,6 +81,9 @@ non_lambda_apis = {
     "get_all_invited_interviewers": generic_domain + "crpo/interviewer_nomination/api/v1/get_all_invited_interviewers/",
 
     "sync_interviewers": generic_domain + "crpo/interviewer_nomination/api/v1/sync_interviewers/",
+
+    "get_event_wise_nominations_summary_count": generic_domain + "crpo/interviewer_nomination/api/v1/"
+                                                                 "get_event_wise_nominations_summary_count/",
 
     # ---------------------------------- communication history/status --------------------------------------------------
     "sendAdmitCardsToApplicants":
