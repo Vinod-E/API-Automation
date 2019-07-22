@@ -14,7 +14,7 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
 
         # --------------------------------- Inheritance Class Instance -------------------------------------------------
         super(ManageInterviewers, self).__init__()
-        self.common_login('v')
+        self.common_login('crpo')
 
         # --------------------------------- Overall status initialize variables ----------------------------------------
         self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 16)))
@@ -482,8 +482,11 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
         self.ws.write(self.rowsize, self.col, 'Output', self.style5)
 
         if self.invited_interviewers_dict['interviewerId'] == self.xl_interviewer_id[loop]:
-            self.ws.write(self.rowsize, 1, 'Pass', self.style26)
-            self.success_case_01 = 'Pass'
+            if self.invited_interviewers_dict['emailId'] == self.xl_email_id[loop]:
+                self.ws.write(self.rowsize, 1, 'Pass', self.style26)
+                self.success_case_01 = 'Pass'
+            else:
+                self.ws.write(self.rowsize, 1, 'Fail', self.style3)
         else:
             self.ws.write(self.rowsize, 1, 'Fail', self.style3)
         # --------------------------------------------------------------------------------------------------------------
