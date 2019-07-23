@@ -5,6 +5,8 @@ generic_domain = credentials.generic_domain['domain']
 # ---------------------------------------------Lambda APIS -------------------------------------------------------------
 lambda_apis = {
 
+    "getAllEvent": generic_domain + 'crpo/event/api/v1/getAllEvent/',
+
     "bulkCreateTagCandidates": generic_domain + "crpo/candidate/api/v1/bulkCreateTagCandidates/",
 
     "getAllApplicants": generic_domain + "crpo/applicant/api/v1/getAllApplicants/",
