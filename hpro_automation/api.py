@@ -48,6 +48,10 @@ lambda_apis = {
 # -------------------------------------------- Non Lambda APIS ---------------------------------------------------------
 non_lambda_apis = {
 
+    "createEvent": generic_domain + "crpo/event/api/v1/createEvent/",
+
+    "updateEvent": generic_domain + "crpo/event/api/v1/updateEvent/",
+
     "change_password": generic_domain + "common/user/change_password/",
 
     "update_candidate_details": generic_domain + "rpo/update_candidate_details/",
