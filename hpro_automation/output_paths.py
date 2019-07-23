@@ -59,6 +59,8 @@ outputpaths = {
 
     'MI_output_sheet': generic_output_path + "Crpo/Manage Interviewers/API_Manage_Interviewers.xls",
 
+    'Event_output_sheet': generic_output_path + "Crpo/Create_update_Event/API_Create_Update_Event.xls",
+
     # ------------------
     # Pofu output sheets
     # ------------------
