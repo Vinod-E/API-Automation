@@ -60,6 +60,9 @@ class FontColor(object):
                                    'align:wrap on, vert centre, horiz centre;')
         self.style28 = xlwt.easyxf('font: name Arial, color black, bold on, height 400;'
                                    'align: vert centre, horiz centre;')
+        self.style29 = xlwt.easyxf('pattern: pattern solid, fore_colour black;'
+                                   'font: name Arial, color light_orange, bold on, height 260;'
+                                   'align:wrap on, vert centre, horiz centre;')
 
 # -------
 # colours
