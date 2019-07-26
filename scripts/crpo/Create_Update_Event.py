@@ -14,7 +14,7 @@ class CreateUpdateEvent(login.CommonLogin, work_book.WorkBook):
 
         # --------------------------------- Inheritance Class Instance -------------------------------------------------
         super(CreateUpdateEvent, self).__init__()
-        self.common_login('v')
+        self.common_login('crpo')
 
         # --------------------------------- Overall status initialize variables ----------------------------------------
         self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 24)))
