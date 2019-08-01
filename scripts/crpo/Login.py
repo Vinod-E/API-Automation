@@ -14,7 +14,7 @@ class LoginCheck(work_book.WorkBook, login.CommonLogin):
         # self.lambda_call = str(input("Lambda On/Off:: "))
 
         # --------------------------
-        # Initilasing the excel data
+        # Initialising the excel data
         # --------------------------
         self.xl_tenant = []
         self.xl_username = []
@@ -28,7 +28,7 @@ class LoginCheck(work_book.WorkBook, login.CommonLogin):
         self.Actual_Success_case = []
 
         # --------------------
-        # Intialising the dict
+        # Initializing the dict
         # --------------------
         self.login_check_api_response = {}
         self.error_message = {}
