@@ -1,0 +1,289 @@
+<html>
+        <head>
+        <title>Automation Results</title>
+        <style>
+        h1 {
+            color: #0e8eab;
+            text-align: left;
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        }
+        .div-h1 {
+            position: absolute;
+            overflow: hidden;
+            top: 0;
+            width: auto;
+            height: 100px;
+            text-align: center;
+        }
+        .div-overalldata {
+            position: absolute;
+            top: 60px;
+            width: 600px;
+            height: auto;
+            text-align: left;
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        }
+        .label {
+            color: #0e8eab;
+            font-family: Arial;
+            font-size: 14pt;
+            font-weight: bold;
+        }
+        .value {
+            color: black;
+            font-family: Arial;
+            font-size: 14pt;
+        }
+        .valuePass {
+            color: green;
+            font-family: Arial;
+            animation: blinkingTextPass 0.8s infinite;
+            font-weight: bold;
+            font-size: 20pt;
+        }       
+        @keyframes blinkingTextPass{
+            0%{     color: green; font-size: 0pt;  }
+            50%{    color: lightgreen; }
+            100%{   color: green; font-size: 14pt; } 
+        }
+        .valueFail {
+            color: red;
+            font-family: Arial;
+            animation: blinkingTextFail 0.8s infinite;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        @keyframes blinkingTextFail{
+            0%{     color: red; font-size: 0pt;   }
+            50%{    color: orange; }
+            100%{   color: red; font-size: 14pt;  }
+        }
+        .zui-table {
+            border: none;
+            border-right: solid 1px #DDEFEF;
+            border-collapse: separate;
+            border-spacing: 0;
+            font: normal 13px Arial, sans-serif;
+            width: 100%
+        }
+        .zui-table thead th {
+            border-left: solid 1px white;
+            border-bottom: solid 1px #DDEFEF;
+            background-color: #0e8eab;
+            color: white;
+            padding: 10px;
+            text-align: left;
+            white-space: nowrap;
+        }
+        .zui-table tbody td {
+            border-left: solid 1px #DDEFEF;
+            border-right: solid 1px #DDEFEF;
+            border-bottom: solid 1px #DDEFEF;
+            padding: 10px;
+            white-space: nowrap;
+        }
+        .td-pass {
+            color: green;
+        }
+        .td-fail {
+            color: red;
+            font-weight: bold;
+        }
+        @media all{
+            table tr th:nth-child(1),
+            table tr td:nth-child(1),
+            table tr th:nth-child(2),
+            table tr td:nth-child(2){
+                display: none;
+            }
+        }
+        tr:nth-child(even){background-color: #f2f2f2;}
+                        
+        tr:hover {background-color: #ddd; border-collapse: collapse;}
+        .zui-wrapper {
+            position: relative;
+            top: 100px;
+            width: 100%;
+            height: 100%;
+        }
+        .zui-scroller {
+            margin-left: 141px;
+            overflow-x: scroll;
+            overflow-y: visible;
+            padding-bottom: 5px;
+        }
+        .zui-table .zui-sticky-col {
+            border-left: solid 1px #DDEFEF;
+            border-right: solid 1px #DDEFEF;
+            left: 0;
+            position: absolute;
+            top: auto;
+            width: 120px;
+        }
+        .zui-table .zui-sticky-col-pass {
+            border-left: solid 1px #DDEFEF;
+            border-right: solid 1px #DDEFEF;
+            left: 0;
+            position: absolute;
+            top: auto;
+            width: 120px;
+            color:green;
+            font-weight: bold;
+        }
+        .zui-table .zui-sticky-col-fail {
+            border-left: solid 1px #DDEFEF;
+            border-right: solid 1px #DDEFEF;
+            left: 0;
+            position: absolute;
+            top: auto;
+            width: 120px;
+            color:red;
+            font-weight: bold;
+        }
+        </style>
+        <div class="div-h2">
+            <h1>Server Side Question Randomization Report</h1></div>
+        </head>
+        <body style="overflow: hidden;">
+        <div class="zui-wrapper">
+        <div class="zui-scroller"><table class="zui-table"><thead><tr><th>Overall Status</th><th>Status</th><th>Candidate Id</th><th>Test Id</th><th>Login Id</th><th>Password</th><th>Q1 Id Ite 1</th><th>Q1 Id Ite 2</th><th>Q1 Ans Ite 1</th><th>Q1 Ans Ite 2</th><th>Q2 Id Ite 1</th><th>Q2 Id Ite 2</th><th>Q2 Ans Ite 1</th><th>Q2 Ans Ite 2</th><th>Q3 Id Ite 1</th><th>Q3 Id Ite 2</th><th>Q3 Ans Ite 1</th><th>Q3 Ans Ite 2</th><th>Q4 Id Ite 1</th><th>Q4 Id Ite 2</th><th>Q4 Ans Ite 1</th><th>Q4 Ans Ite 2</th><th>Q5 Id Ite 1</th><th>Q5 Id Ite 2</th><th>Q5 Ans Ite 1</th><th>Q5 Ans Ite 2</th><th>Q6 Id Ite 1</th><th>Q6 Id Ite 2</th><th>Q6 Ans Ite 1</th><th>Q6 Ans Ite 2</th><th>Q7 Id Ite 1</th><th>Q7 Id Ite 2</th><th>Q7 Ans Ite 1</th><th>Q7 Ans Ite 2</th><th>Q8 Id Ite 1</th><th>Q8 Id Ite 2</th><th>Q8 Ans Ite 1</th><th>Q8 Ans Ite 2</th><th>Q9 Id Ite 1</th><th>Q9 Id Ite 2</th><th>Q9 Ans Ite 1</th><th>Q9 Ans Ite 2</th><th>Q10 Id Ite 1</th><th>Q10 Id Ite 2</th><th>Q10 Ans Ite 1</th><th>Q10 Ans Ite 2</th><th>Q9 Lang Ite1</th><th>Q9 Lang Ite2</th><th>Q10 Lang Ite1</th><th>Q10 Lang Ite2</th><th class="zui-sticky-col">Status</th></tr></thead><tbody><tr><td></td><td></td><td>1266753</td><td>7528</td><td>AT75281266753</td><td>******</td><td>110095</td><td class="td-pass">110095</td><td>A</td><td class="td-pass">A</td><td>110094</td><td class="td-pass">110094</td><td>A</td><td class="td-pass">A</td><td>108401</td><td class="td-pass">108401</td><td>This is answer 4</td><td class="td-pass">This is answer 4</td><td>105461</td><td class="td-pass">105461</td><td>This is answer 3</td><td class="td-pass">This is answer 3</td><td>109745</td><td class="td-pass">109745</td><td>D</td><td class="td-pass">D</td><td>109747</td><td class="td-pass">109747</td><td>D</td><td class="td-pass">D</td><td>109753</td><td class="td-pass">109753</td><td>B</td><td class="td-pass">B</td><td>109756</td><td class="td-pass">109756</td><td>B</td><td class="td-pass">B</td><td>110393</td><td class="td-pass">110393</td><td>import java.io.*;
+
+public class TestClass {
+    public static void main(String[] args) {
+        // Read input from STDIN; write output to STDOUT.
+        a = 10;
+    }
+}</td><td class="td-pass">import java.io.*;
+
+public class TestClass {
+    public static void main(String[] args) {
+        // Read input from STDIN; write output to STDOUT.
+        a = 10;
+    }
+}</td><td>110395</td><td class="td-pass">110395</td><td>import java.io.*;
+
+public class TestClass {
+    public static void main(String[] args) {
+        // Read input from STDIN; write output to STDOUT.
+        a = 80;
+    }
+}</td><td class="td-pass">import java.io.*;
+
+public class TestClass {
+    public static void main(String[] args) {
+        // Read input from STDIN; write output to STDOUT.
+        a = 80;
+    }
+}</td><td>Java 8</td><td class="td-pass">Java 8</td><td>Python 2</td><td class="td-pass">Python 2</td><td class="zui-sticky-col-pass">Pass</td></tr><tr><td></td><td></td><td>1266752</td><td>7528</td><td>AT75281266752</td><td>******</td><td>110095</td><td class="td-pass">110095</td><td>B</td><td class="td-pass">B</td><td>110094</td><td class="td-pass">110094</td><td>C</td><td class="td-pass">C</td><td>59230</td><td class="td-pass">59230</td><td>This is answer 5</td><td class="td-pass">This is answer 5</td><td>106045</td><td class="td-pass">106045</td><td>This is answer 8</td><td class="td-pass">This is answer 8</td><td>109737</td><td class="td-pass">109737</td><td>C</td><td class="td-pass">C</td><td>109735</td><td class="td-pass">109735</td><td>B</td><td class="td-pass">B</td><td>109765</td><td class="td-pass">109765</td><td>A</td><td class="td-pass">A</td><td>109764</td><td class="td-pass">109764</td><td>A</td><td class="td-pass">A</td><td>110392</td><td class="td-pass">110392</td><td>import java.io.*;
+
+public class TestClass {
+    public static void main(String[] args) {
+        // Read input from STDIN; write output to STDOUT.
+        a = 10;
+    }
+}</td><td class="td-pass">import java.io.*;
+
+public class TestClass {
+    public static void main(String[] args) {
+        // Read input from STDIN; write output to STDOUT.
+        a = 10;
+    }
+}</td><td>110395</td><td class="td-pass">110395</td><td>import java.io.*;
+
+public class TestClass {
+    public static void main(String[] args) {
+        // Read input from STDIN; write output to STDOUT.
+        a = 40;
+    }
+}</td><td class="td-pass">import java.io.*;
+
+public class TestClass {
+    public static void main(String[] args) {
+        // Read input from STDIN; write output to STDOUT.
+        a = 40;
+    }
+}</td><td>Java 8</td><td class="td-pass">Java 8</td><td>C++</td><td class="td-pass">C++</td><td class="zui-sticky-col-pass">Pass</td></tr><tr><td></td><td></td><td>1266751</td><td>7528</td><td>AT75281266751</td><td>******</td><td>110096</td><td class="td-pass">110096</td><td>B</td><td class="td-pass">B</td><td>110112</td><td class="td-pass">110112</td><td>C</td><td class="td-pass">C</td><td>106045</td><td class="td-pass">106045</td><td>This is answer 8</td><td class="td-pass">This is answer 8</td><td>105461</td><td class="td-pass">105461</td><td>This is answer 6</td><td class="td-pass">This is answer 6</td><td>109735</td><td class="td-pass">109735</td><td>B</td><td class="td-pass">B</td><td>109737</td><td class="td-pass">109737</td><td>D</td><td class="td-pass">D</td><td>109763</td><td class="td-pass">109763</td><td>A</td><td class="td-pass">A</td><td>109761</td><td class="td-pass">109761</td><td>A</td><td class="td-pass">A</td><td>110395</td><td class="td-pass">110395</td><td>import java.io.*;
+
+public class TestClass {
+    public static void main(String[] args) {
+        // Read input from STDIN; write output to STDOUT.
+        a = 10;
+    }
+}</td><td class="td-pass">import java.io.*;
+
+public class TestClass {
+    public static void main(String[] args) {
+        // Read input from STDIN; write output to STDOUT.
+        a = 10;
+    }
+}</td><td>110396</td><td class="td-pass">110396</td><td>import java.io.*;
+
+public class TestClass {
+    public static void main(String[] args) {
+        // Read input from STDIN; write output to STDOUT.
+        a = 30;
+    }
+}</td><td class="td-pass">import java.io.*;
+
+public class TestClass {
+    public static void main(String[] args) {
+        // Read input from STDIN; write output to STDOUT.
+        a = 30;
+    }
+}</td><td>Java 7</td><td class="td-pass">Java 7</td><td>Java 8</td><td class="td-pass">Java 8</td><td class="zui-sticky-col-pass">Pass</td></tr><tr><td></td><td></td><td>1266750</td><td>7528</td><td>AT75281266750</td><td>******</td><td>110097</td><td class="td-pass">110097</td><td>B</td><td class="td-pass">B</td><td>110096</td><td class="td-pass">110096</td><td>C</td><td class="td-pass">C</td><td>106045</td><td class="td-pass">106045</td><td>This is answer 10</td><td class="td-pass">This is answer 10</td><td>105461</td><td class="td-pass">105461</td><td>This is answer 2</td><td class="td-pass">This is answer 2</td><td>109834</td><td class="td-pass">109834</td><td>B</td><td class="td-pass">B</td><td>109833</td><td class="td-pass">109833</td><td>B</td><td class="td-pass">B</td><td>109738</td><td class="td-pass">109738</td><td>B</td><td class="td-pass">B</td><td>109735</td><td class="td-pass">109735</td><td>D</td><td class="td-pass">D</td><td>110393</td><td class="td-pass">110393</td><td>import java.io.*;
+
+public class TestClass {
+    public static void main(String[] args) {
+        // Read input from STDIN; write output to STDOUT.
+        a = 50;
+    }
+}</td><td class="td-pass">import java.io.*;
+
+public class TestClass {
+    public static void main(String[] args) {
+        // Read input from STDIN; write output to STDOUT.
+        a = 50;
+    }
+}</td><td>110392</td><td class="td-pass">110392</td><td>import java.io.*;
+
+public class TestClass {
+    public static void main(String[] args) {
+        // Read input from STDIN; write output to STDOUT.
+        a = 10;
+    }
+}</td><td class="td-pass">import java.io.*;
+
+public class TestClass {
+    public static void main(String[] args) {
+        // Read input from STDIN; write output to STDOUT.
+        a = 10;
+    }
+}</td><td>Java 7</td><td class="td-pass">Java 7</td><td>Java 8</td><td class="td-pass">Java 8</td><td class="zui-sticky-col-pass">Pass</td></tr><tr><td></td><td></td><td>1266749</td><td>7528</td><td>AT75281266749</td><td>******</td><td>110094</td><td class="td-pass">110094</td><td>B</td><td class="td-pass">B</td><td>110096</td><td class="td-pass">110096</td><td>B</td><td class="td-pass">B</td><td>105461</td><td class="td-pass">105461</td><td>This is answer 4</td><td class="td-pass">This is answer 4</td><td>108401</td><td class="td-pass">108401</td><td>This is answer 9</td><td class="td-pass">This is answer 9</td><td>109738</td><td class="td-pass">109738</td><td>A</td><td class="td-pass">A</td><td>109735</td><td class="td-pass">109735</td><td>A</td><td class="td-pass">A</td><td>109746</td><td class="td-pass">109746</td><td>A</td><td class="td-pass">A</td><td>109744</td><td class="td-pass">109744</td><td>B</td><td class="td-pass">B</td><td>110395</td><td class="td-pass">110395</td><td>import java.io.*;
+
+public class TestClass {
+    public static void main(String[] args) {
+        // Read input from STDIN; write output to STDOUT.
+        a = 60;
+    }
+}</td><td class="td-pass">import java.io.*;
+
+public class TestClass {
+    public static void main(String[] args) {
+        // Read input from STDIN; write output to STDOUT.
+        a = 60;
+    }
+}</td><td>110394</td><td class="td-pass">110394</td><td>import java.io.*;
+
+public class TestClass {
+    public static void main(String[] args) {
+        // Read input from STDIN; write output to STDOUT.
+        a = 60;
+    }
+}</td><td class="td-pass">import java.io.*;
+
+public class TestClass {
+    public static void main(String[] args) {
+        // Read input from STDIN; write output to STDOUT.
+        a = 60;
+    }
+}</td><td>Java 8</td><td class="td-pass">Java 8</td><td>Java 7</td><td class="td-pass">Java 7</td><td class="zui-sticky-col-pass">Pass</td></tr></tbody></table></div></div><div class="div-overalldata"><span class="label">Execution Date:&nbsp;&nbsp;</span><span class="lable value">01/08/2019</span></br></br><span class="label">Overall Status:&nbsp;&nbsp;</span><span class="lable valuePass">PASS</span></div></body></html>

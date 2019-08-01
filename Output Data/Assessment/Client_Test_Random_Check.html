@@ -1,0 +1,421 @@
+<html>
+                <head>
+                <title>Automation Results</title>
+                <style>
+                h1 {
+                    color: #0e8eab;
+                    text-align: left;
+                    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+                }
+                .div-h1 {
+                    position: absolute;
+                    overflow: hidden;
+                    top: 0;
+                    width: auto;
+                    height: 100px;
+                    text-align: center;
+                }
+                .div-overalldata {
+                    position: absolute;
+                    top: 80px;
+                    width: 600px;
+                    height: auto;
+                    text-align: left;
+                    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+                }
+                .label {
+                    color: #0e8eab;
+                    font-family: Arial;
+                    font-size: 14pt;
+                    font-weight: bold;
+                }
+                .value {
+                    color: black;
+                    font-family: Arial;
+                    font-size: 14pt;
+                }
+                .valuePass {
+                    color: green;
+                    font-family: Arial;
+                    animation: blinkingTextPass 0.8s infinite;
+                    font-weight: bold;
+                    font-size: 20pt;
+                }       
+                @keyframes blinkingTextPass{
+                    0%{     color: green; font-size: 0pt;  }
+                    50%{    color: lightgreen; }
+                    100%{   color: green; font-size: 14pt; } 
+                }
+                .valueFail {
+                    color: red;
+                    font-family: Arial;
+                    animation: blinkingTextFail 0.8s infinite;
+                    font-weight: bold;
+                    font-size: 20px;
+                }
+                @keyframes blinkingTextFail{
+                    0%{     color: red; font-size: 0pt;   }
+                    50%{    color: orange; }
+                    100%{   color: red; font-size: 14pt;  }
+                }
+                .zui-table {
+                    border: none;
+                    border-right: solid 1px #DDEFEF;
+                    border-collapse: separate;
+                    border-spacing: 0;
+                    font: normal 13px Arial, sans-serif;
+                    width: 100%
+                }
+                .zui-table thead th {
+                    border-left: solid 1px white;
+                    border-bottom: solid 1px #DDEFEF;
+                    background-color: #0e8eab;
+                    color: white;
+                    padding: 10px;
+                    text-align: left;
+                    white-space: nowrap;
+                }
+                .zui-table tbody td {
+                    border-left: solid 1px #DDEFEF;
+                    border-right: solid 1px #DDEFEF;
+                    border-bottom: solid 1px #DDEFEF;
+                    padding: 10px;
+                    white-space: nowrap;
+                }
+                .td-pass {
+                    color: green;
+                }
+                .td-fail {
+                    color: red;
+                    font-weight: bold;
+                }
+                tr:nth-child(even){background-color: #f2f2f2;}      
+                tr:hover {background-color: #ddd; border-collapse: collapse;}
+                @media all{
+                    table tr th:nth-child(2),
+                    table tr td:nth-child(2),
+                    table tr th:nth-child(5),
+                    table tr td:nth-child(5),
+                    table tr th:nth-child(6),
+                    table tr td:nth-child(6){
+                        display: none;
+                    }
+                }
+                .zui-wrapper {
+                    position: relative;
+                    top: 180px;
+                    width: 100%;
+                    height: 100%;
+                }
+                .zui-scroller {
+                    margin-left: 141px;
+                    overflow-x: scroll;
+                    overflow-y: visible;
+                    padding-bottom: 5px;
+                }
+                .zui-table .zui-sticky-col {
+                    border-left: solid 1px #DDEFEF;
+                    border-right: solid 1px #DDEFEF;
+                    left: 0;
+                    position: absolute;
+                    top: auto;
+                    width: 120px;
+                }
+                .zui-table .zui-sticky-col-pass {
+                    border-left: solid 1px #DDEFEF;
+                    border-right: solid 1px #DDEFEF;
+                    left: 0;
+                    position: absolute;
+                    top: auto;
+                    width: 120px;
+                    color:green;
+                    font-weight: bold;
+                }
+                .zui-table .zui-sticky-col-fail {
+                    border-left: solid 1px #DDEFEF;
+                    border-right: solid 1px #DDEFEF;
+                    left: 0;
+                    position: absolute;
+                    top: auto;
+                    width: 120px;
+                    color:red;
+                    font-weight: bold;
+                }
+                .zui-table1 {
+                    border: none;
+                    border-right: solid 1px #DDEFEF;
+                    border-collapse: separate;
+                    border-spacing: 0;
+                    font: normal 13px Arial, sans-serif;
+                    width: 100%
+                }
+                .zui-table1 thead th {
+                    border-left: solid 1px white;
+                    border-bottom: solid 1px #DDEFEF;
+                    background-color: #0e8eab;
+                    color: white;
+                    padding: 10px;
+                    text-align: left;
+                    white-space: nowrap;
+                }
+                .zui-table1 tbody td {
+                    border-left: solid 1px #DDEFEF;
+                    border-right: solid 1px #DDEFEF;
+                    border-bottom: solid 1px #DDEFEF;
+                    padding: 10px;
+                    white-space: nowrap;
+                }
+                .zui-wrapper1 {
+                    width: 50%;
+                    position: absolute;
+                    top: 2%;
+                    left: 49%;
+                }
+                </style>
+                <div class="div-h2">
+        
+                    <h1>Client Side Test Level Randomization Report</h1></div>
+                </head>
+                <body style="overflow: hidden;">
+                <div class="zui-wrapper">
+                <div class="zui-scroller"><table class="zui-table"><thead><tr><th>Mode</th><th>Status</th><th>Candidate Id</th><th>Test Id</th><th>Login Id</th><th>Password</th><th>Group name</th><th>Section name</th><th>question string</th><th>Option 1</th><th>Option 2</th><th>Option 3</th><th>Option 4</th><th>Correct Ans</th><th>Group name</th><th>Section name</th><th>question string</th><th>Option 1</th><th>Option 2</th><th>Option 3</th><th>Option 4</th><th>Correct Ans</th><th>Group name</th><th>Section name</th><th>question string</th><th>Option 1</th><th>Option 2</th><th>Option 3</th><th>Option 4</th><th>Correct Ans</th><th>Group name</th><th>Section name</th><th>question string</th><th>Option 1</th><th>Option 2</th><th>Option 3</th><th>Option 4</th><th>Correct Ans</th><th>Group name</th><th>Section name</th><th>question string</th><th>Option 1</th><th>Option 2</th><th>Option 3</th><th>Option 4</th><th>Correct Ans</th><th>Group name</th><th>Section name</th><th>question string</th><th>Option 1</th><th>Option 2</th><th>Option 3</th><th>Option 4</th><th>Correct Ans</th><th>Group name</th><th>Section name</th><th>question string</th><th>Option 1</th><th>Option 2</th><th>Option 3</th><th>Option 4</th><th>Correct Ans</th><th>Group name</th><th>Section name</th><th>question string</th><th>Option 1</th><th>Option 2</th><th>Option 3</th><th>Option 4</th><th>Correct Ans</th><th>Group name</th><th>Section name</th><th>question string</th><th>Option 1</th><th>Option 2</th><th>Option 3</th><th>Option 4</th><th>Correct Ans</th><th>Group name</th><th>Section name</th><th>question string</th><th>Option 1</th><th>Option 2</th><th>Option 3</th><th>Option 4</th><th>Correct Ans</th><th>Group name</th><th>Section name</th><th>question string</th><th>Option 1</th><th>Option 2</th><th>Option 3</th><th>Option 4</th><th>Correct Ans</th><th>Group name</th><th>Section name</th><th>question string</th><th>Option 1</th><th>Option 2</th><th>Option 3</th><th>Option 4</th><th>Correct Ans</th><th class="zui-sticky-col">Status</th></tr></thead><tbody><tr><td>"UI Ite 1"</td><td></td><td>1266636</td><td>7590</td><td>AT75901266636</td><td>******</td><td>Auto Grp 1</td><td>Auto Sec 1</td><td>Automation 3</td><td>B</td><td>A</td><td>D</td><td>C</td><td>B</td><td>Auto Grp 1</td><td>Auto Sec 2</td><td>Passage:
+Automation Passage 3
+
+Question:
+Automation 9</td><td>C</td><td>B</td><td>D</td><td>A</td><td>B</td><td>Auto Grp 1</td><td>Auto Sec 1</td><td>Automation 2</td><td>D</td><td>C</td><td>B</td><td>A</td><td>A</td><td>Auto Grp 2</td><td>Auto Sec 3</td><td>Automation 5</td><td>B</td><td>A</td><td>C</td><td>D</td><td>A</td><td>Auto Grp 2</td><td>Auto Sec 4</td><td>Passage:
+Automation Passage 5
+
+Question:
+Automation 11</td><td>C</td><td>A</td><td>D</td><td>B</td><td>A</td><td>Auto Grp 1</td><td>Auto Sec 2</td><td>Passage:
+Automation Passage 1
+
+Question:
+Automation 7</td><td>A</td><td>B</td><td>C</td><td>D</td><td>A</td><td>Auto Grp 2</td><td>Auto Sec 3</td><td>Automation 6</td><td>B</td><td>A</td><td>C</td><td>D</td><td>D</td><td>Auto Grp 1</td><td>Auto Sec 1</td><td>Automation 1</td><td>A</td><td>D</td><td>B</td><td>C</td><td>C</td><td>Auto Grp 1</td><td>Auto Sec 2</td><td>Passage:
+Automation Passage 2
+
+Question:
+Automation 8</td><td>C</td><td>A</td><td>D</td><td>B</td><td>B</td><td>Auto Grp 2</td><td>Auto Sec 4</td><td>Passage:
+Automation Passage 4
+
+Question:
+Automation 10</td><td>D</td><td>C</td><td>B</td><td>A</td><td>B</td><td>Auto Grp 2</td><td>Auto Sec 3</td><td>Automation 4</td><td>D</td><td>A</td><td>B</td><td>C</td><td>B</td><td>Auto Grp 2</td><td>Auto Sec 4</td><td>Passage:
+Automation Passage 6
+
+Question:
+Automation 12</td><td>C</td><td>A</td><td>B</td><td>D</td><td>D</td></tr><tr><td>"UI Ite 2"</td><td></td><td>1266636</td><td>7590</td><td>AT75901266636</td><td>******</td><td class="td-pass">Auto Grp 1</td><td class="td-pass">Auto Sec 1</td><td class="td-pass">Automation 3</td><td class="td-pass">B</td><td class="td-pass">A</td><td class="td-pass">D</td><td class="td-pass">C</td><td class="td-pass">B</td><td class="td-pass">Auto Grp 1</td><td class="td-pass">Auto Sec 2</td><td class="td-pass">Passage:
+Automation Passage 3
+
+Question:
+Automation 9</td><td class="td-pass">C</td><td class="td-pass">B</td><td class="td-pass">D</td><td class="td-pass">A</td><td class="td-pass">B</td><td class="td-pass">Auto Grp 1</td><td class="td-pass">Auto Sec 1</td><td class="td-pass">Automation 2</td><td class="td-pass">D</td><td class="td-pass">C</td><td class="td-pass">B</td><td class="td-pass">A</td><td class="td-pass">A</td><td class="td-pass">Auto Grp 2</td><td class="td-pass">Auto Sec 3</td><td class="td-pass">Automation 5</td><td class="td-pass">B</td><td class="td-pass">A</td><td class="td-pass">C</td><td class="td-pass">D</td><td class="td-pass">A</td><td class="td-pass">Auto Grp 2</td><td class="td-pass">Auto Sec 4</td><td class="td-pass">Passage:
+Automation Passage 5
+
+Question:
+Automation 11</td><td class="td-pass">C</td><td class="td-pass">A</td><td class="td-pass">D</td><td class="td-pass">B</td><td class="td-pass">A</td><td class="td-pass">Auto Grp 1</td><td class="td-pass">Auto Sec 2</td><td class="td-pass">Passage:
+Automation Passage 1
+
+Question:
+Automation 7</td><td class="td-pass">A</td><td class="td-pass">B</td><td class="td-pass">C</td><td class="td-pass">D</td><td class="td-pass">A</td><td class="td-pass">Auto Grp 2</td><td class="td-pass">Auto Sec 3</td><td class="td-pass">Automation 6</td><td class="td-pass">B</td><td class="td-pass">A</td><td class="td-pass">C</td><td class="td-pass">D</td><td class="td-pass">D</td><td class="td-pass">Auto Grp 1</td><td class="td-pass">Auto Sec 1</td><td class="td-pass">Automation 1</td><td class="td-pass">A</td><td class="td-pass">D</td><td class="td-pass">B</td><td class="td-pass">C</td><td class="td-pass">C</td><td class="td-pass">Auto Grp 1</td><td class="td-pass">Auto Sec 2</td><td class="td-pass">Passage:
+Automation Passage 2
+
+Question:
+Automation 8</td><td class="td-pass">C</td><td class="td-pass">A</td><td class="td-pass">D</td><td class="td-pass">B</td><td class="td-pass">B</td><td class="td-pass">Auto Grp 2</td><td class="td-pass">Auto Sec 4</td><td class="td-pass">Passage:
+Automation Passage 4
+
+Question:
+Automation 10</td><td class="td-pass">D</td><td class="td-pass">C</td><td class="td-pass">B</td><td class="td-pass">A</td><td class="td-pass">B</td><td class="td-pass">Auto Grp 2</td><td class="td-pass">Auto Sec 3</td><td class="td-pass">Automation 4</td><td class="td-pass">D</td><td class="td-pass">A</td><td class="td-pass">B</td><td class="td-pass">C</td><td class="td-pass">B</td><td class="td-pass">Auto Grp 2</td><td class="td-pass">Auto Sec 4</td><td class="td-pass">Passage:
+Automation Passage 6
+
+Question:
+Automation 12</td><td class="td-pass">C</td><td class="td-pass">A</td><td class="td-pass">B</td><td class="td-pass">D</td><td class="td-pass">D</td><td class="zui-sticky-col-pass"><b>Pass</b></td></tr><tr><td>"UI Ite 1"</td><td></td><td>1266634</td><td>7590</td><td>AT75901266634</td><td>******</td><td>Auto Grp 1</td><td>Auto Sec 2</td><td>Passage:
+Automation Passage 1
+
+Question:
+Automation 7</td><td>A</td><td>B</td><td>C</td><td>D</td><td>D</td><td>Auto Grp 1</td><td>Auto Sec 2</td><td>Passage:
+Automation Passage 3
+
+Question:
+Automation 9</td><td>B</td><td>D</td><td>C</td><td>A</td><td>C</td><td>Auto Grp 2</td><td>Auto Sec 4</td><td>Passage:
+Automation Passage 5
+
+Question:
+Automation 11</td><td>A</td><td>D</td><td>C</td><td>B</td><td>B</td><td>Auto Grp 1</td><td>Auto Sec 1</td><td>Automation 3</td><td>C</td><td>B</td><td>A</td><td>D</td><td>B</td><td>Auto Grp 2</td><td>Auto Sec 4</td><td>Passage:
+Automation Passage 4
+
+Question:
+Automation 10</td><td>D</td><td>A</td><td>B</td><td>C</td><td>B</td><td>Auto Grp 2</td><td>Auto Sec 3</td><td>Automation 6</td><td>B</td><td>D</td><td>A</td><td>C</td><td>C</td><td>Auto Grp 1</td><td>Auto Sec 1</td><td>Automation 2</td><td>D</td><td>C</td><td>A</td><td>B</td><td>B</td><td>Auto Grp 2</td><td>Auto Sec 3</td><td>Automation 4</td><td>D</td><td>A</td><td>C</td><td>B</td><td>B</td><td>Auto Grp 2</td><td>Auto Sec 3</td><td>Automation 5</td><td>C</td><td>B</td><td>A</td><td>D</td><td>B</td><td>Auto Grp 1</td><td>Auto Sec 1</td><td>Automation 1</td><td>C</td><td>D</td><td>B</td><td>A</td><td>D</td><td>Auto Grp 2</td><td>Auto Sec 4</td><td>Passage:
+Automation Passage 6
+
+Question:
+Automation 12</td><td>A</td><td>B</td><td>C</td><td>D</td><td>A</td><td>Auto Grp 1</td><td>Auto Sec 2</td><td>Passage:
+Automation Passage 2
+
+Question:
+Automation 8</td><td>B</td><td>D</td><td>C</td><td>A</td><td>B</td></tr><tr><td>"UI Ite 2"</td><td></td><td>1266634</td><td>7590</td><td>AT75901266634</td><td>******</td><td class="td-pass">Auto Grp 1</td><td class="td-pass">Auto Sec 2</td><td class="td-pass">Passage:
+Automation Passage 1
+
+Question:
+Automation 7</td><td class="td-pass">A</td><td class="td-pass">B</td><td class="td-pass">C</td><td class="td-pass">D</td><td class="td-pass">D</td><td class="td-pass">Auto Grp 1</td><td class="td-pass">Auto Sec 2</td><td class="td-pass">Passage:
+Automation Passage 3
+
+Question:
+Automation 9</td><td class="td-pass">B</td><td class="td-pass">D</td><td class="td-pass">C</td><td class="td-pass">A</td><td class="td-pass">C</td><td class="td-pass">Auto Grp 2</td><td class="td-pass">Auto Sec 4</td><td class="td-pass">Passage:
+Automation Passage 5
+
+Question:
+Automation 11</td><td class="td-pass">A</td><td class="td-pass">D</td><td class="td-pass">C</td><td class="td-pass">B</td><td class="td-pass">B</td><td class="td-pass">Auto Grp 1</td><td class="td-pass">Auto Sec 1</td><td class="td-pass">Automation 3</td><td class="td-pass">C</td><td class="td-pass">B</td><td class="td-pass">A</td><td class="td-pass">D</td><td class="td-pass">B</td><td class="td-pass">Auto Grp 2</td><td class="td-pass">Auto Sec 4</td><td class="td-pass">Passage:
+Automation Passage 4
+
+Question:
+Automation 10</td><td class="td-pass">D</td><td class="td-pass">A</td><td class="td-pass">B</td><td class="td-pass">C</td><td class="td-pass">B</td><td class="td-pass">Auto Grp 2</td><td class="td-pass">Auto Sec 3</td><td class="td-pass">Automation 6</td><td class="td-pass">B</td><td class="td-pass">D</td><td class="td-pass">A</td><td class="td-pass">C</td><td class="td-pass">C</td><td class="td-pass">Auto Grp 1</td><td class="td-pass">Auto Sec 1</td><td class="td-pass">Automation 2</td><td class="td-pass">D</td><td class="td-pass">C</td><td class="td-pass">A</td><td class="td-pass">B</td><td class="td-pass">B</td><td class="td-pass">Auto Grp 2</td><td class="td-pass">Auto Sec 3</td><td class="td-pass">Automation 4</td><td class="td-pass">D</td><td class="td-pass">A</td><td class="td-pass">C</td><td class="td-pass">B</td><td class="td-pass">B</td><td class="td-pass">Auto Grp 2</td><td class="td-pass">Auto Sec 3</td><td class="td-pass">Automation 5</td><td class="td-pass">C</td><td class="td-pass">B</td><td class="td-pass">A</td><td class="td-pass">D</td><td class="td-pass">B</td><td class="td-pass">Auto Grp 1</td><td class="td-pass">Auto Sec 1</td><td class="td-pass">Automation 1</td><td class="td-pass">C</td><td class="td-pass">D</td><td class="td-pass">B</td><td class="td-pass">A</td><td class="td-pass">D</td><td class="td-pass">Auto Grp 2</td><td class="td-pass">Auto Sec 4</td><td class="td-pass">Passage:
+Automation Passage 6
+
+Question:
+Automation 12</td><td class="td-pass">A</td><td class="td-pass">B</td><td class="td-pass">C</td><td class="td-pass">D</td><td class="td-pass">A</td><td class="td-pass">Auto Grp 1</td><td class="td-pass">Auto Sec 2</td><td class="td-pass">Passage:
+Automation Passage 2
+
+Question:
+Automation 8</td><td class="td-pass">B</td><td class="td-pass">D</td><td class="td-pass">C</td><td class="td-pass">A</td><td class="td-pass">B</td><td class="zui-sticky-col-pass"><b>Pass</b></td></tr><tr><td>"UI Ite 1"</td><td></td><td>1266633</td><td>7590</td><td>AT75901266633</td><td>******</td><td>Auto Grp 1</td><td>Auto Sec 1</td><td>Automation 2</td><td>D</td><td>A</td><td>C</td><td>B</td><td>A</td><td>Auto Grp 1</td><td>Auto Sec 1</td><td>Automation 1</td><td>C</td><td>B</td><td>A</td><td>D</td><td>B</td><td>Auto Grp 1</td><td>Auto Sec 2</td><td>Passage:
+Automation Passage 1
+
+Question:
+Automation 7</td><td>A</td><td>B</td><td>C</td><td>D</td><td>B</td><td>Auto Grp 2</td><td>Auto Sec 4</td><td>Passage:
+Automation Passage 5
+
+Question:
+Automation 11</td><td>A</td><td>B</td><td>C</td><td>D</td><td>C</td><td>Auto Grp 2</td><td>Auto Sec 3</td><td>Automation 4</td><td>B</td><td>D</td><td>A</td><td>C</td><td>A</td><td>Auto Grp 1</td><td>Auto Sec 2</td><td>Passage:
+Automation Passage 3
+
+Question:
+Automation 9</td><td>A</td><td>C</td><td>B</td><td>D</td><td>B</td><td>Auto Grp 1</td><td>Auto Sec 2</td><td>Passage:
+Automation Passage 2
+
+Question:
+Automation 8</td><td>C</td><td>D</td><td>A</td><td>B</td><td>D</td><td>Auto Grp 2</td><td>Auto Sec 4</td><td>Passage:
+Automation Passage 6
+
+Question:
+Automation 12</td><td>A</td><td>C</td><td>D</td><td>B</td><td>C</td><td>Auto Grp 2</td><td>Auto Sec 3</td><td>Automation 6</td><td>A</td><td>B</td><td>D</td><td>C</td><td>D</td><td>Auto Grp 1</td><td>Auto Sec 1</td><td>Automation 3</td><td>D</td><td>B</td><td>C</td><td>A</td><td>C</td><td>Auto Grp 2</td><td>Auto Sec 4</td><td>Passage:
+Automation Passage 4
+
+Question:
+Automation 10</td><td>A</td><td>D</td><td>B</td><td>C</td><td>D</td><td>Auto Grp 2</td><td>Auto Sec 3</td><td>Automation 5</td><td>C</td><td>D</td><td>B</td><td>A</td><td>B</td></tr><tr><td>"UI Ite 2"</td><td></td><td>1266633</td><td>7590</td><td>AT75901266633</td><td>******</td><td class="td-pass">Auto Grp 1</td><td class="td-pass">Auto Sec 1</td><td class="td-pass">Automation 2</td><td class="td-pass">D</td><td class="td-pass">A</td><td class="td-pass">C</td><td class="td-pass">B</td><td class="td-pass">A</td><td class="td-pass">Auto Grp 1</td><td class="td-pass">Auto Sec 1</td><td class="td-pass">Automation 1</td><td class="td-pass">C</td><td class="td-pass">B</td><td class="td-pass">A</td><td class="td-pass">D</td><td class="td-pass">B</td><td class="td-pass">Auto Grp 1</td><td class="td-pass">Auto Sec 2</td><td class="td-pass">Passage:
+Automation Passage 1
+
+Question:
+Automation 7</td><td class="td-pass">A</td><td class="td-pass">B</td><td class="td-pass">C</td><td class="td-pass">D</td><td class="td-pass">B</td><td class="td-pass">Auto Grp 2</td><td class="td-pass">Auto Sec 4</td><td class="td-pass">Passage:
+Automation Passage 5
+
+Question:
+Automation 11</td><td class="td-pass">A</td><td class="td-pass">B</td><td class="td-pass">C</td><td class="td-pass">D</td><td class="td-pass">C</td><td class="td-pass">Auto Grp 2</td><td class="td-pass">Auto Sec 3</td><td class="td-pass">Automation 4</td><td class="td-pass">B</td><td class="td-pass">D</td><td class="td-pass">A</td><td class="td-pass">C</td><td class="td-pass">A</td><td class="td-pass">Auto Grp 1</td><td class="td-pass">Auto Sec 2</td><td class="td-pass">Passage:
+Automation Passage 3
+
+Question:
+Automation 9</td><td class="td-pass">A</td><td class="td-pass">C</td><td class="td-pass">B</td><td class="td-pass">D</td><td class="td-pass">B</td><td class="td-pass">Auto Grp 1</td><td class="td-pass">Auto Sec 2</td><td class="td-pass">Passage:
+Automation Passage 2
+
+Question:
+Automation 8</td><td class="td-pass">C</td><td class="td-pass">D</td><td class="td-pass">A</td><td class="td-pass">B</td><td class="td-pass">D</td><td class="td-pass">Auto Grp 2</td><td class="td-pass">Auto Sec 4</td><td class="td-pass">Passage:
+Automation Passage 6
+
+Question:
+Automation 12</td><td class="td-pass">A</td><td class="td-pass">C</td><td class="td-pass">D</td><td class="td-pass">B</td><td class="td-pass">C</td><td class="td-pass">Auto Grp 2</td><td class="td-pass">Auto Sec 3</td><td class="td-pass">Automation 6</td><td class="td-pass">A</td><td class="td-pass">B</td><td class="td-pass">D</td><td class="td-pass">C</td><td class="td-pass">D</td><td class="td-pass">Auto Grp 1</td><td class="td-pass">Auto Sec 1</td><td class="td-pass">Automation 3</td><td class="td-pass">D</td><td class="td-pass">B</td><td class="td-pass">C</td><td class="td-pass">A</td><td class="td-pass">C</td><td class="td-pass">Auto Grp 2</td><td class="td-pass">Auto Sec 4</td><td class="td-pass">Passage:
+Automation Passage 4
+
+Question:
+Automation 10</td><td class="td-pass">A</td><td class="td-pass">D</td><td class="td-pass">B</td><td class="td-pass">C</td><td class="td-pass">D</td><td class="td-pass">Auto Grp 2</td><td class="td-pass">Auto Sec 3</td><td class="td-pass">Automation 5</td><td class="td-pass">C</td><td class="td-pass">D</td><td class="td-pass">B</td><td class="td-pass">A</td><td class="td-pass">B</td><td class="zui-sticky-col-pass"><b>Pass</b></td></tr><tr><td>"UI Ite 1"</td><td></td><td>1266629</td><td>7590</td><td>AT75901266629</td><td>******</td><td>Auto Grp 2</td><td>Auto Sec 4</td><td>Passage:
+Automation Passage 4
+
+Question:
+Automation 10</td><td>D</td><td>B</td><td>C</td><td>A</td><td>B</td><td>Auto Grp 1</td><td>Auto Sec 2</td><td>Passage:
+Automation Passage 3
+
+Question:
+Automation 9</td><td>C</td><td>A</td><td>B</td><td>D</td><td>B</td><td>Auto Grp 2</td><td>Auto Sec 3</td><td>Automation 6</td><td>B</td><td>A</td><td>C</td><td>D</td><td>A</td><td>Auto Grp 1</td><td>Auto Sec 2</td><td>Passage:
+Automation Passage 2
+
+Question:
+Automation 8</td><td>B</td><td>C</td><td>A</td><td>D</td><td>B</td><td>Auto Grp 2</td><td>Auto Sec 3</td><td>Automation 4</td><td>B</td><td>D</td><td>A</td><td>C</td><td>B</td><td>Auto Grp 1</td><td>Auto Sec 1</td><td>Automation 2</td><td>B</td><td>D</td><td>C</td><td>A</td><td>A</td><td>Auto Grp 2</td><td>Auto Sec 4</td><td>Passage:
+Automation Passage 5
+
+Question:
+Automation 11</td><td>C</td><td>B</td><td>A</td><td>D</td><td>C</td><td>Auto Grp 2</td><td>Auto Sec 4</td><td>Passage:
+Automation Passage 6
+
+Question:
+Automation 12</td><td>C</td><td>A</td><td>D</td><td>B</td><td>B</td><td>Auto Grp 1</td><td>Auto Sec 1</td><td>Automation 3</td><td>C</td><td>B</td><td>D</td><td>A</td><td>B</td><td>Auto Grp 1</td><td>Auto Sec 2</td><td>Passage:
+Automation Passage 1
+
+Question:
+Automation 7</td><td>D</td><td>B</td><td>A</td><td>C</td><td>B</td><td>Auto Grp 2</td><td>Auto Sec 3</td><td>Automation 5</td><td>D</td><td>B</td><td>C</td><td>A</td><td>A</td><td>Auto Grp 1</td><td>Auto Sec 1</td><td>Automation 1</td><td>A</td><td>B</td><td>C</td><td>D</td><td>D</td></tr><tr><td>"UI Ite 2"</td><td></td><td>1266629</td><td>7590</td><td>AT75901266629</td><td>******</td><td class="td-pass">Auto Grp 2</td><td class="td-pass">Auto Sec 4</td><td class="td-pass">Passage:
+Automation Passage 4
+
+Question:
+Automation 10</td><td class="td-pass">D</td><td class="td-pass">B</td><td class="td-pass">C</td><td class="td-pass">A</td><td class="td-pass">B</td><td class="td-pass">Auto Grp 1</td><td class="td-pass">Auto Sec 2</td><td class="td-pass">Passage:
+Automation Passage 3
+
+Question:
+Automation 9</td><td class="td-pass">C</td><td class="td-pass">A</td><td class="td-pass">B</td><td class="td-pass">D</td><td class="td-pass">B</td><td class="td-pass">Auto Grp 2</td><td class="td-pass">Auto Sec 3</td><td class="td-pass">Automation 6</td><td class="td-pass">B</td><td class="td-pass">A</td><td class="td-pass">C</td><td class="td-pass">D</td><td class="td-pass">A</td><td class="td-pass">Auto Grp 1</td><td class="td-pass">Auto Sec 2</td><td class="td-pass">Passage:
+Automation Passage 2
+
+Question:
+Automation 8</td><td class="td-pass">B</td><td class="td-pass">C</td><td class="td-pass">A</td><td class="td-pass">D</td><td class="td-pass">B</td><td class="td-pass">Auto Grp 2</td><td class="td-pass">Auto Sec 3</td><td class="td-pass">Automation 4</td><td class="td-pass">B</td><td class="td-pass">D</td><td class="td-pass">A</td><td class="td-pass">C</td><td class="td-pass">B</td><td class="td-pass">Auto Grp 1</td><td class="td-pass">Auto Sec 1</td><td class="td-pass">Automation 2</td><td class="td-pass">B</td><td class="td-pass">D</td><td class="td-pass">C</td><td class="td-pass">A</td><td class="td-pass">A</td><td class="td-pass">Auto Grp 2</td><td class="td-pass">Auto Sec 4</td><td class="td-pass">Passage:
+Automation Passage 5
+
+Question:
+Automation 11</td><td class="td-pass">C</td><td class="td-pass">B</td><td class="td-pass">A</td><td class="td-pass">D</td><td class="td-pass">C</td><td class="td-pass">Auto Grp 2</td><td class="td-pass">Auto Sec 4</td><td class="td-pass">Passage:
+Automation Passage 6
+
+Question:
+Automation 12</td><td class="td-pass">C</td><td class="td-pass">A</td><td class="td-pass">D</td><td class="td-pass">B</td><td class="td-pass">B</td><td class="td-pass">Auto Grp 1</td><td class="td-pass">Auto Sec 1</td><td class="td-pass">Automation 3</td><td class="td-pass">C</td><td class="td-pass">B</td><td class="td-pass">D</td><td class="td-pass">A</td><td class="td-pass">B</td><td class="td-pass">Auto Grp 1</td><td class="td-pass">Auto Sec 2</td><td class="td-pass">Passage:
+Automation Passage 1
+
+Question:
+Automation 7</td><td class="td-pass">D</td><td class="td-pass">B</td><td class="td-pass">A</td><td class="td-pass">C</td><td class="td-pass">B</td><td class="td-pass">Auto Grp 2</td><td class="td-pass">Auto Sec 3</td><td class="td-pass">Automation 5</td><td class="td-pass">D</td><td class="td-pass">B</td><td class="td-pass">C</td><td class="td-pass">A</td><td class="td-pass">A</td><td class="td-pass">Auto Grp 1</td><td class="td-pass">Auto Sec 1</td><td class="td-pass">Automation 1</td><td class="td-pass">A</td><td class="td-pass">B</td><td class="td-pass">C</td><td class="td-pass">D</td><td class="td-pass">D</td><td class="zui-sticky-col-pass"><b>Pass</b></td></tr><tr><td>"UI Ite 1"</td><td></td><td>1266628</td><td>7590</td><td>AT75901266628</td><td>******</td><td>Auto Grp 1</td><td>Auto Sec 1</td><td>Automation 2</td><td>B</td><td>A</td><td>D</td><td>C</td><td>D</td><td>Auto Grp 2</td><td>Auto Sec 4</td><td>Passage:
+Automation Passage 4
+
+Question:
+Automation 10</td><td>B</td><td>D</td><td>C</td><td>A</td><td>D</td><td>Auto Grp 2</td><td>Auto Sec 4</td><td>Passage:
+Automation Passage 5
+
+Question:
+Automation 11</td><td>C</td><td>B</td><td>A</td><td>D</td><td>B</td><td>Auto Grp 1</td><td>Auto Sec 1</td><td>Automation 3</td><td>D</td><td>A</td><td>C</td><td>B</td><td>B</td><td>Auto Grp 1</td><td>Auto Sec 2</td><td>Passage:
+Automation Passage 1
+
+Question:
+Automation 7</td><td>B</td><td>A</td><td>D</td><td>C</td><td>C</td><td>Auto Grp 2</td><td>Auto Sec 3</td><td>Automation 5</td><td>B</td><td>D</td><td>C</td><td>A</td><td>C</td><td>Auto Grp 2</td><td>Auto Sec 3</td><td>Automation 4</td><td>A</td><td>D</td><td>C</td><td>B</td><td>D</td><td>Auto Grp 1</td><td>Auto Sec 2</td><td>Passage:
+Automation Passage 2
+
+Question:
+Automation 8</td><td>A</td><td>D</td><td>C</td><td>B</td><td>A</td><td>Auto Grp 2</td><td>Auto Sec 4</td><td>Passage:
+Automation Passage 6
+
+Question:
+Automation 12</td><td>B</td><td>D</td><td>A</td><td>C</td><td>A</td><td>Auto Grp 1</td><td>Auto Sec 2</td><td>Passage:
+Automation Passage 3
+
+Question:
+Automation 9</td><td>C</td><td>A</td><td>B</td><td>D</td><td>A</td><td>Auto Grp 1</td><td>Auto Sec 1</td><td>Automation 1</td><td>A</td><td>D</td><td>C</td><td>B</td><td>A</td><td>Auto Grp 2</td><td>Auto Sec 3</td><td>Automation 6</td><td>C</td><td>A</td><td>B</td><td>D</td><td>C</td></tr><tr><td>"UI Ite 2"</td><td></td><td>1266628</td><td>7590</td><td>AT75901266628</td><td>******</td><td class="td-pass">Auto Grp 1</td><td class="td-pass">Auto Sec 1</td><td class="td-pass">Automation 2</td><td class="td-pass">B</td><td class="td-pass">A</td><td class="td-pass">D</td><td class="td-pass">C</td><td class="td-pass">D</td><td class="td-pass">Auto Grp 2</td><td class="td-pass">Auto Sec 4</td><td class="td-pass">Passage:
+Automation Passage 4
+
+Question:
+Automation 10</td><td class="td-pass">B</td><td class="td-pass">D</td><td class="td-pass">C</td><td class="td-pass">A</td><td class="td-pass">D</td><td class="td-pass">Auto Grp 2</td><td class="td-pass">Auto Sec 4</td><td class="td-pass">Passage:
+Automation Passage 5
+
+Question:
+Automation 11</td><td class="td-pass">C</td><td class="td-pass">B</td><td class="td-pass">A</td><td class="td-pass">D</td><td class="td-pass">B</td><td class="td-pass">Auto Grp 1</td><td class="td-pass">Auto Sec 1</td><td class="td-pass">Automation 3</td><td class="td-pass">D</td><td class="td-pass">A</td><td class="td-pass">C</td><td class="td-pass">B</td><td class="td-pass">B</td><td class="td-pass">Auto Grp 1</td><td class="td-pass">Auto Sec 2</td><td class="td-pass">Passage:
+Automation Passage 1
+
+Question:
+Automation 7</td><td class="td-pass">B</td><td class="td-pass">A</td><td class="td-pass">D</td><td class="td-pass">C</td><td class="td-pass">C</td><td class="td-pass">Auto Grp 2</td><td class="td-pass">Auto Sec 3</td><td class="td-pass">Automation 5</td><td class="td-pass">B</td><td class="td-pass">D</td><td class="td-pass">C</td><td class="td-pass">A</td><td class="td-pass">C</td><td class="td-pass">Auto Grp 2</td><td class="td-pass">Auto Sec 3</td><td class="td-pass">Automation 4</td><td class="td-pass">A</td><td class="td-pass">D</td><td class="td-pass">C</td><td class="td-pass">B</td><td class="td-pass">D</td><td class="td-pass">Auto Grp 1</td><td class="td-pass">Auto Sec 2</td><td class="td-pass">Passage:
+Automation Passage 2
+
+Question:
+Automation 8</td><td class="td-pass">A</td><td class="td-pass">D</td><td class="td-pass">C</td><td class="td-pass">B</td><td class="td-pass">A</td><td class="td-pass">Auto Grp 2</td><td class="td-pass">Auto Sec 4</td><td class="td-pass">Passage:
+Automation Passage 6
+
+Question:
+Automation 12</td><td class="td-pass">B</td><td class="td-pass">D</td><td class="td-pass">A</td><td class="td-pass">C</td><td class="td-pass">A</td><td class="td-pass">Auto Grp 1</td><td class="td-pass">Auto Sec 2</td><td class="td-pass">Passage:
+Automation Passage 3
+
+Question:
+Automation 9</td><td class="td-pass">C</td><td class="td-pass">A</td><td class="td-pass">B</td><td class="td-pass">D</td><td class="td-pass">A</td><td class="td-pass">Auto Grp 1</td><td class="td-pass">Auto Sec 1</td><td class="td-pass">Automation 1</td><td class="td-pass">A</td><td class="td-pass">D</td><td class="td-pass">C</td><td class="td-pass">B</td><td class="td-pass">A</td><td class="td-pass">Auto Grp 2</td><td class="td-pass">Auto Sec 3</td><td class="td-pass">Automation 6</td><td class="td-pass">C</td><td class="td-pass">A</td><td class="td-pass">B</td><td class="td-pass">D</td><td class="td-pass">C</td><td class="zui-sticky-col-pass"><b>Pass</b></td></tr></tbody></table></div></div><div class="div-overalldata"><span class="label">Execution Date:&nbsp;&nbsp;</span><span class="lable value">01/08/2019</span></br></br><span class="label">Overall Status:&nbsp;&nbsp;</span><span class="lable valuePass">PASS</span></div><div class="zui-wrapper1"><table class="zui-table1"><thead><tr><th>Candidate Id</th><th></th><th>Group</th><th>Section</th><th></th><th></th><th>Question</th></tr></thead><tbody><tr><td>1266634</td><td></td><td>True</td><td>True</td><td></td><td></td><td>True</td></tr><tr><td>1266633</td><td></td><td>True</td><td>True</td><td></td><td></td><td>True</td></tr><tr><td>1266629</td><td></td><td>True</td><td>True</td><td></td><td></td><td>True</td></tr><tr><td>1266628</td><td></td><td>True</td><td>True</td><td></td><td></td><td>True</td></tr></tbody></table></div></body></html>
