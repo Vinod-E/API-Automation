@@ -147,7 +147,6 @@ class SCAutomation(login.CommonLogin, db_login.DBConnection, work_book.WorkBook)
                 if excel_value.get('applicantId') == dbvalue['dbApplicantID']:
                     if excel_value.get('expectedStatus') == dbvalue['dbApplicantStatus']:
                         self.db_mess = 'pass'
-                        self.success_case_01 = 'Pass'
                         self.excel_write(excel_value.get('candidateID'),
                                          excel_value.get('applicantId'),
                                          excel_value.get('expectedStatus'),
@@ -179,7 +178,12 @@ class SCAutomation(login.CommonLogin, db_login.DBConnection, work_book.WorkBook)
         self.ws.write(self.rowsize, 6, str(scid), self.style16)
         self.ws.write(self.rowsize, 7, xl_exp_status, self.style16)
         self.ws.write(self.rowsize, 8, db_status, __style)
-        self.ws.write(self.rowsize, 0, db_mess, self.style26)
+        if db_mess == 'status not matched with excel and DB':
+            self.ws.write(self.rowsize, 0, db_mess, self.style3)
+        else:
+            self.ws.write(self.rowsize, 0, db_mess, self.style26)
+            self.success_case_01 = 'Pass'
+
         self.rowsize = self.rowsize + 1
         ob.wb_Result.save(output_paths.outputpaths['SC_Output_sheet'])
 
