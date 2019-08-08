@@ -40,8 +40,7 @@ class LoginCheck(work_book.WorkBook, login.CommonLogin):
 
     def excel_headers(self):
         self.main_headers = ['Actual_Status', 'Tenant', 'Username', 'Password', 'Expected_Login_Status',
-                             'Actual_Login_Status', 'Expected_Password_change', 'Actual_Password_change',
-                             'Expected_Message', 'Actual_Message', 'LastLogin']
+                             'Actual_Login_Status', 'Expected_Message', 'Actual_Message', 'LastLogin']
         self.headers_with_style2 = ['Tenant', 'Username', 'Password', 'Actual_Status']
         self.file_headers_col_row()
 
@@ -76,10 +75,10 @@ class LoginCheck(work_book.WorkBook, login.CommonLogin):
             else:
                 self.xl_API_hits.append(int(rows[3]))
 
-            if rows[4] is not None and rows[4] == '':
-                self.xl_password_change.append(None)
-            else:
-                self.xl_password_change.append(rows[4])
+            # if rows[4] is not None and rows[4] == '':
+            #     self.xl_password_change.append(None)
+            # else:
+            #     self.xl_password_change.append(rows[4])
 
             if rows[5] is not None and rows[5] == '':
                 self.xl_expected_message.append(None)
@@ -150,16 +149,16 @@ class LoginCheck(work_book.WorkBook, login.CommonLogin):
             self.ws.write(self.rowsize, 4, 'Empty', self.style7)
         # --------------------------------------------------------------------------------------------------------------
 
-        if self.xl_password_change[loop]:
-            self.ws.write(self.rowsize, 6, self.xl_password_change[loop])
-        else:
-            self.ws.write(self.rowsize, 6, 'Empty', self.style7)
+        # if self.xl_password_change[loop]:
+        #     self.ws.write(self.rowsize, 6, self.xl_password_change[loop])
+        # else:
+        #     self.ws.write(self.rowsize, 6, 'Empty', self.style7)
         # --------------------------------------------------------------------------------------------------------------
 
         if self.xl_expected_message[loop]:
-            self.ws.write(self.rowsize, 8, self.xl_expected_message[loop])
+            self.ws.write(self.rowsize, 6, self.xl_expected_message[loop])
         else:
-            self.ws.write(self.rowsize, 8, 'Empty', self.style7)
+            self.ws.write(self.rowsize, 6, 'Empty', self.style7)
         # --------------------------------------------------------------------------------------------------------------
 
         # -------------------
@@ -189,30 +188,30 @@ class LoginCheck(work_book.WorkBook, login.CommonLogin):
                     self.ws.write(self.rowsize, 5, 'Fail', self.style8)
         # --------------------------------------------------------------------------------------------------------------
 
-        if self.login_check_api_response:
-            if self.login_check_api_response.get('IsPasswordChangeRequired'):
-                if self.xl_password_change[loop] == 'Yes':
-                    self.ws.write(self.rowsize, 7, 'Yes', self.style8)
-            else:
-                if self.xl_password_change[loop] == 'No':
-                    self.ws.write(self.rowsize, 7, 'No', self.style8)
+        # if self.login_check_api_response:
+        #     if self.login_check_api_response.get('IsPasswordChangeRequired'):
+        #         if self.xl_password_change[loop] == 'Yes':
+        #             self.ws.write(self.rowsize, 7, 'Yes', self.style8)
+        #     else:
+        #         if self.xl_password_change[loop] == 'No':
+        #             self.ws.write(self.rowsize, 7, 'No', self.style8)
         # --------------------------------------------------------------------------------------------------------------
 
         if self.error_message:
             if self.xl_expected_message[loop] == self.error_message:
-                self.ws.write(self.rowsize, 9, self.error_message, self.style8)
+                self.ws.write(self.rowsize, 7, self.error_message, self.style8)
             else:
-                self.ws.write(self.rowsize, 9, self.error_message, self.style3)
+                self.ws.write(self.rowsize, 7, self.error_message, self.style3)
 
         elif self.login_check_api_response.get('LastLogin'):
             if self.xl_expected_message[loop]:
                 if 'Login Suc' in self.xl_expected_message[loop]:
-                    self.ws.write(self.rowsize, 9, self.xl_expected_message[loop], self.style8)
+                    self.ws.write(self.rowsize, 7, self.xl_expected_message[loop], self.style8)
         else:
-            self.ws.write(self.rowsize, 9,)
+            self.ws.write(self.rowsize, 7,)
         # --------------------------------------------------------------------------------------------------------------
 
-        self.ws.write(self.rowsize, 10, self.login_check_api_response.get('LastLogin'))
+        self.ws.write(self.rowsize, 8, self.login_check_api_response.get('LastLogin'))
         # --------------------------------------------------------------------------------------------------------------
 
         self.rowsize += 1  # Row increment
