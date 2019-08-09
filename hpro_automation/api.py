@@ -52,6 +52,8 @@ non_lambda_apis = {
 
     "createEvent": generic_domain + "crpo/event/api/v1/createEvent/",
 
+    "cloneEvent": generic_domain + "crpo/event/api/v1/cloneEvent/",
+
     "updateEvent": generic_domain + "crpo/event/api/v1/updateEvent/",
 
     "change_password": generic_domain + "common/user/change_password/",

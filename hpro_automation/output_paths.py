@@ -61,6 +61,8 @@ outputpaths = {
 
     'Event_output_sheet': generic_output_path + "Crpo/Create_update_Event/API_Create_Update_Event.xls",
 
+    'Event_Clone_output_sheet': generic_output_path + "Crpo/Clone Event/API_Event_Clone.xls",
+
     # ------------------
     # Pofu output sheets
     # ------------------

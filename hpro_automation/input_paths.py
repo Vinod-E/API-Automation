@@ -56,6 +56,8 @@ inputpaths = {
 
     'Event_Input_sheet': generic_input_path + "Crpo/Create_update_Event/Create_Update_Event.xls",
 
+    'CloneEvent_Input_sheet': generic_input_path + "Crpo/Clone Event/Clone Event.xls",
+
     # ------------
     # Pofu Inputs
     # ------------

@@ -42,7 +42,7 @@ class CloneEvent(login.CommonLogin, work_book.WorkBook):
 
         # ------------------------------- Excel Data Read --------------------------------------------------------------
         try:
-            workbook = xlrd.open_workbook(input_paths.inputpaths['Example_Input_sheet'])
+            workbook = xlrd.open_workbook(input_paths.inputpaths['CloneEvent_Input_sheet'])
             sheet1 = workbook.sheet_by_index(0)
             for i in range(1, sheet1.nrows):
                 number = i  # Counting number of rows
@@ -58,16 +58,18 @@ class CloneEvent(login.CommonLogin, work_book.WorkBook):
 
     def api_call(self, loop):
 
-        self.lambda_function('example_api')
+        self.lambda_function('cloneEvent')
         self.headers['APP-NAME'] = 'crpo'
 
         # ----------------------------------- API request --------------------------------------------------------------
-        request = {"ABC": self.xl_example[loop]}
+        request = self.xl_example[loop]
 
-        hit_api = requests.post(self.webapi, headers=self.headers,
-                                data=json.dumps(request, default=str), verify=False)
-        hitted_api_response = json.loads(hit_api.content)
-        print(hitted_api_response)
+        clone_event_api = requests.post(self.webapi, headers=self.headers,
+                                        data=request, verify=False)
+        print(clone_event_api.headers)
+        print(self.xl_example[loop])
+        clone_event_api_response = json.loads(clone_event_api.content)
+        print(clone_event_api_response)
 
     def output_report(self, loop):
 
@@ -82,7 +84,7 @@ class CloneEvent(login.CommonLogin, work_book.WorkBook):
         self.rowsize += 1
 
         # ------------------------------------ OutPut File save --------------------------------------------------------
-        Object.wb_Result.save(output_paths.outputpaths['Example_Output_sheet'])
+        Object.wb_Result.save(output_paths.outputpaths['Event_Clone_output_sheet'])
 
         if self.success_case_01 == 'Pass':
             self.Actual_Success_case.append(self.success_case_01)
@@ -104,7 +106,7 @@ class CloneEvent(login.CommonLogin, work_book.WorkBook):
         self.ws.write(0, 5, self.calling_lambda, self.style24)
 
         # ---------------------------- OutPut File save with Overall Status --------------------------------------------
-        Object.wb_Result.save(output_paths.outputpaths['Example_Output_sheet'])
+        Object.wb_Result.save(output_paths.outputpaths['Event_Clone_output_sheet'])
 
 
 Object = CloneEvent()
