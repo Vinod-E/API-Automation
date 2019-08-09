@@ -37,6 +37,8 @@ lambda_apis = {
 
     "getPartialGetEventForId": generic_domain + "crpo/event/api/v1/getPartialGetEventForId/",
 
+    "getEcConfigs": generic_domain + "crpo/dynamicec/api/v1/getEcConfigs/",
+
     # ---------------------------------- communication history/status --------------------------------------------------
     "Create_Attachment": generic_domain + "common/attachment/api/v1/createAttachment/",
 
@@ -92,6 +94,10 @@ non_lambda_apis = {
 
     "get_event_wise_nominations_summary_count": generic_domain + "crpo/interviewer_nomination/api/v1/"
                                                                  "get_event_wise_nominations_summary_count/",
+
+    "getAssessmentSummary": generic_domain + "crpo/assessment/api/v1/getAssessmentSummary/",
+
+    "getEventRegistrationDates": generic_domain + "crpo/api/v1/getEventRegistrationDates",
 
     # ---------------------------------- communication history/status --------------------------------------------------
     "sendAdmitCardsToApplicants":
