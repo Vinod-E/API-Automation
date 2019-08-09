@@ -22,6 +22,7 @@ class CloneEvent(login.CommonLogin, work_book.WorkBook):
 
         # --------------------------------- Excel Data initialize variables --------------------------------------------
         self.xl_example = []
+        self.api_clone_event_id = []
 
         # --------------------------------- Dictionary initialize variables --------------------------------------------
         self.success_case_01 = {}
@@ -67,8 +68,8 @@ class CloneEvent(login.CommonLogin, work_book.WorkBook):
         clone_event_api = requests.post(self.webapi, headers=self.headers,
                                         data=request, verify=False)
         print(clone_event_api.headers)
-        print(self.xl_example[loop])
         clone_event_api_response = json.loads(clone_event_api.content)
+        self.api_clone_event_id = clone_event_api_response.get('clonedEventId')
         print(clone_event_api_response)
 
     def output_report(self, loop):
@@ -76,7 +77,7 @@ class CloneEvent(login.CommonLogin, work_book.WorkBook):
         # --------------------------------- Writing Input Data ---------------------------------------------------------
 
         self.ws.write(self.rowsize, self.col, 'Input', self.style4)
-        self.ws.write(self.rowsize, 1, self.xl_example[loop] if self.xl_example[loop] else 'Empty')
+        self.ws.write(self.rowsize, 2, self.api_clone_event_id if self.api_clone_event_id else 'Empty')
         self.rowsize += 1
 
         # --------------------------------- Writing Output Data --------------------------------------------------------
