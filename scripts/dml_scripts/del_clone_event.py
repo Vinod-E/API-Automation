@@ -12,6 +12,7 @@ class DeleteCloneEvents(db_login.DBConnection):
         # Initialising the values
         # -----------------------
         self.xl_Cloned_event_ids = []
+        self.xl_Cloned_test_ids = []
 
     def event_excel_data(self):
         workbook = xlrd.open_workbook(output_paths.outputpaths['Event_Clone_output_sheet'])
@@ -21,6 +22,8 @@ class DeleteCloneEvents(db_login.DBConnection):
             rows = sheet1.row_values(number)
             if rows[2]:
                 self.xl_Cloned_event_ids.append(int(rows[2]))
+            if rows[2]:
+                self.xl_Cloned_test_ids.append(int(rows[2]))
 
     def archive_event(self):
         cloned_event_ids = tuple(self.xl_Cloned_event_ids)
@@ -29,8 +32,8 @@ class DeleteCloneEvents(db_login.DBConnection):
         self.cursor.execute(query)
 
     def archive_test(self):
-        event_ids = tuple(self.xl_Cloned_event_ids)
-        query = "UPDATE tests SET is_archived=1 WHERE id in {};" .format(event_ids)
+        clone_test_ids = tuple(self.xl_Cloned_test_ids)
+        query = "UPDATE tests SET is_archived=1 WHERE id in {};" .format(clone_test_ids)
         print(query)
         self.cursor.execute(query)
 
@@ -38,5 +41,6 @@ class DeleteCloneEvents(db_login.DBConnection):
 Object = DeleteCloneEvents()
 Object.event_excel_data()
 Object.archive_event()
+Object.archive_test()
 Object.connection.commit()
 Object.connection.close()
