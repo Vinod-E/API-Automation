@@ -22,8 +22,8 @@ class DeleteCloneEvents(db_login.DBConnection):
             rows = sheet1.row_values(number)
             if rows[2]:
                 self.xl_Cloned_event_ids.append(int(rows[2]))
-            if rows[2]:
-                self.xl_Cloned_test_ids.append(int(rows[2]))
+            if rows[3]:
+                self.xl_Cloned_test_ids.append(int(rows[3]))
 
     def archive_event(self):
         cloned_event_ids = tuple(self.xl_Cloned_event_ids)
