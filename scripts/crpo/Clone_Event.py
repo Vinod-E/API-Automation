@@ -18,7 +18,10 @@ class CloneEvent(login.CommonLogin, work_book.WorkBook):
 
         # --------------------------------- Overall status initialize variables ----------------------------------------
         self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 4)))
+        self.Expected_success_test_cases = list(map(lambda x: 'Pass', range(0, 20)))
         self.Actual_Success_case = []
+        self.test_case_each_field = []
+        self.success_case_01 = {}
 
         # --------------------------------- Excel Data initialize variables --------------------------------------------
         self.xl_clone_event_request = []
@@ -51,10 +54,8 @@ class CloneEvent(login.CommonLogin, work_book.WorkBook):
         self.event_details_dict = {}
         self.assessmentSummarys_dict = {}
         self.owners_dict = {}
-        self.success_case_01 = {}
-        self.success_case_02 = {}
-        self.success_case_03 = {}
-        self.headers = {}
+        self.Ec_configs_dict = {}
+        self.registration_dict = {}
 
     def excel_headers(self):
 
@@ -260,9 +261,13 @@ class CloneEvent(login.CommonLogin, work_book.WorkBook):
         request = {"eventIds": [self.api_clone_event_id]}
         get_ec_configs_api = requests.post(self.webapi, headers=self.headers,
                                            data=json.dumps(request, default=str), verify=False)
-        print(get_ec_configs_api)
+        print(get_ec_configs_api.headers)
         get_ec_configs_api_response = json.loads(get_ec_configs_api.content)
-        print(get_ec_configs_api_response)
+        data = get_ec_configs_api_response.get('data')
+        if get_ec_configs_api_response['status'] == 'OK':
+            ec_config = data.get('EcConfigs')
+            for i in ec_config:
+                self.Ec_configs_dict = i
 
     def get_assessment_summary(self):
         self.lambda_function('getAssessmentSummary')
@@ -279,19 +284,18 @@ class CloneEvent(login.CommonLogin, work_book.WorkBook):
             ass_summary = data.get('assessmentSummarys')
             for i in ass_summary:
                 self.assessmentSummarys_dict = i
-                print(self.assessmentSummarys_dict)
 
     def get_event_registration_dates(self):
         self.lambda_function('getEventRegistrationDates')
         self.headers['APP-NAME'] = 'crpo'
 
         # ----------------------------------- API request --------------------------------------------------------------
-        request = {"eventIds": [self.api_clone_event_id]}
+        request = {"EventId": self.api_clone_event_id}
         get_event_registration_dates_api = requests.post(self.webapi, headers=self.headers,
                                                          data=json.dumps(request, default=str), verify=False)
-        print(get_event_registration_dates_api)
+        print(get_event_registration_dates_api.headers)
         get_event_registration_dates_api_response = json.loads(get_event_registration_dates_api.content)
-        print(get_event_registration_dates_api_response)
+        self.registration_dict = get_event_registration_dates_api_response.get('data')
 
     def output_report(self, loop):
 
@@ -299,55 +303,102 @@ class CloneEvent(login.CommonLogin, work_book.WorkBook):
 
         self.ws.write(self.rowsize, self.col, 'Input', self.style4)
         self.ws.write(self.rowsize, 4,
-                      self.xl_expected_event_name[loop] if self.xl_expected_event_name[loop] else 'Empty')
+                      self.xl_expected_event_name[loop] if self.xl_expected_event_name[loop] else 'NA')
         self.ws.write(self.rowsize, 5,
-                      self.xl_expected_event_type[loop] if self.xl_expected_event_type[loop] else 'Empty')
+                      self.xl_expected_event_type[loop] if self.xl_expected_event_type[loop] else 'NA')
         self.ws.write(self.rowsize, 6,
-                      self.xl_expected_req[loop] if self.xl_expected_req[loop] else 'Empty')
+                      self.xl_expected_req[loop] if self.xl_expected_req[loop] else 'NA')
         self.ws.write(self.rowsize, 7,
-                      self.xl_expected_job[loop] if self.xl_expected_job[loop] else 'Empty')
+                      self.xl_expected_job[loop] if self.xl_expected_job[loop] else 'NA')
         self.ws.write(self.rowsize, 8,
-                      self.xl_expected_test[loop] if self.xl_expected_test[loop] else 'Empty')
+                      self.xl_expected_test[loop] if self.xl_expected_test[loop] else 'NA')
         self.ws.write(self.rowsize, 9,
-                      self.xl_expected_event_from[loop] if self.xl_expected_event_from[loop] else 'Empty')
+                      self.xl_expected_event_from[loop] if self.xl_expected_event_from[loop] else 'NA')
         self.ws.write(self.rowsize, 10,
-                      self.xl_expected_event_to[loop] if self.xl_expected_event_to[loop] else 'Empty')
+                      self.xl_expected_event_to[loop] if self.xl_expected_event_to[loop] else 'NA')
         self.ws.write(self.rowsize, 11,
-                      self.xl_expected_event_slot[loop] if self.xl_expected_event_slot[loop] else 'Empty')
+                      self.xl_expected_event_slot[loop] if self.xl_expected_event_slot[loop] else 'NA')
         self.ws.write(self.rowsize, 12,
-                      self.xl_expected_colleges[loop] if self.xl_expected_colleges[loop] else 'Empty')
+                      self.xl_expected_colleges[loop] if self.xl_expected_colleges[loop] else 'NA')
         self.ws.write(self.rowsize, 13,
-                      self.xl_expected_venue[loop] if self.xl_expected_venue[loop] else 'Empty')
+                      self.xl_expected_venue[loop] if self.xl_expected_venue[loop] else 'NA')
         self.ws.write(self.rowsize, 14,
-                      self.xl_expected_city[loop] if self.xl_expected_city[loop] else 'Empty')
+                      self.xl_expected_city[loop] if self.xl_expected_city[loop] else 'NA')
         self.ws.write(self.rowsize, 15,
-                      self.xl_expected_state[loop] if self.xl_expected_state[loop] else 'Empty')
+                      self.xl_expected_state[loop] if self.xl_expected_state[loop] else 'NA')
         self.ws.write(self.rowsize, 16,
-                      self.xl_expected_address[loop] if self.xl_expected_address[loop] else 'Empty')
+                      self.xl_expected_address[loop] if self.xl_expected_address[loop] else 'NA')
         self.ws.write(self.rowsize, 17,
-                      self.xl_expected_owner_name[loop] if self.xl_expected_owner_name[loop] else 'Empty')
+                      self.xl_expected_owner_name[loop] if self.xl_expected_owner_name[loop] else 'NA')
         self.ws.write(self.rowsize, 18,
-                      self.xl_expected_owner_mail[loop] if self.xl_expected_owner_mail[loop] else 'Empty')
+                      self.xl_expected_owner_mail[loop] if self.xl_expected_owner_mail[loop] else 'NA')
         self.ws.write(self.rowsize, 19,
-                      self.xl_expected_ec[loop] if self.xl_expected_ec[loop] else 'Empty')
+                      self.xl_expected_ec[loop] if self.xl_expected_ec[loop] else 'NA')
         self.ws.write(self.rowsize, 20,
-                      self.xl_expected_positivesatge[loop] if self.xl_expected_positivesatge[loop] else 'Empty')
+                      self.xl_expected_positivesatge[loop] if self.xl_expected_positivesatge[loop] else 'NA')
         self.ws.write(self.rowsize, 21,
-                      self.xl_expected_positivestatus[loop] if self.xl_expected_positivestatus[loop] else 'Empty')
+                      self.xl_expected_positivestatus[loop] if self.xl_expected_positivestatus[loop] else 'NA')
         self.ws.write(self.rowsize, 22,
-                      self.xl_expected_negativestage[loop] if self.xl_expected_negativestage[loop] else 'Empty')
+                      self.xl_expected_negativestage[loop] if self.xl_expected_negativestage[loop] else 'NA')
         self.ws.write(self.rowsize, 23,
-                      self.xl_expected_negativestatus[loop] if self.xl_expected_negativestatus[loop] else 'Empty')
+                      self.xl_expected_negativestatus[loop] if self.xl_expected_negativestatus[loop] else 'NA')
         self.ws.write(self.rowsize, 24,
-                      self.xl_expected_registartionfrom[loop] if self.xl_expected_registartionfrom[loop] else 'Empty')
+                      self.xl_expected_registartionfrom[loop] if self.xl_expected_registartionfrom[loop] else 'NA')
         self.ws.write(self.rowsize, 25,
-                      self.xl_expected_registartionto[loop] if self.xl_expected_registartionto[loop] else 'Empty')
+                      self.xl_expected_registartionto[loop] if self.xl_expected_registartionto[loop] else 'NA')
 
         self.rowsize += 1
         # --------------------------------- Writing Output Data --------------------------------------------------------
         self.ws.write(self.rowsize, self.col, 'Output', self.style5)
-        self.ws.write(self.rowsize, 2, self.api_clone_event_id)
-        self.ws.write(self.rowsize, 3, self.assessmentSummarys_dict.get('testId'))
+
+        if self.event_details_dict.get('Name') == self.xl_expected_event_name[loop]:
+            self.test_case_each_field.append('Pass')
+        if self.event_details_dict.get('Type') == self.xl_expected_event_type[loop]:
+            self.test_case_each_field.append('Pass')
+        if self.event_details_dict.get('ReqName') == self.xl_expected_req[loop]:
+            self.test_case_each_field.append('Pass')
+        if self.assessmentSummarys_dict.get('jobRoleName') == self.xl_expected_job[loop]:
+            self.test_case_each_field.append('Pass')
+        if self.assessmentSummarys_dict.get('testName') == self.xl_expected_test[loop]:
+            self.test_case_each_field.append('Pass')
+        if self.event_details_dict.get('SlotName') == self.xl_expected_event_slot[loop]:
+            self.test_case_each_field.append('Pass')
+        if self.event_details_dict.get('CText') == self.xl_expected_colleges[loop]:
+            self.test_case_each_field.append('Pass')
+        if self.event_details_dict.get('Venue') == self.xl_expected_venue[loop]:
+            self.test_case_each_field.append('Pass')
+        if self.event_details_dict.get('City') == self.xl_expected_city[loop]:
+            self.test_case_each_field.append('Pass')
+        if self.event_details_dict.get('Province') == self.xl_expected_state[loop]:
+            self.test_case_each_field.append('Pass')
+        if self.event_details_dict.get('Adds') == self.xl_expected_address[loop]:
+            self.test_case_each_field.append('Pass')
+        if self.owners_dict.get('UserName') == self.xl_expected_owner_name[loop]:
+            self.test_case_each_field.append('Pass')
+        if self.owners_dict.get('UserEmail') == self.xl_expected_owner_mail[loop]:
+            self.test_case_each_field.append('Pass')
+        if self.Ec_configs_dict.get('EcName') == self.xl_expected_ec[loop]:
+            self.test_case_each_field.append('Pass')
+        if self.Ec_configs_dict.get('PositiveStage') == self.xl_expected_positivesatge[loop]:
+            self.test_case_each_field.append('Pass')
+        if self.Ec_configs_dict.get('PositiveStatus') == self.xl_expected_positivestatus[loop]:
+            self.test_case_each_field.append('Pass')
+        if self.Ec_configs_dict.get('NegativeStage') == self.xl_expected_negativestage[loop]:
+            self.test_case_each_field.append('Pass')
+        if self.Ec_configs_dict.get('NegativeStatus') == self.xl_expected_negativestatus[loop]:
+            self.test_case_each_field.append('Pass')
+        if self.registration_dict.get('DateFrom') == self.xl_expected_registartionfrom[loop]:
+            self.test_case_each_field.append('Pass')
+        if self.registration_dict.get('DateTo') == self.xl_expected_registartionto[loop]:
+            self.test_case_each_field.append('Pass')
+        # --------------------------------------------------------------------------------------------------------------
+        if self.test_case_each_field == self.Expected_success_test_cases:
+            self.ws.write(self.rowsize, 1, 'Pass', self.style8)
+            self.success_case_01 = 'Pass'
+        else:
+            self.ws.write(self.rowsize, 1, 'Fail', self.style3)
+        self.ws.write(self.rowsize, 2, self.api_clone_event_id, self.style8)
+        self.ws.write(self.rowsize, 3, self.assessmentSummarys_dict.get('testId'), self.style8)
         # --------------------------------------------------------------------------------------------------------------
 
         if self.event_details_dict.get('Name') == self.xl_expected_event_name[loop]:
@@ -355,7 +406,7 @@ class CloneEvent(login.CommonLogin, work_book.WorkBook):
         else:
             self.ws.write(self.rowsize, 4,
                           self.event_details_dict.get('Name') if self.event_details_dict.get('Name')
-                          else 'Empty', self.style3)
+                          else 'NA', self.style3)
         # --------------------------------------------------------------------------------------------------------------
 
         if self.event_details_dict.get('Type') == self.xl_expected_event_type[loop]:
@@ -363,7 +414,7 @@ class CloneEvent(login.CommonLogin, work_book.WorkBook):
         else:
             self.ws.write(self.rowsize, 5,
                           self.event_details_dict.get('Type') if self.event_details_dict.get('Type')
-                          else 'Empty', self.style3)
+                          else 'NA', self.style3)
         # --------------------------------------------------------------------------------------------------------------
 
         if self.event_details_dict.get('ReqName') == self.xl_expected_req[loop]:
@@ -371,7 +422,7 @@ class CloneEvent(login.CommonLogin, work_book.WorkBook):
         else:
             self.ws.write(self.rowsize, 6,
                           self.event_details_dict.get('ReqName') if self.event_details_dict.get('ReqName')
-                          else 'Empty', self.style3)
+                          else 'NA', self.style3)
         # --------------------------------------------------------------------------------------------------------------
 
         if self.assessmentSummarys_dict.get('jobRoleName') == self.xl_expected_job[loop]:
@@ -379,7 +430,7 @@ class CloneEvent(login.CommonLogin, work_book.WorkBook):
         else:
             self.ws.write(self.rowsize, 7,
                           self.assessmentSummarys_dict.get('jobRoleName')
-                          if self.assessmentSummarys_dict.get('jobRoleName') else 'Empty', self.style3)
+                          if self.assessmentSummarys_dict.get('jobRoleName') else 'NA', self.style3)
         # --------------------------------------------------------------------------------------------------------------
 
         if self.assessmentSummarys_dict.get('testName') == self.xl_expected_test[loop]:
@@ -387,7 +438,145 @@ class CloneEvent(login.CommonLogin, work_book.WorkBook):
         else:
             self.ws.write(self.rowsize, 8,
                           self.assessmentSummarys_dict.get('testName') if self.assessmentSummarys_dict.get('testName')
-                          else 'Empty', self.style3)
+                          else 'NA', self.style3)
+        # --------------------------------------------------------------------------------------------------------------
+
+        if self.event_details_dict.get('From') == self.xl_expected_event_from[loop]:
+            self.ws.write(self.rowsize, 9, self.event_details_dict.get('From'), self.style8)
+        elif 'T' in self.event_details_dict.get('From'):
+            self.ws.write(self.rowsize, 9,
+                          self.event_details_dict.get('From') if self.event_details_dict.get('From')
+                          else 'NA', self.style7)
+        # --------------------------------------------------------------------------------------------------------------
+
+        if self.event_details_dict.get('To') == self.xl_expected_event_to[loop]:
+            self.ws.write(self.rowsize, 10, self.event_details_dict.get('To'), self.style8)
+        elif 'T' in self.event_details_dict.get('To'):
+            self.ws.write(self.rowsize, 10,
+                          self.event_details_dict.get('To') if self.event_details_dict.get('To')
+                          else 'NA', self.style7)
+        # --------------------------------------------------------------------------------------------------------------
+
+        if self.event_details_dict.get('SlotName') == self.xl_expected_event_slot[loop]:
+            self.ws.write(self.rowsize, 11, self.event_details_dict.get('SlotName'), self.style8)
+        else:
+            self.ws.write(self.rowsize, 11,
+                          self.event_details_dict.get('SlotName') if self.event_details_dict.get('SlotName')
+                          else 'NA', self.style3)
+        # --------------------------------------------------------------------------------------------------------------
+
+        if self.event_details_dict.get('CText') == self.xl_expected_colleges[loop]:
+            self.ws.write(self.rowsize, 12, self.event_details_dict.get('CText') if self.event_details_dict.get(
+                'CText') else 'NA', self.style8)
+        else:
+            self.ws.write(self.rowsize, 12,
+                          self.event_details_dict.get('CText') if self.event_details_dict.get('CText')
+                          else 'NA', self.style3)
+        # --------------------------------------------------------------------------------------------------------------
+
+        if self.event_details_dict.get('Venue') == self.xl_expected_venue[loop]:
+            self.ws.write(self.rowsize, 13, self.event_details_dict.get('Venue') if self.event_details_dict.get(
+                'Venue') else 'NA', self.style8)
+        else:
+            self.ws.write(self.rowsize, 13,
+                          self.event_details_dict.get('Venue') if self.event_details_dict.get('Venue')
+                          else 'NA', self.style3)
+        # --------------------------------------------------------------------------------------------------------------
+
+        if self.event_details_dict.get('City') == self.xl_expected_city[loop]:
+            self.ws.write(self.rowsize, 14, self.event_details_dict.get('City'), self.style8)
+        else:
+            self.ws.write(self.rowsize, 14,
+                          self.event_details_dict.get('City') if self.event_details_dict.get('City')
+                          else 'NA', self.style3)
+        # --------------------------------------------------------------------------------------------------------------
+
+        if self.event_details_dict.get('Province') == self.xl_expected_state[loop]:
+            self.ws.write(self.rowsize, 15, self.event_details_dict.get('Province'), self.style8)
+        else:
+            self.ws.write(self.rowsize, 15,
+                          self.event_details_dict.get('Province') if self.event_details_dict.get('Province')
+                          else 'NA', self.style3)
+        # --------------------------------------------------------------------------------------------------------------
+
+        if self.event_details_dict.get('Adds') == self.xl_expected_address[loop]:
+            self.ws.write(self.rowsize, 16, self.event_details_dict.get('Adds'), self.style8)
+        else:
+            self.ws.write(self.rowsize, 16,
+                          self.event_details_dict.get('Adds') if self.event_details_dict.get('Adds')
+                          else 'NA', self.style3)
+        # --------------------------------------------------------------------------------------------------------------
+
+        if self.owners_dict.get('UserName') == self.xl_expected_owner_name[loop]:
+            self.ws.write(self.rowsize, 17, self.owners_dict.get('UserName'), self.style8)
+        else:
+            self.ws.write(self.rowsize, 17,
+                          self.owners_dict.get('UserName') if self.owners_dict.get('UserName')
+                          else 'NA', self.style3)
+        # --------------------------------------------------------------------------------------------------------------
+
+        if self.owners_dict.get('UserEmail') == self.xl_expected_owner_mail[loop]:
+            self.ws.write(self.rowsize, 18, self.owners_dict.get('UserEmail'), self.style8)
+        else:
+            self.ws.write(self.rowsize, 18,
+                          self.owners_dict.get('UserEmail') if self.owners_dict.get('UserEmail')
+                          else 'NA', self.style3)
+        # --------------------------------------------------------------------------------------------------------------
+
+        if self.Ec_configs_dict.get('EcName') == self.xl_expected_ec[loop]:
+            self.ws.write(self.rowsize, 19, self.Ec_configs_dict.get('EcName'), self.style8)
+        else:
+            self.ws.write(self.rowsize, 19,
+                          self.Ec_configs_dict.get('EcName') if self.Ec_configs_dict.get('EcName')
+                          else 'NA', self.style3)
+        # --------------------------------------------------------------------------------------------------------------
+
+        if self.Ec_configs_dict.get('PositiveStage') == self.xl_expected_positivesatge[loop]:
+            self.ws.write(self.rowsize, 20, self.Ec_configs_dict.get('PositiveStage'), self.style8)
+        else:
+            self.ws.write(self.rowsize, 20,
+                          self.Ec_configs_dict.get('PositiveStage') if self.Ec_configs_dict.get('PositiveStage')
+                          else 'NA', self.style3)
+        # --------------------------------------------------------------------------------------------------------------
+
+        if self.Ec_configs_dict.get('PositiveStatus') == self.xl_expected_positivestatus[loop]:
+            self.ws.write(self.rowsize, 21, self.Ec_configs_dict.get('PositiveStatus'), self.style8)
+        else:
+            self.ws.write(self.rowsize, 21,
+                          self.Ec_configs_dict.get('PositiveStatus') if self.Ec_configs_dict.get('PositiveStatus')
+                          else 'NA', self.style3)
+        # --------------------------------------------------------------------------------------------------------------
+
+        if self.Ec_configs_dict.get('NegativeStage') == self.xl_expected_negativestage[loop]:
+            self.ws.write(self.rowsize, 22, self.Ec_configs_dict.get('NegativeStage'), self.style8)
+        else:
+            self.ws.write(self.rowsize, 22,
+                          self.Ec_configs_dict.get('NegativeStage') if self.Ec_configs_dict.get('NegativeStage')
+                          else 'NA', self.style3)
+        # --------------------------------------------------------------------------------------------------------------
+
+        if self.Ec_configs_dict.get('NegativeStatus') == self.xl_expected_negativestatus[loop]:
+            self.ws.write(self.rowsize, 23, self.Ec_configs_dict.get('NegativeStatus'), self.style8)
+        else:
+            self.ws.write(self.rowsize, 23,
+                          self.Ec_configs_dict.get('NegativeStatus') if self.Ec_configs_dict.get('NegativeStatus')
+                          else 'NA', self.style3)
+        # --------------------------------------------------------------------------------------------------------------
+
+        if self.registration_dict.get('DateFrom') == self.xl_expected_registartionfrom[loop]:
+            self.ws.write(self.rowsize, 24, self.registration_dict.get('DateFrom'), self.style8)
+        else:
+            self.ws.write(self.rowsize, 24,
+                          self.registration_dict.get('DateFrom') if self.registration_dict.get('DateFrom')
+                          else 'NA', self.style3)
+        # --------------------------------------------------------------------------------------------------------------
+
+        if self.registration_dict.get('DateTo') == self.xl_expected_registartionto[loop]:
+            self.ws.write(self.rowsize, 25, self.registration_dict.get('DateTo'), self.style8)
+        else:
+            self.ws.write(self.rowsize, 25,
+                          self.registration_dict.get('DateTo') if self.registration_dict.get('DateTo')
+                          else 'NA', self.style3)
         # --------------------------------------------------------------------------------------------------------------
 
         self.rowsize += 1
@@ -396,13 +585,9 @@ class CloneEvent(login.CommonLogin, work_book.WorkBook):
 
         if self.success_case_01 == 'Pass':
             self.Actual_Success_case.append(self.success_case_01)
-        if self.success_case_02 == 'Pass':
-            self.Actual_Success_case.append(self.success_case_02)
-        if self.success_case_03 == 'Pass':
-            self.Actual_Success_case.append(self.success_case_03)
 
     def overall_status(self):
-        self.ws.write(0, 0, 'Upload Candidates', self.style23)
+        self.ws.write(0, 0, 'Clone Event', self.style23)
         if self.Expected_success_cases == self.Actual_Success_case:
             self.ws.write(0, 1, 'Pass', self.style24)
         else:
@@ -427,19 +612,20 @@ if Object.login == 'OK':
         print("Iteration Count is ::", looping)
         Object.clone_event(looping)
         Object.get_all_event()
-        # Object.get_ec_configs()
+        Object.get_ec_configs()
         Object.get_assessment_summary()
-        # Object.get_event_registration_dates()
+        Object.get_event_registration_dates()
         Object.output_report(looping)
 
         # ----------------- Make Dictionaries clear for each loop ------------------------------------------------------
         Object.event_details_dict = {}
-        Object.assessmentSummarys_dict = {}
         Object.owners_dict = {}
+        Object.assessmentSummarys_dict = {}
+        Object.Ec_configs_dict = {}
+        Object.registration_dict = {}
+        Object.owners_dict = {}
+        Object.test_case_each_field = []
         Object.success_case_01 = {}
-        Object.success_case_02 = {}
-        Object.success_case_03 = {}
-        Object.headers = {}
 
 # ---------------------------- Call this function at last --------------------------------------------------------------
 Object.overall_status()
