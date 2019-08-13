@@ -10,6 +10,7 @@ class DB_Cleanup():
     # Random QP evaluation - 5365 - Automation Tenant amsin server
     # Timer verification - 7518 - AT tenant amsin server
     test_ids = [7590, 6082, 7528, 5282, 5365, 7518]
+    # test_ids = [7590]
     host_ip = '35.154.36.218'
     db_name = 'appserver_core'
     login_name = 'qauser'
