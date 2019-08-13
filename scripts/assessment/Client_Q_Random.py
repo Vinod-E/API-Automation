@@ -52,7 +52,7 @@ class ClientQuestionRandomization(unittest.TestCase):
         col_index = 0
         # -------------------------Need to change file name onle here based on Test level configuration in UI---------------------
         self.file = open(
-            "/home/testingteam/hirepro_automation/API-Automation/Output Data/Assessment/Client_Section_Random_Check.html",
+            "/home/testingteam/hirepro_automation/API-Automation/Output Data/Assessment/Client_Test_Random_Check.html",
             "wt")
         # file name need to be changed based on Test level configuration (
         # Client_Test_Random_Check.html or
@@ -234,7 +234,7 @@ class ClientQuestionRandomization(unittest.TestCase):
                 </style>
                 <div class="div-h2">
         
-                    <h1>Client Side Section Level Randomization Report</h1></div>
+                    <h1>Client Side Test Level Randomization Report</h1></div>
                 </head>
                 <body style="overflow: hidden;">
                 <div class="zui-wrapper">
@@ -492,7 +492,7 @@ class ClientQuestionRandomization(unittest.TestCase):
             # -------------------------Need to change file name onle here based on Test level configuration in UI---------------------
 
             wb_result.save(
-                "/home/testingteam/hirepro_automation/API-Automation/Output Data/Assessment/Client_Section_Random_Check.xls")
+                "/home/testingteam/hirepro_automation/API-Automation/Output Data/Assessment/Client_Test_Random_Check.xls")
 
             # file name need to be changed based on Test level configuration (
             # Client_Test_Random_Check.html or

@@ -7,7 +7,7 @@ import mysql
 from mysql import connector
 import xlwt
 from Config import Api
-from Assessment import WebConfig
+from scripts.assessment import WebConfig
 from selenium import webdriver
 
 
@@ -32,7 +32,7 @@ class TestTimerCheck(unittest.TestCase):
         # --------------------------------------------------------------------------------------------------------------
         # Read from Excel
         # --------------------------------------------------------------------------------------------------------------
-        wb = xlrd.open_workbook("/home/rajeshwar/D Drive/AutomationScripts/Input_Data/Timer.xls")
+        wb = xlrd.open_workbook("/home/testingteam/hirepro_automation/API-Automation/Input Data/Assessment/Timer.xls")
         wb_result = xlwt.Workbook()
         ws = wb_result.add_sheet('Timer_Check')
         sh1 = wb.sheet_by_index(0)
@@ -635,7 +635,7 @@ class TestTimerCheck(unittest.TestCase):
                 ws.write(row_num, 1, "Pass", self.__style3)
                 status.append("Pass")
             wb_result.save(
-                "/home/rajeshwar/D Drive/AutomationScripts/Test_Result/Test_Timer_Check/TimerCheckResult.xls")
+                "/home/testingteam/hirepro_automation/API-Automation/Output Data/Assessment/TimerCheckResult.xls")
             n += 1
             row_num += 1
         if ("Fail" in status):
@@ -643,7 +643,7 @@ class TestTimerCheck(unittest.TestCase):
         else:
             ws.write(1, 0, "Pass", self.__style3)
         wb_result.save(
-            "/home/rajeshwar/D Drive/AutomationScripts/Test_Result/Test_Timer_Check/TimerCheckResult.xls")
+            "/home/testingteam/hirepro_automation/API-Automation/Output Data/Assessment/TimerCheckResult.xls")
 
 if __name__ == '__main__':
     unittest.main()
