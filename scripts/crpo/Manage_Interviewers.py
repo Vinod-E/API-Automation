@@ -666,6 +666,8 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
         self.ws.write(0, 3, self.start_time, self.style26)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
+        self.ws.write(0, 6, 'No.of Test cases', self.style23)
+        self.ws.write(0, 7, Total_count, self.style24)
         # ---------------------------- OutPut File save with Overall Status --------------------------------------------
         Object.wb_Result.save(output_paths.outputpaths['MI_output_sheet'])
 
