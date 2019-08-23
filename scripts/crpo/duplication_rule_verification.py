@@ -238,6 +238,8 @@ class VerifyDuplicationRule(login.CommonLogin, work_book.WorkBook):
         self.ws.write(0, 3, self.start_time, self.style26)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
+        self.ws.write(0, 6, 'No.of Test cases', self.style23)
+        self.ws.write(0, 7, 'in progress...', self.style24)
         ob.wb_Result.save(output_paths.outputpaths['Duplication_rule_Output_sheet'])
 
 

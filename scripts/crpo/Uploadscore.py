@@ -1163,6 +1163,8 @@ class UploadScoresheet(login.CommonLogin, work_book.WorkBook):
         self.ws.write(self.final_status_rowsize, 3, self.start_time, self.style26)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
+        self.ws.write(0, 6, 'No.of Test cases', self.style23)
+        self.ws.write(0, 7, NumberOfTestCases, self.style24)
         Object.wb_Result.save(output_paths.outputpaths['Score_Output_sheet'])
 
 
@@ -1179,6 +1181,7 @@ Total_count = len(Object.xl_candidateId)
 print("Number Of Rows ::", Total_count)
 Total_count1 = len(Object.xl_s1_updated)
 print("Number Of Rows ::", Total_count1)
+NumberOfTestCases = Total_count + Total_count1
 
 if Object.login == 'OK':
     for looping in range(0, Total_count):
