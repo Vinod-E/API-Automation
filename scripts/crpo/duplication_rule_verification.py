@@ -25,8 +25,9 @@ class VerifyDuplicationRule(login.CommonLogin, work_book.WorkBook):
         excel_read_obj.excel_read(file_path, duplicate_sheet_index)
         print(excel_read_obj.complete_excel_data)
         data = excel_read_obj.complete_excel_data
-        tot = len(data)
-        for iteration in range(0, tot):
+        self.tot = len(data)
+        print(self.tot)
+        for iteration in range(0, self.tot):
             self.current_data = data[iteration]
             self.updateduplicaterule()
             self.checkDuplicate()
@@ -239,7 +240,7 @@ class VerifyDuplicationRule(login.CommonLogin, work_book.WorkBook):
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
         self.ws.write(0, 6, 'No.of Test cases', self.style23)
-        self.ws.write(0, 7, 'in progress...', self.style24)
+        self.ws.write(0, 7, self.tot, self.style24)
         ob.wb_Result.save(output_paths.outputpaths['Duplication_rule_Output_sheet'])
 
 
