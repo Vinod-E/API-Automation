@@ -18,16 +18,16 @@ class ClassName(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
         self.db_connection('amsin')
 
         # --------------------------------- Overall status initialize variables ----------------------------------------
-        self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 66)))
-        self.Actual_Success_case = []
+        self.Expected_overall_success_cases = list(map(lambda x: 'Pass', range(0, 7)))
+        self.Actual_overall_success_case = []
+        self.Expected_success_test_cases = list(map(lambda x: 'Pass', range(0, 7)))
+        self.Actual_success_test_cases = []
+        self.all_test_cases = ""
 
-        # --------------------------------- Excel Data initialize variables --------------------------------------------
+        # --------------------------------- Excel Data variables initialization ----------------------------------------
         self.xl_example = []
 
         # --------------------------------- Dictionary initialize variables --------------------------------------------
-        self.success_case_01 = {}
-        self.success_case_02 = {}
-        self.success_case_03 = {}
         self.headers = {}
 
     def excel_headers(self):
@@ -80,21 +80,21 @@ class ClassName(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
 
         # --------------------------------- Writing Output Data --------------------------------------------------------
         self.ws.write(self.rowsize, self.col, 'Output', self.style5)
+
+        # --------------------------------- Test cases wise status -----------------------------------------------------
+        if self.Expected_success_test_cases == self.Actual_success_test_cases:
+            self.all_test_cases = 'Pass'
+            self.ws.write(self.rowsize, 1, 'Pass', self.style8)
+        else:
+            self.ws.write(self.rowsize, 1, 'Fail', self.style3)
+        # ------------------------------ OutPut File save with Test cases wise Status ----------------------------------
         self.rowsize += 1
-
-        # ------------------------------------ OutPut File save --------------------------------------------------------
         Object.wb_Result.save(output_paths.outputpaths['Example_Output_sheet'])
-
-        if self.success_case_01 == 'Pass':
-            self.Actual_Success_case.append(self.success_case_01)
-        if self.success_case_02 == 'Pass':
-            self.Actual_Success_case.append(self.success_case_02)
-        if self.success_case_03 == 'Pass':
-            self.Actual_Success_case.append(self.success_case_03)
+        self.Actual_overall_success_case.append(self.all_test_cases)
 
     def overall_status(self):
-        self.ws.write(0, 0, 'Upload Candidates', self.style23)
-        if self.Expected_success_cases == self.Actual_Success_case:
+        self.ws.write(0, 0, 'Use case Name', self.style23)
+        if self.Expected_overall_success_cases == self.Actual_overall_success_case:
             self.ws.write(0, 1, 'Pass', self.style24)
         else:
             self.ws.write(0, 1, 'Fail', self.style25)
@@ -120,9 +120,8 @@ if Object.login == 'OK':
         Object.output_report(looping)
 
         # ----------------- Make Dictionaries clear for each loop ------------------------------------------------------
-        Object.success_case_01 = {}
-        Object.success_case_02 = {}
-        Object.success_case_03 = {}
+        Object.Actual_success_test_cases = {}
+        Object.all_test_cases = ""
         Object.headers = {}
 
 # ---------------------------- Call this function at last --------------------------------------------------------------

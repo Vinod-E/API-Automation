@@ -133,8 +133,8 @@ class ExcelData(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
         # print self.actual_ids
 
     def all(self):
-        tot_len = len(self.xl_json_request)
-        for i in range(0, tot_len):
+        self.tot_len = len(self.xl_json_request)
+        for i in range(0, self.tot_len):
             print("Iteration Count :- %s " %i)
 
             # ----------------------------------------------------------------------------------------------------------
@@ -622,7 +622,7 @@ class ExcelData(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
         self.ws.write(0, 6, 'No.of Test cases', self.style23)
-        self.ws.write(0, 7, 'in progress...', self.style24)
+        self.ws.write(0, 7, self.tot_len, self.style24)
         Object.wb_result.save(output_paths.outputpaths['Applicant_count_Output_sheet_2'])
 
 
