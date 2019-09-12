@@ -694,6 +694,7 @@ class UploadCandidate(login.CommonLogin, work_book.WorkBook):
                                          data=json.dumps(create_candidate_request, default=str), verify=False)
         print(create_candidate.headers)
         create_candidate_response_dict = json.loads(create_candidate.content)
+        print('vinod::', create_candidate_response_dict)
         candidate_response_data = create_candidate_response_dict['data']
 
         # -----------------------------------------
