@@ -72,5 +72,5 @@ inputpaths = {
 }
 
 driver = {
-    'chrome': '/home/vinodkumar/PythonProjects/API Automation/Utilities/chromedriver'
+    'chrome': '/home/vinodkumar/hirepro_automation/API-Automation/Utilities/chromedriver'
 }
