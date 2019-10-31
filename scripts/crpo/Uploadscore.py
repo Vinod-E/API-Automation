@@ -1,3 +1,4 @@
+import time
 from hpro_automation import (login, input_paths, output_paths, work_book)
 import json
 import requests
@@ -395,6 +396,7 @@ class UploadScoresheet(login.CommonLogin, work_book.WorkBook):
         fetchingscores_api = requests.post(self.webapi, headers=self.headers,
                                            data=json.dumps(score_request, default=str), verify=False)
         print(fetchingscores_api.headers)
+        time.sleep(5.2)
         fetchingscores_dict = json.loads(fetchingscores_api.content)
         scoredata = fetchingscores_dict.get('data')
         for testuser in scoredata:
