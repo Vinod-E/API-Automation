@@ -45,7 +45,7 @@ class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
         self.xl_API_hits = []
 
         # -------------
-        # Dicitionores
+        # Dictionaries
         # -------------
         self.applicant_dict = {}
         self.communication_statuses = {}

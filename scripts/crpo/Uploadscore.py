@@ -253,8 +253,8 @@ class UploadScoresheet(login.CommonLogin, work_book.WorkBook):
         # ------------------          ---------------------------------------------
         uploadsheetrequest = {
             "TestId": self.xl_testId[loop],
-            "FilePath": "https://s3-ap-southeast-1.amazonaws.com/test-all-hirepro-files/Automation/"
-                        "assessmentScoreSheets/9d07816d-5d7e-4d07-8205-314f107e3c0fGroup_Section.xlsx",
+            "FilePath": "https://s3-ap-southeast-1.amazonaws.com/test-all-hirepro-files/"
+                        "Automation/attachments/24114d72-ef4f-4b47-afd1-87286a62f9feGroup_Section.xlsx",
             "Sync": "False"
         }
         uploadsheet_api = requests.post(self.webapi, headers=self.headers,
@@ -376,7 +376,7 @@ class UploadScoresheet(login.CommonLogin, work_book.WorkBook):
         uploadsheetrequest = {
             "TestId": self.xl_testId[loop],
             "FilePath": "https://s3-ap-southeast-1.amazonaws.com/test-all-hirepro-files/Automation/"
-                        "assessmentScoreSheets/98b269f2-e8fb-4a6c-98e2-7feb224de48cUpdated_Group_Section.xlsx",
+                        "attachments/21d951be-2c70-482f-aeb0-49679ea7307eUpdated_Group_Section.xlsx",
             "Sync": "False"
         }
         uploadsheet_api = requests.post(self.webapi, headers=self.headers,

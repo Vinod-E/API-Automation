@@ -2,6 +2,11 @@
   <dictionary name="vinod">
     <words>
       <w>communicationstatus</w>
+      <w>entitycommunication</w>
+      <w>gettaskbycandidate</w>
+      <w>scoresheet</w>
+      <w>uploadsheet</w>
+      <w>uploadsheetrequest</w>
     </words>
   </dictionary>
 </component>
