@@ -4,6 +4,8 @@
       <w>communicationstatus</w>
       <w>entitycommunication</w>
       <w>gettaskbycandidate</w>
+      <w>infos</w>
+      <w>rowsize</w>
       <w>scoresheet</w>
       <w>uploadsheet</w>
       <w>uploadsheetrequest</w>
