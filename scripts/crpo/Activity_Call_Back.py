@@ -14,7 +14,7 @@ class ActivityCallBack(login.CommonLogin, work_book.WorkBook):
         self.common_login('crpo')
 
         # -----------------------------------------
-        # Activity Call Back data set initialsation
+        # Activity Call Back data set initialisation
         # -----------------------------------------
         self.xl_candidateId = []
         self.xl_applicantId = []

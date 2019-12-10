@@ -13,7 +13,7 @@ class PasswordPolicy(login.CommonLogin, work_book.WorkBook, db_login.DBConnectio
         self.common_login('crpo')
 
         # ----------------------------------------------
-        # Password configurations data set initialsation
+        # Password configurations data set initialisation
         # ----------------------------------------------
         self.xl_ID = []
         self.xl_ExpierDays = []
