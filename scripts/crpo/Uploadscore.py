@@ -378,8 +378,7 @@ class UploadScoresheet(login.CommonLogin, work_book.WorkBook):
             "TestId": self.xl_testId[loop],
             "FilePath": "https://s3-ap-southeast-1.amazonaws.com/"
                         "test-all-hirepro-files/Automation/attachments/"
-                        "21d951be-2c70-482f-aeb0-49679ea7307eUpdated_Group_Section.xlsx"
-,
+                        "21d951be-2c70-482f-aeb0-49679ea7307eUpdated_Group_Section.xlsx",
             "Sync": "False"
         }
         uploadsheet_api = requests.post(self.webapi, headers=self.headers,
@@ -541,7 +540,7 @@ class UploadScoresheet(login.CommonLogin, work_book.WorkBook):
             self.ws.write(self.rowsize, 10, 'Empty')
         # --------------------------------------------------------------------------------------------------------------
 
-        if self.xl_s3[loop]is not None and self.xl_s3[loop] >= 0:
+        if self.xl_s3[loop] is not None and self.xl_s3[loop] >= 0:
             self.ws.write(self.rowsize, 11, self.xl_s3[loop])
         else:
             self.ws.write(self.rowsize, 11, 'Empty')
