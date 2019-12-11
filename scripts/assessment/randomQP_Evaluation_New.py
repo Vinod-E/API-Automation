@@ -6,41 +6,10 @@ import mysql
 import xlrd
 import xlwt
 from mysql import connector
-from itertools import combinations
 
 
 class randomQP_Evaluation(unittest.TestCase):
     def test_randomQP_Evaluation(self):
-
-        # try:
-        #
-        #     conn = mysql.connector.connect(host='35.154.36.218',
-        #                                    database='appserver_core',
-        #                                    user='qauser',
-        #                                    password='qauser')
-        #     mycursor = conn.cursor()
-        #
-        #     mycursor.execute(
-        #         'delete from test_results where testuser_id in (select id from test_users where test_id = 5365 and login_time is not null);')
-        #     conn.commit()
-        #     print('Test result deleted')
-        #     mycursor.execute(
-        #         'delete from candidate_scores where testuser_id in (select id from test_users where test_id = 5365 and login_time is not null);')
-        #     conn.commit()
-        #     print('Candidate score deleted')
-        #     mycursor.execute(
-        #         'delete from test_user_login_infos where testuser_id in (select id from test_users where test_id = 5365 and login_time is not null);')
-        #     conn.commit()
-        #     print('Test user login info deleted')
-        #     mycursor.execute(
-        #         'update test_users set login_time = NULL, log_out_time = NULL, status = 0, client_system_info = NULL, time_spent = NULL, is_password_disabled = 0,config = NULL, client_system_info = NULL, total_score = NULL, percentage = NULL where test_id = 5365 and login_time is not null;')
-        #     conn.commit()
-        #     print('Test user login time reseted')
-        #     mycursor.close()
-        #     print('Connection closed')
-        # except Exception as e:
-        #     print(e)
-        # print('Executed')
         # --------------------------------------------------------------------------------------------------------------
         # CSS to differentiate Correct and Wrong data in Excel
         # --------------------------------------------------------------------------------------------------------------
@@ -48,6 +17,7 @@ class randomQP_Evaluation(unittest.TestCase):
         self.__style1 = xlwt.easyxf('font: name Times New Roman, color-index black, bold off')
         self.__style2 = xlwt.easyxf('font: name Times New Roman, color-index red, bold on')
         self.__style3 = xlwt.easyxf('font: name Times New Roman, color-index green, bold on')
+        self.__style4 = xlwt.easyxf('font: name Times New Roman, color-index blue, bold on')
 
         # --------------------------------------------------------------------------------------------------------------
         # Read from Excel
@@ -255,7 +225,7 @@ class randomQP_Evaluation(unittest.TestCase):
         ws.write(0, 78, "Expected_test_Total", self.__style0)
         ws.write(0, 79, "Actual_test_Total", self.__style0)
         ws.write(0, 80, "Expected Percentage", self.__style0)
-        ws.write(0, 81, "Actual Percentage", self.__style0)
+        ws.write(0, 81, "X-GUID", self.__style0)
         ws.write(0, 82, "Expected Q1 Marks", self.__style0)
         ws.write(0, 83, "Actual Q1 Marks", self.__style0)
         ws.write(0, 84, "Expected Q2 Marks", self.__style0)
@@ -368,7 +338,6 @@ class randomQP_Evaluation(unittest.TestCase):
                 QuestionId_2_Ans = "False"
             else:
                  QuestionId_2_Ans = None
-                 # print(QuestionId_1_Ans, QuestionId_2_Ans)
             QuestionId_3_Ans = rows[8]
             QuestionId_4_Ans = rows[9]
             QuestionId_5_Ans = rows[11]
@@ -455,17 +424,6 @@ class randomQP_Evaluation(unittest.TestCase):
                 QuestionId_39_Ans = "False"
             else:
                 QuestionId_39_Ans = None
-            # print(QuestionId_37_Ans, QuestionId_38_Ans, QuestionId_39_Ans
-
-            # Expected_Sec_1_Total = rows[52]
-            # Expected_Sec_2_Total = rows[54]
-            # Expected_Sec_3_Total = rows[56]
-            # Expected_Sec_4_Total = rows[58]
-            # Expected_Sec_5_Total = rows[60]
-            # Expected_Sec_6_Total = rows[62]
-            # Expected_Sec_7_Total = rows[64]
-            # Expected_Sec_8_Total = rows[66]
-            # Expected_Sec_9_Total = rows[68]
 
             Expected_Grp_1_Total = rows[70]
             Expected_Grp_2_Total = rows[72]
@@ -612,7 +570,6 @@ class randomQP_Evaluation(unittest.TestCase):
             print("section_and_expectedmarks - ", section_and_expectedmarks)
 
             group_and_expectedmarks = {}
-            # group_and_expectedmarks[Group_1_Id]
 
             section_expected_cell_pos = {}
             section_expected_cell_pos[Expected_Sec_1_Total_Mark] = 52
@@ -736,7 +693,7 @@ class randomQP_Evaluation(unittest.TestCase):
             # ----------------------------------------------------------------------------------------------------------
             # Login to HTML Test/Online Assessment
             # ----------------------------------------------------------------------------------------------------------
-            login_to_test_header = {"content-type": "application/json"}
+            login_to_test_header = {"content-type": "application/json", "APP-NAME": "onlineassessment", "X-APPLMA": "true"}
             data1 = {"ClientSystemInfo": "Browser:chrome/60.0.3112.78,OS:Linux x86_64,IPAddress:10.0.3.83",
                      "IPAddress": "10.0.3.83", "IsOnlinePreview": False, "LoginName": loginName,
                      "Password": Passwords,
@@ -750,7 +707,7 @@ class randomQP_Evaluation(unittest.TestCase):
             # Load Test API call
             # ----------------------------------------------------------------------------------------------------------
 
-            loadtest_header = {"content-type": "application/json", "X-AUTH-TOKEN": self.Test_Login_TokenVal}
+            loadtest_header = {"content-type": "application/json", "APP-NAME": "onlineassessment", "X-APPLMA": "true", "X-AUTH-TOKEN": self.Test_Login_TokenVal}
             data2 = {}
             r = requests.post("https://amsin.hirepro.in/py/assessment/htmltest/api/v1/initiate-tua/", headers=loadtest_header,
                               data=json.dumps(data2, default=str), verify=True)
@@ -823,7 +780,7 @@ class randomQP_Evaluation(unittest.TestCase):
             print(other_q_cell_pos)
 
             for key in other_q_cell_pos:
-                ws.write(rownum, other_q_cell_pos[key] + 1, "NA")
+                ws.write(rownum, other_q_cell_pos[key] + 1, "NA", self.__style4)
 
 
             for groupid_index in range(0, len(json.loads(r.content)['mandatoryGroups'])):
@@ -855,7 +812,7 @@ class randomQP_Evaluation(unittest.TestCase):
                 candidate_testResultCollection.append(
                     {"q": qid, "timeSpent": 1, "secId": questonwise_section[qid], "a": question_and_answers[qid]})
 
-            submit_test_header = {"content-type": "application/json", "X-AUTH-TOKEN": self.Test_Login_TokenVal}
+            submit_test_header = {"content-type": "application/json", "APP-NAME": "onlineassessment", "X-APPLMA": "true", "X-AUTH-TOKEN": self.Test_Login_TokenVal}
             data4 = {"isPartialSubmission": False, "totalTimeSpent": 39,
                      "testResultCollection": candidate_testResultCollection,
                      "config": "{\"TimeStamp\":\"2018-03-13T07:28:55.933Z\"}"}
@@ -870,7 +827,7 @@ class randomQP_Evaluation(unittest.TestCase):
             #  Login to AMS
             # ----------------------------------------------------------------------------------------------------------
 
-            crpo_login_header = {"content-type": "application/json"}
+            crpo_login_header = {"content-type": "application/json", "APP-NAME": "crpo", "X-APPLMA": "true"}
             data0 = {"LoginName": "admin", "Password": "4LWS-067", "TenantAlias": "automation",
                      "UserName": "admin"}
             response = requests.post('https://amsin.hirepro.in/py/common/user/login_user/', headers=crpo_login_header,
@@ -883,12 +840,13 @@ class randomQP_Evaluation(unittest.TestCase):
             # ----------------------------------------------------------------------------------------------------------
             eval_online_assessment_header = {"content-type": "application/json", "X-AUTH-TOKEN": self.NTokenVal,
                                              "APP-NAME": "crpoassessment"}
-            data5 = {"testId": TestId, "candidateIds": [candidateId]}
-            request5 = requests.post("https://amsin.hirepro.in/py/assessment/eval/api/v1/eval-online-assessment/",
+            evaluateTest_data = {"testId": TestId, "candidateIds": [candidateId]}
+            resp = requests.post("https://amsin.hirepro.in/py/assessment/eval/api/v1/eval-online-assessment/",
                                      headers=eval_online_assessment_header,
-                                     data=json.dumps(data5, default=str), verify=True)
-            evaluateTest_response = json.loads(request5.content)
-            # print(evaluateTest_response)
+                                     data=json.dumps(evaluateTest_data, default=str), verify=True)
+            evaluateTest_response = json.loads(resp.content)
+            GUID = resp.headers['X-GUID']
+            ws.write(rownum, 81, GUID, self.__style4)
 
             # ----------------------------------------------------------------------------------------------------------
             #  Fetch question wise candidate marks from DB and match with expected
@@ -938,15 +896,18 @@ class randomQP_Evaluation(unittest.TestCase):
             # ----------------------------------------------------------------------------------------------------------
             #  View candidate scores by Candidate Id (DotNet API)
             # ----------------------------------------------------------------------------------------------------------
-            ViewCandidateScoreByCandidateId_header = {"content-type": "application/json", "X-AUTH-TOKEN": self.TokenVal.get("Token")}
-            data6 = {"TestId": TestId, "CandidateId": candidateId, "TenantId": "ETg6fWphpuw="}  #automation tenant id = "ETg6fWphpuw="
-            request6 = requests.post(
-                "https://amsin.hirepro.in/amsweb/JSONServices/JSONAssessmentManagementService.svc/ViewCandidateScoreByCandidateId",
-                headers=ViewCandidateScoreByCandidateId_header,
-                data=json.dumps(data6, default=str), verify=True)
-            print("hello",request6.content)
-            transcript_response = json.loads(request6.content)['CandidateScore']['TotalCandidateScore']
-            print("Test",transcript_response)
+            view_candidate_score_by_candidate_id_header = {"content-type": "application/json", "APP-NAME": "crpo",
+                                                           "X-AUTH-TOKEN": self.TokenVal.get("Token")}
+            view_candidate_score_by_candidate_id_data = {"testId": TestId, "candidateId": candidateId,
+                                                         "reportFlags": {'testUsersScoreRequired': True,
+                                                                         'fileContentRequired': False}, "print": False}
+
+            print(view_candidate_score_by_candidate_id_data)
+            view_candidate_score_by_candidate_id_request = requests.post(
+                "https://amsin.hirepro.in/py/assessment/report/api/v1/candidatetranscript/",
+                headers=view_candidate_score_by_candidate_id_header,
+                data=json.dumps(view_candidate_score_by_candidate_id_data, default=str), verify=True)
+            print(view_candidate_score_by_candidate_id_request)
 
             # ----------------------------------------------------------------------------------------------------------
             #  Entering Actual data in excel and compairing Expected and Actual result
@@ -972,184 +933,278 @@ class randomQP_Evaluation(unittest.TestCase):
             Expected_Test_Total = Expected_Grp_1_Total + Expected_Grp_2_Total + Expected_Grp_3_Total + Expected_Grp_4_Total
             ws.write(rownum, 78, Expected_Test_Total)
 
-            k = 0
-            while (k <= 12):
-                if (json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k]['GroupId'] == 13040):
-                    Actual_Group1_Score = json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k][
-                        'Score']
-                    if (round(Expected_Grp_1_Total, 3) == Actual_Group1_Score):
-                        ws.write(rownum, 71, Actual_Group1_Score, self.__style3)
-                    else:
-                        ws.write(rownum, 71, Actual_Group1_Score, self.__style2)
-                        Group_1_Id = json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k]['GroupId']
-                        print("Group -- Candidate_Id - ", candidateId, " Group_1_Id - ", Group_1_Id, "Expected Score - ", Expected_Grp_1_Total, "Actual Score - ", Actual_Group1_Score)
-                    break
-                k += 1
-            k = 0
-            while (k <= 12):
-                if (json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k]['GroupId'] == 47164):
-                    Actual_Section1_Score = json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k][
-                        'Score']
-                    if (round(section_and_expectedmarks[47164], 3) == Actual_Section1_Score):
-                        ws.write(rownum, 53, Actual_Section1_Score, self.__style3)
-                    else:
-                        ws.write(rownum, 53, Actual_Section1_Score, self.__style2)
-                        Section_1_Id = json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k][
-                            'GroupId']
-                        print("Section -- Candidate_Id - ", candidateId, " Section_1_Id - ", Section_1_Id, " Expected Score - ", section_and_expectedmarks[47164], " Actual Score - ", Actual_Section1_Score)
-                    break
-                k += 1
-            k = 0
-            while (k <= 12):
-                if (json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k]['GroupId'] == 47165):
-                    Actual_Section2_Score = json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k][
-                        'Score']
-                    if (round(section_and_expectedmarks[47165], 3) == Actual_Section2_Score):
-                        ws.write(rownum, 55, Actual_Section2_Score, self.__style3)
-                    else:
-                        ws.write(rownum, 55, Actual_Section2_Score, self.__style2)
-                        Section_2_Id = json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k][
-                            'GroupId']
-                        print("Group -- Candidate_Id - ", candidateId, " Section_2_Id - ", Section_2_Id, "Expected Score - ", section_and_expectedmarks[47165], "Actual Score - ", Actual_Section2_Score)
-                    break
-                k += 1
-            k = 0
-            while (k <= 12):
-                if (json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k]['GroupId'] == 47166):
-                    Actual_Section3_Score = json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k][
-                        'Score']
-                    if (round(section_and_expectedmarks[47166], 3) == Actual_Section3_Score):
-                        ws.write(rownum, 57, Actual_Section3_Score, self.__style3)
-                    else:
-                        ws.write(rownum, 57, Actual_Section3_Score, self.__style2)
-                        Section_3_Id = json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k][
-                            'GroupId']
-                        print("Section -- Candidate_Id - ", candidateId, " Section_3_Id - ", Section_3_Id, " Expected Score - ", section_and_expectedmarks[47166], " Actual Score - ", Actual_Section3_Score)
-                    break
-                k += 1
-            k = 0
-            while (k <= 12):
-                if (json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k]['GroupId'] == 13041):
-                    Actual_Group2_Score = json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k][
-                        'Score']
-                    if (round(Expected_Grp_2_Total, 3) == Actual_Group2_Score):
-                        ws.write(rownum, 73, Actual_Group2_Score, self.__style3)
-                    else:
-                        ws.write(rownum, 73, Actual_Group2_Score, self.__style2)
-                        Group_2_Id = json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k]['GroupId']
-                        print("Group -- Candidate_Id - ", candidateId, " Group_2_Id - ", Group_2_Id, "Expected Score - ", Expected_Grp_2_Total, "Actual Score - ", Actual_Group2_Score)
-                    break
-                k += 1
-            k = 0
-            while (k <= 12):
-                if (json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k]['GroupId'] == 47167):
-                    Actual_Section4_Score = json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k][
-                        'Score']
-                    if (round(section_and_expectedmarks[47167], 3) == Actual_Section4_Score):
-                        ws.write(rownum, 59, Actual_Section4_Score, self.__style3)
-                    else:
-                        ws.write(rownum, 59, Actual_Section4_Score, self.__style2)
-                        Section_4_Id = json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k][
-                            'GroupId']
-                        print("Section -- Candidate_Id - ", candidateId, " Section_4_Id - ", Section_4_Id, " Expected Score - ", section_and_expectedmarks[47167], " Actual Score - ", Actual_Section4_Score)
-                    break
-                k += 1
-            k = 0
-            while (k <= 12):
-                if (json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k]['GroupId'] == 47168):
-                    Actual_Section5_Score = json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k][
-                        'Score']
-                    if (round(section_and_expectedmarks[47168], 3) == Actual_Section5_Score):
-                        ws.write(rownum, 61, Actual_Section5_Score, self.__style3)
-                    else:
-                        ws.write(rownum, 61, Actual_Section5_Score, self.__style2)
-                        Section_5_Id = json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k][
-                            'GroupId']
-                        print("Section -- Candidate_Id - ", candidateId, " Section_5_Id - ", Section_5_Id, " Expected Score - ", section_and_expectedmarks[47168], " Actual Score - ", Actual_Section5_Score)
-                    break
-                k += 1
-            k = 0
-            while (k <= 12):
-                if (json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k]['GroupId'] == 13042):
-                    Actual_Group3_Score = json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k][
-                        'Score']
-                    if (round(Expected_Grp_3_Total, 3) == Actual_Group3_Score):
-                        ws.write(rownum, 75, Actual_Group3_Score, self.__style3)
-                    else:
-                        ws.write(rownum, 75, Actual_Group3_Score, self.__style2)
-                        Group_3_Id = json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k]['GroupId']
-                        print("Group -- Candidate_Id - ", candidateId, " Group_3_Id - ", Group_3_Id, "Expected Score - ", Expected_Grp_3_Total, "Actual Score - ", Actual_Group3_Score)
-                    break
-                k += 1
-            k = 0
-            while (k <= 12):
-                if (json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k]['GroupId'] == 47169):
-                    Actual_Section6_Score = json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k][
-                        'Score']
-                    if (round(section_and_expectedmarks[47169], 3) == Actual_Section6_Score):
-                        ws.write(rownum, 63, Actual_Section6_Score, self.__style3)
-                    else:
-                        ws.write(rownum, 63, Actual_Section6_Score, self.__style2)
-                        Section_6_Id = json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k][
-                            'GroupId']
-                        print("Section -- Candidate_Id - ", candidateId, " Section_6_Id - ", Section_6_Id, " Expected Score - ", section_and_expectedmarks[47169], " Actual Score - ", Actual_Section6_Score)
-                    break
-                k += 1
-            k = 0
-            while (k <= 12):
-                if (json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k]['GroupId'] == 47170):
-                    Actual_Section7_Score = json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k][
-                        'Score']
-                    if (round(section_and_expectedmarks[47170], 3) == Actual_Section7_Score):
-                        ws.write(rownum, 65, Actual_Section7_Score, self.__style3)
-                    else:
-                        ws.write(rownum, 65, Actual_Section7_Score, self.__style2)
-                        Section_7_Id = json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k][
-                            'GroupId']
-                        print("Section -- Candidate_Id - ", candidateId, " Section_7_Id - ", Section_7_Id, " Expected Score - ", section_and_expectedmarks[47170], " Actual Score - ", Actual_Section7_Score)
-                    break
-                k += 1
-            k = 0
-            while (k <= 12):
-                if (json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k]['GroupId'] == 13043):
-                    Actual_Group4_Score = json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k][
-                        'Score']
-                    if round(Expected_Grp_4_Total, 3) == Actual_Group4_Score:
-                        ws.write(rownum, 77, Actual_Group4_Score, self.__style3)
-                    else:
-                        ws.write(rownum, 77, Actual_Group4_Score, self.__style2)
-                        Group_4_Id = json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k]['GroupId']
-                        print("Group -- Candidate_Id - ", candidateId, " Group_4_Id - ", Group_4_Id, "Expected Score - ", Expected_Grp_4_Total, "Actual Score - ", Actual_Group4_Score)
-                    break
-                k += 1
-            k = 0
-            while (k <= 12):
-                if (json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k]['GroupId'] == 47171):
-                    Actual_Section8_Score = json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k][
-                        'Score']
-                    if (round(section_and_expectedmarks[47171], 3) == Actual_Section8_Score):
-                        ws.write(rownum, 67, Actual_Section8_Score, self.__style3)
-                    else:
-                        ws.write(rownum, 67, Actual_Section8_Score, self.__style2)
-                        Section_8_Id = json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k][
-                            'GroupId']
-                        print("Section -- Candidate_Id - ", candidateId, " Section_8_Id - ", Section_8_Id, " Expected Score - ", section_and_expectedmarks[47171], " Actual Score - ", Actual_Section8_Score)
-                    break
-                k += 1
-            k = 0
-            while (k <= 12):
-                if (json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k]['GroupId'] == 47172):
-                    Actual_Section9_Score = json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k][
-                        'Score']
-                    if (round(section_and_expectedmarks[47172], 3) == Actual_Section9_Score):
-                        ws.write(rownum, 69, Actual_Section9_Score, self.__style3)
-                    else:
-                        ws.write(rownum, 69, Actual_Section9_Score, self.__style2)
-                        Section_9_Id = json.loads(request6.content)['CandidateScore']['TotalCandidateScore'][k][
-                            'GroupId']
-                        print("Section -- Candidate_Id - ", candidateId, " Section_9_Id - ", Section_9_Id, " Expected Score - ", section_and_expectedmarks[47172], " Actual Score - ", Actual_Section9_Score)
-                    break
-                k += 1
+            testUserScore = len(
+                json.loads(view_candidate_score_by_candidate_id_request.content)['data']['testUserScore'])
+            for ite in range(0, testUserScore):
+                if json.loads(view_candidate_score_by_candidate_id_request.content)['data']['testUserScore'][ite][
+                    'candidateId'] == candidateId:
+                    k = 0
+                    while k <= 12:
+                        if \
+                                json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][ite][
+                                    'groupInfos'][0]['groupId'] == 13040:
+                            Actual_Group1_Score = \
+                                json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][
+                                    ite]['groupInfos'][0]['score']
+                            if (round(Expected_Grp_1_Total, 3) == Actual_Group1_Score):
+                                ws.write(rownum, 71, Actual_Group1_Score, self.__style3)
+                            else:
+                                ws.write(rownum, 71, Actual_Group1_Score, self.__style2)
+                                Group_1_Id = json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][ite]['groupInfos'][0]['groupId']
+                                print("Group -- Candidate_Id - ", candidateId, " group_1_id - ", Group_1_Id,
+                                      "Expected Score - ", Expected_Grp_1_Total, "Actual Score - ", Actual_Group1_Score)
+                            break
+                        k += 1
+                    k = 0
+                    while k <= 12:
+                        if \
+                                json.loads(view_candidate_score_by_candidate_id_request.content)['data']['testUserScore'][ite][
+                                    'groupInfos'][0]['sectionInfos'][k]["sectionId"] == 47164:
+                            Actual_Section1_Score = \
+                                json.loads(view_candidate_score_by_candidate_id_request.content)['data']['testUserScore'][
+                                    ite]['groupInfos'][0]['sectionInfos'][k]['score']
+                            if (round(section_and_expectedmarks[47164], 3) == Actual_Section1_Score):
+                                ws.write(rownum, 53, Actual_Section1_Score, self.__style3)
+                            else:
+                                ws.write(rownum, 53, Actual_Section1_Score, self.__style2)
+                                Section_1_Id = json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][ite]['groupInfos'][0]['sectionInfos'][k]["sectionId"]
+                                print("Section -- Candidate_Id - ", candidateId, " section_1_id - ", Section_1_Id,
+                                      "Expected Score - ", section_and_expectedmarks, " Actual Score - ",
+                                      Actual_Section1_Score)
+                            break
+                        k += 1
+                    k = 0
+                    while k <= 12:
+                        if \
+                                json.loads(view_candidate_score_by_candidate_id_request.content)['data']['testUserScore'][ite][
+                                    'groupInfos'][0]['sectionInfos'][k]["sectionId"] == 47165:
+                            Actual_Section2_Score = \
+                                json.loads(view_candidate_score_by_candidate_id_request.content)['data']['testUserScore'][
+                                    ite]['groupInfos'][0]['sectionInfos'][k]['score']
+                            if (round(section_and_expectedmarks[47165], 3) == Actual_Section2_Score):
+                                ws.write(rownum, 55, Actual_Section2_Score, self.__style3)
+                            else:
+                                ws.write(rownum, 55, Actual_Section2_Score, self.__style2)
+                                Section_2_Id = json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][ite]['groupInfos'][0]['sectionInfos'][k]["sectionId"]
+                                print("Section -- Candidate_Id - ", candidateId, " section_1_id - ", Section_2_Id,
+                                      "Expected Score - ", section_and_expectedmarks, " Actual Score - ",
+                                      Actual_Section2_Score)
+                            break
+                        k += 1
+                    k = 0
+                    while k <= 12:
+                        if \
+                                json.loads(view_candidate_score_by_candidate_id_request.content)['data']['testUserScore'][ite][
+                                    'groupInfos'][0]['sectionInfos'][k]["sectionId"] == 47166:
+                            Actual_Section3_Score = \
+                                json.loads(view_candidate_score_by_candidate_id_request.content)['data']['testUserScore'][
+                                    ite]['groupInfos'][0]['sectionInfos'][k]['score']
+                            if (round(section_and_expectedmarks[47166], 3) == Actual_Section3_Score):
+                                ws.write(rownum, 57, Actual_Section3_Score, self.__style3)
+                            else:
+                                ws.write(rownum, 57, Actual_Section3_Score, self.__style2)
+                                Section_3_Id = json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][ite]['groupInfos'][0]['sectionInfos'][k]["sectionId"]
+                                print("Section -- Candidate_Id - ", candidateId, " section_1_id - ", Section_3_Id,
+                                      "Expected Score - ", section_and_expectedmarks, " Actual Score - ",
+                                      Actual_Section3_Score)
+                            break
+                        k += 1
+
+                    k = 0
+                    while k <= 12:
+                        if \
+                                json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][ite][
+                                    'groupInfos'][1]['groupId'] == 13041:
+                            Actual_Group2_Score = \
+                                json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][
+                                    ite]['groupInfos'][1]['score']
+                            if (round(Expected_Grp_2_Total, 3) == Actual_Group2_Score):
+                                ws.write(rownum, 73, Actual_Group2_Score, self.__style3)
+                            else:
+                                ws.write(rownum, 73, Actual_Group2_Score, self.__style2)
+                                Group_2_Id = json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][ite]['groupInfos'][1]['groupId']
+                                print("Group -- Candidate_Id - ", candidateId, " group_1_id - ", Group_2_Id,
+                                      "Expected Score - ", Expected_Grp_2_Total, "Actual Score - ", Actual_Group2_Score)
+                            break
+                        k += 1
+                    k = 0
+                    while k <= 12:
+                        if \
+                                json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][ite][
+                                    'groupInfos'][1]['sectionInfos'][k]["sectionId"] == 47167:
+                            Actual_Section4_Score = \
+                                json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][
+                                    ite]['groupInfos'][1]['sectionInfos'][k]['score']
+                            if (round(section_and_expectedmarks[47167], 3) == Actual_Section4_Score):
+                                ws.write(rownum, 59, Actual_Section4_Score, self.__style3)
+                            else:
+                                ws.write(rownum, 59, Actual_Section4_Score, self.__style2)
+                                Section_4_Id = \
+                                json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][ite]['groupInfos'][1]['sectionInfos'][k]["sectionId"]
+                                print("Section -- Candidate_Id - ", candidateId, " section_1_id - ", Section_4_Id,
+                                      "Expected Score - ", section_and_expectedmarks, " Actual Score - ",
+                                      Actual_Section4_Score)
+                            break
+                        k += 1
+                    k = 0
+                    while k <= 12:
+                        if \
+                                json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][ite][
+                                    'groupInfos'][1]['sectionInfos'][k]["sectionId"] == 47168:
+                            Actual_Section5_Score = \
+                                json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][
+                                    ite]['groupInfos'][1]['sectionInfos'][k]['score']
+                            if (round(section_and_expectedmarks[47168], 3) == Actual_Section5_Score):
+                                ws.write(rownum, 61, Actual_Section5_Score, self.__style3)
+                            else:
+                                ws.write(rownum, 61, Actual_Section5_Score, self.__style2)
+                                Section_5_Id = json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][ite]['groupInfos'][1]['sectionInfos'][k]["sectionId"]
+                                print("Section -- Candidate_Id - ", candidateId, " section_1_id - ", Section_5_Id,
+                                      "Expected Score - ", section_and_expectedmarks, " Actual Score - ",
+                                      Actual_Section5_Score)
+                            break
+                        k += 1
+
+                    k = 0
+                    while k <= 12:
+                        if \
+                                json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][ite][
+                                    'groupInfos'][2]['groupId'] == 13042:
+                            Actual_Group3_Score = \
+                                json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][
+                                    ite]['groupInfos'][2]['score']
+                            if (round(Expected_Grp_3_Total, 3) == Actual_Group3_Score):
+                                ws.write(rownum, 75, Actual_Group3_Score, self.__style3)
+                            else:
+                                ws.write(rownum, 75, Actual_Group3_Score, self.__style2)
+                                Group_3_Id = json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][ite]['groupInfos'][2]['groupId']
+                                print("Group -- Candidate_Id - ", candidateId, " group_1_id - ", Group_3_Id,
+                                      "Expected Score - ", Expected_Grp_3_Total, "Actual Score - ", Actual_Group3_Score)
+                            break
+                        k += 1
+                    k = 0
+                    while k <= 12:
+                        if \
+                                json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][ite][
+                                    'groupInfos'][2]['sectionInfos'][k]["sectionId"] == 47169:
+                            Actual_Section6_Score = \
+                                json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][
+                                    ite]['groupInfos'][2]['sectionInfos'][k]['score']
+                            if (round(section_and_expectedmarks[47169], 3) == Actual_Section6_Score):
+                                ws.write(rownum, 63, Actual_Section6_Score, self.__style3)
+                            else:
+                                ws.write(rownum, 63, Actual_Section6_Score, self.__style2)
+                                Section_6_Id = json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][ite]['groupInfos'][2]['sectionInfos'][k]["sectionId"]
+                                print("Section -- Candidate_Id - ", candidateId, " section_1_id - ", Section_6_Id,
+                                      "Expected Score - ", section_and_expectedmarks, " Actual Score - ",
+                                      Actual_Section6_Score)
+                            break
+                        k += 1
+                    k = 0
+                    while k <= 12:
+                        if \
+                                json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][ite][
+                                    'groupInfos'][2]['sectionInfos'][k]["sectionId"] == 47170:
+                            Actual_Section7_Score = \
+                                json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][
+                                    ite]['groupInfos'][2]['sectionInfos'][k]['score']
+                            if (round(section_and_expectedmarks[47170], 3) == Actual_Section7_Score):
+                                ws.write(rownum, 65, Actual_Section7_Score, self.__style3)
+                            else:
+                                ws.write(rownum, 65, Actual_Section7_Score, self.__style2)
+                                Section_7_Id = json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][ite]['groupInfos'][2]['sectionInfos'][k]["sectionId"]
+                                print("Section -- Candidate_Id - ", candidateId, " section_1_id - ", Section_7_Id,
+                                      "Expected Score - ", section_and_expectedmarks, " Actual Score - ",
+                                      Actual_Section7_Score)
+                            break
+                        k += 1
+
+                    k = 0
+                    while k <= 12:
+                        if \
+                                json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][ite][
+                                    'groupInfos'][3]['groupId'] == 13043:
+                            Actual_Group4_Score = \
+                                json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][
+                                    ite]['groupInfos'][3]['score']
+                            if round(Expected_Grp_4_Total, 3) == Actual_Group4_Score:
+                                ws.write(rownum, 77, Actual_Group4_Score, self.__style3)
+                            else:
+                                ws.write(rownum, 77, Actual_Group4_Score, self.__style2)
+                                Group_4_Id = json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][ite]['groupInfos'][3]['groupId']
+                                print("Group -- Candidate_Id - ", candidateId, " group_1_id - ", Group_4_Id,
+                                      "Expected Score - ", Expected_Grp_4_Total, "Actual Score - ", Actual_Group4_Score)
+                            break
+                        k += 1
+                    k = 0
+                    while k <= 12:
+                        if \
+                                json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][ite][
+                                    'groupInfos'][3]['sectionInfos'][k]["sectionId"] == 47171:
+                            Actual_Section8_Score = \
+                                json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][
+                                    ite]['groupInfos'][3]['sectionInfos'][k]['score']
+                            if (round(section_and_expectedmarks[47171], 3) == Actual_Section8_Score):
+                                ws.write(rownum, 67, Actual_Section8_Score, self.__style3)
+                            else:
+                                ws.write(rownum, 67, Actual_Section8_Score, self.__style2)
+                                Section_8_Id = json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][ite]['groupInfos'][3]['sectionInfos'][k]["sectionId"]
+                                print("Section -- Candidate_Id - ", candidateId, " section_1_id - ", Section_8_Id,
+                                      "Expected Score - ", section_and_expectedmarks, " Actual Score - ",
+                                      Actual_Section8_Score)
+                            break
+                        k += 1
+                    k = 0
+                    while k <= 12:
+                        if \
+                                json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][ite][
+                                    'groupInfos'][3]['sectionInfos'][k]["sectionId"] == 47172:
+                            Actual_Section9_Score = \
+                                json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][
+                                    ite]['groupInfos'][3]['sectionInfos'][k]['score']
+                            if (round(section_and_expectedmarks[47172], 3) == Actual_Section9_Score):
+                                ws.write(rownum, 69, Actual_Section9_Score, self.__style3)
+                            else:
+                                ws.write(rownum, 69, Actual_Section9_Score, self.__style2)
+                                Section_9_Id = json.loads(view_candidate_score_by_candidate_id_request.content)['data'][
+                                    'testUserScore'][ite]['groupInfos'][3]['sectionInfos'][k]["sectionId"]
+                                print("Section -- Candidate_Id - ", candidateId, " section_1_id - ", Section_9_Id,
+                                      "Expected Score - ", section_and_expectedmarks, " Actual Score - ",
+                                      Actual_Section9_Score)
+                            break
+                        k += 1
             Expected_Test_Total
             # Actual_Test_Score = Actual_Group1_Score + Actual_Group2_Score + Actual_Group3_Score + Actual_Group4_Score
             Actual_Test_Score = Actual_Group1_Score + Actual_Group2_Score + Actual_Group3_Score + Actual_Group4_Score
@@ -1158,25 +1213,6 @@ class randomQP_Evaluation(unittest.TestCase):
             else:
                 ws.write(rownum, 79, Actual_Test_Score, self.__style2)
                 print("Section -- Candidate_Id - ", candidateId, " Test Id - ", TestId, " Expected Test Score - ", Expected_test_Total, " Actual Test Score - ", Actual_Test_Score)
-            wb_result.save("/home/rajeshwar/D Drive/hirepro_automation/API-Automation/Output Data/Assessment/staticrandomQP_Evaluation_Check.xls")
+            wb_result.save("/home/rajeshwar/D Drive/hirepro_automation/API-Automation/Output Data/Assessment/RandomQP_Evaluation_Check.xls")
             n += 1
             rownum += 1
-
-
-
-
-
-            # length = len(dummy)
-            # dict = []
-            # for item in range(0, length):
-            #     dummy1 = json.loads(r.content)['mandatoryGroups'][item]['sections']
-            #     length1 = len(dummy1)
-            #     for item1 in range(0, length1):
-            #         dummy2 = json.loads(r.content)['mandatoryGroups'][item]['sections'][item1]['questionDetails']
-            #         length2 = len(dummy2)
-            #         for item2 in range(0, length2):
-            #             dummy3 = json.loads(r.content)['mandatoryGroups'][item]['sections'][item1]['questionDetails'][item2]['typeOfQuestionText']
-            #             # dict.append(dummy3)
-            #             dict.append(dummy3)
-            # print(dict)
-            # print("Load Test - ",json.loads(r.content)['mandatoryGroups'][item]['sections'][item1]['questionDetails'][item2]['childQuestions'][1]['typeOfQuestionText'])
