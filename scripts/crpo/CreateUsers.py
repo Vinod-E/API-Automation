@@ -47,7 +47,7 @@ class CreateUser(login.CommonLogin, work_book.WorkBook):
     def excel_headers(self):
         self.main_headers = ['Comparison', 'Actual_status', 'User Id', 'TypeofUser', 'Name', 'Login_name',
                              'Email', 'Location', 'Mobile', 'Roles', 'Department', 'TypeofUserId', 'UserBelongs_Id',
-                             'Expected_message']
+                             'Expected_message', 'Password']
         self.headers_with_style2 = ['Comparison', 'Actual_status', 'User Id', 'TypeofUser']
         self.file_headers_col_row()
 
@@ -114,6 +114,23 @@ class CreateUser(login.CommonLogin, work_book.WorkBook):
 
             roles = list(map(int, rows[5].split(',') if isinstance(rows[5], str) else [rows[5]]))
             self.xl_Roles.append(roles)
+
+    def update_pwd_policy(self):
+
+        self.lambda_function('create_update_pwd_policy')
+        self.headers['APP-NAME'] = 'crpo'
+
+        request = {"NumCapital": 1,
+                   "NumSmall": 1,
+                   "NumSpecial": 1,
+                   "NumNumeric": 1,
+                   "NumCharacter": 4,
+                   "PwdExpiryLimitInDays": 60,
+                   "IsPwdChangeInFirstLogin": False,
+                   "Id": 398
+                   }
+        update_policy = requests.post(self.webapi, headers=self.headers, data=json.dumps(request, default=str),
+                                      verify=False)
 
     def create_user(self, loop):
 
@@ -198,6 +215,10 @@ class CreateUser(login.CommonLogin, work_book.WorkBook):
             self.ws.write(self.rowsize, 12, 'Empty')
         if self.xl_Execption_Message[loop]:
             self.ws.write(self.rowsize, 13, self.xl_Execption_Message[loop])
+        if self.xl_enter_password[loop]:
+            self.ws.write(self.rowsize, 14, self.xl_enter_password[loop])
+        else:
+            self.ws.write(self.rowsize, 14, 'Empty')
 
         # -------------------
         # Writing Output data
@@ -205,8 +226,15 @@ class CreateUser(login.CommonLogin, work_book.WorkBook):
         self.rowsize += 1  # Row increment
         self.ws.write(self.rowsize, self.col, 'Output', self.style5)
         if self.userId:
-            self.ws.write(self.rowsize, 1, 'Pass', self.style8)
-            self.success_case_01 = 'Pass'
+            if self.xl_Execption_Message[loop] is '':
+                self.ws.write(self.rowsize, 1, 'Pass', self.style8)
+                self.success_case_01 = 'Pass'
+            elif self.xl_Execption_Message[loop] == self.message:
+                self.ws.write(self.rowsize, 1, 'Pass', self.style8)
+                self.success_case_01 = 'Pass'
+            else:
+                self.ws.write(self.rowsize, 1, 'Fail', self.style3)
+                self.success_case_01 = 'Pass'
         elif self.xl_Execption_Message[loop] == self.message:
             self.ws.write(self.rowsize, 1, 'Pass', self.style8)
             self.success_case_02 = 'Pass'
@@ -388,6 +416,7 @@ print("Number Of Rows ::", Total_count)
 if Obj.login == 'OK':
     for looping in range(0, Total_count):
         print("Iteration Count is ::", looping)
+        Obj.update_pwd_policy()
         Obj.create_user(looping)
         if Obj.status == 'OK':
             Obj.user_getbyid_details()
