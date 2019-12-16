@@ -12,6 +12,7 @@
       <w>statusid</w>
       <w>uploadsheet</w>
       <w>uploadsheetrequest</w>
+      <w>userid</w>
     </words>
   </dictionary>
 </component>
