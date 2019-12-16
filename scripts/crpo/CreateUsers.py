@@ -250,11 +250,11 @@ class CreateUser(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
         else:
             self.ws.write(self.rowsize, 12, 'Empty')
         if self.xl_Execption_Message[loop]:
-            self.ws.write(self.rowsize, 13, self.xl_Execption_Message[loop])
-        # if self.xl_enter_password[loop]:
-        #     self.ws.write(self.rowsize, 14, self.xl_enter_password[loop])
-        # else:
-        #     self.ws.write(self.rowsize, 14, 'Empty')
+            self.ws.write(self.rowsize, 14, self.xl_Execption_Message[loop])
+        if self.xl_enter_password[loop]:
+            self.ws.write(self.rowsize, 13, self.xl_enter_password[loop])
+        else:
+            self.ws.write(self.rowsize, 13, 'Empty')
 
         # -------------------
         # Writing Output data
@@ -408,23 +408,25 @@ class CreateUser(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
 
         if self.xl_Execption_Message[loop] == self.message:
             if self.xl_Execption_Message[loop] is None:
-                self.ws.write(self.rowsize, 13, '')
+                self.ws.write(self.rowsize, 14, '')
             else:
-                self.ws.write(self.rowsize, 13, self.message, self.style14)
+                self.ws.write(self.rowsize, 14, self.message, self.style14)
         elif self.message == self.message:
             if self.message and 'User' in self.message:
-                self.ws.write(self.rowsize, 13, self.user_dict.get('errorDescription'), self.style3)
+                self.ws.write(self.rowsize, 14, self.user_dict.get('errorDescription'), self.style3)
             elif self.message and 'Email already' in self.message:
-                self.ws.write(self.rowsize, 13, self.user_dict.get('errorDescription'), self.style3)
+                self.ws.write(self.rowsize, 14, self.user_dict.get('errorDescription'), self.style3)
+            elif self.status == 'OK':
+                self.ws.write(self.rowsize, 14, 'Create User successfully', self.style3)
             else:
-                self.ws.write(self.rowsize, 13, self.user_dict.get('errorDescription'),
+                self.ws.write(self.rowsize, 14, self.user_dict.get('errorDescription'),
                               self.style6)
         else:
-            self.ws.write(self.rowsize, 13, self.user_dict.get('errorDescription'), self.style3)
+            self.ws.write(self.rowsize, 14, self.user_dict.get('errorDescription'), self.style3)
         # --------------------------------------------------------------------------------------------------------------
 
         if self.db_salt_password:
-            self.ws.write(self.rowsize, 14, self.db_salt_password, self.style6)
+            self.ws.write(self.rowsize, 13, self.db_salt_password, self.style6)
         # --------------------------------------------------------------------------------------------------------------
 
         self.rowsize += 1  # Row increment
