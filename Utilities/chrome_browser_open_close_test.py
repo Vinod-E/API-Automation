@@ -13,7 +13,7 @@ class ChromeOpen:
         # ------------------------------------------------------
         try:
             print("Run started at:: " + str(datetime.datetime.now()))
-            print("Environment setup has been Done")
+            print("Environment setup has been Donee")
             print("----------------------------------------------------------")
             self.driver.implicitly_wait(10)
             self.driver.maximize_window()
