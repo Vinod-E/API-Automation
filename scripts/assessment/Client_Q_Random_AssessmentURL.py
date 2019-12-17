@@ -262,10 +262,10 @@ class ClientQuestionRandomization(unittest.TestCase):
                 testId) + """</td><td>""" + str(loginId) + """</td><td>******</td>""")
             self.driver.get(WebConfig.ONLINE_ASSESSMENT_LOGIN_URL)
             time.sleep(2)
-            self.driver.find_element_by_xpath("//div[8]/div/div/div[2]/input").send_keys(WebConfig.ALIAS)
+            self.driver.find_element_by_name("tenantName").send_keys(WebConfig.ALIAS)
             time.sleep(3)
-            self.driver.find_element_by_xpath("//div[8]/div/div/div[3]/div[2]/button").click()
-            time.sleep(2)
+            self.driver.find_element_by_name("submitTenantName").click()
+            time.sleep(5)
             self.driver.find_element_by_name("btnLogin").click()
             time.sleep(2)
             self.driver.switch_to.window(self.driver.window_handles[0])
@@ -277,89 +277,92 @@ class ClientQuestionRandomization(unittest.TestCase):
             time.sleep(1)
             self.driver.find_element_by_name("btnLogin").click()
             time.sleep(7)
-            self.driver.find_element_by_xpath("//*[@id='start-test-col']/div//label").click()
+            self.driver.find_element_by_xpath("//div[3]/div/start-test/div/div[1]/div/div/div/div/div[2]/div/label/span").click()
             time.sleep(1)
             self.driver.find_element_by_name("btnStartTest").click()
             print("Start Test")
             time.sleep(7)
-            current_vs_totalquestion = self.driver.find_element_by_name("currentTotalq").text
-            current_question = current_vs_totalquestion.split('/')
-            current_question = int(current_question[0])
-            print(type(current_question))
+            # current_vs_totalquestion = self.driver.find_element_by_name("currentTotalq").text
+            # current_question = current_vs_totalquestion.split('/')
+            # current_question = int(current_question[0])
+            # print(type(current_question))
             colnum = 6
             Ite1_data = []
-            for i in range(current_question, 13):
-                group_name = self.driver.find_element_by_name("grpName").text
+            for i in range(0, 12):
+                group_name = self.driver.find_element_by_name("groupName").text
                 Ite1_data.append(group_name)
                 self.file.write("""<td>""" + str(group_name) + """</td>""")
                 self.ws.write(self.rownum, colnum, group_name, self.__style1)
                 print("Group Name - ", group_name)
-                section_name = self.driver.find_element_by_name("secName").text
+                section_name = self.driver.find_element_by_name("sectionName").text
                 Ite1_data.append(section_name)
                 self.file.write("""<td>""" + str(section_name) + """</td>""")
                 self.ws.write(self.rownum, colnum + 1, section_name, self.__style1)
                 print("Section Name - ", section_name)
-                question_string = self.driver.find_element_by_xpath(
-                    "//div[3]/div/question-template/ng-include/div[1]/div[1]/div/div/div/div[2]").text
+                question_string = self.driver.find_element_by_name("questionHtmlString").text
                 Ite1_data.append(question_string)
                 self.file.write("""<td>""" + str(question_string) + """</td>""")
                 self.ws.write(self.rownum, colnum + 2, question_string, self.__style1)
                 print("Question String - ", question_string)
-                option1_string = self.driver.find_element_by_xpath("//*[@id='answerSection']/dl[1]/dd/label").text
+                option1_string = self.driver.find_element_by_xpath("//*[@id='questionOptions']/div[1]/label/span[1]").text
                 Ite1_data.append(option1_string)
                 self.file.write("""<td>""" + str(option1_string) + """</td>""")
                 self.ws.write(self.rownum, colnum + 3, option1_string, self.__style1)
                 print(option1_string)
-                option2_string = self.driver.find_element_by_xpath("//*[@id='answerSection']/dl[2]/dd/label").text
+                option2_string = self.driver.find_element_by_xpath("//*[@id='questionOptions']/div[2]/label/span[1]").text
                 Ite1_data.append(option2_string)
                 self.file.write("""<td>""" + str(option2_string) + """</td>""")
                 self.ws.write(self.rownum, colnum + 4, option2_string, self.__style1)
                 print(option2_string)
-                option3_string = self.driver.find_element_by_xpath("//*[@id='answerSection']/dl[3]/dd/label").text
+                option3_string = self.driver.find_element_by_xpath("//*[@id='questionOptions']/div[3]/label/span[1]").text
                 Ite1_data.append(option3_string)
                 self.file.write("""<td>""" + str(option3_string) + """</td>""")
                 self.ws.write(self.rownum, colnum + 5, option3_string, self.__style1)
                 print(option3_string)
-                option4_string = self.driver.find_element_by_xpath("//*[@id='answerSection']/dl[4]/dd/label").text
+                option4_string = self.driver.find_element_by_xpath("//*[@id='questionOptions']/div[4]/label/span[1]").text
                 Ite1_data.append(option4_string)
                 self.file.write("""<td>""" + str(option4_string) + """</td>""")
                 self.ws.write(self.rownum, colnum + 6, option4_string, self.__style1)
                 print(option4_string)
                 candidate_ans = random.choice(answers)
                 if candidate_ans == option1_string:
-                    self.driver.find_element_by_xpath("//*[@id='answerSection']/dl[1]/dt/label/span").click()
+                    self.driver.find_element_by_xpath("//*[@id='questionOptions']/div[1]/label/span[2]").click()
                     self.ws.write(self.rownum, colnum + 7, candidate_ans, self.__style1)
+                    print(candidate_ans, option1_string)
                     self.file.write("""<td>""" + str(option1_string) + """</td>""")
                     Ite1_data.append(option1_string)
                 elif candidate_ans == option2_string:
-                    self.driver.find_element_by_xpath("//*[@id='answerSection']/dl[2]/dt/label/span").click()
+                    self.driver.find_element_by_xpath("//*[@id='questionOptions']/div[2]/label/span[2]").click()
                     self.ws.write(self.rownum, colnum + 7, candidate_ans, self.__style1)
+                    print(candidate_ans, option2_string)
                     self.file.write("""<td>""" + str(option2_string) + """</td>""")
                     Ite1_data.append(option2_string)
                 elif candidate_ans == option3_string:
-                    self.driver.find_element_by_xpath("//*[@id='answerSection']/dl[3]/dt/label/span").click()
+                    self.driver.find_element_by_xpath("//*[@id='questionOptions']/div[3]/label/span[2]").click()
                     self.ws.write(self.rownum, colnum + 7, candidate_ans, self.__style1)
+                    print(candidate_ans,option3_string)
                     self.file.write("""<td>""" + str(option3_string) + """</td>""")
                     Ite1_data.append(option3_string)
                 else:
-                    self.driver.find_element_by_xpath("//*[@id='answerSection']/dl[4]/dt/label/span").click()
+                    self.driver.find_element_by_xpath("//*[@id='questionOptions']/div[4]/label/span[2]").click()
                     self.ws.write(self.rownum, colnum + 7, candidate_ans, self.__style1)
+                    print(candidate_ans, option4_string)
                     self.file.write("""<td>""" + str(option4_string) + """</td>""")
                     Ite1_data.append(option4_string)
                 if i < 12:
-                    self.driver.find_element_by_name("btnNext").click()
+                    self.driver.find_element_by_name("btnNextQuestion").click()
                 colnum += 8
             self.file.write("""</tr>""")
-            print(Ite1_data)
+
             self.driver.refresh()
             self.driver.get(WebConfig.ONLINE_ASSESSMENT_LOGIN_URL)
             time.sleep(2)
-            self.driver.find_element_by_xpath("//div[8]/div/div/div[2]/input").send_keys(WebConfig.ALIAS)
-            time.sleep(2)
-            self.driver.find_element_by_xpath("//div[8]/div/div/div[3]/div[2]/button").click()
+            self.driver.find_element_by_name("tenantName").send_keys(WebConfig.ALIAS)
             time.sleep(3)
+            self.driver.find_element_by_name("submitTenantName").click()
+            time.sleep(5)
             self.driver.find_element_by_name("btnLogin").click()
-            time.sleep(1)
+            time.sleep(2)
             self.driver.switch_to.window(self.driver.window_handles[0])
             self.driver.close()
             self.driver.switch_to.window(self.driver.window_handles[0])
@@ -397,66 +400,67 @@ class ClientQuestionRandomization(unittest.TestCase):
             self.file.write("""<tr><td>"UI Ite 2"</td>""")
             self.driver.find_element_by_name("btnLogin").click()
             time.sleep(7)
-            self.driver.find_element_by_xpath("//*[@id='start-test-col']/div//label").click()
+            self.driver.find_element_by_xpath("//div[3]/div/start-test/div/div[1]/div/div/div/div/div[2]/div/label/span").click()
             time.sleep(1)
             self.driver.find_element_by_name("btnStartTest").click()
             time.sleep(7)
 
-            current_vs_totalquestion = self.driver.find_element_by_name("currentTotalq").text
-            current_question = current_vs_totalquestion.split('/')
-            current_question = int(current_question[0])
-            print(current_question)
+            # current_vs_totalquestion = self.driver.find_element_by_name("currentTotalq").text
+            # current_question = current_vs_totalquestion.split('/')
+            # current_question = int(current_question[0])
+            # print(current_question)
             # colnum = 5
             Ite2_data = []
-            for i in range(current_question, 13):
-                group_name = self.driver.find_element_by_name("grpName").text
+            for i in range(0, 12):
+                group_name = self.driver.find_element_by_name("groupName").text
                 Ite2_data.append(group_name)
                 # self.ws.write(self.rownum+1, colnum, group_name, self.__style1)
                 print("Group Name - ", group_name)
-                section_name = self.driver.find_element_by_name("secName").text
+                section_name = self.driver.find_element_by_name("sectionName").text
                 Ite2_data.append(section_name)
                 # self.ws.write(self.rownum+1, colnum+1, section_name, self.__style1)
                 print("Section Name - ", section_name)
-                question_string = self.driver.find_element_by_xpath(
-                    "//div[3]/div/question-template/ng-include/div[1]/div[1]/div/div/div/div[2]").text
+                question_string = self.driver.find_element_by_name("questionHtmlString").text
                 Ite2_data.append(question_string)
                 # self.ws.write(self.rownum+1, colnum+2, question_string, self.__style1)
                 print("Question String - ", question_string)
-                option1_string = self.driver.find_element_by_xpath("//*[@id='answerSection']/dl[1]/dd/label").text
+                option1_string = self.driver.find_element_by_xpath("//*[@id='questionOptions']/div[1]/label/span[1]").text
                 Ite2_data.append(option1_string)
                 # self.ws.write(self.rownum+1, colnum+3, option1_string, self.__style1)
                 print(option1_string)
-                option2_string = self.driver.find_element_by_xpath("//*[@id='answerSection']/dl[2]/dd/label").text
+                option2_string = self.driver.find_element_by_xpath("//*[@id='questionOptions']/div[2]/label/span[1]").text
                 Ite2_data.append(option2_string)
                 # self.ws.write(self.rownum+1, colnum+4, option2_string, self.__style1)
                 print(option2_string)
-                option3_string = self.driver.find_element_by_xpath("//*[@id='answerSection']/dl[3]/dd/label").text
+                option3_string = self.driver.find_element_by_xpath("//*[@id='questionOptions']/div[3]/label/span[1]").text
                 Ite2_data.append(option3_string)
                 # self.ws.write(self.rownum+1, colnum+5, option3_string, self.__style1)
                 print(option3_string)
-                option4_string = self.driver.find_element_by_xpath("//*[@id='answerSection']/dl[4]/dd/label").text
+                option4_string = self.driver.find_element_by_xpath("//*[@id='questionOptions']/div[4]/label/span[1]").text
                 Ite2_data.append(option4_string)
                 # self.ws.write(self.rownum+1, colnum+6, option4_string, self.__style1)
                 print(option4_string)
-                if self.driver.find_element_by_xpath(
-                        "//div[3]/div/question-template/ng-include/div[1]/div[2]/div/div/div/div[2]/dl[1]/dt/label/input").is_selected():
+                if self.driver.find_element_by_xpath("//*[@id='questionOptions']/div[1]/label/input").is_selected():
                     # self.ws.write(self.rownum + 1, colnum+7, option1_string, self.__style1)
                     Ite2_data.append(option1_string)
-                elif self.driver.find_element_by_xpath(
-                        "//div[3]/div/question-template/ng-include/div[1]/div[2]/div/div/div/div[2]/dl[2]/dt/label/input").is_selected():
+                    print("Selected", self.driver.find_element_by_xpath("//*[@id='questionOptions']/div[1]/label/span[1]").text)
+                elif self.driver.find_element_by_xpath("//*[@id='questionOptions']/div[2]/label/input").is_selected():
                     # self.ws.write(self.rownum + 1, colnum+7, option2_string, self.__style1)
                     Ite2_data.append(option2_string)
-                elif self.driver.find_element_by_xpath(
-                        "//div[3]/div/question-template/ng-include/div[1]/div[2]/div/div/div/div[2]/dl[3]/dt/label/input").is_selected():
+                    print("Selected", self.driver.find_element_by_xpath("//*[@id='questionOptions']/div[2]/label/span[1]").text)
+                elif self.driver.find_element_by_xpath("//*[@id='questionOptions']/div[3]/label/input").is_selected():
                     # self.ws.write(self.rownum + 1, colnum+7, option3_string, self.__style1)
                     Ite2_data.append(option3_string)
+                    print("Selected", self.driver.find_element_by_xpath("//*[@id='questionOptions']/div[3]/label/span[1]").text)
                 else:
                     # self.ws.write(self.rownum + 1, colnum+7, option4_string, self.__style1)
                     Ite2_data.append(option4_string)
+                    print("Selected", self.driver.find_element_by_xpath("//*[@id='questionOptions']/div[4]/label/span[1]").text)
                 if i < 12:
-                    self.driver.find_element_by_name("btnNext").click()
+                    self.driver.find_element_by_name("btnNextQuestion").click()
                 # colnum += 8
-            print(Ite2_data)
+            print("Ite1_data", Ite1_data)
+            print("Ite1_data", Ite2_data)
 
             if Ite1_data == Ite2_data:
                 self.ws.write(self.rownum + 1, 1, "Pass", self.__style3)

@@ -50,7 +50,7 @@ class codingQP_Evaluation(unittest.TestCase):
         # --------------------------------------------------------------------------------------------------------------
         # Read from Excel
         # --------------------------------------------------------------------------------------------------------------
-        wb = xlrd.open_workbook("/home/testingteam/hirepro_automation/API-Automation/Input Data/Assessment/codingQP_Evaluation.xls")
+        wb = xlrd.open_workbook("/home/rajeshwar/D Drive/hirepro_automation/API-Automation/Input Data/Assessment/codingQP_Evaluation.xls")
         wb_result = xlwt.Workbook()
         ws = wb_result.add_sheet('Evaluation_Check')
         sh1 = wb.sheet_by_index(0)
@@ -449,6 +449,6 @@ class codingQP_Evaluation(unittest.TestCase):
                 ws.write(row_num, 22, actual_test_score, self.__style2)
                 print("Section -- Candidate_Id - ", candidate_id, " Test Id - ", test_id, " Expected Test Score - ",
                       expected_test_total, " Actual Test Score - ", actual_test_score)
-            wb_result.save("/home/testingteam/hirepro_automation/API-Automation/Output Data/Assessment/codingQP_Evaluation_Check_New.xls")
+            wb_result.save("/home/rajeshwar/D Drive/hirepro_automation/API-Automation/Output Data/Assessment/codingQP_Evaluation_Check_New.xls")
             n += 1
             row_num += 1
