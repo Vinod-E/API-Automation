@@ -51,7 +51,7 @@ class staticQP_Evaluation(unittest.TestCase):
         # --------------------------------------------------------------------------------------------------------------
         # Read from Excel
         # --------------------------------------------------------------------------------------------------------------
-        wb = xlrd.open_workbook("/home/testingteam/hirepro_automation/API-Automation/Input Data/Assessment/staticQP_Evaluation.xls")
+        wb = xlrd.open_workbook("/home/rajeshwar/D Drive/hirepro_automation/API-Automation/Input Data/Assessment/staticQP_Evaluation.xls")
         wb_result = xlwt.Workbook()
         ws = wb_result.add_sheet('Evaluation_Check')
         sheetname = wb.sheet_names()  # Read for XLS Sheet names
@@ -748,7 +748,7 @@ class staticQP_Evaluation(unittest.TestCase):
             else:
                 ws.write(rownum, 79, Actual_Test_Score, self.__style2)
                 print("Section -- Candidate_Id - ", candidateId, " Test Id - ", TestId, " Expected Test Score - ", Expected_test_Total, " Actual Test Score - ", Actual_Test_Score)
-            wb_result.save("/home/testingteam/hirepro_automation/API-Automation/Output Data/Assessment/staticQP_Evaluation_Check.xls")
+            wb_result.save("/home/rajeshwar/D Drive/hirepro_automation/API-Automation/Output Data/Assessment/staticQP_Evaluation_Check.xls")
             n += 1
             rownum += 1
 

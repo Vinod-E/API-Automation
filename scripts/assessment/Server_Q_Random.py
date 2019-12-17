@@ -50,14 +50,12 @@ class QuestionRandomization:
         # --------------------------------------------------------------------------------------------------------------
         # Read from Excel
         # --------------------------------------------------------------------------------------------------------------
-        excel_read_obj.excel_read(
-            '/home/testingteam/hirepro_automation/API-Automation/Input Data/Assessment/ServerQuestionRandomization.xls', 0)
+        excel_read_obj.excel_read('/home/rajeshwar/D Drive/hirepro_automation/API-Automation/Input Data/Assessment/ServerQuestionRandomization.xls', 0)
         self.xls_values = excel_read_obj.details
         wb_result = xlwt.Workbook()
         self.ws = wb_result.add_sheet('questionRandomization', cell_overwrite_ok=True)
         col_index = 0
-        self.file = open(
-            "/home/testingteam/hirepro_automation/API-Automation/Output Data/Assessment/ServerQuestionRandomization_Check.html",
+        self.file = open("/home/rajeshwar/D Drive/hirepro_automation/API-Automation/Output Data/Assessment/ServerQuestionRandomization_Check.html",
             "wt")
 
         self.file.write("""<html>
@@ -277,11 +275,11 @@ class QuestionRandomization:
             self.rownum1 += 1
             self.rownum2 += 1
             wb_result.save(
-                "/home/testingteam/hirepro_automation/API-Automation/Output Data/Assessment/Server_Que_Random_Check.xls")
+                "/home/rajeshwar/D Drive/hirepro_automation/API-Automation/Output Data/Assessment/Server_Que_Random_Check.xls")
 
         self.file.write("""</tbody></table></div></div>""")
         wb_result.save(
-            "/home/testingteam/hirepro_automation/API-Automation/Output Data/Assessment/Server_Que_Random_Check.xls")
+            "/home/rajeshwar/D Drive/hirepro_automation/API-Automation/Output Data/Assessment/Server_Que_Random_Check.xls")
         self.file.write(
             """<div class="div-overalldata"><span class="label">Execution Date:&nbsp;&nbsp;</span><span class="lable value">""" + str(
                 __current_DateTime) + """</span></br></br>""")
@@ -296,7 +294,7 @@ class QuestionRandomization:
             self.file.write("""</div></body></html>""")
 
         wb_result.save(
-            "/home/testingteam/hirepro_automation/API-Automation/Output Data/Assessment/Server_Que_Random_Check.xls")
+            "/home/rajeshwar/D Drive/hirepro_automation/API-Automation/Output Data/Assessment/Server_Que_Random_Check.xls")
 
         self.file.close()
 
@@ -323,12 +321,7 @@ class QuestionRandomization:
         loadtest_header = {"content-type": "application/json", "X-AUTH-TOKEN": self.Test_Login_TokenVal}
         loadtest_data = {
             "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.81 Safari/537.36",
-            "isDeviceTypeDesktop": True,
-            "scriptFiles": ["https://amsin.hirepro.in/onlineassessment/scripts/vendor-b8a2a0e14c.js",
-                            "https://amsin.hirepro.in/onlineassessment/scripts/app-f70f1b3038.js",
-                            "https://exam.hirepro.in/static/js/proctor-main.js?1554886963604",
-                            "https://exam.hirepro.in/js/client.js?1554886963604"],
-            "debugTimeStamp": "2019-04-10T09:07:54.164Z"}
+            "isDeviceTypeDesktop": True}
         loadtest_res = requests.post("https://amsin.hirepro.in/py/assessment/htmltest/api/v1/loadtest/",
                                      headers=loadtest_header,
                                      data=json.dumps(loadtest_data, default=str), verify=True)

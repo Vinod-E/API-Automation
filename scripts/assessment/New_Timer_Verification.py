@@ -32,7 +32,7 @@ class TestTimerCheck(unittest.TestCase):
         # --------------------------------------------------------------------------------------------------------------
         # Read from Excel
         # --------------------------------------------------------------------------------------------------------------
-        wb = xlrd.open_workbook("/home/testingteam/hirepro_automation/API-Automation/Input Data/Assessment/Timer.xls")
+        wb = xlrd.open_workbook("/home/rajeshwar/D Drive/hirepro_automation/API-Automation/Input Data/Assessment/Timer.xls")
         wb_result = xlwt.Workbook()
         ws = wb_result.add_sheet('Timer_Check')
         sh1 = wb.sheet_by_index(0)
@@ -140,22 +140,22 @@ class TestTimerCheck(unittest.TestCase):
             ws.write(row_num, 53, total_expected_test_time_spent, self.__style1)
             self.driver.get(WebConfig.ONLINE_ASSESSMENT_LOGIN_URL)
             time.sleep(2)
-            self.driver.find_element_by_xpath("//div[8]/div/div/div[2]/input").send_keys(WebConfig.ALIAS1)
-            time.sleep(3)
-            self.driver.find_element_by_xpath("//div[8]/div/div/div[3]/div[2]/button").click()
+            self.driver.find_element_by_name("tenantName").send_keys(WebConfig.ALIAS1)
+            time.sleep(1)
+            self.driver.find_element_by_name("submitTenantName").click()
             time.sleep(3)
             self.driver.find_element_by_name("btnLogin").click()
-            time.sleep(5)
+            time.sleep(2)
             self.driver.switch_to.window(self.driver.window_handles[0])
             self.driver.close()
             self.driver.switch_to.window(self.driver.window_handles[0])
             time.sleep(2)
             self.driver.find_element_by_name("loginUsername").send_keys(login_id)
             self.driver.find_element_by_name("loginPassword").send_keys(password)
-            time.sleep(3)
+            time.sleep(2)
             self.driver.find_element_by_name("btnLogin").click()
-            time.sleep(7)
-            self.driver.find_element_by_xpath("//*[@id='start-test-col']/div//label").click()
+            time.sleep(5)
+            self.driver.find_element_by_xpath("//div[3]/div/start-test/div/div[1]/div/div/div/div/div[2]/div/label/span").click()
             time.sleep(1)
             self.driver.find_element_by_name("btnStartTest").click()
             print("Start Test")
@@ -167,8 +167,8 @@ class TestTimerCheck(unittest.TestCase):
             msec = 0.2
             for time_msec in range(0, 50):
                 time.sleep(msec)
-                if self.driver.find_element_by_name("testTimeCounter").is_displayed():
-                    q1_start_time_iteration_1 = self.driver.find_element_by_name("testTimeCounter").text
+                if self.driver.find_element_by_xpath("//header/div/span[2]/div").is_displayed():
+                    q1_start_time_iteration_1 = self.driver.find_element_by_xpath("//header/div/span[2]/div").text
                     break
             ws.write(row_num, 7, q1_start_time_iteration_1)
             q1_start_iteration_1 = time.strptime(q1_start_time_iteration_1, '%H:%M:%S')
@@ -177,7 +177,7 @@ class TestTimerCheck(unittest.TestCase):
             print("time.sleep(q1)", g1_default_time_spent)
             time.sleep(g1_default_time_spent)
 
-            q1_end_time_iteration_1 = self.driver.find_element_by_name("testTimeCounter").text
+            q1_end_time_iteration_1 = self.driver.find_element_by_xpath("//header/div/span[2]/div").text
             ws.write(row_num, 8, q1_end_time_iteration_1)
             q1_end_iteration_1 = time.strptime(q1_end_time_iteration_1, '%H:%M:%S')
             q1_end_time_in_seconds_iteration_1 = (q1_end_iteration_1.tm_hour * 3600) + (q1_end_iteration_1.tm_min * 60) + q1_end_iteration_1.tm_sec
@@ -189,8 +189,8 @@ class TestTimerCheck(unittest.TestCase):
             # ----------------------------------------------------------------------------------------------------------
             #  Q2 Time calculation - Iteration 1
             # ----------------------------------------------------------------------------------------------------------
-            self.driver.find_element_by_name("btnNext").click()
-            q2_start_time_iteration_1 = self.driver.find_element_by_name("testTimeCounter").text
+            self.driver.find_element_by_name("btnNextQuestion").click()
+            q2_start_time_iteration_1 = self.driver.find_element_by_xpath("//header/div/span[2]/div").text
             ws.write(row_num, 16, q2_start_time_iteration_1)
             q2_start_iteration_1 = time.strptime(q2_start_time_iteration_1, '%H:%M:%S')
             q2_start_time_in_seconds_iteration_1 = (q2_start_iteration_1.tm_hour * 3600) + (
@@ -201,7 +201,7 @@ class TestTimerCheck(unittest.TestCase):
             time.sleep(g1_default_time_spent)
             # self.driver.execute_script('javascript:localStorage.clear();')
             # self.driver.execute_script('javascript:alert(localStorage.length);')
-            q2_end_time_iteration_1 = self.driver.find_element_by_name("testTimeCounter").text
+            q2_end_time_iteration_1 = self.driver.find_element_by_xpath("//header/div/span[2]/div").text
             ws.write(row_num, 17, q2_end_time_iteration_1)
             # self.driver.execute_script('javascript:alert(localStorage.length);')
             q2_end_iteration_1 = time.strptime(q2_end_time_iteration_1, '%H:%M:%S')
@@ -218,8 +218,8 @@ class TestTimerCheck(unittest.TestCase):
             # ----------------------------------------------------------------------------------------------------------
             #  Q3 Time calculation - Iteration 1
             # ----------------------------------------------------------------------------------------------------------
-            self.driver.find_element_by_name("btnNext").click()
-            q3_start_time_iteration_1 = self.driver.find_element_by_name("testTimeCounter").text
+            self.driver.find_element_by_name("btnNextQuestion").click()
+            q3_start_time_iteration_1 = self.driver.find_element_by_xpath("//header/div/span[2]/div").text
             ws.write(row_num, 25, q3_start_time_iteration_1)
             q3_start_iteration_1 = time.strptime(q3_start_time_iteration_1, '%H:%M:%S')
             q3_start_time_in_seconds_iteration_1 = (q3_start_iteration_1.tm_hour * 3600) + (
@@ -229,7 +229,7 @@ class TestTimerCheck(unittest.TestCase):
             print("time.sleep(g1)", g1_default_time_spent)
             time.sleep(g1_default_time_spent)
 
-            q3_end_time_iteration_1 = self.driver.find_element_by_name("testTimeCounter").text
+            q3_end_time_iteration_1 = self.driver.find_element_by_xpath("//header/div/span[2]/div").text
             ws.write(row_num, 26, q3_end_time_iteration_1)
             q3_end_iteration_1 = time.strptime(q3_end_time_iteration_1, '%H:%M:%S')
             q3_end_time_in_seconds_iteration_1 = (q3_end_iteration_1.tm_hour * 3600) + (
@@ -243,8 +243,8 @@ class TestTimerCheck(unittest.TestCase):
             # ----------------------------------------------------------------------------------------------------------
             #  Q4 Time calculation - Iteration 1
             # ----------------------------------------------------------------------------------------------------------
-            self.driver.find_element_by_name("btnNext").click()
-            q4_start_time_iteration_1 = self.driver.find_element_by_name("testTimeCounter").text
+            self.driver.find_element_by_name("btnNextQuestion").click()
+            q4_start_time_iteration_1 = self.driver.find_element_by_xpath("//header/div/span[2]/div").text
             ws.write(row_num, 35, q4_start_time_iteration_1)
             q4_start_iteration_1 = time.strptime(q4_start_time_iteration_1, '%H:%M:%S')
             q4_start_time_in_seconds_iteration_1 = (q4_start_iteration_1.tm_hour * 3600) + (
@@ -254,7 +254,7 @@ class TestTimerCheck(unittest.TestCase):
             print("time.sleep(g2)", g2_default_time_spent)
             time.sleep(g2_default_time_spent)
 
-            q4_end_time_iteration_1 = self.driver.find_element_by_name("testTimeCounter").text
+            q4_end_time_iteration_1 = self.driver.find_element_by_xpath("//header/div/span[2]/div").text
             ws.write(row_num, 36, q4_end_time_iteration_1)
             q4_end_iteration_1 = time.strptime(q4_end_time_iteration_1, '%H:%M:%S')
             q4_end_time_in_seconds_iteration_1 = (q4_end_iteration_1.tm_hour * 3600) + (
@@ -268,8 +268,8 @@ class TestTimerCheck(unittest.TestCase):
             # ----------------------------------------------------------------------------------------------------------
             #  Q5 Time calculation - Iteration 1
             # ----------------------------------------------------------------------------------------------------------
-            self.driver.find_element_by_name("btnNext").click()
-            q5_start_time_iteration_1 = self.driver.find_element_by_name("testTimeCounter").text
+            self.driver.find_element_by_name("btnNextQuestion").click()
+            q5_start_time_iteration_1 = self.driver.find_element_by_xpath("//header/div/span[2]/div").text
             ws.write(row_num, 44, q5_start_time_iteration_1)
             q5_start_iteration_1 = time.strptime(q5_start_time_iteration_1, '%H:%M:%S')
             q5_start_time_in_seconds_iteration_1 = (q5_start_iteration_1.tm_hour * 3600) + (
@@ -279,7 +279,7 @@ class TestTimerCheck(unittest.TestCase):
             print("time.sleep(g2)", g2_default_time_spent)
             time.sleep(g2_default_time_spent)
 
-            q5_end_time_iteration_1 = self.driver.find_element_by_name("testTimeCounter").text
+            q5_end_time_iteration_1 = self.driver.find_element_by_xpath("//header/div/span[2]/div").text
             ws.write(row_num, 45, q5_end_time_iteration_1)
             q5_end_iteration_1 = time.strptime(q5_end_time_iteration_1, '%H:%M:%S')
             q5_end_time_in_seconds_iteration_1 = (q5_end_iteration_1.tm_hour * 3600) + (
@@ -294,12 +294,14 @@ class TestTimerCheck(unittest.TestCase):
             #  Refresh Page
             # ----------------------------------------------------------------------------------------------------------
             self.driver.refresh()
-            time.sleep(2)
+            time.sleep(1)
+            obj = self.driver.switch_to.alert
+            obj.accept()
             self.driver.get(WebConfig.ONLINE_ASSESSMENT_LOGIN_URL)
             time.sleep(2)
-            self.driver.find_element_by_xpath("//div[8]/div/div/div[2]/input").send_keys(WebConfig.ALIAS1)
-            time.sleep(1)
-            self.driver.find_element_by_xpath("//div[8]/div/div/div[3]/div[2]/button").click()
+            self.driver.find_element_by_name("tenantName").send_keys(WebConfig.ALIAS1)
+            time.sleep(2)
+            self.driver.find_element_by_name("submitTenantName").click()
             time.sleep(2)
             self.driver.find_element_by_name("btnLogin").click()
             time.sleep(5)
@@ -310,7 +312,7 @@ class TestTimerCheck(unittest.TestCase):
             self.driver.find_element_by_name("loginUsername").send_keys(login_id)
             time.sleep(1)
             self.driver.find_element_by_name("loginPassword").send_keys(password)
-            time.sleep(3)
+            time.sleep(2)
             self.driver.find_element_by_name("btnLogin").click()
             time.sleep(5)
 
@@ -336,7 +338,7 @@ class TestTimerCheck(unittest.TestCase):
             print("Password Reactivate", request5)
             self.driver.find_element_by_name("btnLogin").click()
             time.sleep(7)
-            self.driver.find_element_by_xpath("//*[@id='start-test-col']/div//label").click()
+            self.driver.find_element_by_xpath("//div[3]/div/start-test/div/div[1]/div/div/div/div/div[2]/div/label/span").click()
             time.sleep(3)
             self.driver.find_element_by_name("btnStartTest").click()
             print("Start Test")
@@ -349,8 +351,8 @@ class TestTimerCheck(unittest.TestCase):
             for time_msec in range(0, 50):
                 time.sleep(msec)
                 print("Log", time_msec)
-                if self.driver.find_element_by_name("testTimeCounter").is_displayed():
-                    q1_start_time_iteration_2 = self.driver.find_element_by_name("testTimeCounter").text
+                if self.driver.find_element_by_xpath("//header/div/span[2]/div").is_displayed():
+                    q1_start_time_iteration_2 = self.driver.find_element_by_xpath("//header/div/span[2]/div").text
                     break
             ws.write(row_num, 10, q1_start_time_iteration_2)
             q1_start_iteration_2 = time.strptime(q1_start_time_iteration_2, '%H:%M:%S')
@@ -363,7 +365,7 @@ class TestTimerCheck(unittest.TestCase):
 
             # self.driver.execute_script('javascript:alert(localStorage.length);')
 
-            q1_end_time_iteration_2 = self.driver.find_element_by_name("testTimeCounter").text
+            q1_end_time_iteration_2 = self.driver.find_element_by_xpath("//header/div/span[2]/div").text
             ws.write(row_num, 11, q1_end_time_iteration_2)
             q1_end_iteration_2 = time.strptime(q1_end_time_iteration_2, '%H:%M:%S')
             q1_end_time_in_seconds_iteration_2 = (q1_end_iteration_2.tm_hour * 3600) + (
@@ -386,8 +388,8 @@ class TestTimerCheck(unittest.TestCase):
             # ----------------------------------------------------------------------------------------------------------
             #  Q2 Time calculation - Iteration 2
             # ----------------------------------------------------------------------------------------------------------
-            self.driver.find_element_by_name("btnNext").click()
-            q2_start_time_iteration_2 = self.driver.find_element_by_name("testTimeCounter").text
+            self.driver.find_element_by_name("btnNextQuestion").click()
+            q2_start_time_iteration_2 = self.driver.find_element_by_xpath("//header/div/span[2]/div").text
             ws.write(row_num, 19, q2_start_time_iteration_2)
             q2_start_iteration_2 = time.strptime(q2_start_time_iteration_2, '%H:%M:%S')
             q2_start_time_in_seconds_iteration_2 = (q2_start_iteration_2.tm_hour * 3600) + (
@@ -397,7 +399,7 @@ class TestTimerCheck(unittest.TestCase):
             print("time.sleep(g1)", g1_default_time_spent)
             time.sleep(g1_default_time_spent)
 
-            q2_end_time_iteration_2 = self.driver.find_element_by_name("testTimeCounter").text
+            q2_end_time_iteration_2 = self.driver.find_element_by_xpath("//header/div/span[2]/div").text
             ws.write(row_num, 20, q2_end_time_iteration_2)
             q2_end_iteration_2 = time.strptime(q2_end_time_iteration_2, '%H:%M:%S')
             q2_end_time_in_seconds_iteration_2 = (q2_end_iteration_2.tm_hour * 3600) + (
@@ -421,8 +423,8 @@ class TestTimerCheck(unittest.TestCase):
             # ----------------------------------------------------------------------------------------------------------
             #  Q3 Time calculation - Iteration 2
             # ----------------------------------------------------------------------------------------------------------
-            self.driver.find_element_by_name("btnNext").click()
-            q3_start_time_iteration_2 = self.driver.find_element_by_name("testTimeCounter").text
+            self.driver.find_element_by_name("btnNextQuestion").click()
+            q3_start_time_iteration_2 = self.driver.find_element_by_xpath("//header/div/span[2]/div").text
             ws.write(row_num, 28, q3_start_time_iteration_2)
             q3_start_iteration_2 = time.strptime(q3_start_time_iteration_2, '%H:%M:%S')
             q3_start_time_in_seconds_iteration_2 = (q3_start_iteration_2.tm_hour * 3600) + (
@@ -432,7 +434,7 @@ class TestTimerCheck(unittest.TestCase):
             print("time.sleep(g1)", g1_default_time_spent)
             time.sleep(g1_default_time_spent)
 
-            q3_end_time_iteration_2 = self.driver.find_element_by_name("testTimeCounter").text
+            q3_end_time_iteration_2 = self.driver.find_element_by_xpath("//header/div/span[2]/div").text
             ws.write(row_num, 29, q3_end_time_iteration_2)
             q3_end_iteration_2 = time.strptime(q3_end_time_iteration_2, '%H:%M:%S')
             q3_end_time_in_seconds_iteration_2 = (q3_end_iteration_2.tm_hour * 3600) + (
@@ -456,8 +458,8 @@ class TestTimerCheck(unittest.TestCase):
             # ----------------------------------------------------------------------------------------------------------
             #  Q4 Time calculation - Iteration 2
             # ----------------------------------------------------------------------------------------------------------
-            self.driver.find_element_by_name("btnNext").click()
-            q4_start_time_iteration_2 = self.driver.find_element_by_name("testTimeCounter").text
+            self.driver.find_element_by_name("btnNextQuestion").click()
+            q4_start_time_iteration_2 = self.driver.find_element_by_xpath("//header/div/span[2]/div").text
             ws.write(row_num, 38, q4_start_time_iteration_2)
             q4_start_iteration_2 = time.strptime(q4_start_time_iteration_2, '%H:%M:%S')
             q4_start_time_in_seconds_iteration_2 = (q4_start_iteration_2.tm_hour * 3600) + (
@@ -467,7 +469,7 @@ class TestTimerCheck(unittest.TestCase):
             print("time.sleep(q4)", g2_default_time_spent)
             time.sleep(g2_default_time_spent)
 
-            q4_end_time_iteration_2 = self.driver.find_element_by_name("testTimeCounter").text
+            q4_end_time_iteration_2 = self.driver.find_element_by_xpath("//header/div/span[2]/div").text
             ws.write(row_num, 39, q4_end_time_iteration_2)
             q4_end_iteration_2 = time.strptime(q4_end_time_iteration_2, '%H:%M:%S')
             q4_end_time_in_seconds_iteration_2 = (q4_end_iteration_2.tm_hour * 3600) + (
@@ -489,8 +491,8 @@ class TestTimerCheck(unittest.TestCase):
             # ----------------------------------------------------------------------------------------------------------
             #  Q5 Time calculation - Iteration 2
             # ----------------------------------------------------------------------------------------------------------
-            self.driver.find_element_by_name("btnNext").click()
-            q5_start_time_iteration_2 = self.driver.find_element_by_name("testTimeCounter").text
+            self.driver.find_element_by_name("btnNextQuestion").click()
+            q5_start_time_iteration_2 = self.driver.find_element_by_xpath("//header/div/span[2]/div").text
             ws.write(row_num, 47, q5_start_time_iteration_2)
             q5_start_iteration_2 = time.strptime(q5_start_time_iteration_2, '%H:%M:%S')
             q5_start_time_in_seconds_iteration_2 = (q5_start_iteration_2.tm_hour * 3600) + (
@@ -499,11 +501,11 @@ class TestTimerCheck(unittest.TestCase):
                   q5_start_time_in_seconds_iteration_2)
             print("time.sleep(g2)", g2_default_time_spent)
             time.sleep(g2_default_time_spent)
-            q5_end_time_iteration_2 = self.driver.find_element_by_name("testTimeCounter").text
-            self.driver.find_element_by_name("btnSubmit").click()
-
+            self.driver.find_element_by_xpath("//div[3]/div/question-action-panel/div/submit-button/ng-include/button").click()
+            time.sleep(1)
+            q5_end_time_iteration_2 = self.driver.find_element_by_xpath("//header/div/span[2]/div").text
             ws.write(row_num, 48, q5_end_time_iteration_2)
-            self.driver.find_element_by_xpath("//div[8]/div/div/div[3]/button[1]").click()
+            self.driver.find_element_by_id("closeTest").click()
             q5_end_iteration_2 = time.strptime(q5_end_time_iteration_2, '%H:%M:%S')
             q5_end_time_in_seconds_iteration_2 = (q5_end_iteration_2.tm_hour * 3600) + (
                     q5_end_iteration_2.tm_min * 60) + q5_end_iteration_2.tm_sec
@@ -514,9 +516,10 @@ class TestTimerCheck(unittest.TestCase):
             ws.write(row_num, 49, q5_time_spent_iteration_2)
             print("Second iteration q5 time spent", q5_time_spent_iteration_2)
             total_time_spent_in_q5 = q5_time_spent_iteration_1 + q5_time_spent_iteration_2
-            if q5_expected_time_spent == total_time_spent_in_q5 or (
-                    q5_expected_time_spent + 1) == total_time_spent_in_q5 or (
-                    q5_expected_time_spent + 2) == total_time_spent_in_q5:
+            if q5_expected_time_spent == total_time_spent_in_q5:
+                    # or (
+                    # q5_expected_time_spent + 1) == total_time_spent_in_q5 or (
+                    # q5_expected_time_spent + 2) == total_time_spent_in_q5:
                 ws.write(row_num, 51, total_time_spent_in_q5, self.__style3)
                 row_status.append("Pass")
             else:
@@ -635,7 +638,7 @@ class TestTimerCheck(unittest.TestCase):
                 ws.write(row_num, 1, "Pass", self.__style3)
                 status.append("Pass")
             wb_result.save(
-                "/home/testingteam/hirepro_automation/API-Automation/Output Data/Assessment/TimerCheckResult.xls")
+                "/home/rajeshwar/D Drive/hirepro_automation/API-Automation/Output Data/Assessment/TimerCheckResult.xls")
             n += 1
             row_num += 1
         if ("Fail" in status):
@@ -643,7 +646,7 @@ class TestTimerCheck(unittest.TestCase):
         else:
             ws.write(1, 0, "Pass", self.__style3)
         wb_result.save(
-            "/home/testingteam/hirepro_automation/API-Automation/Output Data/Assessment/TimerCheckResult.xls")
+            "/home/rajeshwar/D Drive/hirepro_automation/API-Automation/Output Data/Assessment/TimerCheckResult.xls")
 
 if __name__ == '__main__':
     unittest.main()
