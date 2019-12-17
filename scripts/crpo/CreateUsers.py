@@ -31,7 +31,7 @@ class CreateUser(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
 
         self.db_salt_password = ''
 
-        self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 14)))
+        self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 23)))
         self.Actual_Success_case = []
 
         # -----------------------------------------------------------------------------------------------
@@ -52,7 +52,7 @@ class CreateUser(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
     def excel_headers(self):
         self.main_headers = ['Comparison', 'Actual_status', 'User Id', 'TypeofUser', 'Name', 'Login_name',
                              'Email', 'Location', 'Mobile', 'Roles', 'Department', 'TypeofUserId', 'UserBelongs_Id',
-                             'Expected_message', 'BD_Salt_Password']
+                             'BD_Salt_Password', 'Expected_message']
         self.headers_with_style2 = ['Comparison', 'Actual_status', 'User Id', 'TypeofUser']
         self.file_headers_col_row()
 
@@ -270,7 +270,6 @@ class CreateUser(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
                 self.success_case_01 = 'Pass'
             else:
                 self.ws.write(self.rowsize, 1, 'Fail', self.style3)
-                self.success_case_01 = 'Pass'
         elif self.xl_Execption_Message[loop] == self.message:
             self.ws.write(self.rowsize, 1, 'Pass', self.style8)
             self.success_case_02 = 'Pass'
