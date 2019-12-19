@@ -16,6 +16,13 @@ class UploadScoresheet(login.CommonLogin, work_book.WorkBook):
         self.rowsize1 = 18
         self.size1 = self.rowsize1
 
+        self.upload_score_sheets = "https://s3-ap-southeast-1.amazonaws.com/" \
+                                   "test-all-hirepro-files/Automation/attachments/" \
+                                   "24114d72-ef4f-4b47-afd1-87286a62f9feGroup_Section.xlsx"
+        self.update_upload_score_sheets = "https://s3-ap-southeast-1.amazonaws.com/" \
+                                          "test-all-hirepro-files/Automation/attachments/" \
+                                          "21d951be-2c70-482f-aeb0-49679ea7307eUpdated_Group_Section.xlsx"
+
         # --------------------------
         # Initialising Excel Data
         # --------------------------
@@ -253,9 +260,7 @@ class UploadScoresheet(login.CommonLogin, work_book.WorkBook):
         # ------------------          ---------------------------------------------
         uploadsheetrequest = {
             "TestId": self.xl_testId[loop],
-            "FilePath": "https://s3-ap-southeast-1.amazonaws.com/"
-                        "test-all-hirepro-files/Automation/attachments/"
-                        "24114d72-ef4f-4b47-afd1-87286a62f9feGroup_Section.xlsx",
+            "FilePath": self.upload_score_sheets,
             "Sync": "False"
         }
         uploadsheet_api = requests.post(self.webapi, headers=self.headers,
@@ -376,9 +381,7 @@ class UploadScoresheet(login.CommonLogin, work_book.WorkBook):
         # ------------------          ---------------------------------------
         uploadsheetrequest = {
             "TestId": self.xl_testId[loop],
-            "FilePath": "https://s3-ap-southeast-1.amazonaws.com/"
-                        "test-all-hirepro-files/Automation/attachments/"
-                        "21d951be-2c70-482f-aeb0-49679ea7307eUpdated_Group_Section.xlsx",
+            "FilePath": self.update_upload_score_sheets,
             "Sync": "False"
         }
         uploadsheet_api = requests.post(self.webapi, headers=self.headers,
