@@ -74,6 +74,10 @@ outputpaths = {
     # -----------------
     'r_Job_search_output_sheet': generic_output_path + "Rpo/Search/Combined_Job_Search.xls",
 
+    # -----------------------
+    # all files in one folder
+    # ------------------------
+    'All_files_folder': generic_output_path + "Crpo/Common_folder/{}",
               }
 
 

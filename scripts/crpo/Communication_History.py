@@ -14,6 +14,9 @@ class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
         self.start_time = str(datetime.datetime.now())
         super(CommunicationHistory, self).__init__()
         self.common_login('crpo')
+        self.xl_s3_file = 'https://s3-ap-southeast-1.amazonaws.com/' \
+                   'test-all-hirepro-files/Automation/attachments/' \
+                   'e409c387-8847-4444-8719-43d02e55230bAdmissionCard.pdf'
 
         self.driver = ""
         self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 14)))
@@ -22,7 +25,6 @@ class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
         self.purpose = []
         self.xl_applicant_id = []
         self.xl_label_id = []
-        self.xl_s3_file = []
         self.xl_CommunicationPurpose = []
         self.xl_verification_type = []
 
@@ -107,10 +109,6 @@ class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
                 self.xl_applicant_id.append(int(rows[1]))
             else:
                 self.xl_applicant_id.append(None)
-            if rows[2]:
-                self.xl_s3_file.append(rows[2])
-            else:
-                self.xl_s3_file.append(None)
             if rows[3]:
                 self.xl_label_id.append(int(rows[3]))
             else:
@@ -219,7 +217,7 @@ class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
         request = {
             "Entity": "Applicant",
             "EntityId": self.xl_applicant_id[loop],
-            "Url": self.xl_s3_file[loop],
+            "Url": self.xl_s3_file,
             "LabelId": self.xl_label_id[loop],
             "LabelOther": "{\"Name\":\"Approved Admitcard\"}"
         }
@@ -254,7 +252,7 @@ class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
         request = {
             "Entity": "Applicant",
             "EntityId": self.xl_applicant_id[loop],
-            "Url": self.xl_s3_file[loop],
+            "Url": self.xl_s3_file,
             "LabelId": self.xl_label_id[loop],
             "LabelOther": "{\"Name\":\"Score Sheet\"}"
         }
@@ -722,6 +720,7 @@ class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
         self.ws.write(0, 6, 'No.of Test cases', self.style23)
         self.ws.write(0, 7, Total_count, self.style24)
         Object.wb_Result.save(output_paths.outputpaths['Communication_output_sheet'])
+        Object.wb_Result.save(output_paths.outputpaths['All_files_folder'].format('API_Communication_history.xls'))
 
 
 Object = CommunicationHistory()

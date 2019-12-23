@@ -1754,6 +1754,7 @@ class UpdateCandidate(login.CommonLogin, work_book.WorkBook):
         self.ws.write(0, 6, 'No.of Test cases', self.style23)
         self.ws.write(0, 7, Total_count, self.style24)
         Object.wb_Result.save(output_paths.outputpaths['Update_Candidate_Output_sheet'])
+        Object.wb_Result.save(output_paths.outputpaths['All_files_folder'].format('API_Update_Candidates.xls'))
 
 
 Object = UpdateCandidate()

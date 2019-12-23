@@ -670,6 +670,7 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
         self.ws.write(0, 7, Total_count, self.style24)
         # ---------------------------- OutPut File save with Overall Status --------------------------------------------
         Object.wb_Result.save(output_paths.outputpaths['MI_output_sheet'])
+        Object.wb_Result.save(output_paths.outputpaths['All_files_folder'].format('API_Manage_Interviewers.xls'))
 
 
 Object = ManageInterviewers()

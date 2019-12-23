@@ -1173,6 +1173,7 @@ class UploadScoresheet(login.CommonLogin, work_book.WorkBook):
         self.ws.write(0, 6, 'No.of Test cases', self.style23)
         self.ws.write(0, 7, NumberOfTestCases, self.style24)
         Object.wb_Result.save(output_paths.outputpaths['Score_Output_sheet'])
+        Object.wb_Result.save(output_paths.outputpaths['All_files_folder'].format('API_Download_upload_Scores.xls'))
 
 
 Object = UploadScoresheet()
