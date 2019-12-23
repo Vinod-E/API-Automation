@@ -427,6 +427,7 @@ class PasswordPolicy(login.CommonLogin, work_book.WorkBook, db_login.DBConnectio
         self.ws.write(0, 6, 'No.of Test cases', self.style23)
         self.ws.write(0, 7, Total_count, self.style24)
         Object.wb_Result.save(output_paths.outputpaths['Password_policy'])
+        Object.wb_Result.save(output_paths.outputpaths['All_files_folder'].format('API_PasswordPolicy.xls'))
 
 
 Object = PasswordPolicy()

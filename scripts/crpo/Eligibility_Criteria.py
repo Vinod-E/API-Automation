@@ -228,6 +228,7 @@ class ECAutomation(login.CommonLogin, db_login.DBConnection, work_book.WorkBook)
         self.ws.write(0, 6, 'No.of Test cases', self.style23)
         self.ws.write(0, 7, tot_count, self.style24)
         ob.wb_Result.save(output_paths.outputpaths['EC_Output_sheet'])
+        ob.wb_Result.save(output_paths.outputpaths['All_files_folder'].format('API_DB_EC_Verification.xls'))
 
 
 ob = ECAutomation()
