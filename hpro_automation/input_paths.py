@@ -72,5 +72,5 @@ inputpaths = {
 }
 
 driver = {
-    'chrome': '/home/vinod/hirepro_automation/API-Automation/Utilities/chromedriver'
+    'chrome': '%s/hirepro_automation/API-Automation/Utilities/chromedriver' % path
 }

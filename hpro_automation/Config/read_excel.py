@@ -32,18 +32,18 @@ class ExcelRead:
     def excel_read(self, excel_file_path, sheet_index):
         self.excel_file = xlrd.open_workbook(excel_file_path)
         excel_sheet_index = self.excel_file.sheet_by_index(sheet_index)
-        self.headers_available_in_excel = excel_sheet_index.row_values(0)
-        self.exp_headers = {}
-        for exp_headers_dictionary in self.headers_available_in_excel:
+        headers_available_in_excel = excel_sheet_index.row_values(0)
+        exp_headers = {}
+        for exp_headers_dictionary in headers_available_in_excel:
             d = {}
             d = {str(exp_headers_dictionary): str(exp_headers_dictionary)}
-            self.exp_headers.update(d)
+            exp_headers.update(d)
         for row_by_index in range(1, excel_sheet_index.nrows):
             column_by_index = 0
             self.details1 = {}
             excel_row_data = excel_sheet_index.row_values(row_by_index)
-            for excel_header_value in self.headers_available_in_excel:
-                for key, value in self.exp_headers.items():
+            for excel_header_value in headers_available_in_excel:
+                for key, value in exp_headers.items():
                     if value == excel_header_value:
                         data = {key: excel_row_data[column_by_index]}
                         self.details1.update(data)
