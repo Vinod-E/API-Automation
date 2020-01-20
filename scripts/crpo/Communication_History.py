@@ -15,8 +15,8 @@ class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
         super(CommunicationHistory, self).__init__()
         self.common_login('crpo')
         self.xl_s3_file = 'https://s3-ap-southeast-1.amazonaws.com/' \
-                   'test-all-hirepro-files/Automation/attachments/' \
-                   'e409c387-8847-4444-8719-43d02e55230bAdmissionCard.pdf'
+                          'test-all-hirepro-files/Automation/attachments/' \
+                          'e409c387-8847-4444-8719-43d02e55230bAdmissionCard.pdf'
 
         self.driver = ""
         self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 14)))
