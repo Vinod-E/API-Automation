@@ -1,0 +1,482 @@
+<JobCandidates>
+<bdCustomTag value="job_candidate">
+<bdCustomTag value="job_candidate_id"><![CDATA[2127480]]></bdCustomTag>
+<bdCustomTag value="job_candidate.candidate_id"><![CDATA[1776549]]></bdCustomTag>
+<GivenName><![CDATA[Robert]]></GivenName>
+<FamilyName><![CDATA[Hester]]></FamilyName>
+<bdCustomTag value="job_candidate.job_id"><![CDATA[190768]]></bdCustomTag>
+<PositionTitle><![CDATA[Construction Foreman]]></PositionTitle>
+<bdCustomTag value="job_candidate.account_status"><![CDATA[Applied]]></bdCustomTag>
+<bdCustomTag value="job_candidate.score"><![CDATA[5]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.final_disposition"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.hired_date"><![CDATA[1/1/1900 12:00:00 AM]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_location"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_refreshID"><![CDATA[]]></bdCustomTag>
+<bdCustomTag value="JobCandidateCustomData">
+<bdCustomTag value="job_candidate_custom_data">
+<bdCustomTag value="job_candidate_custom_data.heading"><![CDATA[Are you legally able to work in the United States]]></bdCustomTag>
+<bdCustomTag value="job_candidate_custom_data.comments"><![CDATA[Yes]]></bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+<bdCustomTag value="job_candidate">
+<bdCustomTag value="job_candidate_id"><![CDATA[2127482]]></bdCustomTag>
+<bdCustomTag value="job_candidate.candidate_id"><![CDATA[1776551]]></bdCustomTag>
+<GivenName><![CDATA[Aaron]]></GivenName>
+<FamilyName><![CDATA[Williams]]></FamilyName>
+<bdCustomTag value="job_candidate.job_id"><![CDATA[190769]]></bdCustomTag>
+<PositionTitle><![CDATA[Construction Inspector]]></PositionTitle>
+<bdCustomTag value="job_candidate.account_status"><![CDATA[Applied]]></bdCustomTag>
+<bdCustomTag value="job_candidate.score"><![CDATA[5]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.final_disposition"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.hired_date"><![CDATA[1/1/1900 12:00:00 AM]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_location"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_refreshID"><![CDATA[]]></bdCustomTag>
+<bdCustomTag value="JobCandidateCustomData">
+<bdCustomTag value="job_candidate_custom_data">
+<bdCustomTag value="job_candidate_custom_data.heading"><![CDATA[Are you legally able to work in the United States]]></bdCustomTag>
+<bdCustomTag value="job_candidate_custom_data.comments"><![CDATA[Yes]]></bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+<bdCustomTag value="job_candidate">
+<bdCustomTag value="job_candidate_id"><![CDATA[2127487]]></bdCustomTag>
+<bdCustomTag value="job_candidate.candidate_id"><![CDATA[1776556]]></bdCustomTag>
+<GivenName><![CDATA[O.D]]></GivenName>
+<FamilyName><![CDATA[Jackson]]></FamilyName>
+<bdCustomTag value="job_candidate.job_id"><![CDATA[190770]]></bdCustomTag>
+<PositionTitle><![CDATA[Customer Service Representative]]></PositionTitle>
+<bdCustomTag value="job_candidate.account_status"><![CDATA[Applied]]></bdCustomTag>
+<bdCustomTag value="job_candidate.score"><![CDATA[5]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.final_disposition"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.hired_date"><![CDATA[1/1/1900 12:00:00 AM]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_location"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_refreshID"><![CDATA[]]></bdCustomTag>
+<bdCustomTag value="JobCandidateCustomData">
+<bdCustomTag value="job_candidate_custom_data">
+<bdCustomTag value="job_candidate_custom_data.heading"><![CDATA[Are you legally able to work in the United States]]></bdCustomTag>
+<bdCustomTag value="job_candidate_custom_data.comments"><![CDATA[Yes]]></bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+<bdCustomTag value="job_candidate">
+<bdCustomTag value="job_candidate_id"><![CDATA[2127491]]></bdCustomTag>
+<bdCustomTag value="job_candidate.candidate_id"><![CDATA[1776559]]></bdCustomTag>
+<GivenName><![CDATA[Brian]]></GivenName>
+<FamilyName><![CDATA[Gibbs]]></FamilyName>
+<bdCustomTag value="job_candidate.job_id"><![CDATA[190771]]></bdCustomTag>
+<PositionTitle><![CDATA[General Laborer]]></PositionTitle>
+<bdCustomTag value="job_candidate.account_status"><![CDATA[Applied]]></bdCustomTag>
+<bdCustomTag value="job_candidate.score"><![CDATA[5]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.final_disposition"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.hired_date"><![CDATA[1/1/1900 12:00:00 AM]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_location"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_refreshID"><![CDATA[]]></bdCustomTag>
+<bdCustomTag value="JobCandidateCustomData">
+<bdCustomTag value="job_candidate_custom_data">
+<bdCustomTag value="job_candidate_custom_data.heading"><![CDATA[Are you legally able to work in the United States]]></bdCustomTag>
+<bdCustomTag value="job_candidate_custom_data.comments"><![CDATA[Yes]]></bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+<bdCustomTag value="job_candidate">
+<bdCustomTag value="job_candidate_id"><![CDATA[2127498]]></bdCustomTag>
+<bdCustomTag value="job_candidate.candidate_id"><![CDATA[1776566]]></bdCustomTag>
+<GivenName><![CDATA[Thomas]]></GivenName>
+<FamilyName><![CDATA[Schiltz]]></FamilyName>
+<bdCustomTag value="job_candidate.job_id"><![CDATA[190771]]></bdCustomTag>
+<PositionTitle><![CDATA[General Laborer]]></PositionTitle>
+<bdCustomTag value="job_candidate.account_status"><![CDATA[Applied]]></bdCustomTag>
+<bdCustomTag value="job_candidate.score"><![CDATA[5]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.final_disposition"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.hired_date"><![CDATA[1/1/1900 12:00:00 AM]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_location"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_refreshID"><![CDATA[]]></bdCustomTag>
+<bdCustomTag value="JobCandidateCustomData">
+<bdCustomTag value="job_candidate_custom_data">
+<bdCustomTag value="job_candidate_custom_data.heading"><![CDATA[Are you legally able to work in the United States]]></bdCustomTag>
+<bdCustomTag value="job_candidate_custom_data.comments"><![CDATA[Yes]]></bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+<bdCustomTag value="job_candidate">
+<bdCustomTag value="job_candidate_id"><![CDATA[2127504]]></bdCustomTag>
+<bdCustomTag value="job_candidate.candidate_id"><![CDATA[1776570]]></bdCustomTag>
+<GivenName><![CDATA[Dean]]></GivenName>
+<FamilyName><![CDATA[Chamberlin]]></FamilyName>
+<bdCustomTag value="job_candidate.job_id"><![CDATA[190772]]></bdCustomTag>
+<PositionTitle><![CDATA[HVAC Service Technician]]></PositionTitle>
+<bdCustomTag value="job_candidate.account_status"><![CDATA[Applied]]></bdCustomTag>
+<bdCustomTag value="job_candidate.score"><![CDATA[5]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.final_disposition"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.hired_date"><![CDATA[1/1/1900 12:00:00 AM]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_location"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_refreshID"><![CDATA[]]></bdCustomTag>
+<bdCustomTag value="JobCandidateCustomData">
+<bdCustomTag value="job_candidate_custom_data">
+<bdCustomTag value="job_candidate_custom_data.heading"><![CDATA[Are you legally able to work in the United States]]></bdCustomTag>
+<bdCustomTag value="job_candidate_custom_data.comments"><![CDATA[Yes]]></bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+<bdCustomTag value="job_candidate">
+<bdCustomTag value="job_candidate_id"><![CDATA[2127509]]></bdCustomTag>
+<bdCustomTag value="job_candidate.candidate_id"><![CDATA[1776574]]></bdCustomTag>
+<GivenName><![CDATA[Froilan.]]></GivenName>
+<FamilyName><![CDATA[Palita]]></FamilyName>
+<bdCustomTag value="job_candidate.job_id"><![CDATA[190773]]></bdCustomTag>
+<PositionTitle><![CDATA[Journeyman Plumber]]></PositionTitle>
+<bdCustomTag value="job_candidate.account_status"><![CDATA[Applied]]></bdCustomTag>
+<bdCustomTag value="job_candidate.score"><![CDATA[5]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.final_disposition"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.hired_date"><![CDATA[1/1/1900 12:00:00 AM]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_location"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_refreshID"><![CDATA[]]></bdCustomTag>
+<bdCustomTag value="JobCandidateCustomData">
+<bdCustomTag value="job_candidate_custom_data">
+<bdCustomTag value="job_candidate_custom_data.heading"><![CDATA[Are you legally able to work in the United States]]></bdCustomTag>
+<bdCustomTag value="job_candidate_custom_data.comments"><![CDATA[Yes]]></bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+<bdCustomTag value="job_candidate">
+<bdCustomTag value="job_candidate_id"><![CDATA[2127512]]></bdCustomTag>
+<bdCustomTag value="job_candidate.candidate_id"><![CDATA[1776577]]></bdCustomTag>
+<GivenName><![CDATA[Jimmy]]></GivenName>
+<FamilyName><![CDATA[Coliadis]]></FamilyName>
+<bdCustomTag value="job_candidate.job_id"><![CDATA[190774]]></bdCustomTag>
+<PositionTitle><![CDATA[Pipefitter]]></PositionTitle>
+<bdCustomTag value="job_candidate.account_status"><![CDATA[Applied]]></bdCustomTag>
+<bdCustomTag value="job_candidate.score"><![CDATA[5]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.final_disposition"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.hired_date"><![CDATA[1/1/1900 12:00:00 AM]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_location"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_refreshID"><![CDATA[]]></bdCustomTag>
+<bdCustomTag value="JobCandidateCustomData">
+<bdCustomTag value="job_candidate_custom_data">
+<bdCustomTag value="job_candidate_custom_data.heading"><![CDATA[Are you legally able to work in the United States]]></bdCustomTag>
+<bdCustomTag value="job_candidate_custom_data.comments"><![CDATA[Yes]]></bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+<bdCustomTag value="job_candidate">
+<bdCustomTag value="job_candidate_id"><![CDATA[2127516]]></bdCustomTag>
+<bdCustomTag value="job_candidate.candidate_id"><![CDATA[1776578]]></bdCustomTag>
+<GivenName><![CDATA[Joe]]></GivenName>
+<FamilyName><![CDATA[Riehle]]></FamilyName>
+<bdCustomTag value="job_candidate.job_id"><![CDATA[190775]]></bdCustomTag>
+<PositionTitle><![CDATA[Project Coordinator]]></PositionTitle>
+<bdCustomTag value="job_candidate.account_status"><![CDATA[Applied]]></bdCustomTag>
+<bdCustomTag value="job_candidate.score"><![CDATA[5]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.final_disposition"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.hired_date"><![CDATA[1/1/1900 12:00:00 AM]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_location"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_refreshID"><![CDATA[]]></bdCustomTag>
+<bdCustomTag value="JobCandidateCustomData">
+<bdCustomTag value="job_candidate_custom_data">
+<bdCustomTag value="job_candidate_custom_data.heading"><![CDATA[Are you legally able to work in the United States]]></bdCustomTag>
+<bdCustomTag value="job_candidate_custom_data.comments"><![CDATA[Yes]]></bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+<bdCustomTag value="job_candidate">
+<bdCustomTag value="job_candidate_id"><![CDATA[2127519]]></bdCustomTag>
+<bdCustomTag value="job_candidate.candidate_id"><![CDATA[1776581]]></bdCustomTag>
+<GivenName><![CDATA[Kyle]]></GivenName>
+<FamilyName><![CDATA[Hamer]]></FamilyName>
+<bdCustomTag value="job_candidate.job_id"><![CDATA[190776]]></bdCustomTag>
+<PositionTitle><![CDATA[Sales Representative]]></PositionTitle>
+<bdCustomTag value="job_candidate.account_status"><![CDATA[Applied]]></bdCustomTag>
+<bdCustomTag value="job_candidate.score"><![CDATA[5]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.final_disposition"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.hired_date"><![CDATA[1/1/1900 12:00:00 AM]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_location"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_refreshID"><![CDATA[]]></bdCustomTag>
+<bdCustomTag value="JobCandidateCustomData">
+<bdCustomTag value="job_candidate_custom_data">
+<bdCustomTag value="job_candidate_custom_data.heading"><![CDATA[Are you legally able to work in the United States]]></bdCustomTag>
+<bdCustomTag value="job_candidate_custom_data.comments"><![CDATA[Yes]]></bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+<bdCustomTag value="job_candidate">
+<bdCustomTag value="job_candidate_id"><![CDATA[2127521]]></bdCustomTag>
+<bdCustomTag value="job_candidate.candidate_id"><![CDATA[1776582]]></bdCustomTag>
+<GivenName><![CDATA[Lori]]></GivenName>
+<FamilyName><![CDATA[Clark]]></FamilyName>
+<bdCustomTag value="job_candidate.job_id"><![CDATA[190777]]></bdCustomTag>
+<PositionTitle><![CDATA[Welder]]></PositionTitle>
+<bdCustomTag value="job_candidate.account_status"><![CDATA[Applied]]></bdCustomTag>
+<bdCustomTag value="job_candidate.score"><![CDATA[5]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.final_disposition"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.hired_date"><![CDATA[1/1/1900 12:00:00 AM]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_location"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_refreshID"><![CDATA[]]></bdCustomTag>
+<bdCustomTag value="JobCandidateCustomData">
+<bdCustomTag value="job_candidate_custom_data">
+<bdCustomTag value="job_candidate_custom_data.heading"><![CDATA[Are you legally able to work in the United States]]></bdCustomTag>
+<bdCustomTag value="job_candidate_custom_data.comments"><![CDATA[Yes]]></bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+<bdCustomTag value="job_candidate">
+<bdCustomTag value="job_candidate_id"><![CDATA[2127525]]></bdCustomTag>
+<bdCustomTag value="job_candidate.candidate_id"><![CDATA[1776586]]></bdCustomTag>
+<GivenName><![CDATA[Michael]]></GivenName>
+<FamilyName><![CDATA[Conley]]></FamilyName>
+<bdCustomTag value="job_candidate.job_id"><![CDATA[190768]]></bdCustomTag>
+<PositionTitle><![CDATA[Construction Foreman]]></PositionTitle>
+<bdCustomTag value="job_candidate.account_status"><![CDATA[Applied]]></bdCustomTag>
+<bdCustomTag value="job_candidate.score"><![CDATA[5]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.final_disposition"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.hired_date"><![CDATA[1/1/1900 12:00:00 AM]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_location"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_refreshID"><![CDATA[]]></bdCustomTag>
+<bdCustomTag value="JobCandidateCustomData">
+<bdCustomTag value="job_candidate_custom_data">
+<bdCustomTag value="job_candidate_custom_data.heading"><![CDATA[Are you legally able to work in the United States]]></bdCustomTag>
+<bdCustomTag value="job_candidate_custom_data.comments"><![CDATA[Yes]]></bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+<bdCustomTag value="job_candidate">
+<bdCustomTag value="job_candidate_id"><![CDATA[2127526]]></bdCustomTag>
+<bdCustomTag value="job_candidate.candidate_id"><![CDATA[1776587]]></bdCustomTag>
+<GivenName><![CDATA[Kevin]]></GivenName>
+<FamilyName><![CDATA[Cyr]]></FamilyName>
+<bdCustomTag value="job_candidate.job_id"><![CDATA[190768]]></bdCustomTag>
+<PositionTitle><![CDATA[Construction Foreman]]></PositionTitle>
+<bdCustomTag value="job_candidate.account_status"><![CDATA[Applied]]></bdCustomTag>
+<bdCustomTag value="job_candidate.score"><![CDATA[5]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.final_disposition"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.hired_date"><![CDATA[1/1/1900 12:00:00 AM]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_location"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_refreshID"><![CDATA[]]></bdCustomTag>
+<bdCustomTag value="JobCandidateCustomData">
+<bdCustomTag value="job_candidate_custom_data">
+<bdCustomTag value="job_candidate_custom_data.heading"><![CDATA[Are you legally able to work in the United States]]></bdCustomTag>
+<bdCustomTag value="job_candidate_custom_data.comments"><![CDATA[Yes]]></bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+<bdCustomTag value="job_candidate">
+<bdCustomTag value="job_candidate_id"><![CDATA[2127527]]></bdCustomTag>
+<bdCustomTag value="job_candidate.candidate_id"><![CDATA[1776588]]></bdCustomTag>
+<GivenName><![CDATA[Mike]]></GivenName>
+<FamilyName><![CDATA[Boltz]]></FamilyName>
+<bdCustomTag value="job_candidate.job_id"><![CDATA[190768]]></bdCustomTag>
+<PositionTitle><![CDATA[Construction Foreman]]></PositionTitle>
+<bdCustomTag value="job_candidate.account_status"><![CDATA[Applied]]></bdCustomTag>
+<bdCustomTag value="job_candidate.score"><![CDATA[5]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.final_disposition"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.hired_date"><![CDATA[1/1/1900 12:00:00 AM]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_location"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_refreshID"><![CDATA[]]></bdCustomTag>
+<bdCustomTag value="JobCandidateCustomData">
+<bdCustomTag value="job_candidate_custom_data">
+<bdCustomTag value="job_candidate_custom_data.heading"><![CDATA[Are you legally able to work in the United States]]></bdCustomTag>
+<bdCustomTag value="job_candidate_custom_data.comments"><![CDATA[Yes]]></bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+<bdCustomTag value="job_candidate">
+<bdCustomTag value="job_candidate_id"><![CDATA[2127529]]></bdCustomTag>
+<bdCustomTag value="job_candidate.candidate_id"><![CDATA[1776590]]></bdCustomTag>
+<GivenName><![CDATA[Taner]]></GivenName>
+<FamilyName><![CDATA[Arslan]]></FamilyName>
+<bdCustomTag value="job_candidate.job_id"><![CDATA[190768]]></bdCustomTag>
+<PositionTitle><![CDATA[Construction Foreman]]></PositionTitle>
+<bdCustomTag value="job_candidate.account_status"><![CDATA[Applied]]></bdCustomTag>
+<bdCustomTag value="job_candidate.score"><![CDATA[5]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.final_disposition"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.hired_date"><![CDATA[1/1/1900 12:00:00 AM]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_location"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_refreshID"><![CDATA[]]></bdCustomTag>
+<bdCustomTag value="JobCandidateCustomData">
+<bdCustomTag value="job_candidate_custom_data">
+<bdCustomTag value="job_candidate_custom_data.heading"><![CDATA[Are you legally able to work in the United States]]></bdCustomTag>
+<bdCustomTag value="job_candidate_custom_data.comments"><![CDATA[Yes]]></bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+<bdCustomTag value="job_candidate">
+<bdCustomTag value="job_candidate_id"><![CDATA[2127556]]></bdCustomTag>
+<bdCustomTag value="job_candidate.candidate_id"><![CDATA[1776595]]></bdCustomTag>
+<GivenName><![CDATA[Jimmy]]></GivenName>
+<FamilyName><![CDATA[Carter]]></FamilyName>
+<bdCustomTag value="job_candidate.job_id"><![CDATA[190769]]></bdCustomTag>
+<PositionTitle><![CDATA[Construction Inspector]]></PositionTitle>
+<bdCustomTag value="job_candidate.account_status"><![CDATA[Applied]]></bdCustomTag>
+<bdCustomTag value="job_candidate.score"><![CDATA[5]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.final_disposition"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.hired_date"><![CDATA[1/1/1900 12:00:00 AM]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_location"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_refreshID"><![CDATA[]]></bdCustomTag>
+<bdCustomTag value="JobCandidateCustomData">
+<bdCustomTag value="job_candidate_custom_data">
+<bdCustomTag value="job_candidate_custom_data.heading"><![CDATA[Are you legally able to work in the United States]]></bdCustomTag>
+<bdCustomTag value="job_candidate_custom_data.comments"><![CDATA[Yes]]></bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+<bdCustomTag value="job_candidate">
+<bdCustomTag value="job_candidate_id"><![CDATA[2127534]]></bdCustomTag>
+<bdCustomTag value="job_candidate.candidate_id"><![CDATA[1776595]]></bdCustomTag>
+<GivenName><![CDATA[Jimmy]]></GivenName>
+<FamilyName><![CDATA[Carter]]></FamilyName>
+<bdCustomTag value="job_candidate.job_id"><![CDATA[190768]]></bdCustomTag>
+<PositionTitle><![CDATA[Construction Foreman]]></PositionTitle>
+<bdCustomTag value="job_candidate.account_status"><![CDATA[Applied]]></bdCustomTag>
+<bdCustomTag value="job_candidate.score"><![CDATA[5]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.final_disposition"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.hired_date"><![CDATA[1/1/1900 12:00:00 AM]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_location"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_refreshID"><![CDATA[]]></bdCustomTag>
+<bdCustomTag value="JobCandidateCustomData">
+<bdCustomTag value="job_candidate_custom_data">
+<bdCustomTag value="job_candidate_custom_data.heading"><![CDATA[Are you legally able to work in the United States]]></bdCustomTag>
+<bdCustomTag value="job_candidate_custom_data.comments"><![CDATA[Yes]]></bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+<bdCustomTag value="job_candidate">
+<bdCustomTag value="job_candidate_id"><![CDATA[2127538]]></bdCustomTag>
+<bdCustomTag value="job_candidate.candidate_id"><![CDATA[1776599]]></bdCustomTag>
+<GivenName><![CDATA[Oleg]]></GivenName>
+<FamilyName><![CDATA[Grubyy]]></FamilyName>
+<bdCustomTag value="job_candidate.job_id"><![CDATA[190768]]></bdCustomTag>
+<PositionTitle><![CDATA[Construction Foreman]]></PositionTitle>
+<bdCustomTag value="job_candidate.account_status"><![CDATA[Applied]]></bdCustomTag>
+<bdCustomTag value="job_candidate.score"><![CDATA[5]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.final_disposition"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.hired_date"><![CDATA[1/1/1900 12:00:00 AM]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_location"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_refreshID"><![CDATA[]]></bdCustomTag>
+<bdCustomTag value="JobCandidateCustomData">
+<bdCustomTag value="job_candidate_custom_data">
+<bdCustomTag value="job_candidate_custom_data.heading"><![CDATA[Are you legally able to work in the United States]]></bdCustomTag>
+<bdCustomTag value="job_candidate_custom_data.comments"><![CDATA[Yes]]></bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+<bdCustomTag value="job_candidate">
+<bdCustomTag value="job_candidate_id"><![CDATA[2127542]]></bdCustomTag>
+<bdCustomTag value="job_candidate.candidate_id"><![CDATA[1776603]]></bdCustomTag>
+<GivenName><![CDATA[Michael]]></GivenName>
+<FamilyName><![CDATA[Meehan]]></FamilyName>
+<bdCustomTag value="job_candidate.job_id"><![CDATA[190768]]></bdCustomTag>
+<PositionTitle><![CDATA[Construction Foreman]]></PositionTitle>
+<bdCustomTag value="job_candidate.account_status"><![CDATA[Applied]]></bdCustomTag>
+<bdCustomTag value="job_candidate.score"><![CDATA[5]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.final_disposition"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.hired_date"><![CDATA[1/1/1900 12:00:00 AM]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_location"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_refreshID"><![CDATA[]]></bdCustomTag>
+<bdCustomTag value="JobCandidateCustomData">
+<bdCustomTag value="job_candidate_custom_data">
+<bdCustomTag value="job_candidate_custom_data.heading"><![CDATA[Are you legally able to work in the United States]]></bdCustomTag>
+<bdCustomTag value="job_candidate_custom_data.comments"><![CDATA[Yes]]></bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+<bdCustomTag value="job_candidate">
+<bdCustomTag value="job_candidate_id"><![CDATA[2127544]]></bdCustomTag>
+<bdCustomTag value="job_candidate.candidate_id"><![CDATA[1776605]]></bdCustomTag>
+<GivenName><![CDATA[Mark]]></GivenName>
+<FamilyName><![CDATA[Lee]]></FamilyName>
+<bdCustomTag value="job_candidate.job_id"><![CDATA[190768]]></bdCustomTag>
+<PositionTitle><![CDATA[Construction Foreman]]></PositionTitle>
+<bdCustomTag value="job_candidate.account_status"><![CDATA[Applied]]></bdCustomTag>
+<bdCustomTag value="job_candidate.score"><![CDATA[5]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.final_disposition"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.hired_date"><![CDATA[1/1/1900 12:00:00 AM]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_location"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_refreshID"><![CDATA[]]></bdCustomTag>
+<bdCustomTag value="JobCandidateCustomData">
+<bdCustomTag value="job_candidate_custom_data">
+<bdCustomTag value="job_candidate_custom_data.heading"><![CDATA[Are you legally able to work in the United States]]></bdCustomTag>
+<bdCustomTag value="job_candidate_custom_data.comments"><![CDATA[Yes]]></bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+<bdCustomTag value="job_candidate">
+<bdCustomTag value="job_candidate_id"><![CDATA[2127548]]></bdCustomTag>
+<bdCustomTag value="job_candidate.candidate_id"><![CDATA[1776609]]></bdCustomTag>
+<GivenName><![CDATA[Thavasi]]></GivenName>
+<FamilyName><![CDATA[Ramesh]]></FamilyName>
+<bdCustomTag value="job_candidate.job_id"><![CDATA[190768]]></bdCustomTag>
+<PositionTitle><![CDATA[Construction Foreman]]></PositionTitle>
+<bdCustomTag value="job_candidate.account_status"><![CDATA[Applied]]></bdCustomTag>
+<bdCustomTag value="job_candidate.score"><![CDATA[5]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.final_disposition"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.hired_date"><![CDATA[1/1/1900 12:00:00 AM]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_location"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_refreshID"><![CDATA[]]></bdCustomTag>
+<bdCustomTag value="JobCandidateCustomData">
+<bdCustomTag value="job_candidate_custom_data">
+<bdCustomTag value="job_candidate_custom_data.heading"><![CDATA[Are you legally able to work in the United States]]></bdCustomTag>
+<bdCustomTag value="job_candidate_custom_data.comments"><![CDATA[Yes]]></bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+<bdCustomTag value="job_candidate">
+<bdCustomTag value="job_candidate_id"><![CDATA[2127558]]></bdCustomTag>
+<bdCustomTag value="job_candidate.candidate_id"><![CDATA[1776612]]></bdCustomTag>
+<GivenName><![CDATA[Oleg]]></GivenName>
+<FamilyName><![CDATA[Grubyy]]></FamilyName>
+<bdCustomTag value="job_candidate.job_id"><![CDATA[190770]]></bdCustomTag>
+<PositionTitle><![CDATA[Customer Service Representative]]></PositionTitle>
+<bdCustomTag value="job_candidate.account_status"><![CDATA[Applied]]></bdCustomTag>
+<bdCustomTag value="job_candidate.score"><![CDATA[5]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.final_disposition"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.hired_date"><![CDATA[1/1/1900 12:00:00 AM]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_location"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_refreshID"><![CDATA[]]></bdCustomTag>
+<bdCustomTag value="JobCandidateCustomData">
+<bdCustomTag value="job_candidate_custom_data">
+<bdCustomTag value="job_candidate_custom_data.heading"><![CDATA[Are you legally able to work in the United States]]></bdCustomTag>
+<bdCustomTag value="job_candidate_custom_data.comments"><![CDATA[Yes]]></bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+<bdCustomTag value="job_candidate">
+<bdCustomTag value="job_candidate_id"><![CDATA[2127552]]></bdCustomTag>
+<bdCustomTag value="job_candidate.candidate_id"><![CDATA[1776612]]></bdCustomTag>
+<GivenName><![CDATA[Oleg]]></GivenName>
+<FamilyName><![CDATA[Grubyy]]></FamilyName>
+<bdCustomTag value="job_candidate.job_id"><![CDATA[190769]]></bdCustomTag>
+<PositionTitle><![CDATA[Construction Inspector]]></PositionTitle>
+<bdCustomTag value="job_candidate.account_status"><![CDATA[Applied]]></bdCustomTag>
+<bdCustomTag value="job_candidate.score"><![CDATA[5]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.final_disposition"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.hired_date"><![CDATA[1/1/1900 12:00:00 AM]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_location"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_refreshID"><![CDATA[]]></bdCustomTag>
+<bdCustomTag value="JobCandidateCustomData">
+<bdCustomTag value="job_candidate_custom_data">
+<bdCustomTag value="job_candidate_custom_data.heading"><![CDATA[Are you legally able to work in the United States]]></bdCustomTag>
+<bdCustomTag value="job_candidate_custom_data.comments"><![CDATA[Yes]]></bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+<bdCustomTag value="job_candidate">
+<bdCustomTag value="job_candidate_id"><![CDATA[2127554]]></bdCustomTag>
+<bdCustomTag value="job_candidate.candidate_id"><![CDATA[1776614]]></bdCustomTag>
+<GivenName><![CDATA[Genevieve]]></GivenName>
+<FamilyName><![CDATA[Legrand]]></FamilyName>
+<bdCustomTag value="job_candidate.job_id"><![CDATA[190769]]></bdCustomTag>
+<PositionTitle><![CDATA[Construction Inspector]]></PositionTitle>
+<bdCustomTag value="job_candidate.account_status"><![CDATA[Applied]]></bdCustomTag>
+<bdCustomTag value="job_candidate.score"><![CDATA[5]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.final_disposition"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.hired_date"><![CDATA[1/1/1900 12:00:00 AM]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_location"><![CDATA[]]></bdCustomTag>
+  <bdCustomTag value="job_candidate.apply_from_refreshID"><![CDATA[]]></bdCustomTag>
+<bdCustomTag value="JobCandidateCustomData">
+<bdCustomTag value="job_candidate_custom_data">
+<bdCustomTag value="job_candidate_custom_data.heading"><![CDATA[Are you legally able to work in the United States]]></bdCustomTag>
+<bdCustomTag value="job_candidate_custom_data.comments"><![CDATA[Yes]]></bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+</bdCustomTag>
+</JobCandidates>

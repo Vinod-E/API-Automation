@@ -1,0 +1,139 @@
+﻿          Name : Yuvakumar                                         Mail ID        :    yuva.eting82@gmail.com, gfff.fgdf.gmail.com
+                                                                                     Phone No    :  +91-8105824061, 8745120369 
+Pan: SDCFG1256H,  Passport: F1020102, Gender: Male, DOB: 19/12/1988                                                                           
+ 
+EXPERIENCE SUMMARY
+Having 5+ years of Experience in ETL/Database Testing 
+Hands on Experience on Manual Testing, Data warehousing concepts
+Hands on Experience in ETL Tool Informatica
+Good exposure in Test Case documentation, Test Execution and Test Analysis.
+Good Exposure on ETL  Testing
+Good Exposure on Micro Strategy
+Hands-on experience in SQL
+Hands on experience in DWH Concepts
+Extensive experience in QC and Application Life Cycle Management (ALM 11) Tool
+Involved in preparing, reviewing and executing Test Cases
+Good Knowledge on AGILE
+Good Experience on SDLC,STLC
+Good Experience on TERA DATA.
+Good Experience in RQM's
+Good Experience in CQ Test Management Tool
+Good Experience on JIRA.
+Good Exposure on TOAD
+Experience in preparation of TEST DATA
+Good Experience in Functional Testing, Regression and Re-testing.
+
+SKILL SUMMARY:
+Software Testing        :  ETL/Database Testing, Manual Testing     
+ETL Tools		    :  Informatica 9.5
+Databases		    :  Oracle 9i/10g,MS SQL-2008
+Operating Systems	    :  Windows 2000/XP & UNIX
+Management Tool	    :  Quality Centre(QC), ALM(11), RQM, CQ.
+ Languages		    :  SQL, Java. 
+EXPERIENCE HIGHLIGHTS:
+
+Worked as ETL Tester in LiquidHub from September 2015 to February 2016
+Worked in UST Global as a Senior Tester from October 2013  to August 2015.
+ Worked  in MANTHAN SYSTEMS as a Test Engineer from July 2010 to September 2013.
+Project Details:
+
+Project#1
+Project Name		   :          NUPLAZID - Data Aggregator Management Solution
+Client				  :	ACADIA Pharmacy, USA.
+Duration		               :	September 2015 to Till date
+Role				               :	ETL Tester
+Team Size		               :	4
+Data base			               :	Oracle
+Tools				  :	TOAD, JIRA 
+Environment		               :           Windows XP, INFORMATICA 9.5, TABLEAU
+
+Description:
+ 
+	Acadia will be launching a new product 'NUPLAZID', dealing with Parkinson’s Disease Psychosis (PDP). As part of the 'Nuplazid' launch Acadia will be collecting referral, shipment, inventory and patient information from specialty pharmacies (SPP) containing Nuplazid prescription data,  shipment and inventory information from specialty distributors (SD), Patient Services information from LASH Services (HUB), Patient Tokenization information from MSA, Payer Master information from DRG and sending to LiquidHub (LH).  LiquidHub’s - Liquid Analytics Data Aggregation solution will integrate Specialty Pharmacies (SPP), Specialty Distributors (SD), LASH Services (HUB), Patient Tokenization from MSA and Payer Master information from DRG to provide quality and actionable data that will be used for Analytics and Reporting in support of the 'Nuplazid' product launch.
+	All these people (SPP, SD, LASH, MSA, and DRG) will send the data through text files (.txt) to LiquidHub through ACADIA.  LiquidHub’s - Liquid Analytics Data Aggregator Management Solution will process these files for cleansing and integration.Once cleansed and integrated, LiquidHub will send the finalized transactions and extracts to respective clients where they will be integrated into the Client Data Warehouse, that will be used for Analytics and Reporting in support of the 'Nuplazid' product launch.
+
+Responsibilities:
+Involved in functional Study of the application and understanding the business requirements 
+Receiving File Layouts from SPP’S, SD’S and LASH Services (HUB) 
+Preparing Mater List Of  Columns (MLOC) Sheet for all the received File Layouts
+Receiving Field Requirements , Field Validations documents from SPP’S, SD’S and LASH Services (HUB)
+Preparing Quality Control Checks (QC-Check’s)  for Field Validation Documents
+Preparing Test Cases for all QC Checks 
+Sending Issues and Escalations to Onsite Coordinator Daily Base/Weekly Base
+Interacting with Onsite Coordinator to resolve the issues
+Attending Daily Calls with Onsite Team to discuss Project Implantation Statuses
+Attending  Status Meeting’s with Manager twice a week and updating the Project Progress, Issues and Escalations
+Preparing Test Scenarios and Creating Test Data for these scenarios
+Creating Sample Source Files For Initial Run and ran PMCMD commands for files processing through Landing  Staging  ODS  DWE, validate the data in each level and generating Test Extracts
+Collecting Sample Source Files For Initial Run from Client’s and ran PMCMD commands for files processing through Landing  Staging  ODS  DWE, validate the data in each level and generating Test Extracts and then sending to client for review and approval
+Running the SQL Queries in Toad to validate the data in each level Landing  Staging  ODS  DWE
+Updating existing test cases & test requirements as per the new enhancements done in the Field Requirements and Field Validation documents
+Open defects and execution results were updating through Daily status report to onsite people, project manager and internal team members 
+Co-ordinate with team and create daily test execution results
+
+Project #2:
+Title                   :  QCO (Quick Care Options)
+Client                 :  WellPoint Inc.
+Environment     : Informatica Power Centre, ALM, Tera Data, Unix.
+Duration            :   October 2013 to August 2015
+Domain              :  Health Care.
+Description: 
+
+HRS will be loading files from NASCO and WGS with members who have had any non-essential ER visit claims in the past year. Using this data. New tables will be created in the MedicalHistory_DAL and MedicalHistory_TDL databases to load the data from NASCO and WGS and this data will be passed along to Eliza.In HRS, a new tab called “Claims Info” will be added to the Health Chart and include the details of  any non-essential ER visits from the past year for a member. In HRS, an alert will display on the case landing screen to notify the user that the member has been identified with a non-essential ER visit. 
+
+Responsibilities:
+Involved in Preparing Test cases.
+Preparing Test Data.
+Verifying the data in target database Tables
+Executing Test cases in ALM.
+Prepared and ran sql queries to verify database Table.
+Tracing the Defects.
+Verifying the data in target database after ETL process.
+Involved in Preparation  of  Test Plan.
+Identified Test Scripts for Regression testing.
+Involved daily Testing status call with client.
+
+Project #3:	
+Title     		:	VMOS (Von Maur Ordering System)
+Client			:	Von Maur,US
+Environment	           :  Informatica Power Centre, Oracle, Tera data, RQM, CQ, Unix.
+Domain                     :            Retail Domain
+Duration                    :   May 2011 to September 2013
+
+Description :
+
+Von Maur Retail Stores, which is one of the organization that sells various  numbers of products.  Von Maur has various stores, which maintains Database has  lots of historical data. This project was to create Sales Data Warehouse. The system  has a database which stores information about sales, profits and contacts of customers. Using this existing database, the system should analyze the sales and   profit and generates reports for Sales and Profits in month wise and year wise. The  resulting model gives us an idea about growth in profit, prediction about increase in  sales. The data Warehouse was further used to do Market Based analysis. The data Warehouse plays a major role in enabling various stores to view the data at a lowest level and help them to make decisions to bring more revenue to company with new policies.
+
+Responsibilities:
+
+Involved in functional study of the application
+Running the Jobs/Workflow for ETL process
+Prepared and ran sql queries to verify Dimensional and Fact tables.
+Verifying the data in target database after ETL process
+Performed column data mapping between source & target database.
+Prepared test data for testing
+Verifying the data which is loaded into target database
+Reporting daily  testing status report
+Developed, Reviewed & Executed Test Scripts and Designed test data
+Identified Test Scripts for Regression testing
+
+Project #4
+Project Name		         :	BeaumontHealthSystems
+Client			         : William Beaumont Hospitals.
+Environment		         :  Java, oracle 9i, Quality Centre, Unix, Java
+Domain                               :             Health care    
+Duration                             :         July 2010 to April 2011
+Description:
+
+Advanced clinical information systems for high-acuity departments, this system is divided into five modules. They are Doctor Details, Patient Details, Stores Details, Employers Details, and Payroll Details. It provides the facility of different types of report generation on demand. Backup of whole database and scheduling should be maintained. It keeps the information about Doctor Appointments, In-Patient, Outpatient, Consultants, Ward, Organization, Area, Department and various types of information provided by the Hospital.
+
+Roles and Responsibilities:
+Analyzed Business and Functional requirements specification documents and identified test scenarios
+Involved in Functional Testing.
+Verified the application’s functionality with different software Configurations.
+Designing the test cases using Functional specs
+Conducting peer reviews and involved in the preparation of traceability matrix, retesting, regression testing, smoke and system testing and sanity testing..
+Tested the interface between database and the application.
+
+EDUCATION:
+M.C.A From Sri Venkateswara University.

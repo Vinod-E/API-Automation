@@ -1,0 +1,348 @@
+﻿Apurva Deshpande	        
+Contact No. : +91-98333-80098, 6932586523
+Email: apurva.d.deshpande@gmail.com,  dfsafd.dsg@gmail.com
+ 
+
+Career Objective: 
+
+Seeking an innovative and a challenging position, where my current skills relating to computers and management are fully utilized and improved to contribute to the benefit of the organization.
+
+Educational Qualifications: 
+M.C.M 2005 (Masters of Computer Management) – M.I.T. School of Management, Pune University, Pune.
+B.Com 2003 (Bachelor of Commerce) - Mulund College of Commerce (M.C.C), Mumbai University, Mumbai.
+Other Qualification: Professional Diploma in Software Engineering (PDSE) Datapro Institute, Mumbai.
+
+
+IT Work Experience: 9 years and 7 months.
+
+Company      	   	: IBM India Pvt. LTD, Mumbai
+Duration          		: 12th October 2012 to till date.
+Job Profile		          : Advisory Consultant (Oracle Fusion and PeopleSoft HCM)
+
+Company      	   	: Capgemini India Pvt. LTD, Mumbai
+Duration          		: 20th August 2010 to 5th October 2012.
+Job Profile		          : PeopleSoft HCM Functional Consultant.
+
+Company      	   	: Ness Technologies LTD, Bangalore
+Duration          		: 02nd November 2009 to 19th August 2010.
+Job Profile		          : PeopleSoft HCM Functional Consultant.
+
+Company      	   	: Hexaware Technologies LTD, Pune
+Duration          		: 07th August 2006 to 30th September 2009.
+Job Profile		          : PeopleSoft HRMS Functional Consultant.
+
+Current Location: Mumbai, Maharashtra, India.
+
+I.T. Skills:
+Skill Type
+Skill Name
+TESTING
+HP Quality Centre and TOAD.
+LANGUAGE/ TECHNOLOGIES
+PeopleSoft 8.9 – 9.1, People Tools Application Designer.
+PeopleSoft HCM
+Core HR, North America Payroll, Benefits, Global Payroll and Absence Management, Self Service, Manager Self Service
+Oracle Fusion HCM
+Core HR, Absence Management, Talent Management, Compensation Management.
+
+Projects: 
+
+Client: Pearson Education, London, United Kingdom – Oracle Fusion HCM – Functional Consultant
+Oracle Fusion HCM Rel. 10 Implementation
+Duration: March 2015’ – Jan 2016’.
+
+Technologies involved – Oracle Fusion HCM Release 10.
+Tools Used: Oracle Fusion HCM Release 10.
+Domain: Human Capital Management (HCM)
+
+Client Description: Pearson Education UK is part of the global media and education group Pearson, which includes our sister companies Penguin and the Financial Times newspaper. Every day their books and learning tools help people around the world to grow their knowledge, develop their skills and realise their potential. If you want to find out more about what they offer in the world of education, take a look at Pearson website.
+
+Project Description: Pearson Education wanted to shift from EBS to Oracle Fusion (HCM). The plan is to implement Time and Labor, Reports, Core HR, Absence Management, Benefits and Talent & Performance Management in Oracle. My role on this project was outlined towards being a Functional Consultant and Test Manager. The project involved configuration, customization and testing of all the above mentioned modules as per client requirements. 
+
+Roles & Responsibilities: 
+
+Testing resources and effort estimation and assignment.
+Defect Life cycle creation.
+Liaise with Functional Teams to track build completion and Test Scenario validation.
+Co-ordinate Test Team Efforts.
+Review Test Scenarios, Test Cases and Test Steps and obtain sign-offs for the same.
+Qmetry Training for Users, Test Team and Functional Team members.
+Consistent client reporting on day to day basis.
+Conduct Q-Gates (Quality Gates) to update client with milestones achieved.
+Team management, disputes management and focus on delivering on time without compromising on quality.
+Designing of acute regression testing suite.
+Client: BG Group, Reading, United Kingdom – Oracle Fusion HCM – Test Manager
+Oracle Fusion HCM Rel. 8 Implementation
+Duration: June 2013’ – Oct 2014’.
+
+Technologies involved – Oracle Fusion HCM Release 8.
+Tools Used: Oracle Fusion HCM Release 8.
+Domain: Human Capital Management (HCM)
+
+Client Description: BG Group, active in more than 20 countries and employ around 5 200 people, drawn from 70 nations. Underpinning our competitive advantages in exploration and our unique LNG model, we have a lean management structure. This combination gives us the skills and capabilities of a much larger company, while retaining the speed and agility of a much smaller company.
+
+Project Description: BG Group wanted to shift from SAP to Oracle Fusion. The plan was to implement Core HR, Absence Management, Compensation Management and Talent Management in Oracle Fusion and integrate Taleo Learn and Recruit with Fusion in 3 Phases. My role on this project was outlined towards being the Test Manager. The project involved thorough configuration, customization and testing of all the above mentioned modules as per client requirements. 
+
+Roles & Responsibilities: 
+
+Test Plan creation.
+Test Strategy creation.
+Testing resources and effort estimation.
+Defect Life-cycle creation.
+Liaise with Functional Teams to track build completion and Test Scenario validation.
+Co-ordinate Test Team Efforts (Offshore).
+Validate Test Scenarios, Test Cases and Test Steps and obtain sign-offs for the same.
+Quality Centre Training for Users and Functional Team members.
+Assist in creation of Job Aid with Training Manager.
+Consistent client reporting on day to day basis.
+Conduct Q-Gates (Quality Gates) to update client with milestones achieved.
+Resolving inter team disputes and focus on delivering on time without compromising on quality.
+Designing of acute regression testing suite.
+Handover activities post implementation.
+Client: Aditya Birla Group of Industries Ltd., Mumbai, India – PS HCM – Project Lead
+PeopleSoft 9.1 Global Payroll Implementation
+Duration: Oct 2012’ – Apr 2013’.
+
+Technologies involved – PeopleSoft 9.1 HCM (Global Payroll for India)
+Tools Used: PeopleSoft 9.1 Global Payroll for India (PIA)
+Domain: Human Capital Management (HCM)
+
+Client Description: Aditya Birla Group of Industries Ltd. A US $40 billion corporation, the Group is in the League of Fortune 500. It is anchored by an extraordinary force of over 120,000 employees, belonging to 42 different nationalities.
+
+Project Description: They wanted to deploy PeopleSoft HRMS (Global Payroll 9.1 for India) to manage their Payroll operations for Metals Business across India. The requirement was to centralize payroll processing by implementing PeopleSoft 9.1 Global Payroll 9.1 for India. My role in this project was outlined towards being a Project Lead for Metals business. The project involved thorough configuration, customization and testing of Global Payroll 9.1 for India as per client requirements.
+
+Roles & Responsibilities: 
+
+Implementation of PeopleSoft Global Payroll 9.1 for India.
+Customizations, Configurations, Testing and deployment of Tax Update patches released by Oracle.
+Requirement Gathering, Change Requirement / Work Order Analysis.
+Requirement Gathering, Change Requirement / Work Order Effort estimation.
+Arrange walkthrough and discuss / Improvise requirements with BA / Users.
+Functional guidance to Client Project Director and End Users.
+End to End QA of the Configurations and change request / work order.
+Creation of High Quality QA document to guide users during UAT.
+Team and Client Relationship handling.
+Mentoring and Team billing.
+Client: Cox Communication, USA – HCM – Offshore Functional Analyst
+PeopleSoft 8.9 Support and Enhancement
+Duration: April 2012’ – Aug 2012’.
+
+Technologies involved – PeopleSoft 8.9 HCM.
+Tools Used: Toad.
+Domain: Human Capital Management (HCM)
+
+Client Description: Cox Enterprises Inc. is one of the USA’s leading media companies and providers of automotive services. Cox is a top-10 nationally ranked player in terms of revenue in USA. Major operating subsidiaries include Cox Communications, Inc.; Cox Newspapers, Inc.; Cox Television; Cox Radio, Inc.; Manheim and Cox Auto Trader. 
+
+Project Description: They have deployed PeopleSoft HRMS to manage their human capital and Finance operations for all these subsidiaries. My role in this project was outlined towards being a Functional and QA Analyst (Offshore). The project involved thorough testing of various PS modules involved such as NA Payroll, Core HR, Benefits, MDA (Manager Direct Access) and Pension.
+
+Roles & Responsibilities: 
+
+Supporting Application Maintenance of PeopleSoft HCM applications.
+Application Maintenance, Enhancements, Bug Fixing and deployment of Tax Update patches released by Oracle.
+The PeopleSoft HCM and Financial systems are highly customized. Over 60% of the company’s PeopleSoft system is customized.
+Change Requirement / Work Order Analysis.
+Change Requirement / Work Order Effort estimation.
+Arrange walkthrough and discuss / Improvise requirements with BA / Users.
+Functional guidance to developer.
+End to End QA of the change request / work order.
+Creation of High Quality QA document to guide users during UAT.
+Client: Sprint NexTel – HCM – NA Payroll Offshore Functional PeopleSoft 9.1 Upgrade.
+Duration: November 2010’ – Aug 2011’.
+
+Technologies involved – PeopleSoft 9.1 HCM
+Tools Used: Toad, Mercury Quality Centre 9.2, SQL Developer
+Domain: Human Capital Management (HCM)
+
+Client Description: Sprint Nextel Corporation (NYSE: S) is a telecommunications company based in Overland Park, Kansas. The company owns and operates Sprint, the third largest wireless telecommunications network in the United States, with 52 million customers, behind Verizon Wireless and AT&T Mobility.
+
+
+Project Description: Sprint Nextel uses PeopleSoft HCM for managing data of their employees globally. The system undergoes version upgrades, applying of Oracle delivered fixes and patches and customizations. The project involved thorough testing of various PS modules involved such as NA Payroll, Core HR, Benefits and Time and Labor as part of the upgrade from 8.8 version to 9.1
+
+My key roles and responsibilities for this project were as follows:
+
+Roles & Responsibilities: 
+
+Preparation and Execution of test cases.
+Shakedown Testing (PS Component Testing / Smoke Testing).
+Test Script Reviews.
+Following the Defect Life-Cycle.
+Creation of Functional Design Documents.
+Creation of Configuration Workbooks.
+Review of Functional Documents.
+Business Processes / Requirement Tuning based on QA Findings.
+Co-ordinating team activities.
+Daily Execution Reporting via MQC.
+Conducting KT sessions on PeopleSoft and relevant PS modules for the team.
+Client: Quintiles – HCM - QA for PeopleSoft 9.0 Upgrade.
+Duration: November 2009’ – Aug 2010’
+
+Technologies involved – PeopleSoft 9.0
+Tools Used: Toad, Mercury Quality Centre 9.2
+Domain: Human Resource Management System (HRMS)
+
+Client Description: As the global pioneer in pharmaceutical services, Quintiles helps deliver new drugs and cures for the world’s most challenging diseases.
+
+They are the only fully integrated biopharmaceutical services company offering clinical, commercial, consulting and capital solutions worldwide. Our network of 23,000 engaged professionals in more than 50 countries around the globe works with an unwavering commitment to patients, safety and ethics — ensuring a higher level of healthcare for people. For their biopharmaceutical customers, we help them navigate risk and seize opportunities in an environment where change is constant.
+
+
+Project Description: Quintiles uses PeopleSoft HCM for managing data of their employees globally. The system undergoes version upgrades, applying of Oracle delivered fixes and patches and customizations. The project involves thorough testing of various PS modules involved.
+
+My key roles and responsibilities for this project were as follows:
+
+Roles & Responsibilities: 
+
+Preparation and Execution of test cases.
+Shakedown Testing (PS Component Testing / Smoke Testing).
+Test Script Reviews.
+Following the Defect Life-Cycle.
+Review of Functional Documents.
+Business Processes / Requirement Tuning based on QA Findings.
+Co-ordinating team activities.
+Daily Execution Reporting via MQC.
+Conducting KT sessions on PeopleSoft and relevant PS modules for the team.
+
+Client: DOE / DEECD (Department of Education) Australia (Onsite) – HRMS - QA for PeopleSoft 7.5 – 9.0 Upgrade.
+Modules: Core HR, Global Payroll AUS, Employee Data Management (Customized)
+Duration: April 2008’ – November 2008’
+
+Technologies involved – People soft 9.0
+Tools Used: Cisco VPN, Toad for Oracle 10g, Mercury Quality Centre 9.2
+Database: Oracle 10g
+Domain: Human Resource Management System (HRMS)
+
+Client Description: The Department of Education and Early Childhood Development (DEECD) provides the Victorian Government with policy and planning advice for all stages of education and childhood development.
+
+Project Description: The scope of this project focused on Functional QA of major payroll and payroll related processes and customizations after the upgrade done by Oracle Consulting Services (OCS-AUS). DEECD processes payroll for 55,000 employees across 3000 schools in Victoria State. I was involved as a test team member and touched upon areas of ‘Interface Testing’, ‘Superannuation Reports Testing’, ‘Data Conversion Testing’. Phases of testing involved in this project were ‘Unit Testing’ and ‘System Testing’ – 5 Cycles and ‘System Integration Testing’. EDM (Employee Data Management) was the most customised and most complex module servicing Payroll Administration, Absence Management, Job Data, Manage Hires (ROL – Recruitment online), Reports, HRMS Setup links, Processes, Interfaces. ROL – Recruitment Online was a 3rd party interface used for hiring. ‘Workcover’ was another customised absence management module to capture only work cover absences. The QA activities majorly revolve around Global Payroll AUS and effects of transactions from the customized modules.
+My key roles and responsibilities for this project were as follows:
+
+Roles & Responsibilities: 
+
+Preparation and Execution of test cases.
+Shakedown Testing (PS Component Testing / Smoke Testing).
+Test Script Reviews.
+Following the Defect Life-Cycle.
+Review of Functional Documents.
+Business Processes / Requirement Tuning based on QA Findings.
+Co-ordinating team activities.
+Daily Execution Reporting via MQC.
+
+Client: JCI – Germany (Offshore) – HRMS - QA for PeopleSoft 8.3 – 9.0 Upgrade.
+Modules: Core HR.
+Duration: Dec 07’ – March 08’.
+
+Technologies involved – PeopleSoft 9.0
+Tools Used: Citrix
+Domain: Human Resource Management System (HRMS)
+
+Client Description: Johnson Controls (NYSE: JCI) is a global leader in automotive experience, building efficiency and power solutions. 
+
+The company provides innovative automotive interiors that help make driving more comfortable, safe and enjoyable. For buildings, it offers products and services that optimize energy use and improve comfort and security. Johnson Controls also provides batteries for automobiles and hybrid-electric vehicles, along with systems engineering and service expertise. 
+
+Johnson Controls has 140,000 employees in more than 1,300 locations serving customers in 125 countries. Founded in 1885, the company has its headquarters in Milwaukee, Wisconsin.
+Project Description: This project involved upgrade of the Work Force Administration Module from PeopleSoft 8.3 to People 9.0. I was involved as team member and was given complete ownership of QA activities. The major focus was on parallel testing of the setups for the two environments (8.3 – 9.0)
+
+Roles & Responsibilities: 
+
+Preparation and execution of test cases.
+Shakedown Testing. (PS Component Testing)
+Setups Testing.
+Parallel Testing of Setups.
+Business Processes/Requirements Tuning based on QA findings.
+Client: ANZ – Bangalore (client side) – HRMS QA for PeopleSoft 8.9 Implementation and Upgrade.
+Modules: Core HR, Absences, SS, MSS, My Payments (Customization), Global Payroll.
+Duration: June 07’ – Nov 07’
+
+Technologies involved – People soft 8.9.
+Tools Used: Mercury Quality Centre (MQC)
+Domain: Human Resource Management System (HRMS)
+
+Client Description: ANZ is a major Australian Financial Institution offering home loans, car loan, business loans, Internet Banking, insurance and deposit products.
+
+Project Description: The project demanded successful execution of PeopleSoft QA activities. The project majorly involved testing of PeopleSoft 8.9 Implementation for India and PeopleSoft 8.3 to 8.9 Upgrade for New Zealand. The project focussed on QA for 3 phases which were System Testing / System Integration Testing, Regression Testing and parallel testing. The customizations were meticulously tested by me as Global Payroll would be affected in the end of the flow. I was also instrumental in pointing out the maximum critical defects in this PS Implementation and Upgrade. I was offered an opportunity for making suggestions towards changes needed in the business processes / requirements based on my findings during QA. Towards the closure of the project I was awarded as the ‘Best Performer’ for the project from the team of 15 people. Took initiative in gaining ownership and re-developed of test cases for Interfaces and Reporting Modules.
+
+Roles & Responsibilities: 
+
+Preparation and execution of test cases.(India & New Zealand)
+SPOC (Single Point of Contact) between onsite-offshore team. (Melbourne - India)
+Shakedown/Smoke Testing (PS Component Testing – Client Specific) (India & New Zealand)
+Functional testing and Regression Testing. (India & New Zealand)
+Preparing Test Summary Report for each cycle. (India & New Zealand)
+Parallel Testing. (India & New Zealand)
+Maintaining the Co-ordination within the team.
+Business Processes/Requirements Tuning after QA findings.
+Client: Ernst & Young – People soft 8.9 QA Finance – Accounts Receivables (AR Module)
+Duration: Nov 06’ – May 07’
+
+Technologies involved – People soft 8.9.
+Tools Used: Lotus Notes, Toad.
+Domain: Finance. (AR Module)
+
+
+Client Description: Ernst & Young organization helps companies in businesses across all industries — from emerging growth companies to global powerhouses — deals with a broad range of business issues. Their 114,000 people in 140 countries around the globe pursue the highest levels of integrity, quality and professionalism to provide clients with a broad array of services relating to audit and risk-related services, tax, and transactions.
+
+Project Description: This project required me to exhibit my finance domain knowledge. I was responsible for PS QA of all the Change Request Tracking (CRT’s) pertaining to the AR module. This project required me to develop good functional knowledge with an eye of a tester. The project also involved testing of various PeopleSoft Finance modules like AP, GL, AR. Also some customised E&Y specific process like AIW (Business Object Tool) and ER (Engagement Reporting). Hexaware’s AR module developers were involved in development and customizations for Release 3.0. Every year E&Y comes up with new releases. I was involved in QA for their Release 3.0.
+
+Roles & Responsibilities: 
+
+Preparation of test cases / test plans.
+Involved in QA of AR module for Release 3.0.
+Involved in Internal QA for Release 3.0 developments.
+Involved in creation of QA test plans.
+Involved in handling weekly status client call.
+Involved in training other module resource for AR module.
+
+PERSONAL INFORMATION:
+
+First Name		: Apurva
+
+Last Name		: Deshpande
+
+Father’s Name	: Dileep
+
+Mother’s Name	: Anjali
+
+Sex			: Male
+
+Age			: 33 years
+
+Marital Status	: Divorced
+
+         	Current Address	:  Bldg no. 3, Block no. 3,
+   Mukand Iron Staff Colony,
+			   Gavanpada,
+   Mulund (East),
+                                  Mumbai – 400081,
+			   Maharashtra,
+                                  India.
+
+                    	Permanent Address: Bldg no. 3, Block no. 3,
+   Mukand Iron Staff Colony,
+			   Gavanpada,
+                                  Mulund (East),
+                                  Mumbai – 400081,
+			   Maharashtra,
+			   India.
+ 		
+Phone			: +91-98333-80098
+
+E-mail			:  apurva.d.deshpande@gmail.com
+
+Passport Number	:  J0171136 (valid till 17th Feb 2020)
+
+Visa Info		:  U.S. Business Visa B1/B2 (valid till 14th April 2020)
+
+Birth Date		:  5th September 1982.
+Pan                          :   TRTYU1236L
+
+Hobbies		:  Travelling, Music, Photography.
+
+Achievements	:  Organized charity cultural show for deaf and dumb. 
+                                                   Winner of different sports at school level.
+Winner of Best Male Model Ramp Modelling/ Fashion Events. (Inter-College Level)
+Winner of International Drawing Competition. (Camlin India)
+Winner of Double Promotion in Martial Arts from Go Jyu Ru Karate Do School of Karate.
+
+Languages Known:
+English.
+Marathi.
+Hindi.

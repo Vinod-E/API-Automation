@@ -1,0 +1,338 @@
+﻿Mr. Pratibha Kowtal	
+AIG (American International Group)
+pritam.pal1717@gmail.com, prts.kwtt@gmail.com
++91 9734599937, 8563214785
+
+
+
+Total years of experience:  10+ years
+Currently working as:  Senior Analyst at AIG
+Area of Expertise:  Android App Development, Oracle 9i, Java, Graphtalk
+Academic Qualifications:  Bachelor of Engineering, 2004, (University Visveswaraya College of Engineering (UVCE), Bangalore).
+
+
+
+Summary
+Strong experience in Android app development
+Great understanding of the Software Development Life Cycle (SDLC)
+Strong experience working in a globally distributed team environment
+Extensive experience in client handling and expectation management 
+Strong experience in Agile product development methodologies
+Strong hold on Graphtalk (Object Oriented Programming Language) with in depth knowledge of Insurance Domain
+Strong experience working with Insurance domain in application development and maintenance
+LOMA 280, LOMA 290, LOMA 301 Certified Professional
+Hands on experience in Web Content Management
+Demonstrated experience in Software Engineering, Design and Delivery management
+Hands on experience in Project management and people management
+Keen interest in Trekking and Books.
+
+	
+Software Expertise
+	
+Technologies
+Android , Graphtalk (OOPS), Oracle 9i, J2EE
+IDE
+Android Studio, Eclipse
+Tools
+IBM WebSphere Portal, Microsoft Visio, Rational Rose, Microsoft Visual SourceSafe (VSS), Mingle
+Certifications
+LOMA 280, LOMA 290, LOMA 301 and Infosys internal certifications
+
+
+Academic Qualifications	
+
+Bachelor of Engineering
+Computer Science
+Indian Institute of technology Kanpur in 2006 with 72%
+
+
+Contact Info		
+prats.kowtal@gmail.com
+	+91 988 043 9979
+
+
+Career History
+
+Organization
+Role
+Duration
+AIG Data Solutions
+Senior Analyst
+Sep 2014 – Till Date 
+(2 years, 3 months)
+Infosys Ltd
+Technology Lead
+Sep 2004 – August 2014
+ (10 years)
+
+
+Projects
+
+1. 
+Project Title
+Active Care Early Warning System Mobile App (Android)
+Organization
+AIG
+Location
+DSI Bangalore
+Role
+Senior Analyst
+Duration
+Jun 2015 – Dec 2015
+Team Size
+7+
+Description
+Project involved development of Android and iOS mobile app to provide customers with “easy-to-understand” intuitive tools and information so they can make smarter choices about preventing and managing risks in their lives.
+Agile project (Scrum) which involved development of Android and iOS mobile app was designed to provide warning cards with impact info to agents about any expected extreme weather events, along with customers’ location and profile in the context of an interactive map with weather data visualization. It further included email notifications and personalized messages including risk-mitigation and services.
+Responsibilities
+Android app design
+Part of Sprint Planning Team
+Meetings with Business – For sprint planning and retrospective
+
+2. 
+Project Title
+Life and Retirement DMF
+Organization
+AIG
+Location
+DSI Bangalore
+Role
+Senior Analyst
+Duration
+Oct 2014 – Jun 2015
+Team Size
+15+
+Description
+Project involved developing new central repository for validated demographic data from multiple source systems, where data profiling and data validation was done using IBM InfoSphere platform.
+Responsibilities
+Responsible for writing Functional Specifications Document
+Writing the specifications for Web Services
+Responsible for grooming trainee to the role of Business Analyst
+
+
+3. 
+Project Title
+WCM Internet Banking Integration
+Organization
+Infosys
+Location
+ANZ (Client location)
+Role
+Senior Business Analyst
+Duration
+Jun 2013 – Jul 2014
+Team Size
+15
+Description
+Project involved developing new libraries and components in IBM WCM application for generating multiple XML files to integrate with third party Internet and Mobile Banking application for multiple geographies and languages.
+Responsibilities
+Responsible for writing user stories including new libraries configuration and access management in IBM WCM
+Responsible for validating technical specifications including XML schema
+Communicating with multiple teams including third party vendors
+Planning and scheduling Business Analyst work
+
+
+4. 
+Project Title
+Online Application for Savings
+Organization
+Infosys
+Location
+ANZ (Client location)
+Role
+Senior Business Analyst
+Duration
+Jun 2013 – Jan 2014
+Team Size
+13
+Description
+Project involved developing new online application for Savings Accounts in HTML5.  Team located at multiple geographies followed agile methodology to successfully develop and deliver the end product
+Responsibilities
+Preparing user stories
+Daily stand-ups
+Coordinating with development and testing teams
+Desk checks
+Recognition
+Received appreciations from stakeholders
+
+
+5. 
+Project Title
+WebSphere Portal 6 to 7 migration
+Organization
+Infosys
+Location
+ANZ (Client location)
+Role
+Senior Business Analyst
+Duration
+Jan 2013 – Jun 2013
+Team Size
+5
+Description
+Project involved migrating the web content from WebSphere 6 to 7. Scope involved carrying out impact analysis and defining structure in WCM 7 and performing User Acceptance Testing.
+Responsibilities
+Impact analysis and documentation
+Coordinating with development teams
+Performing User Acceptance Testing
+Recognition
+Received ANZ Take Charge and Excel award
+
+
+6. 
+Project Title
+Application maintenance for Cardif Netherlands
+Organization
+Infosys
+Location
+Infosys Bangalore
+Role
+Project Manager/Product Owner
+Duration
+Sep 2010 – Apr 2012
+Team Size
+7
+Description
+PMS application of Cardif Netherlands is a very complex system, interfacing with various other systems and catering to Savings and Protection and including the Claims system which addresses 4 different applications. This involves the enhancement and maintenance of the PMS system and the Claims system.
+Responsibilities
+Responsible for managing the team, of 2 onsite and 5 offshore team members
+As a proxy product owner, responsible for product feature clarification and for handling domain related queries	
+Planning and scheduling the work for the team
+Responsible for overall project delivery, including review and testing
+Responsible for internal project management activities, like allocation, billing, invoicing and periodic reporting to senior management
+Recognition
+Received appreciation from the customer in recognition of the successful delivery of major enhancement in Sep 2011
+Received the ‘FSI INSTA’ award
+
+
+7. 
+Project Title
+Development of Annuity
+Organization
+Infosys
+Location
+Cardif South Korea and Infosys Bangalore
+Role
+Team Lead/Business Analyst
+Duration
+Nov 2009 – Aug 2010
+Team Size
+9
+Description
+This involved the development of a very complex Annuity system for Cardif Korea, a subsidiary of Cardif HO. This involved the requirements gathering and preparation of the Requirement Specification at onsite. Further the project involved the implementation of the complete Annuity system, including the complex Annuity calculations at offshore.
+Responsibilities
+Requirements gathering and preparation of the Specification at onsite (Cardif South Korea)
+Co-ordination with the OSC
+High Level Design, Detailed Design
+Design Review, Code Review, Integration Testing
+Team mentoring
+Recognition
+Received appreciation from the customer in recognition of work during Requirements Gathering and preparation of the Specification
+Received the ‘Most Valuable Player’ award
+
+
+8. 
+Project Title
+In-house portal development
+Organization
+Infosys
+Location
+Infosys Bangalore
+Role
+Developer/Team Lead
+Duration
+Jun 2008 – Oct 2009
+Team Size
+5
+Description
+Development of portal in J2EE for another account within the company. This involved requirements gathering from the team, setting up of the systems and development of the portal.
+Responsibilities
+Requirements gathering and preparation of the Specification
+Setting up of VSS server
+Coding and testing
+
+
+9. 
+Project Title
+Application maintenance for Cardif Italy
+Organization
+Infosys
+Location
+Infosys Bangalore
+Role
+Team Lead
+Duration
+July 2007 – Jun 2008
+Team Size
+7
+Description
+Policy Management System of Cardif Italy, a subsidiary of Cardif HO, is a very vast system. This project involved enhancement and maintenance of the PMS system.
+Responsibilities
+Co-ordination with the OSC
+High Level Design, Detailed Design
+Design Review, Code Review, Integration Testing
+Team mentoring
+
+
+10. 
+Project Title
+Development of Claims based on SOA (Service Oriented Architecture)
+Organization
+Infosys
+Location
+Cardif HO (Paris, France), Infosys Bangalore and Cardif Netherlands
+Role
+Team Lead/Technical Analyst
+Duration
+Mar 2006 – Jun 2007
+Team Size
+2-5
+Description
+Cardif is the insurance wing of BNP PARIBAS, leading bank in France. It has subsidiaries in more than 30 countries across the globe. Objective of this project was to design a generic technical architecture and pilot it on the Standard Claims functionality. And then roll out the Claims functionality across the subsidiaries with the customization.
+Generic Claims System was developed using the 5-layer architecture, based on SOA, Service Oriented Architecture.
+Claims System was further customized for Cardif Netherlands.
+Responsibilities
+Technical analysis and meetings with GSC, Graphtalk Skill Centre at Cardif HO (Paris, France)
+5-layer architecture definition and documentation
+High Level Design, Detailed Design
+Design Review, Code Review, Integration Testing
+Team mentoring
+Requirements gathering at onsite (Cardif Netherlands)
+Co-ordination with the customer
+
+
+11. 
+Project Title
+SBI Life
+Organization
+Infosys
+Location
+Infosys Bangalore
+Role
+Developer
+Duration
+Jan 2005 – Feb 2006
+Team Size
+8
+Description
+SBI Life, one of the leading insurance companies in India, has a Policy Management System in the Savings and Protection areas. This project required addition of new functionalities like Revival, development of new product like ULIP and other enhancements and maintenance. Innovative methodology of Batch Architecture was implemented for the first time.
+Responsibilities
+Design and Development of assigned Module
+Unit testing
+Integration Testing
+Estimation of module development effort
+Recognition
+Won award for 3 consecutive zero defect deliveries.
+
+
+
+
+
+
+
+Name:-Pratibha Kowtal
+Gender:- Female
+DOB.:- 18'th, March, 1986
+Place:- Delhi
+Pan:-ASDER4563F
+Passport:-E1236548

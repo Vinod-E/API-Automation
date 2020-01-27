@@ -1,0 +1,352 @@
+﻿Mathivannan Nallathambi         						   
+Profile
+10.3 years of IT industry experience encompassing a wide range of skill set, roles and industry verticals. 
+8 years Extensive experience in ETL Testing/Database testing/Dataware House Testing, End to End Manual Testing in insurance/banking/Finance/Media & communication workflow in tools like Data stage,Informatica,Jaspersoft,SSIS,Microstrategy and Framing Test approach and sharing best practices, Resource and estimation planning to meet the deadlines.
+2 years (ITES) Experience as SME in Customer support services (Dell systems Technical support). 
+Experience in reviewing Business Requirement Documents, Software Requirements Document and preparing Test plan, Test cases, Test Scripts and writing SQL test Scripts. Execution and participated in Direct Clients Interactions.
+Experience in leading and managing teams. Handled multiple roles – Test lead, SPOC, Team Member.
+Played the role of Team member/Training Lead/POC/Team Lead in various projects across the software test life cycle including Manual testing, DW Testing, Test Script development, Environmental setup, Functionality Testing, Regression Testing, Re-testing
+Good hands on experience in Preparation of various test artefact such as SIT and UAT Test plans, Identify the Test Scenarios for SIT, Test Cases/Automation Test Scripts, Daily, Weekly, Monthly and Status Reporting and MOM, Traceability Matrix, Participating Project Meetings, Reviewing the Test Artefacts and involved in Test Results Report preparations.
+Strong database skills, Object Oriented Programming and development knowledge.
+Proficiency in Test Analysis, Bug Detection, Defect Isolation, and Report generation.
+Good experience in defect tracking and Reporting using Test Director/Quality Centre, QC Site Administration, QC ALM, JIRA, MANTIS, MTM.
+Executed software projects for Insurance, Banking, Finance, Investment, Trading domain, Media & Communication.
+Good communication skills, interpersonal skills, self-motivated, quick learner, team player.
+Skill Set:
+
+Scripting Languages: 
+Sql Scripting, Unix.
+Testing Skills: 
+Test Management, Test Plan Preparation, Test Execution & Test cases, Test Data Preparation, and Test Environment Setup.
+RDBMS: 
+Teradata SQL ,MS-SQL Server, Oracle,DB2
+Tools exposed:
+QualityCentre,ALM,QC Admin,QTP,Red-Gate,DataComparer ,Mantis, TFS- MTM,JIRA,BaseCampq
+O/S: 
+Windows,UNIX,Linux
+ETL Tools: 
+IBM Data stage, Informatica, SSIS, Jasper Soft ETL and Reports, Micro strategy.
+Processes:
+IBM’s QMS (Quality Management System)
+
+Education: 
+
+S.B.O.A Matric & hr. Sec school,2001
+SSLC     – First Class (80 %) – April 99
+HSC       – First Class (80 %) -  March 2001
+Bachelor’s in Information Technology - 2005, Anna University,Sakthi Mariamman Engg college India
+B.Tech   – First Class(68 %) – April 2005
+
+
+Professional Experience:
+
+#
+Company Name 
+Duration
+Designation
+yrs. of exp
+1
+IBM India  Pvt. Ltd. India
+May 2010 – Till date
+Test Lead(ETL)
+5.7 years
+2
+Jun 2005– Oct 2007
+Nov 2007 – May 2010
+Quality Analyst
+2.6 years
+3
+Sutherland
+Jun 2005 - Oct 2007
+Subject Matter Expert
+2.2 years
+
+
+
+Total exp
+10.3 years
+
+
+PROJECT# 1:
+ 
+Company 
+IBM
+Project
+LandMark Analytics
+Client              
+Imagine Communication ( US )
+Role                
+Test Lead
+Team Size      
+6
+Environment  
+SQL Server 2008/2012, SSIS ETL, Micro strategy.
+Defect Tracking Tool: 
+Quality Center, QC site Administration.
+Duration 
+Oct 2015 - Till Date
+
+Project Description:
+Landmark Analytics is designed to provide Business Intelligent reporting by assimilating data from various source systems and then constructing business area specific warehouse which holds the operational data in a consolidated fashion. Landmark Analytics can immediately publish this information across the organization to application users, bypassing the normal reporting bottlenecks inherent in application reporting processes. Landmark Analytics offers tools to expose tactical and strategic information held within millions of transactions (of source application databases). Imagine helps consolidating data from more than one application database; hence Landmark Analytics reports and dashboards generate the information needed for effective business planning. Landmark Analytics also provides toolset to enable a set of trained user to design custom reports.
+Landmark Analytics is integrated over the operational data for Landmark, OSi, Novar, and Vision to build the Broadcast data warehouse. 
+.
+Roles & Responsibilities:
+Knowledge Gathering and Reverse KT Management to Client.
+Environment Setup and Training the team on the same.
+QC Admin activities.
+Task Allocation and Status update with client.
+Estimation Preparation, Test Plan Preparation, Test Management, Test Approach etc.
+Represented IBM on all Landmark Analytics high Level meetings.
+Conducted KT session on DWH, ETL Testing for the Graduate Hires.
+
+PROJECT# 2:
+
+Company
+IBM
+Project
+Zafin Labs-HSBCMRE
+Client              
+Zafin Labs
+Role                
+Test Team Lead
+Team Size      
+4
+Environment  
+Oracle SQL Server, Jasper Talend (ETL Tool) 5.2.1. Ibm WebSphere, Jasper Server, Java         
+Defect Tracking Tool: 
+Jira,basecamphq
+Duration 
+Jan 2015 to Sep 2015 
+
+Project Description:
+
+HSBC MRE, Managed Rates Engine, is used to better manage interest-rate related exposure     and volatilities and increase control efficiency by following a pre-determined and pre-approved logic and where feasible will not require manual intervention when there is a need to change a rate, The objective of this project is to provide the client, with enhanced Business  solution to HSBC which eases Bid rate calculation derivation with the incoming baserate, and provide the Reports using Jasper ETL tool and with jasper server.
+Roles & Responsibilities:
+Environment setup: IBM websphere installation, jasper server setup etc.
+Conducted KT Session and co-ordinated with new Team members to bring them on track in quick time.
+Understanding the Data model and prepare DTP(Detail Test Plan),TOM(Test Objective Metrics) ,Test case & Test Scripts etc.
+Involved in Estimation and resource allocation and strategies to meet the deadlines.
+Introduced a new test approach which was signed off by client.
+Involved in Job execution from UNIX box and troubleshooting when failed.
+Prepared Test data and mocked up the source data to test CDC on type 1 and Type 2 tables.
+Induced error from source to check error logging and job log etc.
+During Execution Phase, involved in executing the prepared Test Cases and in case of failure, log the defects to Jira and schedule the call with Onsite Lead and explaining the defects.
+Preparing Defect report and following up the defects in all stages of the release and coordinating the same with Team.
+Requirements document/Mapping/Micro design document analysis and understanding and sharing the same with the team by various discussions and meetings.
+Identifying Test cases satisfying mapping conditions, developing, executing test scripts and helping the team as well on the same case since they are from manual Testing background. Validating Test Results against success criteria and Documenting, Updating Design steps and Test Result.
+Participating in Defect review, resolution meetings.
+Allocating the task with respect to the resource’s level of expertise.
+Execution Plan preparation and strategy and delivery.
+ETL Jasper Job Performance Stats Preparation.
+
+PROJECT# 2:
+
+Company
+IBM
+Project
+Unlock-Policy Ods
+Client              
+Common Wealth bank of Australia(com-insure)
+Role                
+Team Lead(Testing)
+Team Size      
+6
+Environment  
+SQL Server, Oracle, DB2, Data Stage (ETL Tool). Unix
+Defect Tracking Tool: 
+Quality Centre.
+Duration 
+June 2013 to till date 
+
+Project Description:
+  The objective of this project is to provide the client, with enhanced data ware house solution to fineos which is a claims management tool.
+Roles & Responsibilities:
+Preparing SQL scripts to test CDC,Attributes,smoke test & business Scenarios
+Conducted KT Session and co-ordinated with new Team members to bring them on track in quick time.
+Understanding the Data model and prepare DTP(Detail Test Plan),TOM(Test Objective Metrics) ,Test case & Test Scripts etc.
+Involved in Estimation and resource allocation and strategies to meet the deadlines.
+Introduced a new test approach which was signed off by client.
+Involved in Job execution from UNIX box/Autosys and troubleshooting when failed.
+Prepared Test data and mocked up the source data to test CDC on type 1 and Type 2 tables.
+Induced error from source to check error logging and job log etc.
+During Execution Phase, involved in executing the prepared Test Cases and in case of failure, log the defects to Quality Centre and schedule the call with Onsite Lead and explaining the defects.
+Preparing Defect report and following up the defects in all stages of the release and coordinating the same with Team.
+Requirements document/Mapping/Micro design document analysis and understanding and sharing the same with the team by various discussions and meetings.
+Identifying Test cases satisfying mapping conditions, developing, executing test scripts and helping the team as well on the same case since they are from manual Testing background.
+Validating Test Results against success criteria and Documenting, Updating Design steps and Test Result.
+Participating in Defect review, resolution meetings.
+Allocating the task with respect to the resource’s level of expertise.
+Execution Plan preparation and strategy and delivery.
+ETL Data Stage Job Performance Stats Preparation.
+
+PROJECT# 3:
+
+Company
+IBM
+Project
+LF Solvency II Agria/Capital
+Client              
+Länsförsäkringar (Sweden)
+Role                
+Team Lead(Testing)
+Team Size      
+7
+Environment  
+SQL Server, Data Stage (ETL Tool). 
+Defect Tracking Tool : 
+TFS-MTM
+Duration 
+Feb 2012 to May 31, 2013(Onsite Assignment)
+
+Project Description:  The objective of this project is to provide the client, Länsförsäkringar, with data repositories and interfaces to support Solvency II risk calculations and reporting needs according to defined Solvency II ambition level.  
+Roles & Responsibilities:
+Preparing SQL scripts to test Versioning, Relationship Tables, and Attribute Script. 
+Conducted KT Session and co-ordinated with Offshore Team when I was onsite (Stockholm).
+Understanding the Data model and Prepare Test Scenario, Test conditions and Test Cases that meet the requirements.
+During Execution Phase, involved in executing the prepared Test Cases and in case of failure, log the defects to TFS-MTM and schedule the call with Onsite Lead and explaining the defects.
+Preparing Defect report and following up the defects in all stages of the release and coordinating the same with Team.
+Requirements document/Mapping/Micro design document analysis and understanding and sharing the same with the team by various discussions and meetings.
+Identifying Test cases satisfying mapping conditions, developing, executing test scripts and helping the team as well on the same case since they are from manual Testing background.
+Validating Test Results against success criteria and Documenting, Updating Design steps and Test Result.
+Recording Defects in TFS-MTM defect tracking tool and follow up till closure. 
+Participating in Defect review, resolution meetings.
+Allocating the task with respect to the resource’s level of expertise.
+Execution Plan preparation and strategy and delivery.
+ETL Data Stage Job Performance Stats Preparation.
+
+
+PROJECT# 4:
+
+
+Company
+IBM
+Project
+Atlas Project 
+Client              
+Markel Insurance.
+Role                
+Module lead/POC(Testing)
+Team Size      
+10
+Environment  
+SQL Server, Informatica ETL,DataMart analytics
+Defect Tracking Tool: 
+Quality Center. 
+Duration 
+Feb 2011 to Jan 2012
+
+Project Description:
+Markel Insurance Project is basically based on IBM IIW model Project .It involves developing an Enterprise Data warehouse solution using the IBM IIW (Insurance Data Model) data model through a phased consolidation of existing Data warehouse and Data Mart. Markel is embarking on a major realignment of its business from vertical ‘line-of-businesses’ to a new ‘Product and Region’ model across business lines under the Atlas Program. The Atlas Program will realize significant producer and operating benefits for Markel. The Data Warehouse initiative is part of the Atlas Program and is an 
+Enabler and primary vehicle for the systems alignment to the new business model. The main ambition of this project is to provide a common integrated data model with conformed values across ATLAS and Legacy systems to achieve an integrated enterprise view of submission, policy, reinsurance and claim data. Provides data and processes to support the new financial close process and accounting services to improve efficiency and to support transition to Atlas applications.
+Roles & Responsibilities:
+Written Test plans, Test cases (SQL Test script), executed Test cases for SQL/backend test and tracked defects in Quality Centre based on the Business Requirements, Functional Requirements, Business Workflows, Micro/Macro document and PCR documents.
+Performed System Integration System test (SIT), Conversion testing, Business Scenario Testing UAT test and Production test per the needs of the application.
+Preparing Mock-Up file for TDQ applied rule to Source extract landed correctly before applying ETL logic.
+Ensuring content and structure of all the testing artefacts are documented in Share Point Tool.
+Maintained Traceability Matrix, Test Result, to track the requirements to the test cases to ensure complete test coverage in the Mercury Quality Centre.
+Clearly communicated defects with developers and updated comments in Mercury Quality center.
+Develops and execute Test case/Test script and validate result Against success criteria
+Keys are correctly generated and CDC has been correctly applied
+Test script writing as per Transformation rule as well as business rule  to validate data 
+Track and report upon testing activities, including the test case execution stage, defect status if any defects opened during execution and the testing results status and attained defect review meeting
+Preparing Test Result report based on the Testing activities as well as daily test run.
+
+PROJECT# 5:
+
+Company
+IBM
+Project
+Information & Analytics Foundation 
+Client               
+BANA,U.S
+Role                
+ETL Data Specialist(Testing)
+Team Size      
+20
+Environment  
+Data Warehouse, Teradata SQL, Share Point,QC9.2,DataStage(ETL Tool),Cognos
+Defect Tracking Tool: 
+Quality Center. 
+Duration 
+May 2010 to Jan 2011
+
+Description:
+                 Information & Analytics Foundation (IAF) project involves transforming enterprise wide data warehousing, data movement and analytics technology environment. It involves developing an enterprise data warehouse solution using the IBM BDW Data model through a phased consolidation of existing Data warehouses and Data Marts. The project is also expected to create/enhance analytical and metadata capabilities
+Roles & Responsibilities:
+Analyzing and understanding the SRS 
+Determining test cases based on requirements and technical design.
+Developing and executing Test scripts.
+Creating Jobs in Data stage to upload source file records to Staging area and debugging the jobs in case of failure.
+Validating results against success criteria.
+Documenting Test Results.
+Updating Design steps, Test Result, Recording Defects in QC defect Tracking tool.
+Participating in Defect review, resolution meetings.
+Preparing Traceability Matrix.
+
+
+PROJECT# 6:
+
+Company
+Unlimited Innovation pvt ltd
+Project
+CRD (Charles River Development)-Fixed Income: 
+Client              
+Trust Company of West, USA.
+Role                
+Quality Analyst
+Team Size      
+10
+Environment  
+Java,sqlServer ,c#,.net Windows, Unix
+Duration 
+11/2007 – 05/2010
+
+Description:
+Manual Backend testing of Trades that should reach destination tables satisfying the Transformation rules. TCW receives the trades as flat files from CRD and gets processed in TCW databases.CRD actually replaces the existing system. 
+
+Goal of this project: Ensuring that CRD effectively replaces the existing trading system with more efficiency, performance and the peer end customers should not feel any bad impact towards the replacement of existing system since all traded securities have huge money involved.
+
+Summary of Duties: 
+Blotter Profile Setup and Grouping Orders in the Blotter, Order Statuses Explains the different status codes for manager and trader orders, Running Compliance on Orders 
+Integrating TCW internal systems and tested the process flow and Data flow. To run different job and verify data in different databases and verified whether data comes from correct source and moved to different destination (MELLON, GEM and AIMS).I have monitored all sql jobs using Job monitor and troubleshoot each job using Log file if it fails. I have compared the out files with Production file system.
+
+PROJECT# 7:
+
+Company
+Unlimited innovation pvt ltd
+Project
+Loan Performance 
+Client              
+Trust Company of West, USA.
+Role                
+Quality Analyst
+Team Size      
+10
+Environment  
+Windows 2000,Sql Server, SSIS ETL,TCW Architecture
+Duration 
+11/2007 - 05/2010
+
+Description:
+TCW designs its own Loan Performance solutions for Ex Supply Risk Management, Predictive modeling, Provides Faster On-Demand reports and Queries. Provides analyzed data that could be used by both borrowers and lenders to track the mortgage risk. It is also a Manual Backend testing of loan data using SQL Queries in SQL Server 2008.
+
+Goal of this project: Ensuring conversion from Relational to dimensional model does not have deviation to Loan data.
+
+Summary of Duties:  
+Actively involved in understanding the Release Requirements Document and giving feedback for the same.
+Actively involved in creating the Release Test Plan.
+Environment setup.
+Testing the stored procedures in both relational and dimensional model ensuring both provide the same result when parameter is passed.
+Perform System Testing using positive and negative test cases to capture bugs.
+Interaction with client directly.
+Perform Regression Testing to ensure the stability of the entire application.
+Posting of bugs as issues and assign then to appropriate developers.
+Testing and Verification of the issues posted.
+.
+Certification & Achievements in IBM:
+
+Certified Oracle Database 11G:Sql Fundamentals 1
+Orion Award (Eminence and Excellence Recognition 2012 & 2013)
+IAF(Bana) recognition award in 2010
+References: Available upon request
+

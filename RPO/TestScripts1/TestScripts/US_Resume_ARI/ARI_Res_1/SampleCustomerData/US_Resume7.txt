@@ -1,0 +1,246 @@
+﻿Sreejith Krishnankutty 
+sreejithm11ace@gmail.com
+srff.gffhg@gmail.com
+(394) 504-0022, 296-325-41236
+				
+
+Total Industry experience of 8 years. Have 3.5 years of freelancing experience extra. Good understanding of all phases in software development life cycle. Seasoned in gathering requirements, conducting gap analysis and feasibility study. Knowledge of conducting risk analysis and impact analysis. Good experience in design and development of software applications using java/j2ee technologies. Have experience leading a team and client interaction.
+
+Professional Skills:
+
+Gap Analysis/Requirements gathering
+Efforts estimates calculation.
+Design of modules.
+Programming - Java, J2EE, Servlets, JSP, Struts, EJB,JDBC, Webservices, UML, Ajax, HTML, CSS, extjs, javascript, Design patterns, JDBC, Spring, Hibernate, Liferay portlets
+RDBMS – Oracle, Postgres
+Tools – Eclipse, MyEclipse, SQL Developer, Rational Rose, STS, RSA, IntelliJ IDEA
+Servers – Tomcat, OC4J, Jboss, Websphere
+
+Work Experience:
+
+Working with Netcracker Technology as a Technical Lead (May 2016 – till date)
+Worked with UST Global as a Senior Systems Analyst (Jan 2015 – Apr 2016)
+Worked with Indecomm Global Services as a Technical Lead (Aug 2012 – Dec 2014)
+Worked with Mastek Ltd.as a Senior Software Engineer. (Dec 08 – May 12)
+Worked as a freelancer from Mar 05 to Nov 08
+
+               Projects:
+
+
+Self Service Portal  (From May’16)
+
+
+Skills Used
+ Liferay with tomcat, portlets, IntelliJ IDEA
+ 
+
+Project Description
+
+
+Portal is implemented using JSR286 specification that describes 
+structure and lifecycle of site pages that are constructed from 
+Portlets. Liferay CMS is used for building this project. Using the 
+portal, users can view, compare and buy telecom products.
+
+
+
+      Roles/Responsibility
+
+ Development. 
+
+
+
+
+BCC  (From Jan’15 – Apr’16)
+
+
+Skills Used
+Spring, RSA, Oracle
+ 
+
+Project Description
+
+
+A batch program that generates benefit comparison chart.
+
+
+
+      Roles/Responsibility
+
+ Design and development. Provide technical support to team. Track work status. Plan tasks. Design/code reviews.
+
+
+
+Eportal  (From Aug’12- Dec’14)
+
+
+Skills Used
+
+Servlets, JSP, Java Beans, Spring, Hibernate,  STS, Jboss, Ajax, 
+                HTML, Javascript, Postgres, MDB
+ 
+
+Project Description
+
+
+A self provisioning portal for a client of payment domain
+
+
+
+      Roles/Responsibility
+
+ Design and development of new components. Provide technical support to team. Client interaction. Track work status. Plan tasks. Design/code reviews. Monitor process compliance.
+
+
+
+
+
+    	         Point of Sale (From Apr’09- May 12)
+
+
+Skills Used
+
+Servlets, JSP, Java Beans, Struts,  MyEclipse, Tomcat, 
+		Oracle, Sql Developer, Ajax, HTML, Javascript, OC4J
+ 
+
+Project Description
+
+
+Point of sale system is an independent system that empowers 
+broker/sub-broker at the front-end of the business to perform 
+business acquisition and initial risk-selection tasks. It provides ease of 
+use which enables the broker/sub-broker to perform quote, retrieve 
+quote, convert quote to policy and online policy issuance.
+
+
+
+      Roles/Responsibility
+
+
+Preparation of FRS & Efforts estimates. Assign tasks to team members and track the progress. Design and development of new components.
+
+
+      Client
+
+National Automotive Insurance Company.
+
+
+
+               NHS Spine – Security & Authentication (From Dec’08 – Mar’09)
+
+
+Skills Used
+
+Servlets, JSP, Java Beans, Struts, EJB, Eclipse, Tomcat, Oracle, Selenium,
+Sun Application Server.
+
+
+Project Description
+
+
+End Point Registration (EPR) of the Spine system is the generic term 
+for an accredited system or a message handling system. In general 
+terms, an accredited system is the application that provides 
+functionality to an end user. Each accredited system is required to be 
+registered with a message handling system whose function is to route 
+messages to and from the accredited system.
+
+
+      Roles/Responsibility
+
+
+Defect Fixing, writing Test Scripts, Enhancements.
+
+
+      Client
+
+British Telecom
+
+
+Health Care Management System (From Mar’08 – Nov’08)
+
+
+Skills Used
+
+Servlets, JSP, Java Beans, Struts, EJB, Eclipse, WSAD, UML, Tomcat, 
+Websphere Application Server, Rational Rose, Erwin.
+
+Project Description
+
+
+A hospital management system that integrates all the activities of a 
+hospital. It is an effort to minimize the time a patient need to spend 
+for registration purposes at various counters. A common database is 
+maintained which contains all the hospital related data.  Details of 
+patients, their  treatment, their registration validity etc are quickly
+ accessible from any of the counter let it be OPD, IPD, Pharmacy or 
+Laboratory.
+
+      Roles/Responsibility
+
+
+Handling team, Requirement analysis, software modeling using UML, Development.
+
+
+      Client
+
+Actionet
+
+
+	
+               Other Projects
+
+MCLS (dec’06 to feb’08)
+The project involved managing and tracking Medical Representatives’ (MR’) activities e.g. their 
+                   Monthly tour plan, expenses, their interaction with the doctors, chemists, and stockists to manage
+                   master fare chart, daily call report etc. Users of this software can enter and view for Doctors by                          
+                   specialization, category, view Monthly Tour Plan, Monthly Expense Statement. This system can 
+                   maintain the list of Doctors, Chemists, and Stockists for the convenience of MR meet.
+		  Skills: Servlets, JSP, Oracle, Java Beans, Struts, Tomcat, Eclipse
+		  Roles/Responsibility: Coding, Unit testing.
+
+SAP (feb’06 to nov’06)
+An application which maintains details regarding employee contact numbers, new products in the 
+  firm, latest news in the company etc.
+		  Skills: JSP, Oracle, Java Beans, Tomcat, Struts, Eclipse
+		  Roles/Responsibility: Requirement analysis, coding business logic.
+
+Academic Management System (july’05 to feb’06)
+This has been developed with an objective to provide single point solution to manage real time all
+                   student related activities like course registration, Hostel accounting, Training and Placement, Fee 
+                   payment etc.                         
+		  Skills: Servlets, JSP, Java Beans, Tomcat
+		  Roles/Responsibility: Coding business logic using J2EE technologies.
+
+    HRMS (Human Resource Management System) (Mar’05 to june’05)
+                         The project involved the design & development of an application to be used by employees and HR
+                         Personnel of the company. The project is aimed at making the entire HR System and comprises of
+                         Employee Information, Training and staffing modules.        
+		  Skills: Servlets, JSP, Oracle, Java Beans, Tomcat.
+		  Roles/Responsibility: Application Development
+
+
+
+
+Educational Qualification:
+
+ B.Tech from I I T DELHI
+ 65%
+ 2004
+AISSCE from Delhi Public School, Dhanbad
+69%
+1999
+Matriculation from MCEMHS, Kerala.
+77%
+1997
+
+
+
+
+
+
+Name:-Sreejith Krishnankutty 
+DOB.:- 17'th, Feb, 1988
+Gender:- Male
+Place:-Patna

@@ -1,0 +1,176 @@
+﻿Anil Kumar Reddy Gollapalli
+Hyderabad; +91-9966528771, 7856321452;anildy.golli@gmail.com, fdfs.fggf@gmail.com
+          Gender: Male; Pan: VFGBH1256J; Passport: S4125633;  Dob: 19/11/1987
+
+
+SUMMARY
+
+7.2 years of experience in PeopleSoft/Oracle Database and Middleware Administration. I am an accomplished, self-motivated, result oriented and energetic Technical Consultant with an experience of more than 7+ years in the implementation/support and upgrade of full life-cycle PeopleSoft Projects. 
+An organized, detail oriented, effective communicator and good at multi-tasking – with areas of experience and expertise, including Production support and full life cycle implementation and full application upgrades.
+I worked on full oracle database upgrades and performance tuning of queries and Integrated Fusion middleware products like Web center Portal/SOA and OBIEE with PeopleSoft successfully.
+
+Highlights of Professional Experience:
+
+Experience in implementation/Upgrade & supporting full life cycle PeopleSoft Projects for  HR, Finance, CRM, 
+ Portal, ELM applications
+Expertise in strategy making and implementation of PeopleSoft Maintenance Activities
+Expertise in Installation of PeopleSoft Applications, Troubleshooting and other PeopleSoft DBA activities
+Worked on Oracle full database upgrades
+Worked in 8.49/8.50/8.51/8.52/8.53/8.54 PeopleSoft Tools only upgrade activities
+Worked on Application upgrade from HRMS 8.9 to 9.0 MP5.
+Worked on PeopleSoft two step application upgrades as well.
+Experience in Oracle Database Administration and UNIX Shell Scripting
+Exposure to Oracle 10g/11g RAC implementation/Maintenance
+Oracle Golden Gate (OGG) Installation/Configuration and Maintenance
+OBIEE Installation/Configuration and Maintenance Activities
+Fusion Middleware Components(Web center Portal/SOA and OBIEE) Installation/Configuration and Maintenance
+ 
+
+Formal Education
+Masters of Computer Applications (MCA) – [S.K.University (2012)]
+Bachelors of Science in Computers [S.V.Degree and P.G College (2008)]
+
+Professional Training/Certifications
+Oracle 11g Performance Tuning training from Oracle University(LVC)
+Oracle 11g R2 Database/RAC
+
+Oracle 10g DBA Workshop training from Oracle University(LVC)
+
+
+People Management Essentials (PME)
+
+
+
+Technical Skills	
+Operating Systems:
+Windows Server 2008 R2, Linux,AIX,HP-UX
+Programming  Languages:
+Shell Scripting (ksh, bash)
+Applications:
+Oracle UPK, Oracle Enterprise Manager (OEM), PeopleSoft (FSCM/HCM/CRM/PORTAL/ELM/CS), Oracle Fusion Middleware(Web center Portal/SOA and OBIEE)
+Middleware and Application Server:
+Web Logic Server, Web Sphere,OAS
+Desktop Tools:
+MS Projects, MS Visio, MS Project, Excel, PowerPoint
+Database and Development Tools:
+TOAD, Oracle SQL Plus, Quest STAT, SQL Developer
+Application Tools:	
+Oracle Enterprise Manager, Quest ( STAT) Change Management and Object Migration Tool set
+
+Database:		
+Oracle (9i.x through 12c), Oracle Recovery Manager (RMAN),
+Oracle RAC 11g
+
+Employment History
+
+NTT DATA,Hyderabad - Jul, 2013 – Present: (2.4 years and current) Functioning as a PeopleSoft DBA in the EAS practice, providing consulting services to a various projects
+
+Oracle Corp India,Hyderabad - Feb, 2011 – Jul, 2013: (2.5 Years) Functioned as a PeopleSoft DBA in the Cloud IT Team and supported and maintained multiple client environments.
+Infosys Technologies Ltd,Hyderabad - Sept 2008 – Feb, 2011: (2.5 Years) Functioned as a PeopleSoft Admin in application services team and providing PSADMIN services to CITI Bank client. 
+
+Professional Accomplishments
+						
+Employer:     NTT DATA								July 2013 – Present
+
+  Clients:
+	Mizuho Bank Ltd								              October, 2014 – Till date
+Functioning as a PeopleSoft DBA and responsible for:
+Design, Planning, Installation and Configuration of various PeopleSoft Instances(Pure Internet Architecture) like  Demo,Development,Testing,Conversion,Staging,Production environments on PeopleSoft FSCM 9.2 and People tools 8.53 versions.
+Installation and Configuration PeopleSoft Update Manager(PUM) on Virtual box in order to create Change Package(s) and apply the same as part Application Maintenance on all environments whenever released by Oracle.
+Applying People tools Patches, Web logic PSU using BSU and applying Tuxedo Rolling Patches.
+Troubleshooting user login issues/performance issues(online/batch) and perform webserver/application and scheduler tuning for optimum results.
+Installation Micro focus Net Express COBOL compiler and compiling the COBOLS on Windows.
+Implemented SES(Secure Enterprise Search)  and integrated with PeopleSoft to enable Full Text Search functionality.
+Implemented LDAP(Microsoft Active Directory) for PeopleSoft Application Authentication.
+Security Management like creation of users and managing permission lists/roles etc.
+Interface setups for file transfers/attachment uploads using FTP/SFTP/HTTP(URL Server).
+Integration Broker setup/tuning and troubleshooting.
+Environment (Database/File system) refreshes activities.
+
+
+
+
+
+	
+	Yum Brands			                                                                                 April, 2014 – October, 2014
+Functioning as a Peoplesoft DBA and Upgrade Specialist –responsible for:
+Working as an upgrade administrator for the PeopleSoft upgrade project for the applications HCM, FSCM, CRM and Portal. 
+Performing the data conversion and tuning as required for performance optimization. 
+Installed the Demo environments on NTT Cloud AIX servers on DB2 LUW databases with Peopletools 8.53 for upgrades. 
+Configured PUM (update manager), downloaded images and applied maintenance packs to the applications. 
+Configured integration broker between the instances and troubleshooting the messaging issues. 
+Setup and configured Change Assistant for the upgrade passes. 
+Applied maintenance packs and tools patches using Change Assistant. 
+Performed initial pass and multiple test moves. 
+Analyzing compare reports, SYSAUDIT, DDDAUDIT and Alter Audit reports and performing cleanups before and after each upgrade pass. 
+Tuning the conversion scripts to reduce the time-taken. 
+Configured the development, testing, training instances. 
+Troubleshooting various issues during upgrade with the upgrade steps, Application Engines, SQRs, PeopleCode, etc. 
+Performed extensive database and SQL tuning of application for performance. 
+Creating, updating and maintaining the project documentation.
+
+	Department of Sanitation New York  				                   July, 2013 – March, 2014
+Functioning as a PeopleSoft DBA/Oracle DBA and Fusion Middleware Admin responsible for:
+Design, Planning, Creation and Administration of various Instances like Demo,Development,Testing,Conversion,Staging,Production environments  for PeopleSoft and Fusion Middleware products to fulfill the Client requirements.
+Installing Oracle database, PeopleSoft components like Peopletools,applications(FSCM/HCM),Tuxedo(Business Logic),Web logic and Fusion Middleware Components like Web center Portal,SOA,OBIEE etc.
+Configuring/Tuning above mentioned products to its maximum extent in order to get the optimum results in terms of response time of application and application availability.
+Refreshing the environments on periodic basis to support project activities.
+Applying fixes/Patches delivered by oracle whenever reported issue identified as known bug upon analysis.
+Interface setup using FTP for interface processing(inbound/outbound) and monitoring the same and troubleshooting if any issues.
+Configuring peoplesoft setups like Integration Broker for IB messaging,Renserver for connected queries,URLs for middleware integration,Report nodes etc.
+Performing PeopleSoft Project migrations which are developed by developers through Application designer and File Migrations,Enterprise Application Archive(EAR) file deployments on Middleware systems through Enterprise Manager Console.
+Integrating PeopleSoft Application with Fusion middleware components like Web center Portal,SOA and OBIEE.
+Writing and deploying Monitoring scripts for Batch Job,IB Messaging etc.
+Install/configure agents in all hosts and setup thresholds and Monitoring the enterprise deployments,Application,Database through Enterprise Manager 12c and take appropriate actions to correct the reported issues.
+Security/User Management by creating necessary application users for Developers/Testing/Functional analysts and granting appropriate permissions in order to perform their day-to-day activities.
+Assisting in Disaster Recovery Setup by providing necessary information from Application perspective and in capacity planning.
+Working with different teams like System Admins/Network Admins Team in various aspects of Environment build and Maintenance.
+Troubleshooting and fixing the user reported issues like performance related, login issues, security issues etc.
+
+	
+Employer: 	Oracle India Pvt Ltd	  				                     February 2011 – July 2013
+Oracle On Demand(Known as Cloud IT)
+Functioned as an Peoplesoft DBA, responsible for:
+Worked as PeopleSoft Administrator and Oracle DBA for production environments
+Installed PeopleSoft Applications FSCM 8.8/9.0/9.1, HCM 8.9/9.0/9.1 & CRM 8.8 on People Tools 8.47/48/49/50/51/52
+Worked on PeopleSoft People tools and Application (FSCM/HRMS) Upgrades.
+Worked on Application upgrade from HRMS 8.9 to 9.0 MP5.
+Worked on two-step application upgrades as well.
+Implemented Maintenance Packs & Bundles, People Tools Upgrades, Tax Updates, POCs using change assistant, DST patches and Oracle database patches/patch sets/Upgrades.
+COBOL Installation/Troubleshooting/Compilation in Linux environment
+Performed Database Backups (Cold/Hot/Export) and Recovery
+Day-to-day PeopleSoft admin activities such as Project/Data/file migrations to support Production environments
+Troubleshooting & handling customer cases to resolve PeopleSoft issues like performance issues (batch process, application navigation), configuration issues, load balancing issues etc.
+Administered the PeopleSoft Internet Architecture (PIA).
+Setup, configuration, analysis and monitoring of production servers.
+Implemented Forgot password functionality for few customers.
+Applied patch set updates on 3 node RAC and administered RAC system.
+Performed Database Upgrade from Oracle 10g to Oracle11g.
+Installed People Books/hosted people books in tools 850 and UPK(User Productivity Kit) installation/Maintenance activities.
+Provided 24x7 on-call support.
+Performed Web logic upgrades and applied patches for web logic using BSU tool.
+Applied Tuxedo rolling patches on Unix and NT.
+Participated in planning and implemented People tools only upgrade from 849-850/8.50-8.52
+Worked with internal team extensively to create automation scripts by providing valuable inputs/feedbacks.
+
+Employer: 	Infosys Technologies Ltd  			                              September, 2008 – April 2011
+Functioned as Peoplesoft Administrator, was part of application services team and responsible for:
+Design, Planning, Creation and Administration of PeopleSoft Instances
+Installation, Configuration and Maintenance of PeopleSoft Applications FSCM/HRMS.
+Applying Bundles - PeopleSoft Finance Application, People Tools and Oracle Patches.   
+Application Server and Batch Server Level Traces
+SSL (Secure Socket Layer) and RPS (Reverse Proxy Server) Implementation/Troubleshooting
+Project Migration, Data Mover, Application Designer, Configuration Manager
+Cobol Compilation on Windows and Unix
+Integration Broker setup and troubleshooting usual issues.
+NDM setup and Maintenance
+Supported COB activities during maintenance.
+Provided 24x7 on-call support.
+Implemented Forgot password functionality for few customers
+COBOL Installation/Troubleshooting/Compilation in Linux environment
+Troubleshooting & handling customer cases to resolve PeopleSoft issues like performance issues (batch process, application navigation), configuration issues, load balancing issues etc
+Setup, configuration, analysis and monitoring of production servers.
+Installed People Books/hosted people books in tools 850 and UPK(User Productivity Kit) installation/Maintenance activities.
+
+
+References:	Can be provided upon requested
