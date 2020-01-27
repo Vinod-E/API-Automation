@@ -1,0 +1,107 @@
+﻿ JITHENDER                                                                        
+                                                                                               Mail       : jithender09.info@gmail.com, 
+jittvv.hgggf@gmai.com
+                                                                                               Mobile  : 9071604590, 9632587412                                                               
+
+
+CAREER SYNOPSIS:
+  
+4+ years of experience in Analysis, Development, and Implementation of business applications including Development and Design of ETL methodologies using Informatica Power Center in various domains.
+Having experience on Informatica Repository Manager, Informatica Designer, Workflow Manager & Workflow Monitor components.    
+Good knowledge on SDLC and good experience with unit testing and integration testing. 
+End to End Knowledge on Architecture of Informatica Power Center.
+Worked in almost all Informatica transformation including source qualifier, expression, router, aggregator, normalizer, sorter, update strategy, connected/unconnected look ups, rank, union, joiner, sequence generator.
+Good knowledge on Mapplets, Reusable Transformation, User Defined Function, Session Partitions, Pushdown optimization, Session Parameter, Mapping Parameters and Variables.
+Experience in Performance tuning of targets, sources, mappings and sessions. 
+Experience in integration of various data sources like Oracle, SQL server, flat files.
+Expertise in OLTP/OLAP System study, developing Database schemas like star schema, snow flake schema.
+Good understanding on slowly changing dimensions types (SCD's). 
+Good understanding on informatica variable/parameters and configuration.
+Performed ETL procedure to load data from different sources into data marts and Data Warehouse using Power Center. 
+Strong development skills in SQL and UNIX.
+Extensively worked on third party tool like SQL Developer, Winscp and Putty.
+Result oriented, self-driven, highly self-motivated, smart and hungry to learn new technologies, methodologies, strategies and processes.
+
+PROFESSIONAL EXPERIENCE:
+
+Presently working as Informatica Developer for TECH MAHINDRA, Bangalore from Oct 2014 to 
+till date.
+Previously worked as Informatica Developer for CURA TECHNOLOGIES, Hyderabad from July 2012 to Sep 2014.
+
+EDUCATION/CERTIFICATIONS:
+
+Master of Computer Applications(MCA) from IIT (ISM) Dhanbad with 78%(2010).
+
+TECHNICAL SKILLS:
+
+    ETL Tools		                    :  Informatica Power Center 9.x
+     Database		                    :  Oracle 10g/9i.
+    Operating Systems	                  :  Windows,UNIX.
+    Web Technologies    	      :  Html,XML,JavaScript.
+    Other Tools                               :  SQL Developer,Putty,WinSCP
+ 
+PROJECT #2:
+
+    Project Name           	      : Atomic Finance Datamart	
+    Client			      : TDS Telecom
+    Project Duration	                   : Oct 2014 to till date
+    Team Size                                     : 6
+    Role                                               : ETL Developer
+    Environment	                   :  Informatica Power Centre 9.5.0, Oracle.
+Description :
+                        
+                    The Business Drivers Datamart program is to design and develop an analytical data mart for Finance Analyst team. Business defines set of key drivers that are important to track business performance. The new analytical data mart should provide key business drivers data at lowest possible granularity that is at customer, location and product at month level. This help business to get more insight about key business operations which in turns help business to design better strategies to maximize profits.
+
+Roles & Responsibilities:
+
+Understanding existing application.
+Gathering and analyzing the requirements for better understanding.
+Performing data analysis.
+Preparing Technical Design Document based on HLD.
+Developing mappings, sessions and workflows based on requirements.
+Extracting, Transforming and Loading the data from Source to Staging and Staging to Target according to the Business requirements.
+Created various complex transformations such as Update Strategy, Look Up, Filter and Router Transformations
+Developed several reusable transformations and mapplets that were used in other mappings. 
+Debugging and fixing errors, from error information in session logs.
+Performing unit testing in order to validate the ETL mappings.
+Preparing the test cases/plans and required documents for System Integration Testing.
+Providing the support during SIT and UAT phases, defect fixing on time, if any.
+Involved in code migration and deployment activities.
+PROJECT #1:
+
+    Project Name           	      : HealthCare Management System	
+    Client			      : United HealthCare System, US
+    Project Duration	                   : Aug 2012 to Sep 2014
+    Team Size                                     : 5
+    Role                                               : ETL Developer
+    Environment	                   :  Informatica Power Centre 9.x, Oracle.
+Description :
+
+              It is a total healthcare management system, which manages the total patient information maintained in three different modules. Patient Information, Accounts Information, Monitoring. The Patient information module contains the patient details, up to dated health information. In the Accounts Information module day‑to‑day bill settlements will be entered in to the online system. In Monitoring, it monitors from the day one to discharge date of the patient and Case Sheet will be maintained which is confidential.
+
+Roles & Responsibilities:
+Understanding and analyzing the Business Requirements.
+Extracted data from Oracle, Flat files using Informatica Power Center Tool.
+Develop Informatica ETL jobs for data extraction, transformation, loading, data cleansing by using several built in transformations and procedures 
+Involved in requirements clarification.
+Involved the development of new mappings according to requirement.
+Creating Sessions and Workflows.
+Partially involved in Unit testing.
+Design and develop Informatica ETL Mappings/Transformations for extracting data, transformation, data cleansing, integration and loading into the target/staging area.
+
+     Name:- JITHENDER
+      Dob:-15'th, Feb, 1989
+      Gender:-Male
+      Place:- Mumbai 
+
+
+
+
+
+
+
+
+
+
+
+

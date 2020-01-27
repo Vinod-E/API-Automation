@@ -1,0 +1,106 @@
+﻿Summary
+Chetan has 5+ years of experience as a software developer in different domains like telecom and e-commerce. Currently he is working as an Technical in TCS. Since the beginning of his career, Chetan has participated in the design and development of applications for Fortune 500 companies in the telecommunications and financial services industries. He is skilled in E-Commerce Applications, database programming, application programming and systems programming.  Chetan has sound knowledge of technologies including Java/J2EE, ATG, Spring IOC, JSF, IBM Portal,.
+
+Work Experience
+
+Currently working as an ATG Lead for B2B client EATON.
+
+Projects
+
+TCS, Jan 2015 to Present
+
+Technical Lead – TCS
+
+Team Size: 8
+
+Technical design
+Client Interaction
+Lead for Integration, Shopping, checkout and Order Management Module
+
+Sapient Corporation, Dec 2012 to Jan 2015 
+
+E-commerce Application Developer- BBB
+. 
+Working as ATG developer in different tracks including mobile and JUnit.
+Roles and Responsibilities involve Story analysis & development, code reviews & managing Track.
+Languages : ATG
+Team Size: 10
+IDE: Eclipse
+Version control: SVN
+
+
+Accenture, May 2010 to Dec 2012 
+
+Software Engineer – Design and Implementation of Correspondence System 
+The intent of this project was to develop a tool to pull out the logs on-demand from different servers based on the applications hosted on any type of environment. This tool is platform independent and easy to integrate without any modification. 
+Built on the concept of Client- server architecture.
+JMX used for exchange of information.
+Retrieves logs based on the given criteria like: search by date & time; search by number of lines; search by built in and custom patterns; search by Unix head and tail for both Unix and windows server.
+Operating System: Windows & UNIX
+Languages: Rich Facets, Springs IOC, JMX
+
+
+Team Size: 3
+IDE: Eclipse
+Version control: SVN
+
+
+
+Software Engineer – E-commerce Application Developer
+The project dealt with order express for one of the biggest pharmaceutical firm of United States. It required providing modern features such as shopping cart and shopping list for online shopping.
+Place online order for medicines.
+Built on IBM portal and commerce technologies
+IBM portal was used as front-end and commerce for backend connectivity.
+Responsibilities: 
+Created project design documents
+Coordinating for offshore-onshore deliverables, daily status calls with client and client team, following all the coding standards and best practices
+Production support
+Operating System: Windows & UNIX
+Languages: Adv.Java, JSF, IBM Portal and commerce, JSTL
+Team Size : 10
+IDE : RAD
+Version control : Clear case
+Education 
+B.E. in Computer science passed out in 2009 with an aggregate of 71.78% from Institute of Information Technology and Management, Gwalior, RGTU.
+Higher secondary from CBSE in 2005 with 2005 68.8%.
+High school from CBSE in 2003 with 74.8%.
+Skills
+
+
+
+
+
+
+
+
+
+Other
+
+Certifications/Training
+SCJP -1.6
+
+Additional Courses
+IBM Portal 
+Hibernate
+Hybris Platform
+ATG
+
+
+Personal Profile:
+                Name: Chetan Kapoor
+                Father’s name: Mr. U.C Kapoor
+                Date of birth: 30th Dec 1987
+                Gender: Male
+                Pan No. HJKLU3456Y
+                Passport. R4567890
+                Marital status: Single
+                Nationality: Indian
+                Languages known: English, Hindi
+
+
+I hereby confirm that the information given above is true and correct to best of knowledge and belief.
+Chetan Kapoor
+
+
+
+

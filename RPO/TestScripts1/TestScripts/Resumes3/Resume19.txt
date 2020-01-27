@@ -1,0 +1,200 @@
+﻿EKHLAQUE AHMAD
+96 A | Johri Farm, Jamia Nagar | New Delhi–110025
+Email: ekhlaque.ahmad18@gmail.com, dfg.dfgdf@gmail.com
+Cell: +91-9953957177, 9563232321
+
+To be the part of a team of hi-caliber professionals for challenging new assignments and responsibilities in the field of Testing, and Data flow and management thus sharpening my own professional skills, while at the same time, contributing my best to the overall development of the organization.
+
+Career Snapshot 
+
+Energetic and result-oriented IT Professional offering 8 of years experience in ETL testing (With INFORMATICA), Database testing, Manual Testing and OBIEE testing, currently associated with FIDELITY Investment Ltd (Payroll Magna InfoTech), Gurgaon as a Sr. Software Engineer-ETL Testing. 
+Experience in ETL Testing with INFORMATICA and SSIS tool. 
+Manage and Run workflow, Session and jobs in Informatica. Remove file, Move file, Re- name file, Compress file.
+Validating target data with source data as per business rule in data load testing. 
+Experience in Database Testing. 
+Well versed in writing SQL queries. 
+Creation of database objects like tables and views using Oracle and SQL Server.
+Debugging of PL/SQL procedures and functions for the application.
+Testing Database Stored Procedures, Function, and Triggers using both SQL Server and Oracle tools.
+SSRS, OBIEE and SAP report testing.
+Thorough understanding of the entire SDLC, STLC including Functional Testing, Integration Testing and Application Debugging.
+Creating test plan and strategy. 
+Experienced in designing and executing Test Cases based on Business requirements.
+Experienced in designing Test Plan.
+Experience in Re-Testing testing and Regression Testing.
+Well acquainted with report testing with SSRS.
+Experienced with automated bug tracking tools like HP ALM/QC and JIRA.
+Thorough work experience in Defect Tracking and Bug Reporting.
+Cohesive Team Player with fast learning curve along with strong analytical, problem solving, and innovation. 
+
+Core Competencies 
+ETL Testing                                                           	•   Manual Testing                                                           
+Database Testing                               			•  OBIEE Testing                                                                                                  
+S/W Testing Life Cycle                                                  •   Test Planning and Test Creation
+Bug Tracking & Reporting                                              •   Bug Life Cycle                                                
+S/W Testing Techniques                                                •  Verification and Validation
+
+Technical Proficiency 
+
+Testing: 		ETL Testing/ Database Testing/ Manual Testing/OBIEE Testing.
+ETL Tool: 		INFORMATICA, SSIS.
+Languages: 		Core Java (Basic), C, C++.
+Test Management Tools: HP ALM (Quality Center), Jira, and Trackpoint,.
+Operating System:	UNIX, Microsoft Windows.
+RDBMS: 		MS-SQL Server 05, 08 and Oracle 9i/11g. 
+
+Professional Contour 
+FIDELITY Investment Limited (Payroll Magna InfoTech), Gurgaon			(01st September’14 to Present)
+Sr. Software Engineer (ETL Testing)
+
+WNS Global Services (P) Ltd., Gurgaon						(30th July’07 – 22nd August’14)
+Sr. Test Engineer
+
+VertexPlus Technologies, Jaipur							(Dec’06– Jul’07)
+Software Trainee
+
+
+Projects Handled 
+
+Project#1: 		Business to Business (B2B Report)  
+Organization:		Fidelity Investment Ltd (Payroll Magna InfoTech).
+Role: 			Sr. Software Engineer- ETL Testing
+Tool/OS :		Informatica 9.1, Oracle 11g, HP ALM (Quality Center), Jira and Unix.
+Duration:		March-15 to till date.
+Description: 	In B2B (Business to Business) project, Fidelity provide different type of reports for advisors  on daily, weekly, monthly, yearly and Adhoc to evaluate or analysis of their fund with current statistics. These reports are integrated with back office software tp provide consolidated view of customer finance for advisor.  
+Responsibilities:
+Involving in test plan and test strategy creations.
+Involving in data migration testing and data load testing with Informatica and SQL queries.
+Involving in unit testing, like mapping, workflow and session in Informatica.
+Creating and executing test cases for the both data migration and application layout.
+Data Validation testing in the generated reports. 
+Bug tracking in HP-ALM (Quality Center).
+
+Responsibilities
+Project#2: 		EDW Upgrade  
+Organization:		Fidelity Investment Ltd (Payroll Magna InfoTech).
+Role: 			Sr. Software Engineer- ETL Testing
+Tool/OS :		Informatica 9.1, Oracle 11g, HP ALM (Quality Center) and UNIX.
+Duration:		Jan-15 to till March-15.
+Description: 	Oracle database is upgraded from 11g to 12c and some Informatica partition are done to improve performance tuning. We need to verify all tables present in EDW data warehouse,  Informatica Workflows and flat file data validation with unix.          
+Responsibilities:
+Involving in data validation testing and data load testing with Informatica and SQL queries.
+Involving in unit testing, like mapping, workflow and session in Informatica.
+Flat file validation with Unix commands.
+Bug tracking in HP-ALM (Quality Center).
+	
+Responsibilities
+Project#3: 		Institutional Information Hub 
+Organization:		Fidelity Investment Ltd (Payroll Magna InfoTech).
+Role: 			Sr. Software Engineer- ETL Testing
+Tool :			Informatica 9.1, Oracle 11g, OBIEE, and HP ALM (Quality Center).
+Duration:		Sept-14 to till Jan 15.
+Description: 	Institutional Information Hub is a dashboard application which provide Client summary details, Fund summary details for particular client with there performance, top holding, portfolio, Market cap, Historical trends. It also present global business summary for different clients on the dashboard. Users or client can analyze all details of funds on the same place.  
+Responsibilities:
+Involving in data migration testing and data load testing with Informatica and SQL queries.
+Involving in unit testing, like mapping, workflow and session in Informatica.
+Creating and executing test cases for the both data migration and application layout.
+Data Validation testing at the dashboard and in the report. 
+OBIEE testing of dashboard, report and application.
+Bug tracking in HP-ALM (Quality Center).
+
+Project#4: 		DTCM (	Department of Tourism & Commerce Marketing), Government of Dubai.
+Organization:		WNS Global Services Ltd.
+Environment: 		Windows XP, Vista, Windows 7, MAC leopard.
+Tool :			Informatica 9.1, Oracle 9i,  and Trackpoint(Bug reporting tool) .		
+Duration:		Sept-13 to Aug-2014.
+Description: 	DTCM aims at enhancing the accommodation service level, facilitating the selection of accommodations suitable to every category of visitors, international tour and travel agencies. The current classification system ensures the availability of services and facilities in accordance with the expectations of such visitors. 
+Project involves automating the Classification& Assessment process of DTCM (Dubai Tourism Commerce & Marketing) with respect to classification & grading of different types of Guest Accommodations based on several assessment criteria applicable on different categories of establishments. The process also includes renewal, upgrade & downgrade and closure process if one or more checkpoints as per threshold defined by DTCM are not met by the Guest Accommodation. The application provides classification officials as well as the Guest Accommodation independent interfaces to interact& participate in the assessment, grading and other related aspects of classification.
+Responsibilities:
+Responsible for data integration testing using ETL tool INFORMATICA.
+Verifying the mapping in INFORMATICA power centre designer, either data is uploaded correctly or not.
+Data Validation testing. 
+Involving in manual testing in application.
+Designing and executing test cases based on Business requirements in this application.
+Used Trackpoint and Ms-excel to track the bugs. 
+Involved in UAT testing with client. 
+Report testing.
+
+Project#5: 		ARISg (A Pharmaceutical System).
+Organization:		WNS Global Services Ltd.
+Duration:		Sept-12 to June-13
+Description: 	This ARISg application forms the core component of an integrated pharmacovigilance and risk management system, enabling companies to monitor their products and identify safety risks proactively. ARISg helps speed up management of adverse drug reactions with the use of its configurable workflow and advanced automation features. With the help of ARISg Application, users can set up a system that meets their business process and standard operating procedure (SOP) requirements more efficiently by automating the routing of cases as defined in their workflow rules.
+Responsibilities:
+Involving in manual testing in application.
+Executing test cases for the application.
+Data Validation testing in the report. 
+Report testing with SAP BO tool
+Ms-excel to track the bugs. 	
+
+Project#6: 		CIAT (ConMed Inventory Analysis Tool)
+Organization:		WNS Global Services Ltd.
+Duration:		March-12 to Sept-12.
+Description: 	By CIAT tool Provides the professional facing a complex product mix and significant uncertainty with an effective, fast, and affordable solution for inventory and service level optimization via a web-based platform combining, the structured process guides the user to establish and maintain the optimal inventory and service levels over the long term. In this tool first data uploaded from backend, after that from application users can configure the condition and make strategy for the product and apply for the same. On the basis of classification condition and strategy, application show all the alerts and report for products.
+Responsibilities:
+Involving in manual testing in application.
+Designing and executing test cases based on Business requirements in this application.
+Database testing using SQL Server. 
+Responsible for data integration testing using ETL tool.
+Data Validation testing. 
+Used Trackpoint and Ms-excel to track the bugs. 
+Involved in UAT testing with client. 
+Report testing with SSRS.	
+
+Project#8: 		Australia Equity Monitor 
+Organization:		WNS Global Services Ltd.
+Client: 			Coca-Cola
+Duration:		Feb-11 to Jan-2012.
+Description:                 Australia Equity Monitor is an interactive and brand specific scorecard that will enable insights and marketing to monitor their brands performance with ease on a monthly basis for Australia and New Zealand. It will help in analyzing trends across time and compare it across target groups. All measures are compared to previous year and the differences are checked for statistical significance at 95% confidence level. The Informatica is used for extracting data from source to target system. There are numerous sources of data coming into the warehouse including flat files and excel spreadsheets. The warehouse is used to capture the change data after applying the business rules and load them to the target system. 
+Responsibilities:
+Involving in manual testing in application.
+Designing and executing test cases based on Business requirements in this application.
+Used Trackpoint tool for bug report. 
+Responsible for data integration testing using tool INFORMATICA.
+Verifying the mapping in INFORMATICA power center designer, either data is uploaded correctly or not.
+Data Validation testing. 
+
+Project#9: 		Profit Seeker 
+Organization:		WNS Global Services Ltd.
+Client: 			Coca-Cola
+Duration:		June-10 to Dec-10
+Description:                 In any Retail Business Operation one key area is to understand the impact of pricing changes on SKU volumes. Based on this clear analysis can be done to optimize the price at which the SKU is sold, with an objective of optimizing the Revenue and Profit of the organization. Profit seeker is a model/system that helps us understand this. INFORMATICA is used to upload Nielsen data and coca cola own financial data to oracle database.
+Responsibilities:
+Involving in manual testing in application.
+Designing and executing test cases based on Business requirements in this application.
+Used Trackpoint tool for bug report. 
+Responsible for data integration testing using tool INFORMATICA.
+Verifying the mapping in INFORMATICA power center designer, either data is uploaded correctly or not.
+Data Validation testing
+
+Project#10: 		Comergence compliance monitoring  
+Organization:		WNS Global Services Ltd.
+Client: 			Comergence
+Duration:		Dec-09 to May-10
+Description:                 The Comergence Realm allows registered users (Brokers/Lenders) the ability to interact and conduct business with one another. Realm allows Brokers to apply to Lenders in order to conduct business on behalf of the lenders. Brokers that apply to Lenders are in the application process and can be accessed by the lenders from the broker management screen within the application. Comergence REALM also maintains a database that will serve as a repository of industry wide data and provide its users the ability to perform key functionalities relating to compliance requirements like monitoring broker licenses, performing due diligence, updating state license data store, maintaining valuable documents with history, finding and applying to suitable lenders and alerts notifications on every important business entity change. 
+Responsibilities:
+Involving in manual testing in application.
+Designing and executing test cases based on Business requirements in this application.
+Used Trackpoint tool for bug report. 
+Responsible for data integration testing using tool INFORMATICA.
+Verifying the mapping in INFORMATICA power designer, either data is uploaded correctly or not.
+Data Validation testing. 
+
+Technical Proficiency 
+
+Master of Computer Application (MCA) from Amity (UPTU), Noida with 72% in 2006.
+Bachelor of Computer Science from Patna University, Patna with 68% in 2002.
+10+2 from Bihar Board with 73%.
+10th from Bihar Board with 75%.
+
+Personal Details
+
+Date of birth:		01 March, 1981    
+Father’s Name:		Ehsan Ahmad
+Languages known:  	English, Hindi and Urdu.
+Passport Number:	L 5232897, Expiry Date-07/10/2023
+References:		Available upon request.
+Gender:                       Male
+Pan:                            SDFRE4567J
+Passport:                     A1236532
+
+                                                                                                                   

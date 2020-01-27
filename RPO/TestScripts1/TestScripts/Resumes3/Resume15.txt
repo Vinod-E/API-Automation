@@ -1,0 +1,191 @@
+﻿GNANESHWAR.N
+Mobile: 8237358798, 7412589630
+Gnane12@gmail.com, dgdsa.dhgs@gmail.com
+Gender:- Male,   Dob:-  18/12/1985
+Pan:- BGHYT1236T, Passport:- F4563214
+
+Summary:
+
+9 years’ experience in Software testing.
+Expertise in Data ware housing testing and Data base testing.
+Expertise in ETL testing
+Worked on Tera data,SQL server,Oracle,
+Knowledge on UNIX, Informatica
+Knowledge on Healthcare domain, Banking and retail 
+Knowledge on SISI,SAAS, Cloud technology
+ISTQB certified
+	
+Employment Profile:
+
+Working as Sr. Quality Engineer for Allscripts, Pune from April 2012
+Worked as Sr.Testing Engineer for ZENSAR, Pune from Sept 2011 to March 2012
+Worked as Testing Engineering for DELL, Hyderabad from May 2006 to Sept 2011.
+
+Educational Profile:
+
+MCA from Periyar University 
+
+	
+Project Name    : SCA (Sunrise Clinical Analytics) V12, v12.2.
+Platform           : SQLSERVER, TFS2013, SAAS,Cloud computing
+Type		   : ETL testing		
+Duration           : Sept 2012 to till date
+Sunrise Clinical Analytics is an advanced clinical business intelligence solution that allows organizations to effectively track and measure clinical performance and identify how clinician actions impact outcomes. This healthcare-specific, integrated and flexible solution helps organizations monitor and improve performance related to the Joint Commission, core measures, hospital acquired complications and other quality initiatives, while enabling:
+
+Involving SRS peer review and BRD review.
+Involved in preparing  Test Strategy and Test Plan
+Preparing test cases
+Writing the SQL queries based on Data Mapping documents
+Raised defects in TFS tracked till closer.
+Coordinating with Environment team to deploying  the builds 
+Daily Work allocation and monitoring work progress among the team
+Reviewing Defects which are entered by testers
+Providing status report and periodical quality metrics to project stakeholders
+Tracked the downtime during SIT and worked with Dev and EMS teams to reduce the downtime
+Performed End-to-End testing.
+
+
+Project Name    : STB Migration
+Platform              : MSBI, Oracle, SQL.TFS2010
+Type		    : ETL testing		
+Duration              : Sept 2011 to March 2012 
+          The bank is undertaking a Liquidity Project to meet FSA regulatory requirements for June 2010. STB provide the banks current regulatory reporting software, but due to lack of delivery and flexibility of the solution, the decision has been taken to move to a different solution for the delivery of the Liquidity Requirements. Current regulatory reporting requires custom extraction code to pull data from core systems in to CSV files. Those CSV files are then fed in to STB to generate the required reports. This places a lot of work on the bank to maintain the extraction code and write logic to aggregate and manipulate data that STB cannot accommodate. To provide a more robust system for regulatory reporting, STB migration will be provided all required data in staging area. The decision has been made to work with Zensar, to provide required data in staging area based on gap analysis done by Whistle brook. This document describes the overall solution to meet the STB Migration requirements, using the Microsoft platform (SQL Server 2008 and SSIS).
+
+Involving SRS peer review and BRD review.
+Involved in preparing  Test Strategy and Test Plan
+Preparing test cases
+Writing the SQL queries based on Data Mapping documents
+Raised defects in TFS tracked till closer.
+
+Project Name      : Core Data
+Role                    : Team Member
+Team Size           : 8
+Platform              : Informatica, Oracle, TeraData,
+Type		     : ETL testing		
+Duration              : Oct 2010 to Sept 2011
+Build out global data processes and packages for consumption by business intelligence tools Implement revised global integrated base model for source acquisition Engineer standard data acquisition architecture Provide data quality and metadata services and tools Provide a integrated, production like test bed Enable data model management and reporting portal capabilities
+
+Roles & Responsibilities
+Involving SRS peer review and BRD review.
+Involved in preparing  Test Strategy and Test Plan
+Preparing test cases
+Writing the SQL queries based on Data Mapping documents
+Involving end-end testing.
+Test case executed using QTP automation tool
+Raised defects in QC tracked till closer.
+Coordinating with Environment team to deploying  the builds
+Attending weekly calls with business
+
+
+Project Name    : Pulse
+Role                    : Team Member
+Team Size           : 2
+Platform              : Informatica, Oracle, TeraData, SAS
+Type		    : ETL testing		
+Duration              : April 2010 to Sept2010 
+
+Determination and classification of customer eligibility does not meet changing business needs and new survey requests as many business rules are hard coded in Event Loaders. Currently can only run 6 of the 30+ surveys in our survey program without work around performed outside of application
+
+Roles & Responsibilities
+Involving SRS peer review and BRD review.
+Involved in preparing  Test Strategy and Test Plan
+Preparing test cases
+Writing the SQL queries based on Data Mapping documents
+Test case executed using QTP automation tool
+Raised defects in QC tracked till closer.
+Coordinating with Environment team to deploying  the builds
+
+Project Name     : QTC AP Others
+Role                    : Team Member
+Team Size           : 2
+Platform              : Abnitio, Oracle, TeraData
+Type		    : ETL testing		
+Duration 	    : Dec 2009 to March 2010
+
+The purpose of this project is to develop the scope of Work that will be required for the BI Q2C AP Other countries launches.  This covers all the original work from the Q2C BRD and SRS that was delayed to expedite the ANZ launch, outstanding change requests and defects that were carried-over from the Q2C HK, China and ANZ launches
+
+Roles & Responsibilities
+
+Involved in preparing Test Strategy and Test Plan
+Preparing test cases 
+ Writing the SQL queries based on Data Mapping documents. 
+Involving end-end testing.
+Test case executed using QTP automation tool
+Raised defects in QC tracked till closer.
+
+
+Project Name      : QTC ANZ, APJ1.0 Releases
+Role                    : Team Lead
+Team Size           : 2
+Platform              : Abnitio, Oracle, TeraData
+Type		    : ETL testing		
+Duration 	    : June 2008 to Nov 2009
+This release covers all the original work from the Q2C BRD and SRS that was delayed to expedite the Hong Kong and China launches, outstanding change requests and defects for ANZ, that were carried-over from the Q2C HK and Q2C China deliverables
+
+Roles & Responsibilities
+Prepared Test Strategy and Test Plan
+Preparing test case design 
+Writing the SQL queries based on Data Mapping documents.
+Involving end-end testing.
+Test case executed using QTP automation tool
+Raised defects in QC tracked till closer.
+
+Project Name    : GAAP
+Role                    : Team Member
+Team Size           : 2
+Platform              : Informatica, Oracle, TeraData
+Type		    : ETL testing		
+Duration 	    : June 2008 to Oct 2008
+
+Abstract               : This project revolves around DB tables affected due to changes made to the legacy system to incorporate GAAP principles for reporting revenue to comply with Generally Accepted Accounting Principles. The scope for this project was to validate data flow between source and base layers. In all it included around 18 base DB tables whose ETL code was to be validated. Validation process majorly involved creation of queries to compare data between source and target. The result set obtained was compared using QTP.
+
+Roles & Responsibilities
+Preparing test case design 
+Writing the SQL queries based on Data Mapping documents.
+Involving end-end testing.
+Test case executed using QTP automation tool
+Raised defects in QC tracked till closer.
+
+Project Name    : Global DST.
+Role                    : Test Member
+Team Size           : 8
+Platform              : Oracle 10g, VB.Net
+Type		    : UI and Database testing 
+Duration 	    : Sept 2007 to May 2008
+
+Abstract: The Data Stewardship Tool (DST) is will be rolled out to the US, LA and CA soon, this tool within IDD (Integrated Dell Desktop) will allow these regions to manage their account data in Affinity through this application interface. The enhancements being requested are part of a global effort to close gaps and enhance the interface and system logic to allow for a fully integrated account management tool globally
+
+Roles & Responsibilities
+Understanding the requirements
+Preparing test case design 
+Prepared Test Lab for test case execution
+Test case executed using QTP automation tool
+Raised defects in QC tracked till closer.
+
+Project Name    : Affinity FY08 R2
+Role                    : Team Member
+Team Size           : 6
+Platform              : Oracle 10g, VB.Net
+Type		    : Data base testing
+Duration	    : Jan 2007 to April 2007
+
+Abstract: Affinity is comprised of three major areas, Customer Registry, Account Management, and 3rd Party Overlays. The Customer Registry stores key customer identifiers such as names, addresses, phone numbers, etc. The Account Management component brings together customers that are members of the same account. The 3rd Party Overlays append demographic, firm graphic and Op-in/out information to internally obtained customer information
+
+Roles & Responsibilities
+Understanding the requirements
+Test case executed using QTP automation tool
+Raised defects in QC tracked till closer.
+
+Project Name     :  Affinity – MONSTER MATCH
+Role                    : Team Member
+Team Size           :  6
+Platform              : Oracle 10g, VB.Net
+Type		    : Data base testing
+Duration	    : May 2006 to Dec 2006
+
+Abstract            :  AGI (Affinity Global Infrastructure) is a CRM project based on oracle database that maintain the huge customer database through cleansing, standardizing, validating, matching and merging.
+The current project features includes cleansing and matching through algorithms designed based on fuzzy match logic which is referred as monster match..Affinity is Party and Location match process for source records that have been mapped to the common format.  Sources that have been mapped to the common format include Sales ODS, Americas Email, Web Catalog Request, DOMS Catalog request and CRMS one-time load.  One-time load of DDW, International Customers and Suppressions (Web and one-time load) will also be mapped to the common format but will bypass the match routine. The Monster Match refers to a series of match algorithms designed to identify duplicate People, Organizations and Locations before loading data to the TCA.  The match process will return a set of Ids that will be used by a subsequent service responsible for loading to the TCA.
+Roles & Responsibilities
+Understanding the requirements
+Test case executed using QTP automation tool
+ Raised defects in QC tracked till closer.
