@@ -13,13 +13,13 @@ class AllConfigurations:
         self.getall_applicant_api = "https://amsin.hirepro.in/py/common/xl_creator/api/v1/generate_applicant_report/"
 
     def filePath(self, date):
-        self.expected_excel_sheet_path = '/home/vinodkumar/hirepro_automation/API-Automation/Input Data/' \
+        self.expected_excel_sheet_path = '/home/vinod/hirepro_automation/API-Automation/Input Data/' \
                                          'Crpo/stackranking/stack_ranking_FourEvents_report.xlsx'
 
-        self.download_path = '/home/vinodkumar/hirepro_automation/API-Automation/Output Data/Crpo/stackranking/Downloads/' \
+        self.download_path = '/home/vinod/hirepro_automation/API-Automation/Output Data/Crpo/stackranking/Downloads/' \
                              'stackranking_%s.xlsx' % date
 
-        self.save_path = '/home/vinodkumar/hirepro_automation/API-Automation/Output Data/Crpo/stackranking/' \
+        self.save_path = '/home/vinod/hirepro_automation/API-Automation/Output Data/Crpo/stackranking/' \
                          'stackranking_op_file%s.xlsx' % date
 
 
