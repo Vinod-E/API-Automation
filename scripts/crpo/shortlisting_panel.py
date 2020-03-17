@@ -204,7 +204,6 @@ class SCAutomation(login.CommonLogin, db_login.DBConnection, work_book.WorkBook)
         self.ws.write(0, 6, 'No.of Test cases', self.style23)
         self.ws.write(0, 7, self.totalapplicantCount, self.style24)
         ob.wb_Result.save(output_paths.outputpaths['SC_Output_sheet'])
-        ob.wb_Result.save(output_paths.outputpaths['All_files_folder'].format('API_Shortlisting_Panel.xls'))
 
 
 ob = SCAutomation()

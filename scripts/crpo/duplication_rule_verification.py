@@ -242,7 +242,6 @@ class VerifyDuplicationRule(login.CommonLogin, work_book.WorkBook):
         self.ws.write(0, 6, 'No.of Test cases', self.style23)
         self.ws.write(0, 7, self.tot, self.style24)
         ob.wb_Result.save(output_paths.outputpaths['Duplication_rule_Output_sheet'])
-        ob.wb_Result.save(output_paths.outputpaths['All_files_folder'].format('API_Duplication_rule.xls'))
 
 
 ob = VerifyDuplicationRule()

@@ -14,7 +14,7 @@ class DeleteCandidateApplicant(db_login.DBConnection):
 
     def candidate_excel_data(self):
 
-        workbook = xlrd.open_workbook(output_paths.DMLOutput['candidate_output_sheet'])
+        workbook = xlrd.open_workbook(output_paths.outputpaths['Candidate_Output_sheet'])
         sheet1 = workbook.sheet_by_index(0)
         for i in range(2, sheet1.nrows):
             number = i  # Counting number of rows

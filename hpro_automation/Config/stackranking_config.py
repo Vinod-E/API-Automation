@@ -1,5 +1,7 @@
 import requests
 import json
+import output_paths
+import input_paths
 
 
 class AllConfigurations:
@@ -13,14 +15,11 @@ class AllConfigurations:
         self.getall_applicant_api = "https://amsin.hirepro.in/py/common/xl_creator/api/v1/generate_applicant_report/"
 
     def filePath(self, date):
-        self.expected_excel_sheet_path = '/home/vinod/hirepro_automation/API-Automation/Input Data/' \
-                                         'Crpo/stackranking/stack_ranking_FourEvents_report.xlsx'
+        self.expected_excel_sheet_path = input_paths.inputpaths['stacking']
 
-        self.download_path = '/home/vinod/hirepro_automation/API-Automation/Output Data/Crpo/stackranking/Downloads/' \
-                             'stackranking_%s.xlsx' % date
+        self.download_path = output_paths.outputpaths['Stack_Ranking_download_sheet'].format(date)
 
-        self.save_path = '/home/vinod/hirepro_automation/API-Automation/Output Data/Crpo/stackranking/' \
-                         'stackranking_op_file%s.xlsx' % date
+        self.save_path = output_paths.outputpaths['Stack_Ranking_output_sheet'].format(date)
 
 
     def loginToCRPO(self):

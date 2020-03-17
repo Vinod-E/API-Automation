@@ -6,6 +6,8 @@ import os
 
 path = os.getenv("HOME")
 generic_output_path = "%s/hirepro_automation/API-Automation/Output Data/" % path
+crpo_common_folder = "Crpo/Common_folder/"
+crpo_DML_folder = "Crpo/DML_folder/"
 
 # -------------------------
 # Creation of Output sheets
@@ -15,53 +17,56 @@ outputpaths = {
     # ------------------
     # CRPO Output sheets
     # ------------------
-    'Password_policy': generic_output_path + "Crpo/PasswordPolicy/API_PasswordPolicy.xls",
+    'Password_policy': generic_output_path + crpo_common_folder + "API_PasswordPolicy.xls",
 
-    'CreateUser_Output_sheet': generic_output_path + "Crpo/CreateUser/API_CreateUser.xls",
+    'CreateUser_Output_sheet': generic_output_path + crpo_common_folder + "API_CreateUser.xls",
 
-    'UpdateUser_Output_sheet': generic_output_path + "Crpo/UpdateUser/API_UpdateUser.xls",
+    'UpdateUser_Output_sheet': generic_output_path + crpo_common_folder + "API_UpdateUser.xls",
 
-    'Score_Output_sheet': generic_output_path + "Crpo/UploadScore/API_Download_upload_Scores.xls",
+    'Score_Output_sheet': generic_output_path + crpo_common_folder + "API_Download_upload_Scores.xls",
 
-    'Candidate_Output_sheet': generic_output_path + "Crpo/UploadCandidates/API_UploadCandidates.xls",
+    'Candidate_Output_sheet': generic_output_path + crpo_common_folder + "API_UploadCandidates.xls",
 
-    'Update_Candidate_Output_sheet': generic_output_path + "Crpo/UpdateCandidates/API_Update_Candidates.xls",
+    'Update_Candidate_Output_sheet': generic_output_path + crpo_common_folder + "API_Update_Candidates.xls",
 
-    'SC_Output_sheet': generic_output_path + "Crpo/ShortlistingPanel/API_Shortlisting_Panel.xls",
+    'SC_Output_sheet': generic_output_path + crpo_common_folder + "API_Shortlisting_Panel.xls",
 
-    'EC_Output_sheet': generic_output_path + "Crpo/EC/API_DB_EC_Verification.xls",
+    'EC_Output_sheet': generic_output_path + crpo_common_folder + "API_DB_EC_Verification.xls",
 
-    'Applicant_count_Output_sheet_1': generic_output_path + "Crpo/Event Applicant Search/"
-                                                            "API_Event_Applicant_Search(Count).xls",
+    'Applicant_count_Output_sheet_1': generic_output_path + crpo_common_folder + "API_Event_Applicant_"
+                                                                                 "Search(Count).xls",
 
-    'Applicant_count_Output_sheet_2': generic_output_path + "Crpo/Event Applicant Search/"
-                                                            "API_Event_Applicant_BoundarySearch(Count).xls",
+    'Applicant_count_Output_sheet_2': generic_output_path + crpo_common_folder + "API_Event_Applicant_"
+                                                                                 "BoundarySearch(Count).xls",
 
-    'candidate_search_output_sheet_1': generic_output_path + "Crpo/Candidate Search/"
-                                                             "API_Candidate_Search_With_Boundary.xls",
+    'candidate_search_output_sheet_1': generic_output_path + crpo_common_folder + "API_Candidate_Search_With_"
+                                                                                  "Boundary.xls",
 
-    'candidate_search_output_sheet_2': generic_output_path + "Crpo/Candidate Search/"
-                                                             "API_Candidate_Search_Only_Count.xls",
+    'candidate_search_output_sheet_2': generic_output_path + crpo_common_folder + "API_Candidate_Search_Only_Count.xls",
 
-    'Interview_flow_Output_sheet': generic_output_path + "Crpo/InterviewFlow/ProvideFeedback/API_ProvideFeedback.xls",
+    'Interview_flow_Output_sheet': generic_output_path + crpo_common_folder + "API_ProvideFeedback.xls",
 
-    'Reschdeule_Output_sheet': generic_output_path + "Crpo/InterviewFlow/Reschedule/API_Reschedule.xls",
+    'Reschdeule_Output_sheet': generic_output_path + crpo_common_folder + "API_Reschedule.xls",
 
-    'Cancel_Interview_Output_sheet': generic_output_path + "Crpo/InterviewFlow/Cancel/API_Cancel_Interview.xls",
+    'Cancel_Interview_Output_sheet': generic_output_path + crpo_common_folder + "API_Cancel_Interview.xls",
 
-    'Activity_CallBack_Output_sheet': generic_output_path + "Crpo/Activity Call Back/API_Activity_CallBack.xls",
+    'Activity_CallBack_Output_sheet': generic_output_path + crpo_common_folder + "API_Activity_CallBack.xls",
 
-    'Duplication_rule_Output_sheet': generic_output_path + "Crpo/Duplication_rule/API_Duplication_rule.xls",
+    'Duplication_rule_Output_sheet': generic_output_path + crpo_common_folder + "API_Duplication_rule.xls",
 
-    'Login_check_Output_sheet': generic_output_path + "Crpo/Login/API_Login_check.xls",
+    'Login_check_Output_sheet': generic_output_path + crpo_common_folder + "API_Login_check.xls",
 
-    'Communication_output_sheet': generic_output_path + "Crpo/Communication_history/API_Communication_history.xls",
+    'Communication_output_sheet': generic_output_path + crpo_common_folder + "API_Communication_history.xls",
 
-    'MI_output_sheet': generic_output_path + "Crpo/Manage Interviewers/API_Manage_Interviewers.xls",
+    'MI_output_sheet': generic_output_path + crpo_common_folder + "API_Manage_Interviewers.xls",
 
-    'Event_output_sheet': generic_output_path + "Crpo/Create_update_Event/API_Create_Update_Event.xls",
+    'Event_output_sheet': generic_output_path + crpo_common_folder + "API_Create_Update_Event.xls",
 
-    'Event_Clone_output_sheet': generic_output_path + "Crpo/Clone Event/API_Event_Clone.xls",
+    'Event_Clone_output_sheet': generic_output_path + crpo_common_folder + "API_Event_Clone.xls",
+
+    'Stack_Ranking_download_sheet': generic_output_path + crpo_common_folder + "Downloads/stackranking_{}.xlsx",
+
+    'Stack_Ranking_output_sheet': generic_output_path + crpo_common_folder + "stackranking_{}.xlsx",
 
     # ------------------
     # Pofu output sheets
@@ -74,17 +79,4 @@ outputpaths = {
     # -----------------
     'r_Job_search_output_sheet': generic_output_path + "Rpo/Search/Combined_Job_Search.xls",
 
-    # -----------------------
-    # all files in one folder
-    # ------------------------
-    'All_files_folder': generic_output_path + "Crpo/Common_folder/{}",
-              }
-
-
-# -------------------------
-# DML scripts Output sheet
-# -------------------------
-DMLOutput = {'candidate_output_sheet': generic_output_path + 'Crpo/UploadCandidates/API_UploadCandidates.xls',
-             'User_output_sheet': generic_output_path + "Crpo/CreateUser/API_CreateUser.xls",
-             'Uploadscore_output_sheet': generic_output_path + "Crpo/UploadScore/API_Download_upload_Scores.xls"
-             }
+}
