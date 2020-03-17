@@ -449,7 +449,6 @@ class CreateUser(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
         self.ws.write(0, 6, 'No.of Test cases', self.style23)
         self.ws.write(0, 7, Total_count, self.style24)
         Obj.wb_Result.save(output_paths.outputpaths['CreateUser_Output_sheet'])
-        Obj.wb_Result.save(output_paths.outputpaths['All_files_folder'].format('API_CreateUser.xls'))
 
 
 Obj = CreateUser()

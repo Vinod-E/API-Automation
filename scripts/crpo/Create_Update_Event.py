@@ -518,7 +518,6 @@ class CreateUpdateEvent(login.CommonLogin, work_book.WorkBook):
 
         # ---------------------------- OutPut File save with Overall Status --------------------------------------------
         Object.wb_Result.save(output_paths.outputpaths['Event_output_sheet'])
-        Object.wb_Result.save(output_paths.outputpaths['All_files_folder'].format('API_Create_Update_Event.xls'))
 
     def updated_output_report(self, loop):
 

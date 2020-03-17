@@ -58,6 +58,8 @@ inputpaths = {
 
     'CloneEvent_Input_sheet': generic_input_path + "Crpo/Clone Event/Clone Event.xls",
 
+    'stacking': generic_input_path + "Crpo/stackranking/stack_ranking_FourEvents_report.xlsx",
+
     # ------------
     # Pofu Inputs
     # ------------

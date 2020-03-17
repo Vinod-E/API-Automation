@@ -14,7 +14,7 @@ class DeleteQuery(db_login.DBConnection):
 
     def user_excel_data(self):
 
-        workbook = xlrd.open_workbook(output_paths.DMLOutput['User_output_sheet'])
+        workbook = xlrd.open_workbook(output_paths.outputpaths['CreateUser_Output_sheet'])
         sheet1 = workbook.sheet_by_index(0)
         for i in range(2, sheet1.nrows):
             number = i  # Counting number of rows
