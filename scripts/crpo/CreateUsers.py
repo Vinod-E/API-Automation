@@ -137,11 +137,19 @@ class CreateUser(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
                    "NumCharacter": 4,
                    "PwdExpiryLimitInDays": 60,
                    "IsPwdChangeInFirstLogin": False,
-                   "Id": 398
+                   "Id": 519
                    }
         update_policy = requests.post(self.webapi, headers=self.headers, data=json.dumps(request, default=str),
                                       verify=False)
         print(update_policy.headers)
+
+    def remove_tenant_cache(self):
+        self.lambda_function('tenant_cache')
+        request = {}
+        tenant_cache = requests.post(self.webapi, headers=self.headers, data=json.dumps(request, default=str),
+                                     verify=False)
+        remove_tenant_cache = json.loads(tenant_cache.content)
+        print(remove_tenant_cache)
 
     def create_user(self, loop):
 
@@ -454,6 +462,7 @@ class CreateUser(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
 Obj = CreateUser()
 Obj.excel_data()
 Obj.update_pwd_policy()
+Obj.remove_tenant_cache()
 Total_count = len(Obj.xl_Name)
 print("Number Of Rows ::", Total_count)
 if Obj.login == 'OK':
