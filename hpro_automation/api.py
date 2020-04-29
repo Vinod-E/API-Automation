@@ -141,4 +141,6 @@ non_lambda_apis = {
 
     "bulkimport": generic_domain + "pofu/api/v1/bulkimport",
 
+    "tenant_cache": generic_domain + "common/api/v1/ctic/"
+
 }

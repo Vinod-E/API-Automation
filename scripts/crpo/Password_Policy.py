@@ -152,6 +152,14 @@ class PasswordPolicy(login.CommonLogin, work_book.WorkBook, db_login.DBConnectio
             else:
                 self.xl_login_status.append(rows[14])
 
+    def remove_tenant_cache(self):
+        self.lambda_function('tenant_cache')
+        request = {}
+        tenant_cache = requests.post(self.webapi, headers=self.headers, data=json.dumps(request, default=str),
+                                     verify=False)
+        remove_tenant_cache = json.loads(tenant_cache.content)
+        print(remove_tenant_cache)
+
     def update_pwd_policy(self, loop):
 
         self.lambda_function('create_update_pwd_policy')
@@ -432,12 +440,15 @@ class PasswordPolicy(login.CommonLogin, work_book.WorkBook, db_login.DBConnectio
 Object = PasswordPolicy()
 Object.excel_headers()
 Object.excel_data()
+Object.remove_tenant_cache()
 Total_count = len(Object.xl_ID)
 print("Number of rows ::", Total_count)
 if Object.login == 'OK':
     for looping in range(0, Total_count):
         print("Iteration Count is ::", looping)
+        Object.remove_tenant_cache()
         Object.update_pwd_policy(looping)
+        Object.remove_tenant_cache()
         Object.db_pwd_policy(looping)
         Object.change_password(looping)
         if Object.change_pwd_status == 'OK':
