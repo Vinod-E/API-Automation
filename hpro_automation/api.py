@@ -47,6 +47,13 @@ lambda_apis = {
     # --------------------------------------------- Staffing -----------------------------------------------------------
     "gettaskbycandidate": generic_domain + "pofu/api/v1/get-task-by-candidate/",
 
+    # ------------------------------------------- Performance APIS -----------------------------------------------------
+    "get_tenant_details": generic_domain + "common/get_tenant_details/",
+    "get_all_entity_properties": generic_domain + "rpo/get_all_entity_properties/",
+    "group_by_catalog_masters": generic_domain + "common/catalogs/api/v1/group-by-catalog-masters/",
+    "get_all_candidates": generic_domain + "rpo/get_all_candidates/",
+    "getTestUsersForTest": generic_domain + "assessment/testuser/api/v1/getTestUsersForTest/"
+
 }
 
 # -------------------------------------------- Non Lambda APIS ---------------------------------------------------------
@@ -141,6 +148,9 @@ non_lambda_apis = {
 
     "bulkimport": generic_domain + "pofu/api/v1/bulkimport",
 
-    "tenant_cache": generic_domain + "common/api/v1/ctic/"
+    "tenant_cache": generic_domain + "common/api/v1/ctic/",
+
+    # ------------------------------------------- Performance APIS -----------------------------------------------------
+    "api1": generic_domain + "common/get_tenant_details/",
 
 }

@@ -73,6 +73,10 @@ inputpaths = {
 
 }
 
+performance = {
+    'performance': generic_input_path + 'Crpo/Performance/Performance_Testing.xls'
+}
+
 driver = {
     'chrome': '%s/hirepro_automation/API-Automation/Utilities/chromedriver' % path
 }
