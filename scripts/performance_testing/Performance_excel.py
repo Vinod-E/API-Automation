@@ -4,9 +4,8 @@ import input_paths
 
 class PerformanceExcel(object):
     def __init__(self):
-        self.login_server = str(input('Server :: '))
-        self.eu = str(input("EU Yes(or)No :: "))
-
+        self.login_server = self.login_server
+        self.eu = self.eu
         # ------------ Data initialization ---------------------
         self.xl_tenant_name = []
         self.xl_property_ids = []

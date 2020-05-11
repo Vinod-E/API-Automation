@@ -3,6 +3,8 @@ from scripts.performance_testing.output import performance_output
 
 class AmsinNonEu(performance_output.AmsinNonEuOutput):
     def __init__(self):
+        self.eu = 'no'
+        self.login_server = 'amsin'
         super(AmsinNonEu, self).__init__()
 
     def api_response_time(self):
@@ -16,5 +18,5 @@ class AmsinNonEu(performance_output.AmsinNonEuOutput):
 Object = AmsinNonEu()
 Object.common_login("amsin_non_eu")
 if Object.login == 'OK':
-    # Object.api_response_time()
+    Object.api_response_time()
     Object.create_pandas_excel('AMSIN_NON_EU')
