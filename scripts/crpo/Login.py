@@ -95,7 +95,7 @@ class LoginCheck(work_book.WorkBook, login.CommonLogin):
         if self.calling_lambda == 'On' or self.calling_lambda == 'on':
             if api.lambda_apis.get('Loginto_CRPO') is not None:
                 self.headers = self.lambda_headers
-                self.webapi = api.lambda_apis['Loginto_CRPO'].format(self.login_server)
+                self.webapi = api.lambda_apis['Loginto_CRPO']
         else:
             self.headers = self.Non_lambda_headers
             self.webapi = api.lambda_apis['Loginto_CRPO']

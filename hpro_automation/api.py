@@ -1,7 +1,8 @@
 from hpro_automation.identity import credentials
 
-generic_domain = credentials.generic_domain['domain']
-
+login_server = str(input('Server_name :: '))
+generic_domain = credentials.server_api.format(login_server)
+print('That you are running in this server :: ', generic_domain)
 # ---------------------------------------------Lambda APIS -------------------------------------------------------------
 lambda_apis = {
 
