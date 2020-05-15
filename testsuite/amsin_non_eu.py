@@ -20,3 +20,5 @@ Object.common_login("amsin_non_eu")
 if Object.login == 'OK':
     Object.api_response_time()
     Object.create_pandas_excel('AMSIN_NON_EU')
+    # Object.read_data_from_excel('AMSIN_NON_EU')
+    # Object.chart_sheets('AMSIN_NON_EU')

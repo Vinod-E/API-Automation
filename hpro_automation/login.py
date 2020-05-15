@@ -75,7 +75,7 @@ class CommonLogin(object):
     def lambda_function(self, api_key):
 
         # ---------------------- Passing headers based on API supports to lambda or not --------------------------------
-        if self.calling_lambda.lower() == 'On':
+        if self.calling_lambda.lower() == 'on':
             if lambda_apis.get(api_key) is not None:
                 self.headers = self.lambda_headers
                 self.headers['X-AUTH-TOKEN'] = self.get_token
@@ -85,7 +85,7 @@ class CommonLogin(object):
                 self.headers['X-AUTH-TOKEN'] = self.get_token
                 self.webapi = non_lambda_apis[api_key]
 
-        elif self.calling_lambda.lower() == 'Off':
+        elif self.calling_lambda.lower() == 'off':
             self.headers = self.Non_lambda_headers
             self.headers['X-AUTH-TOKEN'] = self.get_token
             if non_lambda_apis.get(api_key) is not None:
