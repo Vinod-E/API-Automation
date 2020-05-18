@@ -80,6 +80,7 @@ outputpaths = {
     'r_Job_search_output_sheet': generic_output_path + "Rpo/Search/Combined_Job_Search.xls",
 
     # ------ Performance -------
-    'performance_testing': generic_output_path + crpo_common_folder + "Performance_testing.xlsx"
+    'performance_testing': generic_output_path + crpo_common_folder + "Performance_testing.xlsx",
+    'chart_analysis': generic_output_path + crpo_common_folder + "chart_analysis.xlsx"
 
 }
