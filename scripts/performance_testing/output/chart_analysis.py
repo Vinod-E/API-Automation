@@ -166,12 +166,3 @@ class Chart(object):
 
         except exceptions.WebDriverException as Environment_Error:
             print(Environment_Error)
-
-
-o = Chart()
-o.read_data_from_excel('AMSIN_NON_EU')
-o.read_data_from_excel('AMSIN_EU')
-o.read_data_from_excel('LIVE_NON_EU')
-o.read_data_from_excel('LIVE_EU')
-o.chart_sheets('Dashboard')
-o.merge_2_excels()
