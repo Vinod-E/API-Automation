@@ -41,7 +41,7 @@ class FontColor(object):
         self.style19 = xlwt.easyxf('pattern: pattern solid, fore_colour gold;'
                                    'font: name Arial, color black, bold on;')
         self.style20 = xlwt.easyxf('pattern: pattern solid, fore_colour gray25;'
-                                   'font: name Arial, color dark_red_ega, bold off;')
+                                   'font: name Arial, color dark_red_ega, bold on;')
         self.style21 = xlwt.easyxf('pattern: pattern solid, fore_colour periwinkle;'
                                    'font: name Arial, color black, bold on;')
         self.style22 = xlwt.easyxf('pattern: pattern solid, fore_colour light_yellow;'

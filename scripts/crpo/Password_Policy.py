@@ -3,6 +3,7 @@ import xlrd
 import requests
 import json
 import datetime
+import time
 
 
 class PasswordPolicy(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
@@ -40,7 +41,7 @@ class PasswordPolicy(login.CommonLogin, work_book.WorkBook, db_login.DBConnectio
         self.db_special = []
         self.db_numeric = []
 
-        self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 29)))
+        self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 30)))
         self.Actual_Success_case = []
 
         # -----------
@@ -58,12 +59,15 @@ class PasswordPolicy(login.CommonLogin, work_book.WorkBook, db_login.DBConnectio
         self.success_case_03 = {}
 
     def excel_headers(self):
-        self.main_headers = ['Comparision', 'Overall Status',
-                             'TotalCharacters', 'Capital', 'Small', 'Special', 'Numeric', 'ID', 'UserName', 'Password',
-                             'LastLogin', 'Pwd_configuration_status', 'Change_Pwd_Status', 'Login_Status',
-                             'Exception Error']
+        self.main_headers = ['Comparision', 'Overall Status', 'TotalCharacters', 'Capital', 'Small', 'Special',
+                             'Numeric', 'ID', 'Pwd_configuration_status',
+                             'UserName', 'Current_Password', 'Change_password', 'Change_Pwd_Status',
+                             'LastLogin', 'Login_Status', 'Exception Error']
         self.headers_with_style2 = ['Comparision', 'Overall Status']
-        self.headers_with_style19 = ['TotalCharacters', 'Capital', 'Small', 'Special', 'Numeric', 'ID']
+        self.headers_with_style19 = ['TotalCharacters', 'Capital', 'Small', 'Special', 'Numeric', 'ID',
+                                     'Pwd_configuration_status']
+        self.headers_with_style20 = ['UserName', 'Current_Password', 'Change_password', 'Change_Pwd_Status']
+        self.headers_with_style21 = ['Login_Status', 'LastLogin']
         self.file_headers_col_row()
 
     def excel_data(self):
@@ -172,6 +176,7 @@ class PasswordPolicy(login.CommonLogin, work_book.WorkBook, db_login.DBConnectio
                    "NumCharacter": self.xl_TotalCharacters[loop],
                    "PwdExpiryLimitInDays": self.xl_ExpierDays[loop],
                    "IsPwdChangeInFirstLogin": False,
+                   "NumLastPasswordNotAllowed": 3,
                    "Id": self.xl_ID[loop]
                    }
         update_policy = requests.post(self.webapi, headers=self.headers, data=json.dumps(request, default=str),
@@ -218,6 +223,8 @@ class PasswordPolicy(login.CommonLogin, work_book.WorkBook, db_login.DBConnectio
         print(change_password_api_response)
         self.change_pwd_status = change_password_api_response['status']
         self.change_pwd_error = change_password_api_response.get('error')
+        print(self.change_pwd_error)
+        print(self.change_pwd_status)
 
     def login_check(self, loop):
 
@@ -233,8 +240,11 @@ class PasswordPolicy(login.CommonLogin, work_book.WorkBook, db_login.DBConnectio
                                     verify=False)
         print(login_check.headers)
         self.login_check_api_response = json.loads(login_check.content)
-        self.P_P_dict = self.login_check_api_response.get('PasswordPolicy')
-        print(self.P_P_dict.get('NumCharacter'))
+        try:
+            self.P_P_dict = self.login_check_api_response.get('PasswordPolicy')
+            print(self.P_P_dict.get('NumCharacter'))
+        except Exception as error:
+            print(error)
 
     def output_excel(self, loop):
         # ------------------
@@ -247,12 +257,13 @@ class PasswordPolicy(login.CommonLogin, work_book.WorkBook, db_login.DBConnectio
         self.ws.write(self.rowsize, 5, self.xl_special[loop])
         self.ws.write(self.rowsize, 6, self.xl_Numeric[loop])
         self.ws.write(self.rowsize, 7, self.xl_ID[loop])
-        self.ws.write(self.rowsize, 8, self.xl_username[loop])
-        self.ws.write(self.rowsize, 9, self.xl_confirm_pwd[loop])
-        self.ws.write(self.rowsize, 11, self.xl_p_p_status[loop])
+        self.ws.write(self.rowsize, 8, self.xl_p_p_status[loop])
+        self.ws.write(self.rowsize, 9, self.xl_username[loop])
+        self.ws.write(self.rowsize, 10, self.xl_old_pwd[loop])
+        self.ws.write(self.rowsize, 11, self.xl_confirm_pwd[loop])
         self.ws.write(self.rowsize, 12, self.xl_change_status[loop])
-        self.ws.write(self.rowsize, 13, self.xl_login_status[loop])
-        self.ws.write(self.rowsize, 14, self.xl_ExceptionMessage[loop])
+        self.ws.write(self.rowsize, 14, self.xl_login_status[loop])
+        self.ws.write(self.rowsize, 15, self.xl_ExceptionMessage[loop])
 
         # -------------------
         # Writing Output Data
@@ -280,10 +291,83 @@ class PasswordPolicy(login.CommonLogin, work_book.WorkBook, db_login.DBConnectio
             self.ws.write(self.rowsize, 1, 'Fail', self.style3)
         # --------------------------------------------------------------------------------------------------------------
 
-        if self.policy_status == 'OK':
-            self.ws.write(self.rowsize, 11, 'Allowed', self.style14)
+        # if self.P_P_dict.get('NumCharacter'):
+        #     if self.P_P_dict.get('NumCharacter') in [0, 8]:
+        #         if self.xl_ExceptionMessage[loop] and 'takes from backend code' in self.xl_ExceptionMessage[loop]:
+        #             self.ws.write(self.rowsize, 2, self.P_P_dict.get('NumCharacter'), self.style7)
+        #     else:
+        #         self.ws.write(self.rowsize, 2, self.P_P_dict.get('NumCharacter'), self.style14)
+
+        if self.db_totalcharacters in [0, 4, 8, 9, 64]:
+            if self.db_totalcharacters in [0, 8]:
+                if self.xl_ExceptionMessage[loop] and 'takes from backend code' in self.xl_ExceptionMessage[loop]:
+                    self.ws.write(self.rowsize, 2, 8, self.style7)
+            else:
+                self.ws.write(self.rowsize, 2, self.db_totalcharacters, self.style14)
         else:
-            self.ws.write(self.rowsize, 11, 'Not Allowed', self.style3)
+            self.ws.write(self.rowsize, 2, self.db_totalcharacters, self.style3)
+        # --------------------------------------------------------------------------------------------------------------
+
+        # if self.P_P_dict.get('NumCapital'):
+        #     if self.P_P_dict.get('NumCapital') == self.xl_capital[loop]:
+        #         self.ws.write(self.rowsize, 3, self.P_P_dict.get('NumCapital'), self.style14)
+        #     else:
+        #         self.ws.write(self.rowsize, 3, self.P_P_dict.get('NumCapital'), self.style3)
+        if self.db_capital == self.xl_capital[loop]:
+            self.ws.write(self.rowsize, 3, self.db_capital, self.style14)
+        else:
+            self.ws.write(self.rowsize, 3, self.db_capital, self.style3)
+        # --------------------------------------------------------------------------------------------------------------
+
+        # if self.P_P_dict.get('NumSmall'):
+        #     if self.P_P_dict.get('NumSmall') == self.xl_small[loop]:
+        #         self.ws.write(self.rowsize, 4, self.P_P_dict.get('NumSmall'), self.style14)
+        #     else:
+        #         self.ws.write(self.rowsize, 4, self.P_P_dict.get('NumSmall'), self.style3)
+        if self.db_small == self.xl_small[loop]:
+            self.ws.write(self.rowsize, 4, self.db_small, self.style14)
+        else:
+            self.ws.write(self.rowsize, 4, self.db_small, self.style3)
+        # --------------------------------------------------------------------------------------------------------------
+
+        # if self.P_P_dict.get('NumSpecial'):
+        #     if self.P_P_dict.get('NumSpecial') == self.xl_special[loop]:
+        #         self.ws.write(self.rowsize, 5, self.P_P_dict.get('NumSpecial'), self.style14)
+        #     else:
+        #         self.ws.write(self.rowsize, 5, self.P_P_dict.get('NumSpecial'), self.style3)
+        if self.db_special == self.xl_special[loop]:
+            self.ws.write(self.rowsize, 5, self.db_special, self.style14)
+        else:
+            self.ws.write(self.rowsize, 5, self.db_special, self.style3)
+        # --------------------------------------------------------------------------------------------------------------
+
+        # if self.P_P_dict.get('NumNumeric'):
+        #     if self.P_P_dict.get('NumNumeric') == self.xl_Numeric[loop]:
+        #         self.ws.write(self.rowsize, 6, self.P_P_dict.get('NumNumeric'), self.style14)
+        #     else:
+        #         self.ws.write(self.rowsize, 6, self.P_P_dict.get('NumNumeric'), self.style3)
+        if self.db_numeric == self.xl_Numeric[loop]:
+            self.ws.write(self.rowsize, 6, self.db_numeric, self.style14)
+        else:
+            self.ws.write(self.rowsize, 6, self.db_numeric, self.style3)
+        # --------------------------------------------------------------------------------------------------------------
+
+        if self.xl_ID[loop] == self.policyid:
+            self.ws.write(self.rowsize, 7, self.policyid, self.style14)
+        else:
+            self.ws.write(self.rowsize, 7, self.policyid, self.style3)
+        # --------------------------------------------------------------------------------------------------------------
+
+        if self.policy_status == 'OK':
+            self.ws.write(self.rowsize, 8, 'Allowed', self.style14)
+        else:
+            self.ws.write(self.rowsize, 8, 'Not Allowed', self.style3)
+        # --------------------------------------------------------------------------------------------------------------
+
+        if self.xl_username[loop] == self.login_check_api_response.get('LoginName'):
+            self.ws.write(self.rowsize, 9, self.login_check_api_response.get('LoginName'), self.style14)
+        else:
+            self.ws.write(self.rowsize, 9, self.login_check_api_response.get('LoginName'), self.style3)
         # --------------------------------------------------------------------------------------------------------------
 
         if self.change_pwd_status == 'OK':
@@ -303,112 +387,43 @@ class PasswordPolicy(login.CommonLogin, work_book.WorkBook, db_login.DBConnectio
                 self.ws.write(self.rowsize, 12, 'Not Allowed', self.style14)
             else:
                 self.ws.write(self.rowsize, 12, 'Allowed', self.style14)
+        elif self.change_pwd_status != 'OK':
+            self.ws.write(self.rowsize, 12, 'Not Allowed', self.style14)
         else:
             self.ws.write(self.rowsize, 12, 'Not Allowed', self.style3)
         # --------------------------------------------------------------------------------------------------------------
 
-        if self.login_check_api_response.get('status') == 'OK':
-            self.ws.write(self.rowsize, 13, 'Allowed', self.style14)
-        elif self.xl_login_status[loop] == 'Not Allowed':
-            self.ws.write(self.rowsize, 13, 'Not Allowed', self.style14)
-        else:
-            self.ws.write(self.rowsize, 13, 'Not Allowed', self.style3)
-        # --------------------------------------------------------------------------------------------------------------
-
-        if self.P_P_dict.get('NumCharacter'):
-            if self.P_P_dict.get('NumCharacter') in [0, 8]:
-                if self.xl_ExceptionMessage[loop] and 'takes from backend code' in self.xl_ExceptionMessage[loop]:
-                    self.ws.write(self.rowsize, 2, self.P_P_dict.get('NumCharacter'), self.style7)
-            else:
-                self.ws.write(self.rowsize, 2, self.P_P_dict.get('NumCharacter'), self.style14)
-
-        elif self.db_totalcharacters in [0, 4, 8, 9, 64]:
-            if self.db_totalcharacters in [0, 8]:
-                if self.xl_ExceptionMessage[loop] and 'takes from backend code' in self.xl_ExceptionMessage[loop]:
-                    self.ws.write(self.rowsize, 2, 8, self.style7)
-            else:
-                self.ws.write(self.rowsize, 2, self.db_totalcharacters, self.style14)
-        else:
-            self.ws.write(self.rowsize, 2, self.db_totalcharacters, self.style3)
-        # --------------------------------------------------------------------------------------------------------------
-
-        if self.P_P_dict.get('NumCapital'):
-            if self.P_P_dict.get('NumCapital') == self.xl_capital[loop]:
-                self.ws.write(self.rowsize, 3, self.P_P_dict.get('NumCapital'), self.style14)
-            else:
-                self.ws.write(self.rowsize, 3, self.P_P_dict.get('NumCapital'), self.style3)
-        elif self.db_capital == self.xl_capital[loop]:
-            self.ws.write(self.rowsize, 3, self.db_capital, self.style14)
-        else:
-            self.ws.write(self.rowsize, 3, self.db_capital, self.style3)
-        # --------------------------------------------------------------------------------------------------------------
-
-        if self.P_P_dict.get('NumSmall'):
-            if self.P_P_dict.get('NumSmall') == self.xl_small[loop]:
-                self.ws.write(self.rowsize, 4, self.P_P_dict.get('NumSmall'), self.style14)
-            else:
-                self.ws.write(self.rowsize, 4, self.P_P_dict.get('NumSmall'), self.style3)
-        elif self.db_small == self.xl_small[loop]:
-            self.ws.write(self.rowsize, 4, self.db_small, self.style14)
-        else:
-            self.ws.write(self.rowsize, 4, self.db_small, self.style3)
-        # --------------------------------------------------------------------------------------------------------------
-
-        if self.P_P_dict.get('NumSpecial'):
-            if self.P_P_dict.get('NumSpecial') == self.xl_special[loop]:
-                self.ws.write(self.rowsize, 5, self.P_P_dict.get('NumSpecial'), self.style14)
-            else:
-                self.ws.write(self.rowsize, 5, self.P_P_dict.get('NumSpecial'), self.style3)
-        elif self.db_special == self.xl_special[loop]:
-            self.ws.write(self.rowsize, 5, self.db_special, self.style14)
-        else:
-            self.ws.write(self.rowsize, 5, self.db_special, self.style3)
-        # --------------------------------------------------------------------------------------------------------------
-
-        if self.P_P_dict.get('NumNumeric'):
-            if self.P_P_dict.get('NumNumeric') == self.xl_Numeric[loop]:
-                self.ws.write(self.rowsize, 6, self.P_P_dict.get('NumNumeric'), self.style14)
-            else:
-                self.ws.write(self.rowsize, 6, self.P_P_dict.get('NumNumeric'), self.style3)
-        elif self.db_numeric == self.xl_Numeric[loop]:
-            self.ws.write(self.rowsize, 6, self.db_numeric, self.style14)
-        else:
-            self.ws.write(self.rowsize, 6, self.db_numeric, self.style3)
-        # --------------------------------------------------------------------------------------------------------------
-
-        if self.xl_ID[loop] == self.policyid:
-            self.ws.write(self.rowsize, 7, self.policyid, self.style14)
-        else:
-            self.ws.write(self.rowsize, 7, self.policyid, self.style3)
-        # --------------------------------------------------------------------------------------------------------------
-
-        if self.xl_username[loop] == self.login_check_api_response.get('LoginName'):
-            self.ws.write(self.rowsize, 8, self.login_check_api_response.get('LoginName'), self.style14)
-        else:
-            self.ws.write(self.rowsize, 8, self.login_check_api_response.get('LoginName'), self.style3)
-        # --------------------------------------------------------------------------------------------------------------
-
         if self.login_check_api_response.get('LastLogin'):
-            self.ws.write(self.rowsize, 10, self.login_check_api_response.get('LastLogin'))
+            self.ws.write(self.rowsize, 13, self.login_check_api_response.get('LastLogin'))
         else:
-            self.ws.write(self.rowsize, 10, self.login_check_api_response.get('LastLogin'), self.style3)
+            self.ws.write(self.rowsize, 13, self.login_check_api_response.get('LastLogin'), self.style3)
+        # --------------------------------------------------------------------------------------------------------------
+
+        if self.login_check_api_response.get('status') == 'OK':
+            self.ws.write(self.rowsize, 14, 'Allowed', self.style14)
+        elif self.xl_login_status[loop] == 'Not Allowed':
+            self.ws.write(self.rowsize, 14, 'Not Allowed', self.style14)
+        else:
+            self.ws.write(self.rowsize, 14, 'Not Allowed', self.style3)
         # --------------------------------------------------------------------------------------------------------------
 
         if self.policy_status != 'OK':
-            self.ws.write(self.rowsize, 14, self.change_pwd_error['errorDescription'], self.style3)
+            self.ws.write(self.rowsize, 15, self.change_pwd_error['errorDescription'], self.style3)
         elif self.change_pwd_status != 'OK':
             if self.xl_ExceptionMessage[loop] and 'policy, please verify' in self.change_pwd_error['errorDescription']:
-                self.ws.write(self.rowsize, 14, self.change_pwd_error['errorDescription'], self.style14)
+                self.ws.write(self.rowsize, 15, self.change_pwd_error['errorDescription'], self.style14)
             elif self.xl_ExceptionMessage[loop] and 'New password and' in self.change_pwd_error['errorDescription']:
-                self.ws.write(self.rowsize, 14, self.change_pwd_error['errorDescription'], self.style14)
+                self.ws.write(self.rowsize, 15, self.change_pwd_error['errorDescription'], self.style14)
+            elif self.xl_ExceptionMessage[loop] and 'New password cannot' in self.change_pwd_error['errorDescription']:
+                self.ws.write(self.rowsize, 15, self.change_pwd_error['errorDescription'], self.style14)
             else:
-                self.ws.write(self.rowsize, 14, self.change_pwd_error['errorDescription'], self.style3)
+                self.ws.write(self.rowsize, 15, self.change_pwd_error['errorDescription'], self.style3)
         elif self.login_check_api_response['status'] != 'OK':
-            self.ws.write(self.rowsize, 14, self.change_pwd_error['errorDescription'], self.style3)
+            self.ws.write(self.rowsize, 15, self.change_pwd_error['errorDescription'], self.style3)
         elif self.xl_ExceptionMessage[loop] and 'takes from backend code' in self.xl_ExceptionMessage[loop]:
-            self.ws.write(self.rowsize, 14, self.xl_ExceptionMessage[loop], self.style14)
+            self.ws.write(self.rowsize, 15, self.xl_ExceptionMessage[loop], self.style14)
         elif self.xl_ExceptionMessage[loop] and 'UI validation stops' in self.xl_ExceptionMessage[loop]:
-            self.ws.write(self.rowsize, 14, self.xl_ExceptionMessage[loop], self.style14)
+            self.ws.write(self.rowsize, 15, self.xl_ExceptionMessage[loop], self.style14)
         # --------------------------------------------------------------------------------------------------------------
 
         self.rowsize += 1  # Row increment
@@ -451,8 +466,7 @@ if Object.login == 'OK':
         Object.remove_tenant_cache()
         Object.db_pwd_policy(looping)
         Object.change_password(looping)
-        if Object.change_pwd_status == 'OK':
-            Object.login_check(looping)
+        Object.login_check(looping)
         Object.output_excel(looping)
 
         # ----------------------------------------
