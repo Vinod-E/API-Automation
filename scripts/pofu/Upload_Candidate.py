@@ -286,15 +286,7 @@ class UploadCandidate:
             else:
                 self.xl_Expected_msg.append(rows[26])
 
-
-
-
-
-
-                # -------------------------
-                # Candidate create request
-                # -------------------------
-
+    # --------------- Candidate create request ------------------
     def api_call_bulk_upload(self, iteration_count):
         try:
 

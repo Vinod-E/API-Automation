@@ -8,8 +8,6 @@ lambda_apis = {
 
     "getAllEvent": generic_domain + 'crpo/event/api/v1/getAllEvent/',
 
-    "bulkCreateTagCandidates": generic_domain + "crpo/candidate/api/v1/bulkCreateTagCandidates/",
-
     "getAllApplicants": generic_domain + "crpo/applicant/api/v1/getAllApplicants/",
 
     "create_update_pwd_policy": generic_domain + "common/user/create_update_pwd_policy/",
@@ -59,6 +57,8 @@ lambda_apis = {
 
 # -------------------------------------------- Non Lambda APIS ---------------------------------------------------------
 non_lambda_apis = {
+
+    "bulkCreateTagCandidates": generic_domain + "crpo/candidate/api/v1/bulkCreateTagCandidates/",
 
     "createEvent": generic_domain + "crpo/event/api/v1/createEvent/",
 

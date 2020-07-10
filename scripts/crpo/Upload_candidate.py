@@ -1,6 +1,7 @@
 import json
 import requests
 import datetime
+import time
 import xlrd
 from hpro_automation import (login, input_paths, output_paths, work_book)
 
@@ -97,7 +98,7 @@ class UploadCandidate(login.CommonLogin, work_book.WorkBook):
         self.xl_TextArea4 = []
         self.xl_Exception_message = []
 
-        self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 66)))
+        self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 67)))
         self.Actual_Success_case = []
 
         # -------------------------------------------------------------------------------------------------------
@@ -1228,8 +1229,10 @@ class UploadCandidate(login.CommonLogin, work_book.WorkBook):
                 self.ws.write(self.rowsize, 17, 'Empty', self.style14)
             else:
                 self.ws.write(self.rowsize, 17, self.personal_details_dict.get('Email1'), self.style14)
-        else:
+        elif self.xl_Email1[loop].lower() == self.personal_details_dict.get('Email1'):
             self.ws.write(self.rowsize, 17, self.personal_details_dict.get('Email1'), self.style14)
+        else:
+            self.ws.write(self.rowsize, 17, self.personal_details_dict.get('Email1'), self.style3)
         # --------------------------------------------------------------------------------------------------------------
         if self.xl_Email2[loop] == self.personal_details_dict.get('Email2'):
             if self.candidatesavemessage:
@@ -1238,6 +1241,8 @@ class UploadCandidate(login.CommonLogin, work_book.WorkBook):
                 self.ws.write(self.rowsize, 18, 'Empty', self.style14)
             else:
                 self.ws.write(self.rowsize, 18, self.personal_details_dict.get('Email2'), self.style14)
+        elif self.xl_Email2[loop].lower() == self.personal_details_dict.get('Email2'):
+            self.ws.write(self.rowsize, 18, self.personal_details_dict.get('Email2'), self.style14)
         else:
             self.ws.write(self.rowsize, 18, self.personal_details_dict.get('Email2'), self.style3)
         # --------------------------------------------------------------------------------------------------------------
@@ -1987,6 +1992,7 @@ if Obj.login == 'OK':
     for looping in range(0, Total_count):
         print("Iteration Count is ::", looping)
         Obj.bulk_create_tag_candidates(looping)
+        time.sleep(2)
         if Obj.isCreated:  # Always Boolean is true, if it is not mention
             Obj.candidate_get_by_id_details()
             Obj.candidate_educational_details(looping)

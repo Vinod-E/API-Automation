@@ -7,6 +7,7 @@ import os
 path = os.getenv("HOME")
 generic_output_path = "%s/hirepro_automation/API-Automation/Output Data/" % path
 crpo_common_folder = "Crpo/Common_folder/"
+crpo_performance_folder = "Crpo/Common_folder/Performance/"
 crpo_DML_folder = "Crpo/DML_folder/"
 
 # -------------------------
@@ -80,7 +81,7 @@ outputpaths = {
     'r_Job_search_output_sheet': generic_output_path + "Rpo/Search/Combined_Job_Search.xls",
 
     # ------ Performance -------
-    'performance_testing': generic_output_path + crpo_common_folder + "Performance_testing.xlsx",
-    'chart_analysis': generic_output_path + crpo_common_folder + "chart_analysis.xlsx"
+    'performance_testing': generic_output_path + crpo_performance_folder + "Performance_testing.xlsx",
+    'chart_analysis': generic_output_path + crpo_performance_folder + "chart_analysis.xlsx"
 
 }
