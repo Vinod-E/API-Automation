@@ -396,7 +396,8 @@ class UploadScoresheet(login.CommonLogin, work_book.WorkBook):
         self.headers['APP-NAME'] = 'crpo'
 
         score_request = {
-            "CandidateIds": [self.xl_candidateId[loop]]
+            "CandidateIds": [self.xl_candidateId[loop]],
+            "grpSecScoreRequired": True
         }
         fetchingscores_api = requests.post(self.webapi, headers=self.headers,
                                            data=json.dumps(score_request, default=str), verify=False)
