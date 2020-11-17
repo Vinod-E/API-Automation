@@ -71,4 +71,3 @@ class Excel:
         self.write_excel.close()
 
 excel_object = Excel()
-
