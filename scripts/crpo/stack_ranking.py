@@ -39,6 +39,6 @@ try:
                                   total_testcase_count=4)
 except Exception as e:
     print("------------------------------------------------------------------------")
-    print ("Please verify it manually")
+    print("Please verify it manually")
     print("------------------------------------------------------------------------")
-    print (e)
+    print(e)
