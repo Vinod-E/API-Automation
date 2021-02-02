@@ -1,5 +1,4 @@
-import mysql
-from mysql import connector
+import pymysql
 
 
 class DB_Cleanup():
@@ -16,7 +15,7 @@ class DB_Cleanup():
     login_name = 'qauser'
     pwd = 'qauser'
     try:
-        conn = mysql.connector.connect(host=host_ip, database=db_name, user=login_name, password=pwd)
+        conn = pymysql.connect(host=host_ip, database=db_name, user=login_name, password=pwd)
         mycursor = conn.cursor()
         for i in test_ids:
             i = str(i)
