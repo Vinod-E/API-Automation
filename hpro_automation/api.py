@@ -51,8 +51,9 @@ lambda_apis = {
     "get_all_entity_properties": generic_domain + "rpo/get_all_entity_properties/",
     "group_by_catalog_masters": generic_domain + "common/catalogs/api/v1/group-by-catalog-masters/",
     "get_all_candidates": generic_domain + "rpo/get_all_candidates/",
-    "getTestUsersForTest": generic_domain + "assessment/testuser/api/v1/getTestUsersForTest/"
-
+    "getTestUsersForTest": generic_domain + "assessment/testuser/api/v1/getTestUsersForTest/",
+    "interviews": generic_domain + "crpo/api/v1/view/interviews",
+    "interview_new": generic_domain + "crpo/api/v1/view/interviewsNew"
 }
 
 # -------------------------------------------- Non Lambda APIS ---------------------------------------------------------

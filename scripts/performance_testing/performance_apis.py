@@ -20,6 +20,8 @@ class PerformanceTesting(login.CommonLogin, Performance_excel.PerformanceExcel):
         self.Average_Time_catalog = ''
         self.Average_Time_candidates = ''
         self.Average_Time_testuser = ''
+        self.Average_Time_interview = ''
+        self.Average_Time_new_interview = ''
 
         self.excel_read_by_index()
 
@@ -85,4 +87,20 @@ class PerformanceTesting(login.CommonLogin, Performance_excel.PerformanceExcel):
                         "paging": {"maxResults": 20, "pageNumber": 1}}
         self.get_response_time_api('getTestUsersForTest')
         self.Average_Time_testuser = self.Average_Time
+        print(self.response)
+
+    def interviews(self, app_name):
+        self.headers['APP-NAME'] = app_name
+        self.request = {"pagingCriteria": {"pageSize": 20, "pageNumber": 1}, "isRecordedFileUrlsRequired": False,
+                        "isAllInterviewRequired": True, "status": 0, "search": {}}
+        self.get_response_time_api('interviews')
+        self.Average_Time_interview = self.Average_Time
+        print(self.response)
+
+    def new_interviews(self, app_name):
+        self.headers['APP-NAME'] = app_name
+        self.request = {"pagingCriteria": {"pageSize": 20, "pageNumber": 1}, "isRecordedFileUrlsRequired": False,
+                        "isAllInterviewRequired": True, "status": 0, "search": {}}
+        self.get_response_time_api('interview_new')
+        self.Average_Time_new_interview = self.Average_Time
         print(self.response)
