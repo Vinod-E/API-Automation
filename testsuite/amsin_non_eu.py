@@ -13,6 +13,8 @@ class AmsinNonEu(performance_output.AmsinNonEuOutput):
         self.group_by_catalog_masters('crpo')
         self.get_all_candidates('crpo')
         self.getTestUsersForTest('crpo')
+        self.interviews('crpo')
+        self.new_interviews('crpo')
 
 
 Object = AmsinNonEu()

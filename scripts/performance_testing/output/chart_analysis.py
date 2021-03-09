@@ -24,6 +24,8 @@ class Chart(object):
         self.group_by_catalog_masters_dict = {}
         self.get_all_candidates_dict = {}
         self.getTestUsersForTest_dict = {}
+        self.interview_dict = {}
+        self.new_interview_dict = {}
 
         self.summation = 0
         self.get_tenant_details_sum = 0
@@ -31,6 +33,8 @@ class Chart(object):
         self.group_by_catalog_masters_sum = 0
         self.get_all_candidates_sum = 0
         self.getTestUsersForTest_sum = 0
+        self.interview_sum = 0
+        self.new_interview_sum = 0
 
     def read_data_from_excel(self, sheet_name):
         xlsx = ExcelFile(self.output_file)
@@ -50,37 +54,50 @@ class Chart(object):
             self.group_by_catalog_masters_dict = dict_sheet_values.get('group_by_catalog_masters')
             self.get_all_candidates_dict = dict_sheet_values.get('get_all_candidates')
             self.getTestUsersForTest_dict = dict_sheet_values.get('getTestUsersForTest')
+            self.interview_dict = dict_sheet_values.get('interviews')
+            self.new_interview_dict = dict_sheet_values.get('interview_new')
         print(self.get_tenant_details_dict)
         print(len(self.get_tenant_details_dict))
 
         self.summation_data(self.get_tenant_details_dict)
-        self.get_tenant_details_sum = self.summation/len(self.get_tenant_details_dict)
+        self.get_tenant_details_sum = self.summation / len(self.get_tenant_details_dict)
 
         self.summation_data(self.get_all_entity_properties_dict)
-        self.get_all_entity_properties_sum = self.summation/len(self.get_all_entity_properties_dict)
+        self.get_all_entity_properties_sum = self.summation / len(self.get_all_entity_properties_dict)
 
         self.summation_data(self.group_by_catalog_masters_dict)
-        self.group_by_catalog_masters_sum = self.summation/len(self.group_by_catalog_masters_dict)
+        self.group_by_catalog_masters_sum = self.summation / len(self.group_by_catalog_masters_dict)
 
         self.summation_data(self.get_all_candidates_dict)
-        self.get_all_candidates_sum = self.summation/len(self.get_all_candidates_dict)
+        self.get_all_candidates_sum = self.summation / len(self.get_all_candidates_dict)
 
         self.summation_data(self.getTestUsersForTest_dict)
-        self.getTestUsersForTest_sum = self.summation/len(self.getTestUsersForTest_dict)
+        self.getTestUsersForTest_sum = self.summation / len(self.getTestUsersForTest_dict)
+
+        self.summation_data(self.interview_dict)
+        self.interview_sum = self.summation / len(self.interview_dict)
+
+        self.summation_data(self.new_interview_dict)
+        self.new_interview_sum = self.summation / len(self.new_interview_dict)
 
         if sheet_name == 'AMSIN_NON_EU':
             self.frame1 = {'get_tenant_details': self.get_tenant_details_sum,
                            'get_all_entity_properties': self.get_all_entity_properties_sum,
                            'group_by_catalog_masters': self.group_by_catalog_masters_sum,
                            'get_all_candidates': self.get_all_candidates_sum,
-                           'getTestUsersForTest': self.getTestUsersForTest_sum}
+                           'getTestUsersForTest': self.getTestUsersForTest_sum,
+                           'interview': self.interview_sum,
+                           'interview_new': self.new_interview_sum}
             print(self.frame1)
+
         if sheet_name == 'AMSIN_EU':
             self.frame2 = {'get_tenant_details': self.get_tenant_details_sum,
                            'get_all_entity_properties': self.get_all_entity_properties_sum,
                            'group_by_catalog_masters': self.group_by_catalog_masters_sum,
                            'get_all_candidates': self.get_all_candidates_sum,
-                           'getTestUsersForTest': self.getTestUsersForTest_sum}
+                           'getTestUsersForTest': self.getTestUsersForTest_sum,
+                           'interview': self.interview_sum,
+                           'interview_new': self.new_interview_sum}
             print(self.frame2)
 
         if sheet_name == 'LIVE_NON_EU':
@@ -88,7 +105,9 @@ class Chart(object):
                            'get_all_entity_properties': self.get_all_entity_properties_sum,
                            'group_by_catalog_masters': self.group_by_catalog_masters_sum,
                            'get_all_candidates': self.get_all_candidates_sum,
-                           'getTestUsersForTest': self.getTestUsersForTest_sum}
+                           'getTestUsersForTest': self.getTestUsersForTest_sum,
+                           'interview': self.interview_sum,
+                           'interview_new': self.new_interview_sum}
             print(self.frame3)
 
         if sheet_name == 'LIVE_EU':
@@ -96,7 +115,9 @@ class Chart(object):
                            'get_all_entity_properties': self.get_all_entity_properties_sum,
                            'group_by_catalog_masters': self.group_by_catalog_masters_sum,
                            'get_all_candidates': self.get_all_candidates_sum,
-                           'getTestUsersForTest': self.getTestUsersForTest_sum}
+                           'getTestUsersForTest': self.getTestUsersForTest_sum,
+                           'interview': self.interview_sum,
+                           'interview_new': self.new_interview_sum}
             print(self.frame4)
 
     def summation_data(self, api_dict_time):
@@ -117,7 +138,7 @@ class Chart(object):
         df.to_excel(writer, sheet_name=sheet_name)
         workbook = writer.book
         worksheet = writer.sheets[sheet_name]
-        a = len(data) + 1
+        a = len(self.frame4)
         chart = workbook.add_chart({'type': 'column'})
         for col_num in range(1, a + 1):
             chart.add_series({

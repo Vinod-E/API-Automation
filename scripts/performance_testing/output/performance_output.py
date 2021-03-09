@@ -20,7 +20,9 @@ class AmsinNonEuOutput(work_book.WorkBook, performance_apis.PerformanceTesting):
         h5 = 'group_by_catalog_masters'
         h6 = 'get_all_candidates'
         h7 = 'getTestUsersForTest'
-        headers = [h1, h2, h3, h4, h5, h6, h7]
+        h8 = 'Interview'
+        h9 = 'New_Interview'
+        headers = [h1, h2, h3, h4, h5, h6, h7, h8, h9]
 
         # ------------------ Validation for File exists  ------------------------------
         local_path = os.path.exists(self.output_file)
@@ -52,6 +54,8 @@ class AmsinNonEuOutput(work_book.WorkBook, performance_apis.PerformanceTesting):
         df.loc[1, h5] = self.Average_Time_catalog
         df.loc[1, h6] = self.Average_Time_candidates
         df.loc[1, h7] = self.Average_Time_testuser
+        df.loc[1, h8] = self.Average_Time_interview
+        df.loc[1, h9] = self.Average_Time_new_interview
 
         writer = pd.ExcelWriter(self.output_file, engine='openpyxl')
         writer.book = load_workbook(self.output_file)
