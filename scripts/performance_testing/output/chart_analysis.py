@@ -74,11 +74,11 @@ class Chart(object):
         self.summation_data(self.getTestUsersForTest_dict)
         self.getTestUsersForTest_sum = self.summation / len(self.getTestUsersForTest_dict)
 
-        self.summation_data(self.interview_dict)
-        self.interview_sum = self.summation / len(self.interview_dict)
-
-        self.summation_data(self.new_interview_dict)
-        self.new_interview_sum = self.summation / len(self.new_interview_dict)
+        # self.summation_data(self.interview_dict)
+        # self.interview_sum = self.summation / len(self.interview_dict)
+        #
+        # self.summation_data(self.new_interview_dict)
+        # self.new_interview_sum = self.summation / len(self.new_interview_dict)
 
         if sheet_name == 'AMSIN_NON_EU':
             self.frame1 = {'get_tenant_details': self.get_tenant_details_sum,
@@ -86,8 +86,7 @@ class Chart(object):
                            'group_by_catalog_masters': self.group_by_catalog_masters_sum,
                            'get_all_candidates': self.get_all_candidates_sum,
                            'getTestUsersForTest': self.getTestUsersForTest_sum,
-                           'interview': self.interview_sum,
-                           'interview_new': self.new_interview_sum}
+}
             print(self.frame1)
 
         if sheet_name == 'AMSIN_EU':
@@ -96,8 +95,7 @@ class Chart(object):
                            'group_by_catalog_masters': self.group_by_catalog_masters_sum,
                            'get_all_candidates': self.get_all_candidates_sum,
                            'getTestUsersForTest': self.getTestUsersForTest_sum,
-                           'interview': self.interview_sum,
-                           'interview_new': self.new_interview_sum}
+}
             print(self.frame2)
 
         if sheet_name == 'LIVE_NON_EU':
@@ -106,8 +104,7 @@ class Chart(object):
                            'group_by_catalog_masters': self.group_by_catalog_masters_sum,
                            'get_all_candidates': self.get_all_candidates_sum,
                            'getTestUsersForTest': self.getTestUsersForTest_sum,
-                           'interview': self.interview_sum,
-                           'interview_new': self.new_interview_sum}
+}
             print(self.frame3)
 
         if sheet_name == 'LIVE_EU':
@@ -116,8 +113,7 @@ class Chart(object):
                            'group_by_catalog_masters': self.group_by_catalog_masters_sum,
                            'get_all_candidates': self.get_all_candidates_sum,
                            'getTestUsersForTest': self.getTestUsersForTest_sum,
-                           'interview': self.interview_sum,
-                           'interview_new': self.new_interview_sum}
+}
             print(self.frame4)
 
     def summation_data(self, api_dict_time):
