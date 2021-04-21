@@ -1,3 +1,4 @@
+from webdriver_manager.chrome import ChromeDriverManager
 from hpro_automation import (login, input_paths, output_paths, work_book)
 import requests
 import json
@@ -344,10 +345,10 @@ class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
     def ui_automation(self):
 
         # ------------------------------------------------------
-        # UI Automation to handel where ever APIs are not present
+        # UI Automation to handle where ever APIs are not present
         # ------------------------------------------------------
         try:
-            self.driver = webdriver.Chrome(input_paths.driver['chrome'])
+            self.driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
             print("Run started at:: " + str(datetime.datetime.now()))
             print("Environment setup has been Done")
             print("----------------------------------------------------------")

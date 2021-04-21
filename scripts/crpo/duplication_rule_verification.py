@@ -14,7 +14,7 @@ class VerifyDuplicationRule(login.CommonLogin, work_book.WorkBook):
         super(VerifyDuplicationRule, self).__init__()
         self.common_login('crpo')
 
-        self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 98)))
+        self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 92)))
         self.Actual_Success_case = []
         self.success_case_01 = {}
 

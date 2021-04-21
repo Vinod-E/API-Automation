@@ -23,7 +23,7 @@ class AllConfigurations:
 
     def loginToCRPO(self):
         header = {"content-type": "application/json"}
-        data = {"LoginName": "admin", "Password": "4LWS-067", "TenantAlias": "automation", "UserName": "admin"}
+        data = {"LoginName": "admin", "Password": "4LWS-0671", "TenantAlias": "automation", "UserName": "admin"}
         response = requests.post(self.login, headers=header,
                                  data=json.dumps(data), verify=False)
         login_response = response.json()
