@@ -1279,15 +1279,18 @@ class UploadCandidate(login.CommonLogin, work_book.WorkBook):
         else:
             self.ws.write(self.rowsize, 21, self.personal_details_dict.get('DateOfBirth'), self.style3)
         # --------------------------------------------------------------------------------------------------------------
-        if self.xl_USN[loop] == self.personal_details_dict.get('USN'):
-            if self.candidatesavemessage:
-                self.ws.write(self.rowsize, 22, self.candidatesavemessage, self.style7)
-            elif self.xl_USN[loop] is None:
-                self.ws.write(self.rowsize, 22, 'Empty', self.style14)
+        if self.xl_USN[loop] is not None:
+            if self.xl_USN[loop].upper() == self.personal_details_dict.get('USN'):
+                if self.candidatesavemessage:
+                    self.ws.write(self.rowsize, 22, self.candidatesavemessage, self.style7)
+                elif self.xl_USN[loop] is None:
+                    self.ws.write(self.rowsize, 22, 'Empty', self.style14)
+                else:
+                    self.ws.write(self.rowsize, 22, self.personal_details_dict.get('USN'), self.style14)
             else:
-                self.ws.write(self.rowsize, 22, self.personal_details_dict.get('USN'), self.style14)
+                self.ws.write(self.rowsize, 22, self.personal_details_dict.get('USN'), self.style3)
         else:
-            self.ws.write(self.rowsize, 22, self.personal_details_dict.get('USN'), self.style3)
+            self.ws.write(self.rowsize, 22, 'Empty', self.style14)
         # --------------------------------------------------------------------------------------------------------------
         if self.xl_Address1[loop] == self.personal_details_dict.get('Address1'):
             if self.candidatesavemessage:
