@@ -13,6 +13,8 @@ class UpdateCandidate(login.CommonLogin, work_book.WorkBook):
 
         super(UpdateCandidate, self).__init__()
         self.common_login('crpo')
+        self.crpo_app_name = self.app_name.strip()
+        print(self.crpo_app_name)
 
         self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 37)))
         self.Actual_Success_case = []
@@ -565,7 +567,7 @@ class UpdateCandidate(login.CommonLogin, work_book.WorkBook):
     def update_candidate(self, loop):
 
         self.lambda_function('update_candidate_details')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         if self.xl_update_TrueFalse1[loop] == 'true':
             truefalse1 = True
@@ -710,7 +712,7 @@ class UpdateCandidate(login.CommonLogin, work_book.WorkBook):
     def candidate_get_by_id_details(self, loop):
 
         self.lambda_function('CandidateGetbyId')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         get_candidate_details = requests.post(self.webapi.format(self.xl_update_candidate_id[loop]),
                                               headers=self.headers)
@@ -1751,8 +1753,10 @@ class UpdateCandidate(login.CommonLogin, work_book.WorkBook):
         self.ws.write(self.final_status_rowsize, 3, self.start_time, self.style26)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
-        self.ws.write(0, 6, 'No.of Test cases', self.style23)
-        self.ws.write(0, 7, Total_count, self.style24)
+        self.ws.write(0, 6, 'APP Name', self.style23)
+        self.ws.write(0, 7, self.crpo_app_name, self.style24)
+        self.ws.write(0, 8, 'No.of Test cases', self.style23)
+        self.ws.write(0, 9, Total_count, self.style24)
         Object.wb_Result.save(output_paths.outputpaths['Update_Candidate_Output_sheet'])
 
 

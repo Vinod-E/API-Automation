@@ -15,6 +15,8 @@ class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
         self.start_time = str(datetime.datetime.now())
         super(CommunicationHistory, self).__init__()
         self.common_login('crpo')
+        self.crpo_app_name = self.app_name.strip()
+        print(self.crpo_app_name)
         self.xl_s3_file = 'https://s3-ap-southeast-1.amazonaws.com/' \
                           'test-all-hirepro-files/Automation/attachments/' \
                           'e409c387-8847-4444-8719-43d02e55230bAdmissionCard.pdf'
@@ -149,7 +151,7 @@ class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
 
     def admit_card(self, loop):
         self.lambda_function('sendAdmitCardsToApplicants')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # ------------------------------------- Admit Card -------------------------------------------------------------
         request = {"Sync": "False",
@@ -167,7 +169,7 @@ class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
     def registration_link(self, loop):
 
         self.lambda_function('sendRegistrationLinkToApplicants')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # ----------------------------------- Registration Link --------------------------------------------------------
         request = {"ApplicantIds": [self.xl_applicant_id[loop]],
@@ -182,7 +184,7 @@ class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
     def registration_link_disable(self, loop):
 
         self.lambda_function('setApplicantCommunicationStatus')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # ----------------------------------- registration link disable -----------------------------------------------
         request1 = {"ApplicantId": self.xl_applicant_id[loop],
@@ -197,7 +199,7 @@ class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
     def registration_link_enable(self, loop):
 
         self.lambda_function('setApplicantCommunicationStatus')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # ----------------------------------- registration link enable-------------------------------------------------
         request1 = {"ApplicantId": self.xl_applicant_id[loop],
@@ -212,7 +214,7 @@ class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
     def approved_admit_card(self, loop):
 
         self.lambda_function('Create_Attachment')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # ----------------------------------- Approved admit card ------------------------------------------------------
         request = {
@@ -233,7 +235,7 @@ class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
 
         # -------------------------------- set communication status ----------------------------------------------------
         self.lambda_function('setApplicantCommunicationStatus')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         request1 = {"ApplicantId": self.xl_applicant_id[loop],
                     "CommunicationPurpose": self.xl_CommunicationPurpose[loop],
@@ -247,7 +249,7 @@ class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
     def score_sheet(self, loop):
 
         self.lambda_function('Create_Attachment')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # ------------------------------------- Score sheet ------------------------------------------------------------
         request = {
@@ -268,7 +270,7 @@ class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
 
         # -------------------------------- set communication status ------------------------------------------------
         self.lambda_function('setApplicantCommunicationStatus')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         request1 = {"ApplicantId": self.xl_applicant_id[loop],
                     "CommunicationPurpose": self.xl_CommunicationPurpose[loop],
@@ -282,7 +284,7 @@ class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
     def mobile_email_verification(self, loop):
 
         self.lambda_function('sendVerificationNotification')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # ----------------------------------- Mobile/Email Verification ------------------------------------------------
         request = {"candidateIds": [self.xl_applicant_id[loop]],
@@ -298,7 +300,7 @@ class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
     def email_verification(self, loop):
 
         self.lambda_function('sendVerificationNotification')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # ----------------------------------- Email Verification ------------------------------------------------------
         request = {"candidateIds": [self.xl_applicant_id[loop]],
@@ -314,7 +316,7 @@ class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
     def flag(self, loop):
 
         self.lambda_function('setApplicantCommunicationStatus')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # ----------------------------------- flag set for offer pending -----------------------------------------------
         request1 = {"ApplicantId": self.xl_applicant_id[loop],
@@ -329,7 +331,7 @@ class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
     def fetch_r_link(self, loop):
 
         self.lambda_function('getRegistrationLinkForApplicants')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         request = {"ApplicantIds": [self.xl_applicant_id[loop]]}
         get_rl_api = requests.post(self.webapi, headers=self.headers, data=json.dumps(request, default=str),
@@ -374,7 +376,7 @@ class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
     def re_registration_link(self, loop):
 
         self.lambda_function('applicantRe-Registration')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         if self.purpose[loop] == 'Re-Registration Allowed':
             request = {"applicantIds": [self.xl_applicant_id[loop]],
@@ -389,7 +391,7 @@ class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
 
     def get_applicants(self, loop):
         self.lambda_function('getAllEventApplicant')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # --------------------------------------
         # Hitting login API based on input value
@@ -718,8 +720,10 @@ class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
         self.ws.write(0, 3, self.start_time, self.style26)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
-        self.ws.write(0, 6, 'No.of Test cases', self.style23)
-        self.ws.write(0, 7, Total_count, self.style24)
+        self.ws.write(0, 6, 'APP Name', self.style23)
+        self.ws.write(0, 7, self.crpo_app_name, self.style24)
+        self.ws.write(0, 8, 'No.of Test cases', self.style23)
+        self.ws.write(0, 9, Total_count, self.style24)
         Object.wb_Result.save(output_paths.outputpaths['Communication_output_sheet'])
 
 

@@ -51,6 +51,12 @@ class Excel:
                 else:
                     self.ws.write(self.write_position, col_indx + 2, expected_sheet_rows[col_indx], self.black_color)
                     if not actual_sheet_rows[col_indx] or actual_sheet_rows[col_indx] == ' ':
+                        print(actual_sheet_rows[col_indx])
+                        print(actual_sheet_rows[col_indx])
+                        print(type(actual_sheet_rows[col_indx]))
+                        print(type(actual_sheet_rows[col_indx]))
+                        print(len(actual_sheet_rows[col_indx]))
+                        print(len(actual_sheet_rows[col_indx]))
                         self.ws.write(self.write_position + 1, col_indx + 2, "EMPTY",
                                       self.red_color)
                     else:

@@ -11,6 +11,8 @@ class CreateUser(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
         self.start_time = str(datetime.datetime.now())
         super(CreateUser, self).__init__()
         self.common_login('crpo')
+        self.crpo_app_name = self.app_name.strip()
+        print(self.crpo_app_name)
         self.db_connection('amsin')
 
         # --------------------------
@@ -128,7 +130,7 @@ class CreateUser(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
     def update_pwd_policy(self):
 
         self.lambda_function('create_update_pwd_policy')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         request = {"NumCapital": 1,
                    "NumSmall": 1,
@@ -154,7 +156,7 @@ class CreateUser(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
     def create_user(self, loop):
 
         self.lambda_function('Create_user')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         if self.xl_auto_password[loop] == 1:
 
@@ -208,7 +210,7 @@ class CreateUser(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
     def user_getbyid_details(self):
 
         self.lambda_function('UserGetByid')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         get_user_details = requests.get(self.webapi.format(self.userId), headers=self.headers)
         print(get_user_details.headers)
@@ -454,8 +456,10 @@ class CreateUser(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
         self.ws.write(0, 3, self.start_time, self.style26)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
-        self.ws.write(0, 6, 'No.of Test cases', self.style23)
-        self.ws.write(0, 7, Total_count, self.style24)
+        self.ws.write(0, 6, 'APP Name', self.style23)
+        self.ws.write(0, 7, self.crpo_app_name, self.style24)
+        self.ws.write(0, 8, 'No.of Test cases', self.style23)
+        self.ws.write(0, 9, Total_count, self.style24)
         Obj.wb_Result.save(output_paths.outputpaths['CreateUser_Output_sheet'])
 
 

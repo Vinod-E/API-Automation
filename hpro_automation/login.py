@@ -10,6 +10,7 @@ class CommonLogin(object):
 
     def __init__(self):
         super(CommonLogin, self).__init__()
+        self.app_name = input("APP-NAME: crpo or pyappe1 or py3app:: ")
         self.calling_lambda = str(input("Lambda On/Off:: "))
         self.lambda_headers = {"content-type": "application/json", 'X-APPLMA': 'true'}
         self.Non_lambda_headers = {"content-type": "application/json"}
@@ -28,9 +29,12 @@ class CommonLogin(object):
         try:
             urllib3.disable_warnings()
             login_data = credentials.login_details[login_user]
+            self.headers['APP-NAME'] = self.app_name
+            self.headers['X-APPLMA'] = 'true'
             login_api = requests.post(lambda_apis.get("Loginto_CRPO"), headers=self.header, data=json.dumps(login_data),
                                       verify=False)
             response = login_api.json()
+            print(login_api.headers)
             self.get_token = response.get("Token")
 
             time.sleep(1)

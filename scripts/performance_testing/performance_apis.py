@@ -30,12 +30,13 @@ class PerformanceTesting(login.CommonLogin, Performance_excel.PerformanceExcel):
 
         Iterate_time = 0
         for i in range(0, 5):
+            self.headers['APP-NAME'] = self.app_name
             response_time_api = requests.post(self.webapi, headers=self.headers,
                                               data=json.dumps(self.request, default=str),
                                               verify=False)
             response_time = response_time_api.elapsed.total_seconds()
             self.response = json.loads(response_time_api.content)
-            # print(response_time_api.headers)
+            print(response_time_api.headers)
             # print(self.response)
 
             # print('Response Time ::', response_time)
@@ -45,30 +46,26 @@ class PerformanceTesting(login.CommonLogin, Performance_excel.PerformanceExcel):
         self.Average_Time = Iterate_time/5
         print("Average_Time :: ", self.Average_Time)
 
-    def get_tenant_details(self, app_name):
-        self.headers['APP-NAME'] = app_name
+    def get_tenant_details(self):
         self.headers['X-AUTH-TOKEN'] = None
         self.request = {"TenantAlias": self.tenant_name}
         self.get_response_time_api('get_tenant_details')
         self.Average_Time_tenant_details = self.Average_Time
-        print(self.response)
+        # print(self.response)
 
-    def get_all_entity_properties(self, app_name):
-        self.headers['APP-NAME'] = app_name
+    def get_all_entity_properties(self):
         self.request = {"EntityType": "2"}
         self.get_response_time_api('get_all_entity_properties')
         self.Average_Time_entity = self.Average_Time
-        print(self.response)
+        # print(self.response)
 
-    def group_by_catalog_masters(self, app_name):
-        self.headers['APP-NAME'] = app_name
+    def group_by_catalog_masters(self):
         self.request = {"catalogMasterNames": ["GetCandidateGridProperties"]}
         self.get_response_time_api('group_by_catalog_masters')
         self.Average_Time_catalog = self.Average_Time
-        print(self.response)
+        # print(self.response)
 
-    def get_all_candidates(self, app_name):
-        self.headers['APP-NAME'] = app_name
+    def get_all_candidates(self):
         self.request = {"PagingCriteria": {"IsRefresh": False, "IsSpecificToUser": False, "MaxResults": 20, "PageNo": 1,
                                            "SortParameter": "0", "SortOrder": "0",
                                            "PropertyIds": self.property_ids,
@@ -79,28 +76,25 @@ class PerformanceTesting(login.CommonLogin, Performance_excel.PerformanceExcel):
                         }
         self.get_response_time_api('get_all_candidates')
         self.Average_Time_candidates = self.Average_Time
-        print(self.response)
+        # print(self.response)
 
-    def getTestUsersForTest(self, app_name):
-        self.headers['APP-NAME'] = app_name
+    def getTestUsersForTest(self):
         self.request = {"isProctroingInfo": True, "isPartnerTestUserInfo": True, "testId": self.test_id,
                         "paging": {"maxResults": 20, "pageNumber": 1}}
         self.get_response_time_api('getTestUsersForTest')
         self.Average_Time_testuser = self.Average_Time
-        print(self.response)
+        # print(self.response)
 
-    def interviews(self, app_name):
-        self.headers['APP-NAME'] = app_name
+    def interviews(self):
         self.request = {"pagingCriteria": {"pageSize": 20, "pageNumber": 1}, "isRecordedFileUrlsRequired": False,
                         "isAllInterviewRequired": True, "status": 0, "search": {}}
         self.get_response_time_api('interviews')
         self.Average_Time_interview = self.Average_Time
-        print(self.response)
+        # print(self.response)
 
-    def new_interviews(self, app_name):
-        self.headers['APP-NAME'] = app_name
+    def new_interviews(self):
         self.request = {"pagingCriteria": {"pageSize": 20, "pageNumber": 1}, "isRecordedFileUrlsRequired": False,
                         "isAllInterviewRequired": True, "status": 0, "search": {}}
         self.get_response_time_api('interview_new')
         self.Average_Time_new_interview = self.Average_Time
-        print(self.response)
+        # print(self.response)

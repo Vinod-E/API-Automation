@@ -12,6 +12,8 @@ class UploadScoresheet(login.CommonLogin, work_book.WorkBook):
         self.start_time = str(datetime.datetime.now())
         super(UploadScoresheet, self).__init__()
         self.common_login('crpo')
+        self.crpo_app_name = self.app_name.strip()
+        print(self.crpo_app_name)
 
         self.rowsize1 = 18
         self.size1 = self.rowsize1
@@ -112,10 +114,10 @@ class UploadScoresheet(login.CommonLogin, work_book.WorkBook):
         self.section4_1_dict = {}
 
     def excel_headers(self):
-        self.main_headers = ['Comparision', 'Candidate Id', 'Overall_Status', 'CandidateName', 'Email', 'Test Mode',
+        self.main_headers = ['Comparison', 'Overall_Status', 'Candidate Id', 'CandidateName', 'Email', 'Test Mode',
                              'TestStatus', 'TotalMarks', 'Group1', 'S1', 'S2', 'S3', 'Group2', 'S4', 'S5', 'Group3',
                              'S6', 'S7', 'Group4', 'S8', 'S9']
-        self.headers_with_style2 = ['Comparision', 'Candidate Id', 'CandidateName', 'Email', 'Mobile', 'Overall_Status']
+        self.headers_with_style2 = ['Comparison', 'Candidate Id', 'CandidateName', 'Email', 'Mobile', 'Overall_Status']
         self.headers_with_style9 = ['Test Mode', 'TotalMarks', 'TestStatus']
         self.headers_with_style19 = ['Group1', 'Group2', 'Group3', 'Group4']
         self.file_headers_col_row()
@@ -253,7 +255,7 @@ class UploadScoresheet(login.CommonLogin, work_book.WorkBook):
     def upload_sheet(self, loop):
 
         self.lambda_function('uploadCandidatesScore')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # ------------------          ---------------------------------------------
         # Upload Score Sheet ******** Every 30 Days S3 "FilePath" has to be Replace
@@ -374,7 +376,7 @@ class UploadScoresheet(login.CommonLogin, work_book.WorkBook):
     def updated_upload_sheet(self, loop):
 
         self.lambda_function('uploadCandidatesScore')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # ------------------          ---------------------------------------
         # Upload Score Sheet ******** Every 30 Days Replace the S3 "FilePath"
@@ -393,7 +395,7 @@ class UploadScoresheet(login.CommonLogin, work_book.WorkBook):
     def fetching_scores(self, loop):
 
         self.lambda_function('getApplicantsInfo')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         score_request = {
             "CandidateIds": [self.xl_candidateId[loop]],
@@ -1171,8 +1173,10 @@ class UploadScoresheet(login.CommonLogin, work_book.WorkBook):
         self.ws.write(self.final_status_rowsize, 3, self.start_time, self.style26)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
-        self.ws.write(0, 6, 'No.of Test cases', self.style23)
-        self.ws.write(0, 7, NumberOfTestCases, self.style24)
+        self.ws.write(0, 6, 'APP Name', self.style23)
+        self.ws.write(0, 7, self.crpo_app_name, self.style24)
+        self.ws.write(0, 8, 'No.of Test cases', self.style23)
+        self.ws.write(0, 9, NumberOfTestCases, self.style24)
         Object.wb_Result.save(output_paths.outputpaths['Score_Output_sheet'])
 
 

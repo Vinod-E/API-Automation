@@ -11,6 +11,8 @@ class InterviewFeedback(login.CommonLogin, work_book.WorkBook):
         self.start_time = str(datetime.datetime.now())
         super(InterviewFeedback, self).__init__()
         self.common_login('int')
+        self.crpo_app_name = self.app_name.strip()
+        print(self.crpo_app_name)
 
         # --------------------------
         # Initialising Excel Data
@@ -289,7 +291,7 @@ class InterviewFeedback(login.CommonLogin, work_book.WorkBook):
     def schedule_interview(self, loop):
 
         self.lambda_function('Schedule')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         try:
             schedule_request = [{
@@ -340,7 +342,7 @@ class InterviewFeedback(login.CommonLogin, work_book.WorkBook):
     def provide_feedback(self, loop):
 
         self.lambda_function('givefeedback')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         if self.xl_int_datetime[loop]:
             if self.xl_partial_feedback[loop] == 1:
@@ -396,7 +398,7 @@ class InterviewFeedback(login.CommonLogin, work_book.WorkBook):
     def feedback_details(self, loop):
 
         self.lambda_function('Interview_details')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         try:
             details_url = requests.get(self.webapi.format(self.ir), headers=self.headers)
@@ -434,7 +436,7 @@ class InterviewFeedback(login.CommonLogin, work_book.WorkBook):
     def updated_feedback_details(self, loop):
 
         self.lambda_function('Interview_details')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         try:
             details_url = requests.get(self.webapi.format(self.ir), headers=self.headers)
@@ -469,7 +471,7 @@ class InterviewFeedback(login.CommonLogin, work_book.WorkBook):
     def update_decision(self, loop):
 
         self.lambda_function('updateinterviewerdecision')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         if self.xl_update_stage[loop]:
             update_decision_request = {
@@ -488,7 +490,7 @@ class InterviewFeedback(login.CommonLogin, work_book.WorkBook):
     def decision_updated_feedback_details(self):
 
         self.lambda_function('Interview_details')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         try:
             details_url = requests.get(self.webapi.format(self.ir), headers=self.headers)
@@ -508,7 +510,7 @@ class InterviewFeedback(login.CommonLogin, work_book.WorkBook):
     def partial_feedback(self, loop):
 
         self.lambda_function('updateinterviewerfeedback')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         if self.feedback['partialFeedback'] == 1:
 
@@ -963,8 +965,10 @@ class InterviewFeedback(login.CommonLogin, work_book.WorkBook):
         self.ws.write(0, 3, self.start_time, self.style26)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
-        self.ws.write(0, 6, 'No.of Test cases', self.style23)
-        self.ws.write(0, 7, Total_count, self.style24)
+        self.ws.write(0, 6, 'APP Name', self.style23)
+        self.ws.write(0, 7, self.crpo_app_name, self.style24)
+        self.ws.write(0, 8, 'No.of Test cases', self.style23)
+        self.ws.write(0, 9, Total_count, self.style24)
         Object.wb_Result.save(output_paths.outputpaths['Interview_flow_Output_sheet'])
 
 
