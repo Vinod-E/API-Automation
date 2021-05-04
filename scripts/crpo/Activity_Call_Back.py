@@ -12,6 +12,12 @@ class ActivityCallBack(login.CommonLogin, work_book.WorkBook):
         self.start_time = str(datetime.datetime.now())
         super(ActivityCallBack, self).__init__()
         self.common_login('crpo')
+        self.crpo_app_name = self.app_name.strip()
+        print(self.crpo_app_name)
+
+        # self.pofu_app_name = 'staffing'
+        self.pofu_app_name = self.app_name.strip()
+        print(self.crpo_app_name)
 
         # -----------------------------------------
         # Activity Call Back data set initialisation
@@ -388,7 +394,7 @@ class ActivityCallBack(login.CommonLogin, work_book.WorkBook):
     def change_applicant_status(self, loop):
 
         self.lambda_function('ChangeApplicant_Status')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         request = {"ApplicantIds": [self.xl_applicantId[loop]],
                    "EventId": self.xl_eventId[loop],
@@ -411,7 +417,7 @@ class ActivityCallBack(login.CommonLogin, work_book.WorkBook):
     def applicant_info(self, loop):
 
         self.lambda_function('getApplicantsInfo')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         if self.xl_Activity_01:
             request = {
@@ -433,7 +439,7 @@ class ActivityCallBack(login.CommonLogin, work_book.WorkBook):
     def get_ticket_number(self, loop):
 
         self.lambda_function('gettaskbycandidate')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         request = {
             "CandidateId": self.xl_candidateId[loop]
@@ -468,7 +474,7 @@ class ActivityCallBack(login.CommonLogin, work_book.WorkBook):
     def submit_form_a1(self, loop):
 
         self.lambda_function('submitform')
-        self.headers['APP-NAME'] = 'staffing'
+        self.headers['APP-NAME'] = self.pofu_app_name
 
         if self.ticket_number_A1_t1:
             request = {
@@ -491,7 +497,7 @@ class ActivityCallBack(login.CommonLogin, work_book.WorkBook):
     def submit_form_a2(self, loop):
 
         self.lambda_function('submitform')
-        self.headers['APP-NAME'] = 'staffing'
+        self.headers['APP-NAME'] = self.pofu_app_name
 
         if self.ticket_number_A2_t1:
             request = {
@@ -552,7 +558,7 @@ class ActivityCallBack(login.CommonLogin, work_book.WorkBook):
         # ---------------------------
 
         self.lambda_function('Approve_task')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         req1 = {"AssignedUserTaskIds": [self.ticket_number_A2_t1],
                 "TaskStatus": self.xl_A2_t1_status[loop],
@@ -584,7 +590,7 @@ class ActivityCallBack(login.CommonLogin, work_book.WorkBook):
     def submit_form_a3(self, loop):
 
         self.lambda_function('submitform')
-        self.headers['APP-NAME'] = 'staffing'
+        self.headers['APP-NAME'] = self.pofu_app_name
 
         if self.ticket_number_A3_t1:
             request = {
@@ -627,7 +633,7 @@ class ActivityCallBack(login.CommonLogin, work_book.WorkBook):
         # ---------------------------
 
         self.lambda_function('Approve_task')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         req = {"AssignedUserTaskIds": [self.ticket_number_A3_t1],
                "TaskStatus": self.xl_A3_t1_status[loop],
@@ -649,7 +655,7 @@ class ActivityCallBack(login.CommonLogin, work_book.WorkBook):
     def get_activity_task_details(self, loop):
 
         self.lambda_function('gettaskbycandidate')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         request = {
             "CandidateId": self.xl_candidateId[loop]
@@ -702,7 +708,7 @@ class ActivityCallBack(login.CommonLogin, work_book.WorkBook):
     def reset_applicant_status(self, loop):
 
         self.lambda_function('ChangeApplicant_Status')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         request = {"ApplicantIds": [self.xl_applicantId[loop]],
                    "EventId": self.xl_eventId[loop],
@@ -952,8 +958,10 @@ class ActivityCallBack(login.CommonLogin, work_book.WorkBook):
         self.ws.write(0, 3, self.start_time, self.style26)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
-        self.ws.write(0, 6, 'No.of Test cases', self.style23)
-        self.ws.write(0, 7, Total_count, self.style24)
+        self.ws.write(0, 6, 'APP Name', self.style23)
+        self.ws.write(0, 7, self.crpo_app_name, self.style24)
+        self.ws.write(0, 8, 'No.of Test cases', self.style23)
+        self.ws.write(0, 9, Total_count, self.style24)
         Object.wb_Result.save(output_paths.outputpaths['Activity_CallBack_Output_sheet'])
 
 

@@ -11,6 +11,8 @@ class LoginCheck(work_book.WorkBook, login.CommonLogin):
     def __init__(self):
         self.start_time = str(datetime.datetime.now())
         super(LoginCheck, self).__init__()
+        self.crpo_app_name = self.app_name.strip()
+        print(self.crpo_app_name)
         # self.lambda_call = str(input("Lambda On/Off:: "))
 
         # --------------------------
@@ -110,6 +112,7 @@ class LoginCheck(work_book.WorkBook, login.CommonLogin):
         # Hitting login API multiple times based on input value
         # -----------------------------------------------------
         for i in range(self.xl_API_hits[loop]):
+            self.headers['APP-NAME'] = self.crpo_app_name
             login_check = requests.post(self.webapi, headers=self.headers,
                                         data=json.dumps(request, default=str), verify=False)
             print(login_check.headers)
@@ -165,17 +168,32 @@ class LoginCheck(work_book.WorkBook, login.CommonLogin):
         # Writing Output Data
         # -------------------
 
-        if self.xl_expected_message[loop] == self.error_message:
-            self.ws.write(self.rowsize, 0, 'Pass', self.style26)
-            self.success_case_01 = 'Pass'
+        # if self.xl_expected_message[loop] == self.error_message:
+        #     self.ws.write(self.rowsize, 0, 'Pass', self.style26)
+        #     self.success_case_01 = 'Pass'
+        # elif self.login_check_api_response.get('LastLogin'):
+        #     if self.xl_expected_message[loop]:
+        #         self.ws.write(self.rowsize, 0, 'Pass', self.style26)
+        #         self.success_case_02 = 'Pass'
+        #     elif self.xl_expected_message[loop] == self.error_message:
+        #         self.ws.write(self.rowsize, 0, 'Fail', self.style3)
+        #     else:
+        #         self.ws.write(self.rowsize, 0, 'Fail', self.style3)
+        # else:
+        #     self.ws.write(self.rowsize, 0, 'Fail', self.style3)
+
+        if self.error_message:
+            if self.xl_expected_message[loop] == self.error_message:
+                self.ws.write(self.rowsize, 0, 'Pass', self.style26)
+                self.success_case_01 = 'Pass'
+            else:
+                self.ws.write(self.rowsize, 0, 'Fail', self.style3)
         elif self.login_check_api_response.get('LastLogin'):
-            if self.xl_expected_message[loop]:
+            if 'Login Suc' in self.xl_expected_message[loop]:
                 self.ws.write(self.rowsize, 0, 'Pass', self.style26)
                 self.success_case_02 = 'Pass'
             else:
                 self.ws.write(self.rowsize, 0, 'Fail', self.style3)
-        else:
-            self.ws.write(self.rowsize, 0, 'Fail', self.style3)
 
         # --------------------------------------------------------------------------------------------------------------
 
@@ -234,8 +252,10 @@ class LoginCheck(work_book.WorkBook, login.CommonLogin):
         self.ws.write(0, 3, self.start_time, self.style26)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
-        self.ws.write(0, 6, 'No.of Test cases', self.style23)
-        self.ws.write(0, 7, Total_count, self.style24)
+        self.ws.write(0, 6, 'APP Name', self.style23)
+        self.ws.write(0, 7, self.crpo_app_name, self.style24)
+        self.ws.write(0, 8, 'No.of Test cases', self.style23)
+        self.ws.write(0, 9, Total_count, self.style24)
         Object.wb_Result.save(output_paths.outputpaths['Login_check_Output_sheet'])
 
 

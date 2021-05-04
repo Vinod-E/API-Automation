@@ -14,6 +14,8 @@ class SCAutomation(login.CommonLogin, db_login.DBConnection, work_book.WorkBook)
         super(SCAutomation, self).__init__()
         self.db_connection('amsin')
         self.common_login('crpo')
+        self.crpo_app_name = self.app_name.strip()
+        print(self.crpo_app_name)
 
         self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 24)))
         self.Actual_Success_case = []
@@ -61,7 +63,7 @@ class SCAutomation(login.CommonLogin, db_login.DBConnection, work_book.WorkBook)
     def groupby_MJR_TEST_SLC(self):
 
         self.lambda_function('ChangeApplicant_Status')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # Sort applicant data by `mjrid, Testid,scid,JobId and Eventid` key.
         self.applicant_json_data = sorted(self.applicant_json_data,
@@ -201,8 +203,10 @@ class SCAutomation(login.CommonLogin, db_login.DBConnection, work_book.WorkBook)
         self.ws.write(0, 3, self.start_time, self.style26)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
-        self.ws.write(0, 6, 'No.of Test cases', self.style23)
-        self.ws.write(0, 7, self.totalapplicantCount, self.style24)
+        self.ws.write(0, 6, 'APP Name', self.style23)
+        self.ws.write(0, 7, self.crpo_app_name, self.style24)
+        self.ws.write(0, 8, 'No.of Test cases', self.style23)
+        self.ws.write(0, 9, self.totalapplicantCount, self.style24)
         ob.wb_Result.save(output_paths.outputpaths['SC_Output_sheet'])
 
 

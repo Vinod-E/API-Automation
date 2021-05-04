@@ -11,6 +11,8 @@ class CancelInterview(login.CommonLogin, work_book.WorkBook):
         self.start_time = str(datetime.datetime.now())
         super(CancelInterview, self).__init__()
         self.common_login('crpo')
+        self.crpo_app_name = self.app_name.strip()
+        print(self.crpo_app_name)
 
         # -----------------------
         # Initialising Excel Data
@@ -82,7 +84,7 @@ class CancelInterview(login.CommonLogin, work_book.WorkBook):
     def cancel_interview_request(self, loop):
 
         self.lambda_function('cancel')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         cancel_request = {"interviewRequestIds": [self.xl_ir_id[loop]],
                           "interviewCanceledStatusId": self.xl_cancel_statusID,
@@ -178,8 +180,10 @@ class CancelInterview(login.CommonLogin, work_book.WorkBook):
         self.ws.write(0, 3, self.start_time, self.style26)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
-        self.ws.write(0, 6, 'No.of Test cases', self.style23)
-        self.ws.write(0, 7, Total_count, self.style24)
+        self.ws.write(0, 6, 'APP Name', self.style23)
+        self.ws.write(0, 7, self.crpo_app_name, self.style24)
+        self.ws.write(0, 8, 'No.of Test cases', self.style23)
+        self.ws.write(0, 9, Total_count, self.style24)
         Object.wb_Result.save(output_paths.outputpaths['Cancel_Interview_Output_sheet'])
 
 

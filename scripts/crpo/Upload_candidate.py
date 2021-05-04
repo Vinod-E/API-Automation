@@ -12,6 +12,8 @@ class UploadCandidate(login.CommonLogin, work_book.WorkBook):
         self.start_time = str(datetime.datetime.now())
         super(UploadCandidate, self).__init__()
         self.common_login('crpo')
+        self.crpo_app_name = self.app_name.strip()
+        print(self.crpo_app_name)
 
         # --------------------------
         # Initialising Excel Data
@@ -575,7 +577,7 @@ class UploadCandidate(login.CommonLogin, work_book.WorkBook):
     def bulk_create_tag_candidates(self, iteration):
 
         self.lambda_function('bulkCreateTagCandidates')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # -------------------------
         # Candidate create request
@@ -728,7 +730,7 @@ class UploadCandidate(login.CommonLogin, work_book.WorkBook):
     def candidate_get_by_id_details(self):
 
         self.lambda_function('CandidateGetbyId')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         get_candidate_details = requests.post(self.webapi.format(self.CID), headers=self.headers)
         print(get_candidate_details.headers)
@@ -741,7 +743,7 @@ class UploadCandidate(login.CommonLogin, work_book.WorkBook):
     def candidate_educational_details(self, loop):
 
         self.lambda_function('Candidate_Educationaldetails')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         get_educational_details = requests.post(self.webapi.format(self.CID),
                                                 headers=self.headers)
@@ -762,7 +764,7 @@ class UploadCandidate(login.CommonLogin, work_book.WorkBook):
     def candidate_experience_details(self):
 
         self.lambda_function('Candidate_ExperienceDetails')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         get_experience_details = requests.post(self.webapi.format(self.CID),
                                                headers=self.headers)
@@ -775,7 +777,7 @@ class UploadCandidate(login.CommonLogin, work_book.WorkBook):
     def event_applicants(self, loop):
 
         self.lambda_function('getAllApplicants')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         eventapplicant_request = {
             "RecruitEventId": self.xl_eventId[loop],
@@ -1981,8 +1983,10 @@ class UploadCandidate(login.CommonLogin, work_book.WorkBook):
         self.ws.write(0, 3, self.start_time, self.style26)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
-        self.ws.write(0, 6, 'No.of Test cases', self.style23)
-        self.ws.write(0, 7, Total_count, self.style24)
+        self.ws.write(0, 6, 'APP Name', self.style23)
+        self.ws.write(0, 7, self.crpo_app_name, self.style24)
+        self.ws.write(0, 8, 'No.of Test cases', self.style23)
+        self.ws.write(0, 9, Total_count, self.style24)
         Obj.wb_Result.save(output_paths.outputpaths['Candidate_Output_sheet'])
 
 

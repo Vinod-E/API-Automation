@@ -15,6 +15,8 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
         # --------------------------------- Inheritance Class Instance -------------------------------------------------
         super(ManageInterviewers, self).__init__()
         self.common_login('crpo')
+        self.crpo_app_name = self.app_name.strip()
+        print(self.crpo_app_name)
 
         # --------------------------------- Overall status initialize variables ----------------------------------------
         self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 16)))
@@ -180,7 +182,7 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
     def send_nomination_mails(self, loop):
 
         self.lambda_function('send_nomination_mails_to_selected_interviewers')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # ----------------------------------- API request --------------------------------------------------------------
         request = {"eventId": self.xl_event_id[loop],
@@ -200,7 +202,7 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
     def interviewer_request(self, loop):
 
         self.lambda_function('update_interviewer_nomination_status')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # ----------------------------------- API request --------------------------------------------------------------
         request = {"eventId": self.xl_event_id[loop],
@@ -220,7 +222,7 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
 
     def withdraw_after_int_decision(self, loop):
         self.lambda_function('update_interviewer_nomination_status')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # ----------------------------------- API request --------------------------------------------------------------
         request = {"eventId": self.xl_event_id[loop],
@@ -239,7 +241,7 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
 
     def withdraw_after_sync(self, loop):
         self.lambda_function('update_interviewer_nomination_status')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # ----------------------------------- API request --------------------------------------------------------------
         request = {"eventId": self.xl_event_id[loop],
@@ -259,7 +261,7 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
     def event_manager_request(self, loop):
 
         self.lambda_function('update_interviewer_nomination_status')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # ----------------------------------- API request --------------------------------------------------------------
         request = {"eventId": self.xl_event_id[loop],
@@ -282,7 +284,7 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
     def reject_event_manager_request(self, loop):
 
         self.lambda_function('update_interviewer_nomination_status')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # ----------------------------------- API request --------------------------------------------------------------
         request = {"eventId": self.xl_event_id[loop],
@@ -304,7 +306,7 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
 
     def withdraw_after_manager_decision(self, loop):
         self.lambda_function('update_interviewer_nomination_status')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # ----------------------------------- API request --------------------------------------------------------------
         request = {"eventId": self.xl_event_id[loop],
@@ -324,7 +326,7 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
     def sync_interviewers(self, loop):
 
         self.lambda_function('sync_interviewers')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # ----------------------------------- API request --------------------------------------------------------------
         request = {"eventId": self.xl_event_id[loop]}
@@ -338,7 +340,7 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
     def get_all_invited_interviewers(self, loop):
 
         self.lambda_function('get_all_invited_interviewers')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # ----------------------------------- API request --------------------------------------------------------------
         request = {"eventId": self.xl_event_id[loop],
@@ -358,7 +360,7 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
     def get_all_invited_interviewers_after_manager_reject(self, loop):
 
         self.lambda_function('get_all_invited_interviewers')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # ----------------------------------- API request --------------------------------------------------------------
         request = {"eventId": self.xl_event_id[loop],
@@ -377,7 +379,7 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
     def get_partial_get_event_id(self, loop):
 
         self.lambda_function('getPartialGetEventForId')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # ----------------------------------- API request --------------------------------------------------------------
         request = {"EId": self.xl_event_id[loop], "EOptions": [5]}
@@ -394,7 +396,7 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
     def get_event_wise_nominations_summary_count(self, loop):
 
         self.lambda_function('get_event_wise_nominations_summary_count')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # ----------------------------------- API request --------------------------------------------------------------
         request = {"eventId": self.xl_report_event_id[loop]}
@@ -666,8 +668,10 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
         self.ws.write(0, 3, self.start_time, self.style26)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
-        self.ws.write(0, 6, 'No.of Test cases', self.style23)
-        self.ws.write(0, 7, Total_count, self.style24)
+        self.ws.write(0, 6, 'APP Name', self.style23)
+        self.ws.write(0, 7, self.crpo_app_name, self.style24)
+        self.ws.write(0, 8, 'No.of Test cases', self.style23)
+        self.ws.write(0, 9, Total_count, self.style24)
         # ---------------------------- OutPut File save with Overall Status --------------------------------------------
         Object.wb_Result.save(output_paths.outputpaths['MI_output_sheet'])
 

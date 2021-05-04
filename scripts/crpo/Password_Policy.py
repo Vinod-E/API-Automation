@@ -12,6 +12,8 @@ class PasswordPolicy(login.CommonLogin, work_book.WorkBook, db_login.DBConnectio
         self.start_time = str(datetime.datetime.now())
         super(PasswordPolicy, self).__init__()
         self.common_login('crpo')
+        self.crpo_app_name = self.app_name.strip()
+        print(self.crpo_app_name)
 
         # ----------------------------------------------
         # Password configurations data set initialisation
@@ -167,7 +169,7 @@ class PasswordPolicy(login.CommonLogin, work_book.WorkBook, db_login.DBConnectio
     def update_pwd_policy(self, loop):
 
         self.lambda_function('create_update_pwd_policy')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         request = {"NumCapital": self.xl_capital[loop],
                    "NumSmall": self.xl_small[loop],
@@ -208,7 +210,7 @@ class PasswordPolicy(login.CommonLogin, work_book.WorkBook, db_login.DBConnectio
     def change_password(self, loop):
 
         self.lambda_function('change_password')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         request = {
             "UserName": self.xl_username[loop],
@@ -229,7 +231,7 @@ class PasswordPolicy(login.CommonLogin, work_book.WorkBook, db_login.DBConnectio
     def login_check(self, loop):
 
         self.lambda_function('Loginto_CRPO')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         request = {"LoginName": self.xl_username[loop],
                    "Password": self.xl_new_pwd[loop],
@@ -447,8 +449,10 @@ class PasswordPolicy(login.CommonLogin, work_book.WorkBook, db_login.DBConnectio
         self.ws.write(0, 3, self.start_time, self.style26)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
-        self.ws.write(0, 6, 'No.of Test cases', self.style23)
-        self.ws.write(0, 7, Total_count, self.style24)
+        self.ws.write(0, 6, 'APP Name', self.style23)
+        self.ws.write(0, 7, self.crpo_app_name, self.style24)
+        self.ws.write(0, 8, 'No.of Test cases', self.style23)
+        self.ws.write(0, 9, Total_count, self.style24)
         Object.wb_Result.save(output_paths.outputpaths['Password_policy'])
 
 

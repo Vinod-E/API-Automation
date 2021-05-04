@@ -13,6 +13,8 @@ class ExcelData(login.CommonLogin, styles.FontColor, db_login.DBConnection):
         self.start_time = str(datetime.datetime.now())
         super(ExcelData, self).__init__()
         self.common_login('crpo')
+        self.crpo_app_name = self.app_name.strip()
+        print(self.crpo_app_name)
         self.db_connection('amsin')
 
         # This Script works for below fields
@@ -91,7 +93,7 @@ class ExcelData(login.CommonLogin, styles.FontColor, db_login.DBConnection):
     def json_data(self):
 
         self.lambda_function('get_all_candidates')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         r = requests.post(self.webapi, headers=self.headers, data=json.dumps(self.data, default=str), verify=False)
         print(r.headers)
@@ -112,7 +114,7 @@ class ExcelData(login.CommonLogin, styles.FontColor, db_login.DBConnection):
     def json_data_iteration(self, data, iter):
 
         self.lambda_function('get_all_candidates')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         iter += 1
         self.actual_ids = []
@@ -506,8 +508,10 @@ class ExcelData(login.CommonLogin, styles.FontColor, db_login.DBConnection):
         self.ws.write(0, 3, self.start_time, self.style26)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
-        self.ws.write(0, 6, 'No.of Test cases', self.style23)
-        self.ws.write(0, 7, self.tot_len, self.style24)
+        self.ws.write(0, 6, 'APP Name', self.style23)
+        self.ws.write(0, 7, self.crpo_app_name, self.style24)
+        self.ws.write(0, 8, 'No.of Test cases', self.style23)
+        self.ws.write(0, 9, self.tot_len, self.style24)
         Object.wb_result.save(output_paths.outputpaths['candidate_search_output_sheet_2'])
 
 

@@ -11,6 +11,8 @@ class RescheduleInterview(login.CommonLogin, work_book.WorkBook):
         self.start_time = str(datetime.datetime.now())
         super(RescheduleInterview, self).__init__()
         self.common_login('crpo')
+        self.crpo_app_name = self.app_name.strip()
+        print(self.crpo_app_name)
 
         # --------------------------
         # Initialising Excel Data
@@ -174,7 +176,7 @@ class RescheduleInterview(login.CommonLogin, work_book.WorkBook):
     def schedule_interview(self, loop):
 
         self.lambda_function('Schedule')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         try:
             schedule_request = [{
@@ -191,11 +193,12 @@ class RescheduleInterview(login.CommonLogin, work_book.WorkBook):
                 "recruitEventId": self.xl_Event_id[loop],
                 "applicantIds": [self.xl_Applicant_id[loop]]
             }]
+            print(schedule_request)
             scheduling_interviews = requests.post(self.webapi, headers=self.headers,
                                                   data=json.dumps(schedule_request, default=str), verify=False)
             print(scheduling_interviews.headers)
             schedule_response = json.loads(scheduling_interviews.content)
-            # print (json.dumps(schedule_response, indent=2))
+            # print(json.dumps(schedule_response, indent=2))
             data = schedule_response['data']
             # print(json.dumps(data, indent=2))
             # print('***--------------------------------------------------------***')
@@ -225,7 +228,7 @@ class RescheduleInterview(login.CommonLogin, work_book.WorkBook):
     def reschedule_interview(self, loop):
 
         self.lambda_function('Reschedule')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         reschedule_request = [{
             "interviewRequestId": self.ir,
@@ -233,8 +236,10 @@ class RescheduleInterview(login.CommonLogin, work_book.WorkBook):
             "interviewers": self.xl_Reschedule_add_interviewers[loop],
             "interviewDate": self.xl_Reschedule_DateTime[loop],
             "recruiterComment": self.xl_Reschedule_comment[loop],
-            "removedInterviewers": self.xl_Reschedule_remove_interviewers[loop]
+            "removedInterviewers": self.xl_Reschedule_remove_interviewers[loop],
+            "locationId": 25085
         }]
+        print(reschedule_request)
 
         reschedule_api = requests.post(self.webapi, headers=self.headers,
                                        data=json.dumps(reschedule_request, default=str), verify=False)
@@ -263,7 +268,7 @@ class RescheduleInterview(login.CommonLogin, work_book.WorkBook):
     def interview_request_details(self):
 
         self.lambda_function('InterviewRequest_details')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         ir_details_request = {
             "search": {
@@ -286,7 +291,7 @@ class RescheduleInterview(login.CommonLogin, work_book.WorkBook):
     def updated_interview_request_details(self):
 
         self.lambda_function('InterviewRequest_details')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         ir_details_request = {
             "search": {
@@ -520,8 +525,10 @@ class RescheduleInterview(login.CommonLogin, work_book.WorkBook):
         self.ws.write(0, 3, self.start_time, self.style26)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
-        self.ws.write(0, 6, 'No.of Test cases', self.style23)
-        self.ws.write(0, 7, Total_count, self.style24)
+        self.ws.write(0, 6, 'APP Name', self.style23)
+        self.ws.write(0, 7, self.crpo_app_name, self.style24)
+        self.ws.write(0, 8, 'No.of Test cases', self.style23)
+        self.ws.write(0, 9, Total_count, self.style24)
         Object.wb_Result.save(output_paths.outputpaths['Reschdeule_Output_sheet'])
 
 

@@ -13,6 +13,8 @@ class Excel_Data(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
         super(Excel_Data, self).__init__()
         self.start_time = str(datetime.datetime.now())
         self.common_login('crpo')
+        self.crpo_app_name = self.app_name.strip()
+        print(self.crpo_app_name)
         self.db_connection('amsin')
 
         # This Script works for below fields
@@ -87,7 +89,7 @@ class Excel_Data(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
     def json_data(self):
 
         self.lambda_function('getAllApplicants')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         r = requests.post(self.webapi,
                           headers=self.headers, data=json.dumps(self.data, default=str), verify=False)
@@ -608,8 +610,10 @@ class Excel_Data(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
         self.ws.write(0, 3, self.start_time, self.style26)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
-        self.ws.write(0, 6, 'No.of Test cases', self.style23)
-        self.ws.write(0, 7, self.tot_len, self.style24)
+        self.ws.write(0, 6, 'APP Name', self.style23)
+        self.ws.write(0, 7, self.crpo_app_name, self.style24)
+        self.ws.write(0, 8, 'No.of Test cases', self.style23)
+        self.ws.write(0, 9, self.tot_len, self.style24)
         Object.wb_result.save(output_paths.outputpaths['Applicant_count_Output_sheet_1'])
 
 

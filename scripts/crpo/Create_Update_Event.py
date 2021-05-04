@@ -15,6 +15,8 @@ class CreateUpdateEvent(login.CommonLogin, work_book.WorkBook):
         # --------------------------------- Inheritance Class Instance -------------------------------------------------
         super(CreateUpdateEvent, self).__init__()
         self.common_login('crpo')
+        self.crpo_app_name = self.app_name.strip()
+        print(self.crpo_app_name)
 
         # --------------------------------- Overall status initialize variables ----------------------------------------
         self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 24)))
@@ -286,7 +288,7 @@ class CreateUpdateEvent(login.CommonLogin, work_book.WorkBook):
     def create_event(self, loop):
 
         self.lambda_function('createEvent')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # ----------------------------------- API request --------------------------------------------------------------
         if self.xl_event_type[loop] == 2:
@@ -331,7 +333,7 @@ class CreateUpdateEvent(login.CommonLogin, work_book.WorkBook):
     def update_event(self, loop):
 
         self.lambda_function('updateEvent')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # ----------------------------------- API request --------------------------------------------------------------
         request = {"updateEvent": {"name": self.xl_update_EventName[loop],
@@ -361,7 +363,7 @@ class CreateUpdateEvent(login.CommonLogin, work_book.WorkBook):
 
     def get_all_event(self, loop):
         self.lambda_function('getAllEvent')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # ----------------------------------- API request --------------------------------------------------------------
         request = {
@@ -513,8 +515,10 @@ class CreateUpdateEvent(login.CommonLogin, work_book.WorkBook):
         self.ws.write(0, 3, self.start_time, self.style26)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
-        self.ws.write(0, 6, 'No.of Test cases', self.style23)
-        self.ws.write(0, 7, NumberOfTestCases, self.style24)
+        self.ws.write(0, 6, 'APP Name', self.style23)
+        self.ws.write(0, 7, self.crpo_app_name, self.style24)
+        self.ws.write(0, 8, 'No.of Test cases', self.style23)
+        self.ws.write(0, 9, NumberOfTestCases, self.style24)
 
         # ---------------------------- OutPut File save with Overall Status --------------------------------------------
         Object.wb_Result.save(output_paths.outputpaths['Event_output_sheet'])

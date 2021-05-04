@@ -8,13 +8,13 @@ class AmsinNonEu(performance_output.AmsinNonEuOutput):
         super(AmsinNonEu, self).__init__()
 
     def api_response_time(self):
-        self.get_tenant_details('crpo')
-        self.get_all_entity_properties('crpo')
-        self.group_by_catalog_masters('crpo')
-        self.get_all_candidates('crpo')
-        self.getTestUsersForTest('crpo')
-        # self.interviews('crpo')
-        # self.new_interviews('crpo')
+        self.get_tenant_details()
+        self.get_all_entity_properties()
+        self.group_by_catalog_masters()
+        self.get_all_candidates()
+        self.getTestUsersForTest()
+        # self.interviews()
+        # self.new_interviews()
 
 
 Object = AmsinNonEu()

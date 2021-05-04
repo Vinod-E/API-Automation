@@ -22,12 +22,13 @@ class AllConfigurations:
         self.save_path = output_paths.outputpaths['Stack_Ranking_output_sheet'].format(date)
 
     def loginToCRPO(self):
-        header = {"content-type": "application/json"}
+        header = {"content-type": "application/json", 'APP-NAME': 'py3app', 'X-APPLMA': 'true'}
         data = {"LoginName": "admin", "Password": "4LWS-0671", "TenantAlias": "automation", "UserName": "admin"}
         response = requests.post(self.login, headers=header,
                                  data=json.dumps(data), verify=False)
         login_response = response.json()
-        self.headers = {"content-type": "application/json", "X-AUTH-TOKEN": login_response.get("Token")}
+        self.headers = {"content-type": "application/json", "X-AUTH-TOKEN": login_response.get("Token"),
+                        'APP-NAME': 'py3app', 'X-APPLMA': 'true'}
 
     # ------------------------------------------------------------------------------------------------------------------#
     # 1. This method is having all api requests

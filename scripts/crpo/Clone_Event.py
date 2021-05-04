@@ -15,6 +15,8 @@ class CloneEvent(login.CommonLogin, work_book.WorkBook):
         # --------------------------------- Inheritance Class Instance -------------------------------------------------
         super(CloneEvent, self).__init__()
         self.common_login('crpo')
+        self.crpo_app_name = self.app_name.strip()
+        print(self.crpo_app_name)
 
         # --------------------------------- Overall status initialize variables ----------------------------------------
         self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 4)))
@@ -207,7 +209,7 @@ class CloneEvent(login.CommonLogin, work_book.WorkBook):
     def clone_event(self, loop):
 
         self.lambda_function('cloneEvent')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # ----------------------------------- API request --------------------------------------------------------------
         request = self.xl_clone_event_request[loop]
@@ -221,7 +223,7 @@ class CloneEvent(login.CommonLogin, work_book.WorkBook):
 
     def get_all_event(self):
         self.lambda_function('getAllEvent')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # ----------------------------------- API request --------------------------------------------------------------
         request = {
@@ -255,7 +257,7 @@ class CloneEvent(login.CommonLogin, work_book.WorkBook):
 
     def get_ec_configs(self):
         self.lambda_function('getEcConfigs')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # ----------------------------------- API request --------------------------------------------------------------
         request = {"eventIds": [self.api_clone_event_id]}
@@ -271,7 +273,7 @@ class CloneEvent(login.CommonLogin, work_book.WorkBook):
 
     def get_assessment_summary(self):
         self.lambda_function('getAssessmentSummary')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # ----------------------------------- API request --------------------------------------------------------------
         request = {"eventId": self.api_clone_event_id}
@@ -287,7 +289,7 @@ class CloneEvent(login.CommonLogin, work_book.WorkBook):
 
     def get_event_registration_dates(self):
         self.lambda_function('getEventRegistrationDates')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         # ----------------------------------- API request --------------------------------------------------------------
         request = {"EventId": self.api_clone_event_id}
@@ -597,8 +599,10 @@ class CloneEvent(login.CommonLogin, work_book.WorkBook):
         self.ws.write(0, 3, self.start_time, self.style26)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
-        self.ws.write(0, 6, 'No.of Test cases', self.style23)
-        self.ws.write(0, 7, Total_count, self.style24)
+        self.ws.write(0, 6, 'APP Name', self.style23)
+        self.ws.write(0, 7, self.crpo_app_name, self.style24)
+        self.ws.write(0, 8, 'No.of Test cases', self.style23)
+        self.ws.write(0, 9, Total_count, self.style24)
 
         # ---------------------------- OutPut File save with Overall Status --------------------------------------------
         Object.wb_Result.save(output_paths.outputpaths['Event_Clone_output_sheet'])

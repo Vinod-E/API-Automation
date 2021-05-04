@@ -12,6 +12,8 @@ class ECAutomation(login.CommonLogin, db_login.DBConnection, work_book.WorkBook)
         self.start_time = str(datetime.datetime.now())
         super(ECAutomation, self).__init__()
         self.common_login('crpo')
+        self.crpo_app_name = self.app_name.strip()
+        print(self.crpo_app_name)
         self.db_connection('amsin')
 
         now = datetime.datetime.now()
@@ -101,7 +103,7 @@ class ECAutomation(login.CommonLogin, db_login.DBConnection, work_book.WorkBook)
         # Updating EC configuration at event level
         # -------------------------------------------
         self.lambda_function('createOrUpdateEcConfig')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         self.data = {"ecConfigurations": [{"id": self.xl_ec_configuration__Id[iteration_count],
                                            "jobRoleId": self.xl_job_Id[iteration_count],
@@ -122,7 +124,7 @@ class ECAutomation(login.CommonLogin, db_login.DBConnection, work_book.WorkBook)
             # Changing applicant status
             # ---------------------------
             self.lambda_function('ChangeApplicant_Status')
-            self.headers['APP-NAME'] = 'crpo'
+            self.headers['APP-NAME'] = self.crpo_app_name
 
             self.data = {"ApplicantIds": [self.applicant_id[iteration_count]],
                          "EventId": self.xl_event_Id[iteration_count],
@@ -225,8 +227,10 @@ class ECAutomation(login.CommonLogin, db_login.DBConnection, work_book.WorkBook)
         self.ws.write(0, 3, self.start_time, self.style26)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
-        self.ws.write(0, 6, 'No.of Test cases', self.style23)
-        self.ws.write(0, 7, tot_count, self.style24)
+        self.ws.write(0, 6, 'APP Name', self.style23)
+        self.ws.write(0, 7, self.crpo_app_name, self.style24)
+        self.ws.write(0, 8, 'No.of Test cases', self.style23)
+        self.ws.write(0, 9, tot_count, self.style24)
         ob.wb_Result.save(output_paths.outputpaths['EC_Output_sheet'])
 
 

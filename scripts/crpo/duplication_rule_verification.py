@@ -13,6 +13,8 @@ class VerifyDuplicationRule(login.CommonLogin, work_book.WorkBook):
         self.start_time = str(datetime.datetime.now())
         super(VerifyDuplicationRule, self).__init__()
         self.common_login('crpo')
+        self.crpo_app_name = self.app_name.strip()
+        print(self.crpo_app_name)
 
         self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 92)))
         self.Actual_Success_case = []
@@ -48,7 +50,7 @@ class VerifyDuplicationRule(login.CommonLogin, work_book.WorkBook):
     def updateduplicaterule(self):
 
         self.lambda_function('save_app_preferences')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         self.update_json_data = self.current_data.get('DuplicationRuleJson')
         # print self.update_json_data
@@ -120,7 +122,7 @@ class VerifyDuplicationRule(login.CommonLogin, work_book.WorkBook):
         # print self.data
 
         self.lambda_function('candidate_duplicate_check')
-        self.headers['APP-NAME'] = 'crpo'
+        self.headers['APP-NAME'] = self.crpo_app_name
 
         r = requests.post(self.webapi, headers=self.headers, data=json.dumps(self.data, default=str), verify=False)
         print(r.headers)
@@ -239,8 +241,10 @@ class VerifyDuplicationRule(login.CommonLogin, work_book.WorkBook):
         self.ws.write(0, 3, self.start_time, self.style26)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
-        self.ws.write(0, 6, 'No.of Test cases', self.style23)
-        self.ws.write(0, 7, self.tot, self.style24)
+        self.ws.write(0, 6, 'APP Name', self.style23)
+        self.ws.write(0, 7, self.crpo_app_name, self.style24)
+        self.ws.write(0, 8, 'No.of Test cases', self.style23)
+        self.ws.write(0, 9, self.tot, self.style24)
         ob.wb_Result.save(output_paths.outputpaths['Duplication_rule_Output_sheet'])
 
 
