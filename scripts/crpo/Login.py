@@ -167,21 +167,6 @@ class LoginCheck(work_book.WorkBook, login.CommonLogin):
         # -------------------
         # Writing Output Data
         # -------------------
-
-        # if self.xl_expected_message[loop] == self.error_message:
-        #     self.ws.write(self.rowsize, 0, 'Pass', self.style26)
-        #     self.success_case_01 = 'Pass'
-        # elif self.login_check_api_response.get('LastLogin'):
-        #     if self.xl_expected_message[loop]:
-        #         self.ws.write(self.rowsize, 0, 'Pass', self.style26)
-        #         self.success_case_02 = 'Pass'
-        #     elif self.xl_expected_message[loop] == self.error_message:
-        #         self.ws.write(self.rowsize, 0, 'Fail', self.style3)
-        #     else:
-        #         self.ws.write(self.rowsize, 0, 'Fail', self.style3)
-        # else:
-        #     self.ws.write(self.rowsize, 0, 'Fail', self.style3)
-
         if self.error_message:
             if self.xl_expected_message[loop] == self.error_message:
                 self.ws.write(self.rowsize, 0, 'Pass', self.style26)

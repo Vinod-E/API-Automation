@@ -22,7 +22,7 @@ class AllConfigurations:
         self.save_path = output_paths.outputpaths['Stack_Ranking_output_sheet'].format(date)
 
     def loginToCRPO(self):
-        header = {"content-type": "application/json", 'APP-NAME': 'py3app', 'X-APPLMA': 'true'}
+        header = {"content-type": "application/json", 'APP-NAME': 'crpo', 'X-APPLMA': 'true'}
         data = {"LoginName": "admin", "Password": "4LWS-0671", "TenantAlias": "automation", "UserName": "admin"}
         response = requests.post(self.login, headers=header,
                                  data=json.dumps(data), verify=False)

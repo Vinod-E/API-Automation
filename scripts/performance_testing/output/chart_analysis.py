@@ -5,6 +5,7 @@ from pandas import ExcelFile
 from selenium import webdriver
 from selenium.common import exceptions
 from selenium.webdriver.common.keys import Keys
+from webdriver_manager.chrome import ChromeDriverManager
 from hpro_automation import (output_paths, input_paths)
 
 
@@ -155,7 +156,7 @@ class Chart(object):
     def merge_2_excels(self):
         # -------- Opening Online website to merge excels -----------------
         try:
-            driver = webdriver.Chrome(input_paths.driver['chrome'])
+            driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
             print("Run started at:: " + str(datetime.datetime.now()))
             print("Environment setup has been Done")
             print("----------------------------------------------------------")

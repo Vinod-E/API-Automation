@@ -155,4 +155,8 @@ non_lambda_apis = {
     # ------------------------------------------- Performance APIS -----------------------------------------------------
     "api1": generic_domain + "common/get_tenant_details/",
 
+    # ------------------------------------------- S3 APIS -----------------------------------------------------
+    "s3": generic_domain + "common/filehandler/api/v2/upload/.jpeg,.jpg,.gif,.png,.pdf,.txt,.doc,.docx,.xls,.xlsx,.zip,"
+                           ".rar,.7z,.msg,.html,.ogg,.mp4,.webm,/15000/",
+
 }

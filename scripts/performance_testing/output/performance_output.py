@@ -1,4 +1,5 @@
 import os.path
+from Utilities import excelRead
 from hpro_automation import (work_book, output_paths, api)
 from scripts.performance_testing import performance_apis
 from openpyxl import load_workbook
@@ -8,21 +9,23 @@ import pandas as pd
 class AmsinNonEuOutput(work_book.WorkBook, performance_apis.PerformanceTesting):
     def __init__(self):
         super(AmsinNonEuOutput, self).__init__()
+        self.run_number = 1
         self.output_file = output_paths.outputpaths['performance_testing']
         self.all_data = []
 
     def create_pandas_excel(self, sheet_name):
         # ----------------------- Headers initialization ----------------------------
-        h1 = 'Run Date'
-        h2 = 'Run Time'
-        h3 = 'get_tenant_details'
-        h4 = 'get_all_entity_properties'
-        h5 = 'group_by_catalog_masters'
-        h6 = 'get_all_candidates'
-        h7 = 'getTestUsersForTest'
-        h8 = 'Interview'
-        h9 = 'New_Interview'
-        headers = [h1, h2, h3, h4, h5, h6, h7, h8, h9]
+        h1 = 'Run Number'
+        h2 = 'Run Date'
+        h3 = 'Run Time'
+        h4 = 'get_tenant_details'
+        h5 = 'get_all_entity_properties'
+        h6 = 'group_by_catalog_masters'
+        h7 = 'get_all_candidates'
+        h8 = 'getTestUsersForTest'
+        h9 = 'Interview'
+        h10 = 'New_Interview'
+        headers = [h1, h2, h3, h4, h5, h6, h7, h8, h9, h10]
 
         # ------------------ Validation for File exists  ------------------------------
         local_path = os.path.exists(self.output_file)
@@ -45,17 +48,33 @@ class AmsinNonEuOutput(work_book.WorkBook, performance_apis.PerformanceTesting):
             vinod.save()
             print('**----->> File has been created successfully')
 
+        # ------------- Run Number increase --------------------
+        if sheet_name == 'AMSIN_NON_EU':
+            index = 0
+        elif sheet_name == 'AMSIN_EU':
+            index = 1
+        elif sheet_name == 'LIVE_NON_EU':
+            index = 2
+        elif sheet_name == 'LIVE_EU':
+            index = 3
+        status_excel = excelRead.ExcelRead()
+        status_excel.read(self.output_file, index=index)
+        xl = status_excel.excel_dict
+        run_num = xl['Run Number']
+        number = max(run_num)
+        vinod = number + 1
         # ------------- Appending the values into their columns --------------------
         df = pd.DataFrame(columns=headers)
-        df.loc[1, h1] = self.run_date
-        df.loc[1, h2] = self.run_time
-        df.loc[1, h3] = self.Average_Time_tenant_details
-        df.loc[1, h4] = self.Average_Time_entity
-        df.loc[1, h5] = self.Average_Time_catalog
-        df.loc[1, h6] = self.Average_Time_candidates
-        df.loc[1, h7] = self.Average_Time_testuser
-        df.loc[1, h8] = self.Average_Time_interview
-        df.loc[1, h9] = self.Average_Time_new_interview
+        df.loc[1, h1] = vinod
+        df.loc[1, h2] = self.run_date
+        df.loc[1, h3] = self.run_time
+        df.loc[1, h4] = self.Average_Time_tenant_details
+        df.loc[1, h5] = self.Average_Time_entity
+        df.loc[1, h6] = self.Average_Time_catalog
+        df.loc[1, h7] = self.Average_Time_candidates
+        df.loc[1, h8] = self.Average_Time_testuser
+        df.loc[1, h9] = self.Average_Time_interview
+        df.loc[1, h10] = self.Average_Time_new_interview
 
         writer = pd.ExcelWriter(self.output_file, engine='openpyxl')
         writer.book = load_workbook(self.output_file)
