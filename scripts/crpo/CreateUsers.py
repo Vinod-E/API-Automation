@@ -272,7 +272,7 @@ class CreateUser(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
         self.rowsize += 1  # Row increment
         self.ws.write(self.rowsize, self.col, 'Output', self.style5)
         if self.userId:
-            if self.xl_Execption_Message[loop] is '':
+            if self.xl_Execption_Message[loop] == '':
                 self.ws.write(self.rowsize, 1, 'Pass', self.style8)
                 self.success_case_01 = 'Pass'
             elif self.xl_Execption_Message[loop] == self.message:
