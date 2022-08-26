@@ -17,7 +17,7 @@ class InterviewFeedback(login.CommonLogin, work_book.WorkBook):
         # --------------------------
         # Initialising Excel Data
         # --------------------------
-        self.xl_Event_id = []  # [] Initialising data from excel sheet to the variables
+        self.xl_Event_id = []  # [] Initialising data from Excel sheet to the variables
         self.xl_Applicant_id = []
         self.xl_Job_id = []
         self.xl_type = []
