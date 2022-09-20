@@ -20,5 +20,8 @@ class AmsinNonEu(performance_output.AmsinNonEuOutput):
 Object = AmsinNonEu()
 Object.common_login("live_non_eu")
 if Object.login == 'OK':
-    Object.api_response_time()
-    Object.create_pandas_excel('LIVE_NON_EU')
+    loop_run = [1, 2, 3]
+    for i in loop_run:
+        Object.api_response_time()
+        Object.create_pandas_excel('LIVE_NON_EU')
+        print("Run:: ", i)
