@@ -18,6 +18,7 @@ class StackRanking:
                                                       data=json.dumps(config_obj.stack_ranking_report_payload,
                                                                       default=str), verify=False)
         resp_dict = json.loads(generate_stack_ranking_report.content)
+        print(generate_stack_ranking_report.headers)
         api_status = resp_dict['status']
         if api_status == 'OK':
             time.sleep(5)

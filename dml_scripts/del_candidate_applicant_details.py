@@ -29,29 +29,34 @@ class DeleteCandidateApplicant(db_login.DBConnection):
         self.cursor.execute(candidate_query1)
         print(candidate_query1)
 
-        candidate_query2 = "DELETE FROM test_users WHERE candidate_id in{};".format(xl_candidateid)
+        candidate_query2 = "Delete from test_user_applicants where testuser_id " \
+                           "in(select id FROM test_users " \
+                           "WHERE test_id=6031 and candidate_id in{});".format(xl_candidateid)
         self.cursor.execute(candidate_query2)
         print(candidate_query2)
 
-        candidate_query3 = "Delete from applicant_status_items where applicantstatus_id in" \
-                           " (select id from applicant_statuss where recruitevent_id=4697 and " \
-                           "tenant_id=1787 and is_deleted=0)and tenant_id=1787;"
+        candidate_query3 = "DELETE FROM test_users WHERE test_id=6031 and candidate_id in{};".format(xl_candidateid)
         self.cursor.execute(candidate_query3)
         print(candidate_query3)
 
-        candidate_query4 = "DELETE FROM applicant_statuss " \
-                           "WHERE recruitevent_id=4697 and tenant_id=1787 and is_deleted=0;"
+        candidate_query4 = "Delete from applicant_status_items where applicantstatus_id in" \
+                           " (select id from applicant_statuss where recruitevent_id=4697 and " \
+                           "tenant_id=1787 and is_deleted=0)and tenant_id=1787;"
         self.cursor.execute(candidate_query4)
         print(candidate_query4)
 
-        candidate_query5 = "DELETE from test_user_applicants where testuser_id not in (select id from test_users);"
+        candidate_query5 = "DELETE FROM applicant_statuss " \
+                           "WHERE recruitevent_id=4697 and tenant_id=1787 and is_deleted=0;"
         self.cursor.execute(candidate_query5)
         print(candidate_query5)
 
-        candidate_query6 = "DELETE FROM appserver_core.candidates " \
-                           "WHERE tenant_id=1787 and id in{};".format(xl_candidateid)
-        self.cursor.execute(candidate_query6)
-        print(candidate_query6)
+        # candidate_query6 = "DELETE from test_user_applicants where testuser_id not in (select id from test_users);"
+        # self.cursor.execute(candidate_query5)
+        # print(candidate_query6)
+
+        candidate_query7 = "DELETE FROM candidates WHERE tenant_id=1787 and id in{};".format(xl_candidateid)
+        self.cursor.execute(candidate_query7)
+        print(candidate_query7)
 
 
 Object = DeleteCandidateApplicant()

@@ -45,22 +45,28 @@ class Excel:
             self.status = 'Pass'
             self.color = self.green_color
             for col_indx in range(0, self.expected_excel_sheet1.ncols):
-                if expected_sheet_rows[col_indx] == actual_sheet_rows[col_indx]:
+                actual_sheet_current_col_type = type(actual_sheet_rows[col_indx])
+                if actual_sheet_current_col_type == float:
+                    vinod = round(actual_sheet_rows[col_indx], 2)
+                    print(vinod)
+                else:
+                    vinod = actual_sheet_rows[col_indx]
+                if expected_sheet_rows[col_indx] == vinod:
                     self.ws.write(self.write_position, col_indx + 2, expected_sheet_rows[col_indx], self.black_color)
-                    self.ws.write(self.write_position + 1, col_indx + 2, actual_sheet_rows[col_indx], self.green_color)
+                    self.ws.write(self.write_position + 1, col_indx + 2, vinod, self.green_color)
                 else:
                     self.ws.write(self.write_position, col_indx + 2, expected_sheet_rows[col_indx], self.black_color)
-                    if not actual_sheet_rows[col_indx] or actual_sheet_rows[col_indx] == ' ':
-                        print(actual_sheet_rows[col_indx])
-                        print(actual_sheet_rows[col_indx])
-                        print(type(actual_sheet_rows[col_indx]))
-                        print(type(actual_sheet_rows[col_indx]))
-                        print(len(actual_sheet_rows[col_indx]))
-                        print(len(actual_sheet_rows[col_indx]))
+                    if not vinod or vinod == ' ':
+                        print(vinod)
+                        print(vinod)
+                        print(type(vinod))
+                        print(type(vinod))
+                        print(len(vinod))
+                        print(len(vinod))
                         self.ws.write(self.write_position + 1, col_indx + 2, "EMPTY",
                                       self.red_color)
                     else:
-                        self.ws.write(self.write_position + 1, col_indx + 2, actual_sheet_rows[col_indx],
+                        self.ws.write(self.write_position + 1, col_indx + 2, vinod,
                                       self.red_color)
                     self.status = 'Fail'
                     self.color = self.red_color
