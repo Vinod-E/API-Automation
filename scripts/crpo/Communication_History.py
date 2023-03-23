@@ -22,6 +22,8 @@ class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
                           'e409c387-8847-4444-8719-43d02e55230bAdmissionCard.pdf'
 
         self.driver = ""
+        self.perform = ''
+        self.form = ""
         self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 14)))
         self.Actual_Success_case = []
 
@@ -350,28 +352,83 @@ class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
         # UI Automation to handle where ever APIs are not present
         # ------------------------------------------------------
         try:
-            self.driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
+            opt = webdriver.ChromeOptions()
+            # opt.add_argument("--ignore-certificate-errors")
+            opt.add_argument("--start-maximized")
+            self.driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), chrome_options=opt)
             print("Run started at:: " + str(datetime.datetime.now()))
             print("Environment setup has been Done")
             print("----------------------------------------------------------")
-            self.driver.implicitly_wait(10)
-            self.driver.maximize_window()
             self.driver.get(self.api_get_rl)
-            time.sleep(5)
-            self.driver.find_element_by_id("lbl_terms_yes").click()
-            time.sleep(2)
-            self.driver.find_element_by_id("declaration").click()
-            time.sleep(2)
-            self.driver.find_element_by_id("registerbtndiv").click()
             time.sleep(3)
+            form1 = self.driver.find_element_by_xpath('//p[@class="page-heading"]').text
+            self.loading_pages(self.driver)
 
-            print("----------------------------------------------------------")
-            print("Run completed at:: " + str(datetime.datetime.now()))
-            print("Chrome environment Destroyed")
-            self.driver.close()
-
+            if form1.strip() == 'Registration Form':
+                print('Captcha Page - ', form1)
+                input("Verify Captcha and Enter")
+                self.driver.find_element_by_xpath('//button[@ng-click="vm.actionClicked({}{}{})"]'
+                                                  .format("'", 'verifyCaptcha', "'")).click()
+                time.sleep(3)
+                self.loading_pages(self.driver)
+                form2 = self.driver.find_element_by_xpath('//p[@class="page-heading"]').text
+                if form2.strip() == 'Registration Form':
+                    print('Property Filed Page - ', form2)
+                    self.driver.find_element_by_xpath("/html/body/div[2]/div/div[1]/div/div/div/div/div/"
+                                                      "div/div[1]/div[2]/button").click()
+                    self.loading_pages(self.driver)
+                    time.sleep(5)
+                    print("----------------------------------------------------------")
+                    print("Run completed at:: " + str(datetime.datetime.now()))
+                    print("Chrome environment Destroyed")
+                    self.driver.close()
+                else:
+                    print("Chrome environment Destroyed")
+                    self.driver.close()
         except exceptions.WebDriverException as Environment_Error:
             print(Environment_Error)
+
+    def submit_registration(self, driver):
+        try:
+            form2 = driver.find_element_by_xpath('//p[@class="page-heading"]').text
+            if form2.strip() == 'Registration Form':
+                print('Property Filed Page - ', form2)
+                driver.find_element_by_xpath("/html/body/div[2]/div/div[1]/div/div/div/div/div/"
+                                             "div/div[1]/div[2]/button").click()
+                self.loading_pages(driver)
+                time.sleep(5)
+                print("----------------------------------------------------------")
+                print("Run completed at:: " + str(datetime.datetime.now()))
+                print("Chrome environment Destroyed")
+                driver.close()
+        except exceptions as error:
+            print(error)
+
+    def already_registered(self, driver):
+        try:
+            self.form = driver.find_element_by_xpath('//div[@class="ng-binding"]').text
+            if self.form.strip() == 'Registration Already Done':
+                print('Registration Already Done')
+                print("----------------------------------------------------------")
+                print("Run completed at:: " + str(datetime.datetime.now()))
+                print("Chrome environment Destroyed")
+                driver.close()
+        except exceptions as error:
+            print(error)
+
+    def loading_pages(self, driver):
+        attempts = 10000
+        for i in range(0, attempts):
+            try:
+                if driver.find_element_by_class_name('dw-loading-active'):
+                    self.perform = driver.find_element_by_class_name('dw-loading-active')
+                    if self.perform:
+                        # print(f'{self.perform.text}............!!')
+                        time.sleep(0.5)
+            except Exception as error:
+                # ui_logger.error(error)
+                break
+        print('***--------->>> Page Loading Completed <<<---------***')
 
     def re_registration_link(self, loop):
 
@@ -397,7 +454,6 @@ class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
         # Hitting login API based on input value
         # --------------------------------------
         for i in range(self.xl_API_hits[loop]):
-
             request = {"PagingCriteriaType": {"MaxResults": 100,
                                               "ObjectState": 0, "PageNo": 1, "SortOrder": "1", "SortParameter": "1",
                                               "PageNumber": 1},
