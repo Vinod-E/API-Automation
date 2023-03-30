@@ -1,17 +1,18 @@
-from hpro_automation import (login, output_paths, input_paths, work_book)
+from hpro_automation import (login, output_paths, input_paths, work_book, db_login)
 import json
 import requests
 import xlrd
 import datetime
 
 
-class CancelInterview(login.CommonLogin, work_book.WorkBook):
+class CancelInterview(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
 
     def __init__(self):
         self.start_time = str(datetime.datetime.now())
         super(CancelInterview, self).__init__()
         self.common_login('crpo')
         self.crpo_app_name = self.app_name.strip()
+        self.db_connection('amsin')
         print(self.crpo_app_name)
 
         # -----------------------
@@ -22,7 +23,7 @@ class CancelInterview(login.CommonLogin, work_book.WorkBook):
         self.xl_expected_message = []
         self.xl_interviewer_comment = 'Interview cancelled by Admin'
 
-        self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 30)))
+        self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 31)))
         self.Actual_Success_case = []
 
         # ---------------------------------
@@ -186,6 +187,23 @@ class CancelInterview(login.CommonLogin, work_book.WorkBook):
         self.ws.write(0, 9, Total_count, self.style24)
         Object.wb_Result.save(output_paths.outputpaths['Cancel_Interview_Output_sheet'])
 
+    def fetch_null_ir_without_candidate_id(self):
+        query = "select ir.id from interview_requests ir " \
+                "left join interview_candidates ic on ic.interviewrequest_id=ir.id " \
+                "where ir.tenant_id=1787 and ic.interviewrequest_id is null;"
+        print(query)
+        self.cursor.execute(query)
+        c_ir_ids = self.cursor.fetchone()[0]
+        print("NULL CANDIDATE IR:: ", c_ir_ids)
+
+        query = "DELETE FROM interview_interviwers WHERE interviewrequest_id = {};".format(c_ir_ids)
+        print(query)
+        self.cursor.execute(query)
+
+        query = "DELETE FROM interview_requests WHERE id = {};".format(c_ir_ids)
+        print(query)
+        self.cursor.execute(query)
+
 
 Object = CancelInterview()
 Object.excel_headers()
@@ -211,6 +229,9 @@ try:
             Object.success_case_03 = {}
 
     Object.overall_status()
+    Object.fetch_null_ir_without_candidate_id()
+    Object.connection.commit()
+    Object.connection.close()
 
 except AttributeError as Object_error:
     print(Object_error)
