@@ -366,10 +366,10 @@ class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
 
             if form1.strip() == 'Registration Form':
                 print('Captcha Page - ', form1)
-                input("Verify Captcha and Enter")
-                self.driver.find_element_by_xpath('//button[@ng-click="vm.actionClicked({}{}{})"]'
-                                                  .format("'", 'verifyCaptcha', "'")).click()
-                time.sleep(3)
+                # input("Verify Captcha and Enter")
+                # self.driver.find_element_by_xpath('//button[@ng-click="vm.actionClicked({}{}{})"]'
+                #                                   .format("'", 'verifyCaptcha', "'")).click()
+                # time.sleep(3)
                 self.loading_pages(self.driver)
                 form2 = self.driver.find_element_by_xpath('//p[@class="page-heading"]').text
                 if form2.strip() == 'Registration Form':
