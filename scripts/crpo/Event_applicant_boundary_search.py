@@ -21,7 +21,7 @@ class ExcelData(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
         # This Script works for below fields
         self.xl_json_request = []
         self.xl_expected_candidate_id = []
-        self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 100)))
+        self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 97)))
         self.Actual_Success_case = []
         self.success_case_01 = {}
         self.success_case_02 = {}
