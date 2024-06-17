@@ -3,10 +3,10 @@ from pandas import *
 
 class ExcelRead(object):
     """
-    Excel read from the excel and store all values in dict.
+    Excel read from the Excel and store all values in dict.
 
         :Notes:
-        - excel_read :: Using pandas package to read the excel and making the header / values
+        - excel_read :: Using pandas package to read the Excel and making the header / values
                         as dict.
 
     """

@@ -286,11 +286,11 @@ class QuestionRandomization:
         if ("Fail" in status):
             self.ws.write(1, 0, "Fail", self.__style2)
             self.file.write(
-                """<span class="label">Overall Status:&nbsp;&nbsp;</span><span class="lable valueFail">FAIL</span>""")
+                """<span class="label">Overall_Status:&nbsp;&nbsp;</span><span class="lable valueFail">FAIL</span>""")
         else:
             self.ws.write(1, 0, "Pass", self.__style3)
             self.file.write(
-                """<span class="label">Overall Status:&nbsp;&nbsp;</span><span class="lable valuePass">PASS</span>""")
+                """<span class="label">Overall_Status:&nbsp;&nbsp;</span><span class="lable valuePass">PASS</span>""")
             self.file.write("""</div></body></html>""")
 
         wb_result.save(

@@ -40,7 +40,7 @@ class TestTimerCheck(unittest.TestCase):
         # --------------------------------------------------------------------------------------------------------------
         # Header printing in Output Excel
         # --------------------------------------------------------------------------------------------------------------
-        ws.write(0, 0, "Overall Status", self.__style0)
+        ws.write(0, 0, "Overall_Status", self.__style0)
         ws.write(0, 1, "Status", self.__style0)
         ws.write(0, 2, "Test Id", self.__style0)
         ws.write(0, 3, "Candidate Ids", self.__style0)

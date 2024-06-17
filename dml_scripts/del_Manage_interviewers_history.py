@@ -6,7 +6,7 @@ class DeleteManageInterviewers(db_login.DBConnection):
 
     def __init__(self):
         super(DeleteManageInterviewers, self).__init__()
-        self.db_connection('amsin')
+        self.db_connection()
 
         # -----------------------
         # Initialising the values

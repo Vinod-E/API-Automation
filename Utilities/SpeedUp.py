@@ -9,7 +9,7 @@ class ClassName(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
 
     def __init__(self):
 
-        # ---------------------------------- Overall Status Run Date ---------------------------------------------------
+        # ---------------------------------- Overall_Status Run Date ---------------------------------------------------
         self.start_time = str(datetime.datetime.now())
 
         # --------------------------------- Inheritance Class Instance -------------------------------------------------

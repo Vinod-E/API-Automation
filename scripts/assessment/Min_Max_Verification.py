@@ -8,7 +8,7 @@ import xlrd
 class Min_Max_Verification(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
 
     def __init__(self):
-        # ---------------------------------- Overall Status Run Date ---------------------------------------------------
+        # ---------------------------------- Overall_Status Run Date ---------------------------------------------------
         self.start_time = str(datetime.datetime.now())
 
         # --------------------------------- Inheritance Class Instance -------------------------------------------------
@@ -583,16 +583,16 @@ class Min_Max_Verification(login.CommonLogin, work_book.WorkBook, db_login.DBCon
         self.ws.write(0, 0, 'Min_Max_Score', self.style23)
         if self.Expected_success_cases == self.Actual_Success_case:
             self.ws.write(0, 1, 'Pass', self.style24)
-            print("Overall Status Pass")
+            print("Overall_Status Pass")
         else:
             self.ws.write(0, 1, 'Fail', self.style25)
-            print("Overall Status Fail")
+            print("Overall_Status Fail")
 
         self.ws.write(0, 2, 'Start Time', self.style23)
         self.ws.write(0, 3, self.start_time, self.style26)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
-        # ---------------------------- OutPut File save with Overall Status --------------------------------------------
+        # ---------------------------- OutPut File save with Overall_Status --------------------------------------------
         Object.wb_Result.save(output_paths.outputpaths['min_max_Score'])
 Object = Min_Max_Verification()
 Object.excel_headers()

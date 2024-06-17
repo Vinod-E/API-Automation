@@ -1,5 +1,9 @@
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
 from hpro_automation import (login, input_paths, output_paths, work_book)
+from scripts.Overall_Status.overall_status_of_usecase import OverallStatus
+from hpro_automation.api import *
 import requests
 import json
 import xlrd
@@ -14,9 +18,10 @@ class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
     def __init__(self):
         self.start_time = str(datetime.datetime.now())
         super(CommunicationHistory, self).__init__()
-        self.common_login('crpo')
+        self.common_login('admin')
         self.crpo_app_name = self.app_name.strip()
         print(self.crpo_app_name)
+        self.FinalStatus = OverallStatus()
         self.xl_s3_file = 'https://s3-ap-southeast-1.amazonaws.com/' \
                           'test-all-hirepro-files/Automation/attachments/' \
                           'e409c387-8847-4444-8719-43d02e55230bAdmissionCard.pdf'
@@ -355,13 +360,14 @@ class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
             opt = webdriver.ChromeOptions()
             # opt.add_argument("--ignore-certificate-errors")
             opt.add_argument("--start-maximized")
-            self.driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), chrome_options=opt)
+            self.driver = webdriver.Chrome(service=Service(executable_path=ChromeDriverManager().install(),
+                                                           chrome_options=opt))
             print("Run started at:: " + str(datetime.datetime.now()))
             print("Environment setup has been Done")
             print("----------------------------------------------------------")
             self.driver.get(self.api_get_rl)
             time.sleep(3)
-            form1 = self.driver.find_element_by_xpath('//p[@class="page-heading"]').text
+            form1 = self.driver.find_element(By.XPATH, '//p[@class="page-heading"]').text
             self.loading_pages(self.driver)
 
             if form1.strip() == 'Registration Form':
@@ -371,10 +377,10 @@ class CommunicationHistory(login.CommonLogin, work_book.WorkBook):
                 #                                   .format("'", 'verifyCaptcha', "'")).click()
                 # time.sleep(3)
                 self.loading_pages(self.driver)
-                form2 = self.driver.find_element_by_xpath('//p[@class="page-heading"]').text
+                form2 = self.driver.find_element(By.XPATH, '//p[@class="page-heading"]').text
                 if form2.strip() == 'Registration Form':
                     print('Property Filed Page - ', form2)
-                    self.driver.find_element_by_xpath("/html/body/div[2]/div/div[1]/div/div/div/div/div/"
+                    self.driver.find_element_by_xpath(By.XPATH,"/html/body/div[2]/div/div[1]/div/div/div/div/div/"
                                                       "div/div[1]/div[2]/button").click()
                     self.loading_pages(self.driver)
                     time.sleep(5)

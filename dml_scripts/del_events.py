@@ -6,7 +6,7 @@ class DeleteEvents(db_login.DBConnection):
 
     def __init__(self):
         super(DeleteEvents, self).__init__()
-        self.db_connection('amsin')
+        self.db_connection()
 
         # -----------------------
         # Initialising the values

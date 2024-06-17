@@ -28,7 +28,7 @@ class AllConfigurations:
                                  data=json.dumps(data), verify=False)
         login_response = response.json()
         self.headers = {"content-type": "application/json", "X-AUTH-TOKEN": login_response.get("Token"),
-                        'APP-NAME': 'py3app', 'X-APPLMA': 'true'}
+                        'APP-NAME': 'crpo', 'X-APPLMA': 'true'}
 
     # ------------------------------------------------------------------------------------------------------------------#
     # 1. This method is having all api requests

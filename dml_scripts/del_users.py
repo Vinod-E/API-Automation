@@ -5,7 +5,7 @@ from hpro_automation import (output_paths, db_login)
 class DeleteQuery(db_login.DBConnection):
     def __init__(self):
         super(DeleteQuery, self).__init__()
-        self.db_connection('amsin')
+        self.db_connection()
 
         # ------------------------
         # Initialising Excel Data

@@ -10,8 +10,10 @@ class CommonLogin(object):
 
     def __init__(self):
         super(CommonLogin, self).__init__()
-        self.app_name = input("APP-NAME: crpo or pyappe1 or py3app:: ")
-        self.calling_lambda = str(input("Lambda On/Off:: "))
+        # self.app_name = input("APP-NAME: crpo or pyappe1 or py3app:: ")
+        self.app_name = "crpo"
+        # self.calling_lambda = str(input("Lambda On/Off:: "))
+        self.calling_lambda = "On"
         self.lambda_headers = {"content-type": "application/json", 'X-APPLMA': 'true'}
         self.Non_lambda_headers = {"content-type": "application/json"}
         self.header = {"content-type": "application/json", 'APP-NAME': "crpo", 'X-APPLMA': 'true'}
@@ -28,7 +30,18 @@ class CommonLogin(object):
 
         try:
             urllib3.disable_warnings()
-            login_data = credentials.login_details[login_user]
+            if login_server == 'amsin':
+                if login_user == 'admin':
+                    login_data = credentials.login_details['crpo']
+                else:
+                    login_data = credentials.login_details['int']
+
+            else:
+                if login_user == 'admin':
+                    login_data = credentials.login_details['ams_crpo']
+                else:
+                    login_data = credentials.login_details['ams_int']
+
             self.headers['APP-NAME'] = self.app_name
             self.headers['X-APPLMA'] = 'true'
             login_api = requests.post(lambda_apis.get("Loginto_CRPO"), headers=self.header, data=json.dumps(login_data),

@@ -1,4 +1,5 @@
 from hpro_automation import (login, input_paths, output_paths, work_book)
+from hpro_automation.api import *
 import json
 import requests
 import xlrd
@@ -10,7 +11,7 @@ class RescheduleInterview(login.CommonLogin, work_book.WorkBook):
     def __init__(self):
         self.start_time = str(datetime.datetime.now())
         super(RescheduleInterview, self).__init__()
-        self.common_login('crpo')
+        self.common_login('admin')
         self.crpo_app_name = self.app_name.strip()
         print(self.crpo_app_name)
 
@@ -521,14 +522,16 @@ class RescheduleInterview(login.CommonLogin, work_book.WorkBook):
         else:
             self.ws.write(0, 1, 'Fail', self.style25)
 
-        self.ws.write(0, 2, 'StartTime', self.style23)
-        self.ws.write(0, 3, self.start_time, self.style26)
+        self.ws.write(0, 2, 'Login Server', self.style23)
+        self.ws.write(0, 3, login_server, self.style24)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
         self.ws.write(0, 6, 'APP Name', self.style23)
         self.ws.write(0, 7, self.crpo_app_name, self.style24)
         self.ws.write(0, 8, 'No.of Test cases', self.style23)
         self.ws.write(0, 9, Total_count, self.style24)
+        self.ws.write(0, 10, 'Start Time', self.style23)
+        self.ws.write(0, 11, self.start_time, self.style26)
         Object.wb_Result.save(output_paths.outputpaths['Reschdeule_Output_sheet'])
 
 

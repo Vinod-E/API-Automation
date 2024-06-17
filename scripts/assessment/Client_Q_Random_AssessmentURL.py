@@ -503,10 +503,10 @@ class ClientQuestionRandomization(unittest.TestCase):
                 __current_DateTime) + """</span></br></br>""")
         if ("Fail" in overall_status):
             self.file.write(
-                """<span class="label">Overall Status:&nbsp;&nbsp;</span><span class="lable valueFail">FAIL</span>""")
+                """<span class="label">Overall_Status:&nbsp;&nbsp;</span><span class="lable valueFail">FAIL</span>""")
         else:
             self.file.write(
-                """<span class="label">Overall Status:&nbsp;&nbsp;</span><span class="lable valuePass">PASS</span>""")
+                """<span class="label">Overall_Status:&nbsp;&nbsp;</span><span class="lable valuePass">PASS</span>""")
         self.file.write("""</div>""")
         wb = xlrd.open_workbook("/home/rajeshwar/D Drive/hirepro_automation/API-Automation/Output Data/Assessment/Client_Section_Random_Check.xls")
         wb_result = xlwt.Workbook()
