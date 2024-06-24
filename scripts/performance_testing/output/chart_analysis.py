@@ -5,8 +5,11 @@ from pandas import ExcelFile
 from selenium import webdriver
 from selenium.common import exceptions
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from hpro_automation import (output_paths, input_paths)
+from selenium.webdriver.chrome.service import Service
+
 
 
 class Chart(object):
@@ -151,12 +154,12 @@ class Chart(object):
         chart.set_y_axis({'name': 'Time(seconds)', 'major_gridlines': {'visible': False}})
 
         worksheet.insert_chart('A7', chart)
-        writer.save()
+        writer._save()
 
     def merge_2_excels(self):
         # -------- Opening Online website to merge excels -----------------
         try:
-            driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
+            driver = webdriver.Chrome(service=Service(executable_path=ChromeDriverManager().install()))
             print("Run started at:: " + str(datetime.datetime.now()))
             print("Environment setup has been Done")
             print("----------------------------------------------------------")
@@ -164,15 +167,15 @@ class Chart(object):
             driver.maximize_window()
             driver.get('https://products.aspose.app/cells/merger')
             time.sleep(5)
-            driver.find_element_by_id('saveAs').send_keys('XLSX', Keys.ENTER)
+            driver.find_element(By.ID, 'saveAs').send_keys('XLSX', Keys.ENTER)
             time.sleep(2)
-            driver.find_element_by_xpath('//*[@type="file"]').send_keys(self.chart_file)
+            driver.find_element(By.XPATH, '//*[@type="file"]').send_keys(self.chart_file)
             time.sleep(2)
-            driver.find_element_by_xpath('//*[@type="file"]').send_keys(self.output_file)
+            driver.find_element(By.XPATH, '//*[@type="file"]').send_keys(self.output_file)
             time.sleep(2)
-            driver.find_element_by_id("uploadButton").click()
+            driver.find_element(By.ID, 'uploadButton').click()
             time.sleep(3)
-            driver.find_element_by_id("DownloadButton").click()
+            driver.find_element(By.ID, 'DownloadButton').click()
             time.sleep(5)
 
             print("----------------------------------------------------------")

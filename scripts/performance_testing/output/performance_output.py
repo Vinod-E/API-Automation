@@ -45,7 +45,7 @@ class AmsinNonEuOutput(work_book.WorkBook, performance_apis.PerformanceTesting):
                 for col_num, value in enumerate(df_dynamic.columns.values):
                     worksheet.write(0, col_num, value, header_format)
                     col_num += 1
-            vinod.save()
+            vinod._save()
             print('**----->> File has been created successfully')
 
         # ------------- Run Number increase --------------------
@@ -76,10 +76,12 @@ class AmsinNonEuOutput(work_book.WorkBook, performance_apis.PerformanceTesting):
         df.loc[1, h9] = self.Average_Time_interview
         df.loc[1, h10] = self.Average_Time_new_interview
 
+        book = load_workbook(self.output_file)
         writer = pd.ExcelWriter(self.output_file, engine='openpyxl')
-        writer.book = load_workbook(self.output_file)
-        writer.sheets = dict((ws.title, ws) for ws in writer.book.worksheets)
-        reader = pd.read_excel(self.output_file, sheet_name=sheet_name)
+        writer._book = book
+        writer._sheets = dict((ws.title, ws) for ws in writer.book.worksheets)
+        writer._save()
+        reader = pd.read_excel(self.output_file, sheet_name=sheet_name, engine='openpyxl')
         df.to_excel(writer, sheet_name=sheet_name, index=False, header=False, startrow=len(reader) + 1)
 
         writer.close()
