@@ -1,4 +1,10 @@
 server_api = "https:************/py/"
+amsin_verify_slot_guid = ''
+ams_verify_slot_guid = ''
+amsin_assessment_slot_guid = ''
+ams_assessment_slot_guid = ''
+amsin_interview_slot_guid = ''
+ams_interview_slot_guid = ''
 
 login_details = {"crpo": {"LoginName": '',
                           "Password": '',
@@ -36,26 +42,32 @@ login_details = {"crpo": {"LoginName": '',
                              "Password": '',
                              "TenantAlias": '',
                              "UserName": ''},
+                 "amsin_choose_slot": {"client_id": ''},
+                 "ams_choose_slot": {"client_id": ''},
+                 "amsin_assessment_slot": {"client_id": ''},
+                 "ams_assessment_slot": {"client_id": ''},
+                 "amsin_interview_slot": {"client_id": ''},
+                 "ams_interview_slot": {"client_id": ''},
                  }
 
 db_details = {
-              "crpo_amsin": {"host": '',
-                             "database": '',
-                             "user": '',
-                             "password": ""},
-              "tenant_amsin": {"host": '',
-                               "database": '',
-                               "user": '',
-                               "password": ""},
-              "crpo_ams": {"host": "",
-                           "database": "",
-                           "user": "",
-                           "password": ""},
-              "tenant_ams": {"host": "",
-                             "database": "",
-                             "user": "",
-                             "password": ""}
-              }
+    "crpo_amsin": {"host": '',
+                   "database": '',
+                   "user": '',
+                   "password": ""},
+    "tenant_amsin": {"host": '',
+                     "database": '',
+                     "user": '',
+                     "password": ""},
+    "crpo_ams": {"host": "",
+                 "database": "",
+                 "user": "",
+                 "password": ""},
+    "tenant_ams": {"host": "",
+                   "database": "",
+                   "user": "",
+                   "password": ""}
+}
 
 replica_db_details = {"amsinr": {"host": '',
                                  "database": '',

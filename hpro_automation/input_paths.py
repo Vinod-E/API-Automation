@@ -60,6 +60,8 @@ inputpaths = {
 
     'stacking': generic_input_path + "Crpo/stackranking/stack_ranking_FourEvents_report.xlsx",
 
+    'assessment_slot_input_sheet': generic_input_path + "Crpo/assessment_slot/testdata.xls",
+
     # ------------
     # Pofu Inputs
     # ------------

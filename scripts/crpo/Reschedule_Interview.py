@@ -11,7 +11,7 @@ class RescheduleInterview(login.CommonLogin, work_book.WorkBook):
     def __init__(self):
         self.start_time = str(datetime.datetime.now())
         super(RescheduleInterview, self).__init__()
-        self.common_login('admin')
+        self.common_login('int')
         self.crpo_app_name = self.app_name.strip()
         print(self.crpo_app_name)
 

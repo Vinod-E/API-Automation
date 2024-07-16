@@ -101,7 +101,7 @@ class UploadCandidate(login.CommonLogin, work_book.WorkBook):
         self.xl_TextArea4 = []
         self.xl_Exception_message = []
 
-        self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 67)))
+        self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 66)))
         self.Actual_Success_case = []
 
         # -------------------------------------------------------------------------------------------------------

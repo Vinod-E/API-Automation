@@ -56,7 +56,7 @@ class InterviewFeedback(login.CommonLogin, work_book.WorkBook):
         self.xl_update_skill_score_01 = []
         self.xl_update_stage = []
 
-        self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 33)))
+        self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 32)))
         self.Actual_Success_case = []
 
         # -----------------------------------------------------------------------------------
@@ -964,7 +964,7 @@ class InterviewFeedback(login.CommonLogin, work_book.WorkBook):
         else:
             self.ws.write(0, 1, 'Fail', self.style25)
 
-        sself.ws.write(0, 2, 'Login Server', self.style23)
+        self.ws.write(0, 2, 'Login Server', self.style23)
         self.ws.write(0, 3, login_server, self.style24)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)

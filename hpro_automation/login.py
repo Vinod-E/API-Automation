@@ -3,6 +3,8 @@ import datetime
 import json
 import time
 import requests
+
+import credentials
 from hpro_automation.api import *
 
 
@@ -18,6 +20,7 @@ class CommonLogin(object):
         self.Non_lambda_headers = {"content-type": "application/json"}
         self.header = {"content-type": "application/json", 'APP-NAME': "crpo", 'X-APPLMA': 'true'}
         self.get_token = ""
+        self.integrationGuid = ""
         self.login = ""
         self.webapi = ""
         self.headers = {}
@@ -46,6 +49,7 @@ class CommonLogin(object):
             self.headers['X-APPLMA'] = 'true'
             login_api = requests.post(lambda_apis.get("Loginto_CRPO"), headers=self.header, data=json.dumps(login_data),
                                       verify=False)
+            print(login_data)
             response = login_api.json()
             print(login_api.headers)
             self.get_token = response.get("Token")
@@ -62,6 +66,59 @@ class CommonLogin(object):
         except ValueError as login_error:
             print(login_error)
         self.lambda_check()
+
+    def slot_captcha_login_token(self, login_user):
+        # -------------------------------- CRPO LOGIN APPLICATION ------------------------------------------------------
+
+        print("-------------------------------------------------")
+        print("Run Started at :", str(datetime.datetime.now()))
+
+        try:
+            urllib3.disable_warnings()
+            if login_server == 'amsin':
+                if login_user == 'verify':
+                    oauth_data = credentials.login_details['amsin_choose_slot']
+                    self.integrationGuid = credentials.amsin_verify_slot_guid
+                    self.headers['APP-NAME'] = "verify"
+                elif login_user == 'assessment':
+                    oauth_data = credentials.login_details['amsin_assessment_slot']
+                    self.integrationGuid = credentials.amsin_assessment_slot_guid
+                    self.headers['APP-NAME'] = "assessmentSlots"
+                else:
+                    oauth_data = credentials.login_details['amsin_interview_slot']
+                    self.integrationGuid = credentials.amsin_interview_slot_guid
+
+            else:
+                if login_user == 'verify':
+                    oauth_data = credentials.login_details['ams_choose_slot']
+                    self.integrationGuid = credentials.ams_verify_slot_guid
+                    self.headers['APP-NAME'] = "verify"
+                elif login_user == 'assessment':
+                    oauth_data = credentials.login_details['ams_assessment_slot']
+                    self.integrationGuid = credentials.ams_assessment_slot_guid
+                    self.headers['APP-NAME'] = "assessmentSlots"
+                else:
+                    oauth_data = credentials.login_details['ams_interview_slot']
+                    self.integrationGuid = credentials.ams_interview_slot_guid
+
+            # ------------------ API Call -------------------------------------
+            oauth_api = requests.post(slot_app.get("access_token").format(self.integrationGuid), headers=self.headers,
+                                      data=json.dumps(oauth_data), verify=False)
+            response = oauth_api.json()
+            print(oauth_api.headers)
+            print(response)
+            self.get_token = response.get("access_token")
+
+            time.sleep(1)
+            token_type = response.get("token_type")
+            if token_type == 'bearer':
+                self.login = 'OK'
+                print("Oauth Token Generated Successfully")
+            else:
+                self.login = 'KO'
+                print("Oauth Token Generation Failed")
+        except ValueError as oauth_error:
+            print(oauth_error)
 
     def lambda_check(self):
         # ------------------------------- getAllAppPreference / Lambda verification ------------------------------------

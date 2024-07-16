@@ -15,7 +15,7 @@ class ManageInterviewers(login.CommonLogin, work_book.WorkBook):
 
         # --------------------------------- Inheritance Class Instance -------------------------------------------------
         super(ManageInterviewers, self).__init__()
-        self.common_login('admin')
+        self.common_login('int')
         self.crpo_app_name = self.app_name.strip()
         print(self.crpo_app_name)
 

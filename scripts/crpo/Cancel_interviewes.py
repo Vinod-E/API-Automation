@@ -11,7 +11,7 @@ class CancelInterview(login.CommonLogin, work_book.WorkBook, db_login.DBConnecti
     def __init__(self):
         self.start_time = str(datetime.datetime.now())
         super(CancelInterview, self).__init__()
-        self.common_login('admin')
+        self.common_login('int')
         self.crpo_app_name = self.app_name.strip()
         self.db_connection()
         print(self.crpo_app_name)
@@ -24,7 +24,7 @@ class CancelInterview(login.CommonLogin, work_book.WorkBook, db_login.DBConnecti
         self.xl_expected_message = []
         self.xl_interviewer_comment = 'Interview cancelled by Admin'
 
-        self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 31)))
+        self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 30)))
         self.Actual_Success_case = []
 
         # ---------------------------------
