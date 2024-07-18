@@ -9,6 +9,10 @@ class Excel:
         self.now = datetime.datetime.now()
         self.started_time = self.now.strftime("%d-%m-%Y %H:%M")
 
+        # Make sure you have XLRD version 1.2.0 New version of xlrd does not have the xlsx option.
+        xlrd.xlsx.ensure_elementtree_imported(False, None)
+        xlrd.xlsx.Element_has_iter = True
+
     def save_result(self, save_excel_path):
         self.write_excel = xlsxwriter.Workbook(save_excel_path)
         self.ws = self.write_excel.add_worksheet()
@@ -81,5 +85,6 @@ class Excel:
         self.endeded_time = self.now.strftime("%d-%m-%Y %H:%M")
         self.ws.write(0, 4, "Ended :- " + str(self.endeded_time), self.black_color_bold)
         self.write_excel.close()
+
 
 excel_object = Excel()
