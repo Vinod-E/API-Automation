@@ -1,3 +1,4 @@
+*.idea/
 *.pyc
 Output Data/Crpo/Common_folder/*.xls
 Output Data/Crpo/Common_folder/*.xlsx
