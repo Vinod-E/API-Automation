@@ -2,6 +2,7 @@ import requests
 import json
 import output_paths
 import input_paths
+import api
 
 
 class AllConfigurations:
@@ -11,8 +12,8 @@ class AllConfigurations:
         self.stack_ranking_report_payload = {}
 
     def apiLists(self):
-        self.login = "https://amsin.hirepro.in/py/common/user/login_user/"
-        self.getall_applicant_api = "https://amsin.hirepro.in/py/common/xl_creator/api/v1/generate_applicant_report/"
+        self.login = api.lambda_apis['Loginto_CRPO']
+        self.getall_applicant_api = api.lambda_apis['generate_applicant_report']
 
     def filePath(self, date):
         self.expected_excel_sheet_path = input_paths.inputpaths['stacking']

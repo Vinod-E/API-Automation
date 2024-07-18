@@ -116,7 +116,7 @@ class Excel_Data(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
     #     self.actual_ids = []
     #     for i in range(1, iter):
     #         self.data["PagingCriteria"]["PageNo"] = i
-    #         r = requests.post("https://amsin.hirepro.in/py/crpo/applicant/api/v1/getAllApplicants/", headers=self.headers,
+    #         r = requests.post("https://xyz.in/py/crpo/applicant/api/v1/getAllApplicants/", headers=self.headers,
     #                           data=json.dumps(data, default=str), verify=False)
     #         resp_dict = json.loads(r.content)
     #         # print resp_dict

@@ -40,6 +40,8 @@ lambda_apis = {
 
     "verfiyhash": generic_domain + "crpo/assessment/slotmgmt/candidate/api/v1/verifyHash/",
 
+    "generate_applicant_report": generic_domain + "common/xl_creator/api/v1/generate_applicant_report/",
+
     # ---------------------------------- communication history/status --------------------------------------------------
     "Create_Attachment": generic_domain + "common/attachment/api/v1/createAttachment/",
 
