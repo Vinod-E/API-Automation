@@ -4,6 +4,7 @@ import requests
 import xlrd
 import urllib3
 import datetime
+from hpro_automation.api import *
 
 
 class LoginCheck(work_book.WorkBook, login.CommonLogin):
@@ -52,10 +53,13 @@ class LoginCheck(work_book.WorkBook, login.CommonLogin):
         # Read excel data
         # ---------------
         workbook = xlrd.open_workbook(input_paths.inputpaths['Login_check_Input_sheet'])
-        sheet1 = workbook.sheet_by_index(0)
-        for i in range(1, sheet1.nrows):
+        if login_server == 'amsin':
+            sheet = workbook.sheet_by_index(0)
+        else:
+            sheet = workbook.sheet_by_index(1)
+        for i in range(1, sheet.nrows):
             number = i  # Counting number of rows
-            rows = sheet1.row_values(number)
+            rows = sheet.row_values(number)
 
             if rows[0] is not None and rows[0] == '':
                 self.xl_tenant.append(None)
@@ -233,14 +237,16 @@ class LoginCheck(work_book.WorkBook, login.CommonLogin):
         else:
             self.ws.write(0, 1, 'Fail', self.style25)
 
-        self.ws.write(0, 2, 'StartTime', self.style23)
-        self.ws.write(0, 3, self.start_time, self.style26)
+        self.ws.write(0, 2, 'Login Server', self.style23)
+        self.ws.write(0, 3, login_server, self.style24)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
         self.ws.write(0, 6, 'APP Name', self.style23)
         self.ws.write(0, 7, self.crpo_app_name, self.style24)
         self.ws.write(0, 8, 'No.of Test cases', self.style23)
         self.ws.write(0, 9, Total_count, self.style24)
+        self.ws.write(0, 10, 'Start Time', self.style23)
+        self.ws.write(0, 11, self.start_time, self.style26)
         Object.wb_Result.save(output_paths.outputpaths['Login_check_Output_sheet'])
 
 

@@ -6,7 +6,7 @@ class DeleteActivities(db_login.DBConnection):
 
     def __init__(self):
         super(DeleteActivities, self).__init__()
-        self.db_connection('amsin')
+        self.db_connection()
 
         # -----------------------
         # Initialising the values

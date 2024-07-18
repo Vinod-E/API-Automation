@@ -1,4 +1,5 @@
 from hpro_automation import (login, work_book, input_paths, output_paths)
+from hpro_automation.api import *
 import datetime
 import requests
 import json
@@ -9,12 +10,12 @@ class CreateUpdateEvent(login.CommonLogin, work_book.WorkBook):
 
     def __init__(self):
 
-        # ---------------------------------- Overall Status Run Date ---------------------------------------------------
+        # ---------------------------------- Overall_Status Run Date ---------------------------------------------------
         self.start_time = str(datetime.datetime.now())
 
         # --------------------------------- Inheritance Class Instance -------------------------------------------------
         super(CreateUpdateEvent, self).__init__()
-        self.common_login('crpo')
+        self.common_login('admin')
         self.crpo_app_name = self.app_name.strip()
         print(self.crpo_app_name)
 
@@ -435,7 +436,7 @@ class CreateUpdateEvent(login.CommonLogin, work_book.WorkBook):
             self.test_case_each_property.append('Pass')
         if self.event_details_dict['Adds'] == self.xl_address[loop]:
             self.test_case_each_property.append('Pass')
-        if self.event_details_dict['CText'] == self.xl_expected_colleges[loop]:
+        if self.event_details_dict.get('CText') == self.xl_expected_colleges[loop]:
             self.test_case_each_property.append('Pass')
         if self.owners_dict['UserId'] == self.xl_event_em_id[loop]:
             self.test_case_each_property.append('Pass')
@@ -478,7 +479,7 @@ class CreateUpdateEvent(login.CommonLogin, work_book.WorkBook):
             self.ws.write(self.rowsize, 11, self.owners_dict['UserId'], self.style8)
         # --------------------------------------------------------------------------------------------------------------
         if self.event_details_dict:
-            if self.event_details_dict['CText'] == self.xl_expected_colleges[loop]:
+            if self.event_details_dict.get('CText') == self.xl_expected_colleges[loop]:
                 if self.xl_expected_colleges[loop] is None:
                     self.ws.write(self.rowsize, 12, 'NA', self.style8)
                 else:
@@ -511,16 +512,18 @@ class CreateUpdateEvent(login.CommonLogin, work_book.WorkBook):
         else:
             self.ws.write(0, 1, 'Fail', self.style25)
 
-        self.ws.write(0, 2, 'Start Time', self.style23)
-        self.ws.write(0, 3, self.start_time, self.style26)
+        self.ws.write(0, 2, 'Login Server', self.style23)
+        self.ws.write(0, 3, login_server, self.style24)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
         self.ws.write(0, 6, 'APP Name', self.style23)
         self.ws.write(0, 7, self.crpo_app_name, self.style24)
         self.ws.write(0, 8, 'No.of Test cases', self.style23)
-        self.ws.write(0, 9, NumberOfTestCases, self.style24)
+        self.ws.write(0, 9, Total_count, self.style24)
+        self.ws.write(0, 10, 'Start Time', self.style23)
+        self.ws.write(0, 11, self.start_time, self.style26)
 
-        # ---------------------------- OutPut File save with Overall Status --------------------------------------------
+        # ---------------------------- OutPut File save with Overall_Status --------------------------------------------
         Object.wb_Result.save(output_paths.outputpaths['Event_output_sheet'])
 
     def updated_output_report(self, loop):
@@ -569,7 +572,7 @@ class CreateUpdateEvent(login.CommonLogin, work_book.WorkBook):
             self.update_test_case_each_property.append('Pass')
         if self.event_details_dict['Adds'] == self.xl_update_address[loop]:
             self.update_test_case_each_property.append('Pass')
-        if self.event_details_dict['CText'] == self.xl_update_expected_colleges[loop]:
+        if self.event_details_dict.get('CText') == self.xl_update_expected_colleges[loop]:
             self.update_test_case_each_property.append('Pass')
         if self.owners_dict['UserId'] == self.xl_update_event_em_id[loop]:
             self.update_test_case_each_property.append('Pass')
@@ -612,7 +615,7 @@ class CreateUpdateEvent(login.CommonLogin, work_book.WorkBook):
             self.ws.write(self.rowsize1, 11, self.owners_dict['UserId'], self.style8)
         # --------------------------------------------------------------------------------------------------------------
         if self.event_details_dict:
-            if self.event_details_dict['CText'] == self.xl_update_expected_colleges[loop]:
+            if self.event_details_dict.get('CText') == self.xl_update_expected_colleges[loop]:
                 if self.xl_update_expected_colleges[loop] is None:
                     self.ws.write(self.rowsize1, 12, 'NA', self.style8)
                 else:

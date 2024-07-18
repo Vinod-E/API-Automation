@@ -4,6 +4,7 @@ import xlrd
 import datetime
 import time
 from hpro_automation import (login, input_paths, output_paths, db_login, work_book)
+from hpro_automation.api import *
 
 
 class ECAutomation(login.CommonLogin, db_login.DBConnection, work_book.WorkBook):
@@ -11,10 +12,10 @@ class ECAutomation(login.CommonLogin, db_login.DBConnection, work_book.WorkBook)
     def __init__(self):
         self.start_time = str(datetime.datetime.now())
         super(ECAutomation, self).__init__()
-        self.common_login('crpo')
+        self.common_login('admin')
         self.crpo_app_name = self.app_name.strip()
         print(self.crpo_app_name)
-        self.db_connection('amsin')
+        self.db_connection()
 
         now = datetime.datetime.now()
         self.__current_DateTime = now.strftime("%d-%m-%Y-%H-%M-%S")
@@ -42,10 +43,11 @@ class ECAutomation(login.CommonLogin, db_login.DBConnection, work_book.WorkBook)
                              'DB Applicant ID', 'EC ID', 'Expected Status', 'DB Status']
         self.headers_with_style2 = ['DB Status', 'Actual_status']
         self.file_headers_col_row()
+
     # -------------------------------------------
     # Reading Input data from excel
     # -------------------------------------------
-    def Data_read(self):
+    def data_read(self):
         wb = xlrd.open_workbook(input_paths.inputpaths['EC_Input_sheet'])
         sh1 = wb.sheet_by_index(0)
         i = 1
@@ -73,12 +75,12 @@ class ECAutomation(login.CommonLogin, db_login.DBConnection, work_book.WorkBook)
     # below method is used for Database connectivity and query execution
     # conn.close is important for every iteration otherwise, it will wrong data from local image.
     # ------------------------------------------------------------------------------------------------------------------
-    def Fetch_Applicants_DB(self, iteration_count):
+    def fetch_applicants_db(self, count):
         try:
 
             self.applicant_query = "select  ap.candidate_id,ap.id as applicant_id,ap.current_status_id,rs.label as status " \
                                    "from applicant_statuss ap left join resume_statuss rs on ap.current_status_id = rs.id " \
-                                   "where ap.id ='%s';" % (self.applicant_id[iteration_count])
+                                   "where ap.id ='%s';" % (self.applicant_id[count])
             query = self.applicant_query
             time.sleep(2)
             self.cursor.execute(query)
@@ -98,19 +100,19 @@ class ECAutomation(login.CommonLogin, db_login.DBConnection, work_book.WorkBook)
         except:
             print("DB connection Error")
 
-    def api_main(self, iteration_count):
+    def api_main(self, count):
         # -------------------------------------------
         # Updating EC configuration at event level
         # -------------------------------------------
         self.lambda_function('createOrUpdateEcConfig')
         self.headers['APP-NAME'] = self.crpo_app_name
 
-        self.data = {"ecConfigurations": [{"id": self.xl_ec_configuration__Id[iteration_count],
-                                           "jobRoleId": self.xl_job_Id[iteration_count],
-                                           "eventId": self.xl_event_Id[iteration_count],
-                                           "ecId": self.ec_id[iteration_count],
-                                           "positiveStatusId": self.xl_positive_status__Id[iteration_count],
-                                           "negativeStatusId": self.xl_negative_status__Id[iteration_count]}]}
+        self.data = {"ecConfigurations": [{"id": self.xl_ec_configuration__Id[count],
+                                           "jobRoleId": self.xl_job_Id[count],
+                                           "eventId": self.xl_event_Id[count],
+                                           "ecId": self.ec_id[count],
+                                           "positiveStatusId": self.xl_positive_status__Id[count],
+                                           "negativeStatusId": self.xl_negative_status__Id[count]}]}
         r = requests.post(self.webapi, headers=self.headers,
                           data=json.dumps(self.data, default=str), verify=False)
         print(r.headers)
@@ -153,48 +155,48 @@ class ECAutomation(login.CommonLogin, db_login.DBConnection, work_book.WorkBook)
     # -------------------------------------
     # Compairing data from Excel to DB
     # -------------------------------------
-    def match_db_excel(self, iteration_count):
-        if self.applicant_id[iteration_count] == self.db_applicant_id:
-            if self.expected_results[iteration_count] == self.db_status:
+    def match_db_excel(self, count):
+        if self.applicant_id[count] == self.db_applicant_id:
+            if self.expected_results[count] == self.db_status:
                 print("DB - Status Matched With Expected Status")
                 self.db_mess = 'pass'
                 self.success_case_01 = 'Pass'
-                self.excel_write(self.candidate_id[iteration_count],
-                                 self.applicant_id[iteration_count],
+                self.excel_write(self.candidate_id[count],
+                                 self.applicant_id[count],
                                  self.db_applicant_id,
-                                 self.expected_results[iteration_count],
+                                 self.expected_results[count],
                                  self.db_status,
                                  self.db_mess,
                                  self.style14,
-                                 self.xl_event_Id[iteration_count],
-                                 self.xl_job_Id[iteration_count],
-                                 self.ec_id[iteration_count])
+                                 self.xl_event_Id[count],
+                                 self.xl_job_Id[count],
+                                 self.ec_id[count])
             else:
                 print("DB - Status Not Matched  With Expected Status")
                 self.db_mess = 'status not matched with excel and DB'
-                self.excel_write(self.candidate_id[iteration_count],
-                                 self.applicant_id[iteration_count],
+                self.excel_write(self.candidate_id[count],
+                                 self.applicant_id[count],
                                  self.db_applicant_id,
-                                 self.expected_results[iteration_count],
+                                 self.expected_results[count],
                                  self.db_status,
                                  self.db_mess,
                                  self.style13,
-                                 self.xl_event_Id[iteration_count],
-                                 self.xl_job_Id[iteration_count],
-                                 self.ec_id[iteration_count])
+                                 self.xl_event_Id[count],
+                                 self.xl_job_Id[count],
+                                 self.ec_id[count])
         else:
             pass
             self.db_mess = 'Excel Applicant id not matched with DB applicant'
-            self.excel_write(self.candidate_id[iteration_count],
-                             self.applicant_id[iteration_count],
+            self.excel_write(self.candidate_id[count],
+                             self.applicant_id[count],
                              self.db_applicant_id,
-                             self.expected_results[iteration_count],
+                             self.expected_results[count],
                              self.db_status,
                              self.db_mess,
                              self.style13,
-                             self.xl_event_Id[iteration_count],
-                             self.xl_job_Id[iteration_count],
-                             self.ec_id[iteration_count])
+                             self.xl_event_Id[count],
+                             self.xl_job_Id[count],
+                             self.ec_id[count])
 
     # ------------------------
     # Writing output to excel
@@ -223,26 +225,28 @@ class ECAutomation(login.CommonLogin, db_login.DBConnection, work_book.WorkBook)
         else:
             self.ws.write(0, 1, 'Fail', self.style25)
 
-        self.ws.write(0, 2, 'Start Time', self.style23)
-        self.ws.write(0, 3, self.start_time, self.style26)
+        self.ws.write(0, 2, 'Login Server', self.style23)
+        self.ws.write(0, 3, login_server, self.style24)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
         self.ws.write(0, 6, 'APP Name', self.style23)
         self.ws.write(0, 7, self.crpo_app_name, self.style24)
         self.ws.write(0, 8, 'No.of Test cases', self.style23)
-        self.ws.write(0, 9, tot_count, self.style24)
+        self.ws.write(0, 9, total_count, self.style24)
+        self.ws.write(0, 10, 'Start Time', self.style23)
+        self.ws.write(0, 11, self.start_time, self.style26)
         ob.wb_Result.save(output_paths.outputpaths['EC_Output_sheet'])
 
 
 ob = ECAutomation()
-ob.Data_read()
-tot_count = len(ob.applicant_id)
-print(tot_count)
+ob.data_read()
+total_count = len(ob.applicant_id)
+print(total_count)
 if ob.login == 'OK':
-    for iteration_count in range(0, tot_count):
+    for iteration_count in range(0, total_count):
         print("Iteration Count is '%d'" % iteration_count)
         ob.api_main(iteration_count)
-        ob.Fetch_Applicants_DB(iteration_count)
+        ob.fetch_applicants_db(iteration_count)
         ob.match_db_excel(iteration_count)
         ob.success_case_01 = {}
 ob.overall_status()

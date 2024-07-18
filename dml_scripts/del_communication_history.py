@@ -8,7 +8,7 @@ class DeleteCommunication(login.CommonLogin, db_login.DBConnection):
 
     def __init__(self):
         super(DeleteCommunication, self).__init__()
-        self.common_login('crpo')
+        self.common_login('admin')
 
         self.xl_attachment_id = []
         self.xl_CommunicationPurpose = []
@@ -53,7 +53,7 @@ class DeleteCommunication(login.CommonLogin, db_login.DBConnection):
 
     def update_communication_history(self):
         app_can_ids = tuple(self.xl_applicant_id)
-        self.db_connection('amsin')
+        self.db_connection()
 
         query0 = "DELETE FROM entity_communication_history WHERE entitycommunication_id in" \
                  " (SELECT id from entity_communications " \

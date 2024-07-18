@@ -1,4 +1,6 @@
 from hpro_automation import (login, input_paths, output_paths, work_book)
+from scripts.Overall_Status.overall_status_of_usecase import OverallStatus
+from hpro_automation.api import *
 import json
 import requests
 import xlrd
@@ -13,6 +15,7 @@ class InterviewFeedback(login.CommonLogin, work_book.WorkBook):
         self.common_login('int')
         self.crpo_app_name = self.app_name.strip()
         print(self.crpo_app_name)
+        self.FinalStatus = OverallStatus()
 
         # --------------------------
         # Initialising Excel Data
@@ -53,7 +56,7 @@ class InterviewFeedback(login.CommonLogin, work_book.WorkBook):
         self.xl_update_skill_score_01 = []
         self.xl_update_stage = []
 
-        self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 33)))
+        self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 32)))
         self.Actual_Success_case = []
 
         # -----------------------------------------------------------------------------------
@@ -961,14 +964,16 @@ class InterviewFeedback(login.CommonLogin, work_book.WorkBook):
         else:
             self.ws.write(0, 1, 'Fail', self.style25)
 
-        self.ws.write(0, 2, 'Start Time', self.style23)
-        self.ws.write(0, 3, self.start_time, self.style26)
+        self.ws.write(0, 2, 'Login Server', self.style23)
+        self.ws.write(0, 3, login_server, self.style24)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
         self.ws.write(0, 6, 'APP Name', self.style23)
         self.ws.write(0, 7, self.crpo_app_name, self.style24)
         self.ws.write(0, 8, 'No.of Test cases', self.style23)
         self.ws.write(0, 9, Total_count, self.style24)
+        self.ws.write(0, 10, 'Start Time', self.style23)
+        self.ws.write(0, 11, self.start_time, self.style26)
         Object.wb_Result.save(output_paths.outputpaths['Interview_flow_Output_sheet'])
 
 

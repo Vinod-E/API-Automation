@@ -69,6 +69,8 @@ outputpaths = {
 
     'Stack_Ranking_output_sheet': generic_output_path + crpo_common_folder + "stackranking_{}.xlsx",
 
+    'Assessment_slot_output_sheet': generic_output_path + crpo_common_folder + "assessment_slot_{}.xlsx",
+
     # ------------------
     # Pofu output sheets
     # ------------------

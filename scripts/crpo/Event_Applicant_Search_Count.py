@@ -5,6 +5,7 @@ import xlrd
 import xlwt
 import datetime
 from hpro_automation import (login, input_paths, output_paths, db_login, work_book)
+from hpro_automation.api import *
 
 
 class Excel_Data(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
@@ -12,10 +13,10 @@ class Excel_Data(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
     def __init__(self):
         super(Excel_Data, self).__init__()
         self.start_time = str(datetime.datetime.now())
-        self.common_login('crpo')
+        self.common_login('admin')
         self.crpo_app_name = self.app_name.strip()
         print(self.crpo_app_name)
-        self.db_connection('amsin')
+        self.db_connection()
 
         # This Script works for below fields
         self.xl_json_request = []
@@ -115,7 +116,7 @@ class Excel_Data(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
     #     self.actual_ids = []
     #     for i in range(1, iter):
     #         self.data["PagingCriteria"]["PageNo"] = i
-    #         r = requests.post("https://amsin.hirepro.in/py/crpo/applicant/api/v1/getAllApplicants/", headers=self.headers,
+    #         r = requests.post("https://xyz.in/py/crpo/applicant/api/v1/getAllApplicants/", headers=self.headers,
     #                           data=json.dumps(data, default=str), verify=False)
     #         resp_dict = json.loads(r.content)
     #         # print resp_dict
@@ -286,7 +287,7 @@ class Excel_Data(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
 
         if self.xl_request.get("CandidateName"):
             # print self.xl_request.get("EventId")
-            where_str += " and c.candidate_name like '%{}%' ".format(self.xl_request.get("CandidateName"))
+            where_str += " and hp_dec(c.candidate_name) COLLATE utf8mb4_general_ci like '%{}%' ".format(self.xl_request.get("CandidateName"))
 
         if self.xl_request.get("ApplicantIds"):
             a = self.xl_request.get("ApplicantIds")
@@ -301,13 +302,13 @@ class Excel_Data(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
             where_str += " and sp.candidate_id in ( %s )" %(values)
 
         if self.xl_request.get("Email"):
-            where_str += " and c.email1 like '%{}%' ".format(self.xl_request.get("Email"))
+            where_str += " and hp_dec(c.email1) COLLATE utf8mb4_general_ci like '%{}%' ".format(self.xl_request.get("Email"))
 
         if self.xl_request.get("Usn"):
-            where_str += " and c.usn = '{}' ".format(self.xl_request.get("Usn"))
+            where_str += " and hp_dec(c.usn) COLLATE utf8mb4_general_ci = '{}' ".format(self.xl_request.get("Usn"))
 
         if self.xl_request.get("Phone"):
-            where_str += " and c.mobile1 = {} ".format(self.xl_request.get("Phone"))
+            where_str += " and hp_dec(c.mobile1) COLLATE utf8mb4_general_ci = {} ".format(self.xl_request.get("Phone"))
 
         if self.xl_request.get("GenderType"):
             where_str += " and c.gender = {} ".format(self.xl_request.get("GenderType"))
@@ -414,61 +415,61 @@ class Excel_Data(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
 
 
         if self.xl_request.get("Text1"):
-            where_str += " and  c.text1 like  '%{}%' ".format(self.xl_request.get("Text1"))
+            where_str += " and  hp_dec(c.text1) COLLATE utf8mb4_general_ci like  '%{}%' ".format(self.xl_request.get("Text1"))
 
         if self.xl_request.get("Text2"):
-            where_str += " and  c.text2 like  '%{}%' ".format(self.xl_request.get("Text2"))
+            where_str += " and  hp_dec(c.text2) COLLATE utf8mb4_general_ci like  '%{}%' ".format(self.xl_request.get("Text2"))
 
         if self.xl_request.get("Text3"):
-            where_str += " and  c.text3 like  '%{}%' ".format(self.xl_request.get("Text3"))
+            where_str += " and  hp_dec(c.text3) COLLATE utf8mb4_general_ci like  '%{}%' ".format(self.xl_request.get("Text3"))
 
         if self.xl_request.get("Text4"):
-            where_str += " and  c.text4 like '%{}%' ".format(self.xl_request.get("Text4"))
+            where_str += " and  hp_dec(c.text4) COLLATE utf8mb4_general_ci like '%{}%' ".format(self.xl_request.get("Text4"))
 
         if self.xl_request.get("Text5"):
-            where_str += " and  c.text5 like '%{}%' ".format(self.xl_request.get("Text5"))
+            where_str += " and  hp_dec(c.text5) COLLATE utf8mb4_general_ci like '%{}%' ".format(self.xl_request.get("Text5"))
 
         if self.xl_request.get("Text6"):
-            where_str += " and  cc.text6 like '%{}%' ".format(self.xl_request.get("Text6"))
+            where_str += " and  hp_dec(cc.text6) COLLATE utf8mb4_general_ci like '%{}%' ".format(self.xl_request.get("Text6"))
 
         if self.xl_request.get("Text7"):
-            where_str += " and  cc.text7 like '%{}%' ".format(self.xl_request.get("Text7"))
+            where_str += " and  hp_dec(cc.text7) COLLATE utf8mb4_general_ci like '%{}%' ".format(self.xl_request.get("Text7"))
 
         if self.xl_request.get("Text8"):
-            where_str += " and  cc.text8 like '%{}%' ".format(self.xl_request.get("Text8"))
+            where_str += " and  hp_dec(cc.text8) COLLATE utf8mb4_general_ci like '%{}%' ".format(self.xl_request.get("Text8"))
 
         if self.xl_request.get("Text9"):
-            where_str += " and  cc.text9 like '%{}%' ".format(self.xl_request.get("Text9"))
+            where_str += " and  hp_dec(cc.text9) COLLATE utf8mb4_general_ci like '%{}%' ".format(self.xl_request.get("Text9"))
 
         if self.xl_request.get("Text10"):
-            where_str += " and  cc.text10 like '%{}%' ".format(self.xl_request.get("Text10"))
+            where_str += " and  hp_dec(cc.text10) COLLATE utf8mb4_general_ci like '%{}%' ".format(self.xl_request.get("Text10"))
 
         if self.xl_request.get("Text11"):
-            where_str += " and  cc.text11 like '%{}%' ".format(self.xl_request.get("Text11"))
+            where_str += " and  hp_dec(cc.text11) COLLATE utf8mb4_general_ci like '%{}%' ".format(self.xl_request.get("Text11"))
 
         if self.xl_request.get("Text12"):
-            where_str += " and  cc.text12 like '%{}%' ".format(self.xl_request.get("Text12"))
+            where_str += " and  hp_dec(cc.text12) COLLATE utf8mb4_general_ci like '%{}%' ".format(self.xl_request.get("Text12"))
 
         if self.xl_request.get("Text13"):
-            where_str += " and  cc.text13 like '%{}%' ".format(self.xl_request.get("Text13"))
+            where_str += " and  hp_dec(cc.text13) COLLATE utf8mb4_general_ci like '%{}%' ".format(self.xl_request.get("Text13"))
 
         if self.xl_request.get("Text14"):
-            where_str += " and  cc.text14 like '%{}%' ".format(self.xl_request.get("Text14"))
+            where_str += " and  hp_dec(cc.text14) COLLATE utf8mb4_general_ci like '%{}%' ".format(self.xl_request.get("Text14"))
 
         if self.xl_request.get("Text15"):
-            where_str += " and  cc.text15 like '%{}%' ".format(self.xl_request.get("Text15"))
+            where_str += " and  hp_dec(cc.text15) COLLATE utf8mb4_general_ci like '%{}%' ".format(self.xl_request.get("Text15"))
 
         if self.xl_request.get("TextArea1"):
-            where_str += " and  c.text_area1 like '%{}%' ".format(self.xl_request.get("TextArea1"))
+            where_str += " and  hp_dec(c.text_area1) COLLATE utf8mb4_general_ci like '%{}%' ".format(self.xl_request.get("TextArea1"))
 
         if self.xl_request.get("TextArea2"):
-            where_str += " and  c.text_area2 like '%{}%' ".format(self.xl_request.get("TextArea2"))
+            where_str += " and  hp_dec(c.text_area2) COLLATE utf8mb4_general_ci like '%{}%' ".format(self.xl_request.get("TextArea2"))
 
         if self.xl_request.get("TextArea3"):
-            where_str += " and  c.text_area3 like '%{}%' ".format(self.xl_request.get("TextArea3"))
+            where_str += " and  hp_dec(c.text_area3) COLLATE utf8mb4_general_ci like '%{}%' ".format(self.xl_request.get("TextArea3"))
 
         if self.xl_request.get("TextArea4"):
-            where_str += " and  c.text_area4 like '%{}%' ".format(self.xl_request.get("TextArea4"))
+            where_str += " and  hp_dec(c.text_area4) COLLATE utf8mb4_general_ci like '%{}%' ".format(self.xl_request.get("TextArea4"))
 
         if self.xl_request.get("DateCustomField1From"):
             date1 =self.xl_request.get("DateCustomField1From")
@@ -606,14 +607,16 @@ class Excel_Data(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
         else:
             self.ws.write(0, 1, 'Fail', self.style25)
 
-        self.ws.write(0, 2, 'Start Time', self.style23)
-        self.ws.write(0, 3, self.start_time, self.style26)
+        self.ws.write(0, 2, 'Login Server', self.style23)
+        self.ws.write(0, 3, login_server, self.style24)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
         self.ws.write(0, 6, 'APP Name', self.style23)
         self.ws.write(0, 7, self.crpo_app_name, self.style24)
         self.ws.write(0, 8, 'No.of Test cases', self.style23)
         self.ws.write(0, 9, self.tot_len, self.style24)
+        self.ws.write(0, 10, 'Start Time', self.style23)
+        self.ws.write(0, 11, self.start_time, self.style26)
         Object.wb_result.save(output_paths.outputpaths['Applicant_count_Output_sheet_1'])
 
 

@@ -3,7 +3,7 @@ import xlrd
 import requests
 import json
 import datetime
-import time
+from hpro_automation.api import *
 
 
 class PasswordPolicy(login.CommonLogin, work_book.WorkBook, db_login.DBConnection):
@@ -11,7 +11,7 @@ class PasswordPolicy(login.CommonLogin, work_book.WorkBook, db_login.DBConnectio
     def __init__(self):
         self.start_time = str(datetime.datetime.now())
         super(PasswordPolicy, self).__init__()
-        self.common_login('crpo')
+        self.common_login('admin')
         self.crpo_app_name = self.app_name.strip()
         print(self.crpo_app_name)
 
@@ -61,11 +61,11 @@ class PasswordPolicy(login.CommonLogin, work_book.WorkBook, db_login.DBConnectio
         self.success_case_03 = {}
 
     def excel_headers(self):
-        self.main_headers = ['Comparision', 'Overall Status', 'TotalCharacters', 'Capital', 'Small', 'Special',
+        self.main_headers = ['Comparision', 'Overall_Status', 'TotalCharacters', 'Capital', 'Small', 'Special',
                              'Numeric', 'ID', 'Pwd_configuration_status',
                              'UserName', 'Current_Password', 'Change_password', 'Change_Pwd_Status',
                              'LastLogin', 'Login_Status', 'Exception Error']
-        self.headers_with_style2 = ['Comparision', 'Overall Status']
+        self.headers_with_style2 = ['Comparision', 'Overall_Status']
         self.headers_with_style19 = ['TotalCharacters', 'Capital', 'Small', 'Special', 'Numeric', 'ID',
                                      'Pwd_configuration_status']
         self.headers_with_style20 = ['UserName', 'Current_Password', 'Change_password', 'Change_Pwd_Status']
@@ -192,7 +192,7 @@ class PasswordPolicy(login.CommonLogin, work_book.WorkBook, db_login.DBConnectio
 
     def db_pwd_policy(self, loop):
 
-        self.db_connection('amsin1')
+        self.db_connection_tenant()
         query = 'select num_character,num_capital,num_small,num_special,num_numeric ' \
                 'from pwd_policy_configurations where id={};'.format(self.xl_ID[loop])
         self.cursor.execute(query)
@@ -451,8 +451,10 @@ class PasswordPolicy(login.CommonLogin, work_book.WorkBook, db_login.DBConnectio
         self.ws.write(0, 5, self.calling_lambda, self.style24)
         self.ws.write(0, 6, 'APP Name', self.style23)
         self.ws.write(0, 7, self.crpo_app_name, self.style24)
-        self.ws.write(0, 8, 'No.of Test cases', self.style23)
-        self.ws.write(0, 9, Total_count, self.style24)
+        self.ws.write(0, 8, 'Login Server', self.style23)
+        self.ws.write(0, 9, login_server, self.style24)
+        self.ws.write(0, 10, 'No.of Test cases', self.style23)
+        self.ws.write(0, 11, Total_count, self.style24)
         Object.wb_Result.save(output_paths.outputpaths['Password_policy'])
 
 

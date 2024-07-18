@@ -1,4 +1,5 @@
 from hpro_automation import (login, output_paths, input_paths, work_book, db_login)
+from hpro_automation.api import *
 import json
 import requests
 import xlrd
@@ -10,20 +11,20 @@ class CancelInterview(login.CommonLogin, work_book.WorkBook, db_login.DBConnecti
     def __init__(self):
         self.start_time = str(datetime.datetime.now())
         super(CancelInterview, self).__init__()
-        self.common_login('crpo')
+        self.common_login('int')
         self.crpo_app_name = self.app_name.strip()
-        self.db_connection('amsin')
+        self.db_connection()
         print(self.crpo_app_name)
 
         # -----------------------
         # Initialising Excel Data
         # -----------------------
-        self.xl_ir_id = []  # [] Initialising data from excel sheet to the variables
+        self.xl_ir_id = []  # [] Initialising data from Excel sheet to the variables
         self.xl_cancel_statusID = 167112
         self.xl_expected_message = []
         self.xl_interviewer_comment = 'Interview cancelled by Admin'
 
-        self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 31)))
+        self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 30)))
         self.Actual_Success_case = []
 
         # ---------------------------------
@@ -37,8 +38,8 @@ class CancelInterview(login.CommonLogin, work_book.WorkBook, db_login.DBConnecti
         self.success_case_03 = {}
 
     def excel_headers(self):
-        self.main_headers = ['Comparision', 'Status', 'Interview_Request_ID', 'Message']
-        self.headers_with_style2 = ['Comparision', 'Status']
+        self.main_headers = ['Comparison', 'Status', 'Interview_Request_ID', 'Message']
+        self.headers_with_style2 = ['Comparison', 'Status']
         self.file_headers_col_row()
 
     def excel_data_ir1(self):
@@ -177,14 +178,16 @@ class CancelInterview(login.CommonLogin, work_book.WorkBook, db_login.DBConnecti
         else:
             self.ws.write(0, 1, 'Fail', self.style25)
 
-        self.ws.write(0, 2, 'StartTime', self.style23)
-        self.ws.write(0, 3, self.start_time, self.style26)
+        self.ws.write(0, 2, 'Login Server', self.style23)
+        self.ws.write(0, 3, login_server, self.style24)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
         self.ws.write(0, 6, 'APP Name', self.style23)
         self.ws.write(0, 7, self.crpo_app_name, self.style24)
         self.ws.write(0, 8, 'No.of Test cases', self.style23)
         self.ws.write(0, 9, Total_count, self.style24)
+        self.ws.write(0, 10, 'Start Time', self.style23)
+        self.ws.write(0, 11, self.start_time, self.style26)
         Object.wb_Result.save(output_paths.outputpaths['Cancel_Interview_Output_sheet'])
 
     def fetch_null_ir_without_candidate_id(self):

@@ -9,7 +9,7 @@ class ResetCandidateDetails(login.CommonLogin):
     def __init__(self):
 
         super(ResetCandidateDetails, self).__init__()
-        self.common_login('crpo')
+        self.common_login('admin')
 
         self.xl_reset_candidate_id = []
         self.xl_reset_Name = []

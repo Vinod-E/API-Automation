@@ -38,6 +38,10 @@ lambda_apis = {
 
     "getEcConfigs": generic_domain + "crpo/dynamicec/api/v1/getEcConfigs/",
 
+    "verfiyhash": generic_domain + "crpo/assessment/slotmgmt/candidate/api/v1/verifyHash/",
+
+    "generate_applicant_report": generic_domain + "common/xl_creator/api/v1/generate_applicant_report/",
+
     # ---------------------------------- communication history/status --------------------------------------------------
     "Create_Attachment": generic_domain + "common/attachment/api/v1/createAttachment/",
 
@@ -143,6 +147,12 @@ non_lambda_apis = {
 
     "cancel": generic_domain + "crpo/api/v1/interview/cancel/",
 
+    "interview_unassign_slot": generic_domain + "crpo/applicant/api/v1/unslotApplicants/",
+
+    "assessment_slot_select": generic_domain + "crpo/assessment/slotmgmt/candidate/api/v1/selectSlot/",
+
+    "assessment_unassign_slot": generic_domain + "crpo/assessment/slotmgmt/recruiter/api/v1/dissociateSlotApplicants/",
+
     # --------------------------------------------- Staffing -----------------------------------------------------------
     "submitform": generic_domain + "pofu/api/v1/submit-form/",
 
@@ -158,5 +168,9 @@ non_lambda_apis = {
     # ------------------------------------------- S3 APIS -----------------------------------------------------
     "s3": generic_domain + "common/filehandler/api/v2/upload/.jpeg,.jpg,.gif,.png,.pdf,.txt,.doc,.docx,.xls,.xlsx,.zip,"
                            ".rar,.7z,.msg,.html,.ogg,.mp4,.webm,/15000/",
+}
 
+slot_app = {
+    # ------------------------------------------- Slot App ------------------------------------------------------------
+    'access_token': generic_domain + "oauth2/{}/access_token/"
 }

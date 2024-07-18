@@ -1,4 +1,5 @@
 from hpro_automation.read_excel import *
+from hpro_automation.api import *
 import itertools
 from operator import itemgetter
 import requests
@@ -12,8 +13,8 @@ class SCAutomation(login.CommonLogin, db_login.DBConnection, work_book.WorkBook)
     def __init__(self):
         self.start_time = str(datetime.datetime.now())
         super(SCAutomation, self).__init__()
-        self.db_connection('amsin')
-        self.common_login('crpo')
+        self.db_connection()
+        self.common_login('admin')
         self.crpo_app_name = self.app_name.strip()
         print(self.crpo_app_name)
 
@@ -199,14 +200,16 @@ class SCAutomation(login.CommonLogin, db_login.DBConnection, work_book.WorkBook)
         else:
             self.ws.write(0, 1, 'Fail', self.style25)
 
-        self.ws.write(0, 2, 'Start Time', self.style23)
-        self.ws.write(0, 3, self.start_time, self.style26)
+        self.ws.write(0, 2, 'Login Server', self.style23)
+        self.ws.write(0, 3, login_server, self.style24)
         self.ws.write(0, 4, 'Lambda', self.style23)
         self.ws.write(0, 5, self.calling_lambda, self.style24)
         self.ws.write(0, 6, 'APP Name', self.style23)
         self.ws.write(0, 7, self.crpo_app_name, self.style24)
         self.ws.write(0, 8, 'No.of Test cases', self.style23)
         self.ws.write(0, 9, self.totalapplicantCount, self.style24)
+        self.ws.write(0, 10, 'Start Time', self.style23)
+        self.ws.write(0, 11, self.start_time, self.style26)
         ob.wb_Result.save(output_paths.outputpaths['SC_Output_sheet'])
 
 

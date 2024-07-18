@@ -1,2 +1,8 @@
 *.pyc
+Output Data/Crpo/Common_folder/*.xls
+Output Data/Crpo/Common_folder/*.xlsx
+Output Data/Crpo/Common_folder/Downloads/*.xls
+Output Data/Crpo/Common_folder/Downloads/*.xlsx
+Output Data/Crpo/Common_folder/Performance/*.xls
+Output Data/Crpo/Common_folder/Performance/*.xlsx
 hpro_automation/identity/credentials.py
