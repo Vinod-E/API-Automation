@@ -76,7 +76,9 @@ class AmsinNonEuOutput(work_book.WorkBook, performance_apis.PerformanceTesting):
         df.loc[1, h9] = self.Average_Time_interview
         df.loc[1, h10] = self.Average_Time_new_interview
 
-        book = load_workbook(self.output_file)
+        # .odf file (with LibreOffice) and renamed it to .xlsx. This was the mistake.
+        # convert the odf to an Execl format.
+        book = load_workbook(self.output_file, data_only=True)
         writer = pd.ExcelWriter(self.output_file, engine='openpyxl')
         writer._book = book
         writer._sheets = dict((ws.title, ws) for ws in writer.book.worksheets)
