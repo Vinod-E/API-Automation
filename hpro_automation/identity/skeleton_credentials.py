@@ -1,10 +1,12 @@
-server_api = "https:************/py/"
-amsin_verify_slot_guid = ''
-ams_verify_slot_guid = ''
-amsin_assessment_slot_guid = ''
-ams_assessment_slot_guid = ''
-amsin_interview_slot_guid = ''
-ams_interview_slot_guid = ''
+server_api = ""
+ams_eu_server_api = ""
+amsin_eu_server_api = ""
+amsin_verify_slot_guid = ""
+ams_verify_slot_guid = ""
+amsin_assessment_slot_guid = ""
+ams_assessment_slot_guid = ""
+amsin_interview_slot_guid = ""
+ams_interview_slot_guid = ""
 
 login_details = {"crpo": {"LoginName": '',
                           "Password": '',

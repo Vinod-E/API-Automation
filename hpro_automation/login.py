@@ -30,6 +30,9 @@ class CommonLogin(object):
 
         print("-------------------------------------------------")
         print("Run Started at :", str(datetime.datetime.now()))
+        print("-------------------------------------------------")
+        print('That you are running in this server :: ', generic_domain)
+        print("-------------------------------------------------")
 
         try:
             urllib3.disable_warnings()
@@ -66,6 +69,64 @@ class CommonLogin(object):
         except ValueError as login_error:
             print(login_error)
         self.lambda_check()
+
+    def performance_login(self, login_user):
+        # -------------------------------- CRPO LOGIN APPLICATION ------------------------------------------------------
+
+        print("-------------------------------------------------")
+        print("Run Started at :", str(datetime.datetime.now()))
+        print("-------------------------------------------------")
+
+        try:
+            urllib3.disable_warnings()
+            if login_server == 'amsin':
+                if login_user == 'amsin_eu':
+                    print('That you are running in this server :: ', eu_amsin_domain)
+                    print("-------------------------------------------------")
+                    login_data = credentials.login_details['amsin_eu']
+                    api = lambda_apis.get("eu_amsin_login")
+                    print(api)
+                else:
+                    print('That you are running in this server :: ', generic_domain)
+                    print("-------------------------------------------------")
+                    login_data = credentials.login_details['amsin_non_eu']
+                    api = lambda_apis.get("Loginto_CRPO")
+                    print(api)
+
+            else:
+                if login_user == 'live_eu':
+                    print('That you are running in this server :: ', eu_ams_domain)
+                    print("-------------------------------------------------")
+                    login_data = credentials.login_details['live_eu']
+                    api = lambda_apis.get("eu_ams_login")
+                    print(api)
+                else:
+                    print('That you are running in this server :: ', generic_domain)
+                    print("-------------------------------------------------")
+                    login_data = credentials.login_details['live_non_eu']
+                    api = lambda_apis.get("Loginto_CRPO")
+                    print(api)
+
+            self.headers['APP-NAME'] = self.app_name
+            self.headers['X-APPLMA'] = 'true'
+            login_api = requests.post(api, headers=self.header, data=json.dumps(login_data),
+                                      verify=False)
+            print(login_data)
+            response = login_api.json()
+            print(login_api.headers)
+            self.get_token = response.get("Token")
+
+            time.sleep(1)
+            resp_dict = json.loads(login_api.content)
+            status = resp_dict['status']
+            if status == 'OK':
+                self.login = 'OK'
+                print("CRPO Login successfully")
+            else:
+                self.login = 'KO'
+                print("CRPO Login Failed")
+        except ValueError as login_error:
+            print(login_error)
 
     def slot_captcha_login_token(self, login_user):
         # -------------------------------- CRPO LOGIN APPLICATION ------------------------------------------------------

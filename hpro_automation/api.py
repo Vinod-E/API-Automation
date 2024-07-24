@@ -2,7 +2,9 @@ from hpro_automation.identity import credentials
 
 login_server = str(input('Server_name :: '))
 generic_domain = credentials.server_api.format(login_server)
-print('That you are running in this server :: ', generic_domain)
+eu_ams_domain = credentials.ams_eu_server_api
+eu_amsin_domain = credentials.amsin_eu_server_api
+# print('That you are running in this server :: ', generic_domain)
 # ---------------------------------------------Lambda APIS -------------------------------------------------------------
 lambda_apis = {
 
@@ -57,7 +59,28 @@ lambda_apis = {
     "get_all_candidates": generic_domain + "rpo/get_all_candidates/",
     "getTestUsersForTest": generic_domain + "assessment/testuser/api/v1/getTestUsersForTest/",
     "interviews": generic_domain + "crpo/api/v1/view/interviews",
-    "interview_new": generic_domain + "crpo/api/v1/view/interviewsNew"
+    "interview_new": generic_domain + "crpo/api/v1/view/interviewsNew",
+
+    "eu_amsin_login": eu_amsin_domain + "common/user/login_user/",
+    "amsin_eu_getAllAppPreference": eu_amsin_domain + 'common/common_app_utils/api/v1/getAllAppPreference/',
+    "amsin_eu_get_tenant_details": eu_amsin_domain + "common/get_tenant_details/",
+    "amsin_eu_get_all_entity_properties": eu_amsin_domain + "rpo/get_all_entity_properties/",
+    "amsin_eu_group_by_catalog_masters": eu_amsin_domain + "common/catalogs/api/v1/group-by-catalog-masters/",
+    "amsin_eu_get_all_candidates": eu_amsin_domain + "rpo/get_all_candidates/",
+    "amsin_eu_getTestUsersForTest": eu_amsin_domain + "assessment/testuser/api/v1/getTestUsersForTest/",
+    "amsin_eu_interviews": eu_amsin_domain + "crpo/api/v1/view/interviews",
+    "amsin_eu_interview_new": eu_amsin_domain + "crpo/api/v1/view/interviewsNew",
+
+    "eu_ams_login": eu_ams_domain + "common/user/login_user/",
+    "ams_eu_getAllAppPreference": eu_ams_domain + 'common/common_app_utils/api/v1/getAllAppPreference/',
+    "ams_eu_get_tenant_details": eu_ams_domain + "common/get_tenant_details/",
+    "ams_eu_get_all_entity_properties": eu_ams_domain + "rpo/get_all_entity_properties/",
+    "ams_eu_group_by_catalog_masters": eu_ams_domain + "common/catalogs/api/v1/group-by-catalog-masters/",
+    "ams_eu_get_all_candidates": eu_ams_domain + "rpo/get_all_candidates/",
+    "ams_eu_getTestUsersForTest": eu_ams_domain + "assessment/testuser/api/v1/getTestUsersForTest/",
+    "ams_eu_interviews": eu_ams_domain + "crpo/api/v1/view/interviews",
+    "ams_eu_interview_new": eu_ams_domain + "crpo/api/v1/view/interviewsNew",
+
 }
 
 # -------------------------------------------- Non Lambda APIS ---------------------------------------------------------
