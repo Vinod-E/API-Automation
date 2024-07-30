@@ -39,12 +39,16 @@ class CommonLogin(object):
             if login_server == 'amsin':
                 if login_user == 'admin':
                     login_data = credentials.login_details['crpo']
+                elif login_user == 'slot':
+                    login_data = credentials.login_details['amsin_slot']
                 else:
                     login_data = credentials.login_details['int']
 
             else:
                 if login_user == 'admin':
                     login_data = credentials.login_details['ams_crpo']
+                elif login_user == 'slot':
+                    login_data = credentials.login_details['ams_slot']
                 else:
                     login_data = credentials.login_details['ams_int']
 
@@ -166,7 +170,7 @@ class CommonLogin(object):
             oauth_api = requests.post(slot_app.get("access_token").format(self.integrationGuid), headers=self.headers,
                                       data=json.dumps(oauth_data), verify=False)
             response = oauth_api.json()
-            print(oauth_api.headers)
+            # print(oauth_api.headers)
             print(response)
             self.get_token = response.get("access_token")
 
@@ -178,6 +182,25 @@ class CommonLogin(object):
             else:
                 self.login = 'KO'
                 print("Oauth Token Generation Failed")
+        except ValueError as oauth_error:
+            print(oauth_error)
+
+    def verify_hash(self, request):
+        try:
+            urllib3.disable_warnings()
+            self.lambda_headers['Authorization'] = 'bearer ' + self.get_token
+            self.lambda_headers['App-Name'] = 'assessmentSlots'
+            request = json.loads(request)
+
+            # ------------------ API Call -------------------------------------
+            verify_hash_api = requests.post(lambda_apis.get("verfiyhash"), headers=self.lambda_headers,
+                                            data=json.dumps(request), verify=False)
+            response = verify_hash_api.json()
+            data = response.get('data')
+            if data.get('message') == 'Authorized.':
+                print("slot captcha login api token:: ", data['message'])
+            else:
+                print(response)
         except ValueError as oauth_error:
             print(oauth_error)
 

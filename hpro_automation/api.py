@@ -44,6 +44,10 @@ lambda_apis = {
 
     "generate_applicant_report": generic_domain + "common/xl_creator/api/v1/generate_applicant_report/",
 
+    "assessment_slot_select": generic_domain + "crpo/assessment/slotmgmt/candidate/api/v1/selectSlot/",
+
+    "assessment_slot_update": generic_domain + "crpo/assessment/slotmgmt/candidate/api/v1/changeSlot/",
+
     # ---------------------------------- communication history/status --------------------------------------------------
     "Create_Attachment": generic_domain + "common/attachment/api/v1/createAttachment/",
 
@@ -171,8 +175,6 @@ non_lambda_apis = {
     "cancel": generic_domain + "crpo/api/v1/interview/cancel/",
 
     "interview_unassign_slot": generic_domain + "crpo/applicant/api/v1/unslotApplicants/",
-
-    "assessment_slot_select": generic_domain + "crpo/assessment/slotmgmt/candidate/api/v1/selectSlot/",
 
     "assessment_unassign_slot": generic_domain + "crpo/assessment/slotmgmt/recruiter/api/v1/dissociateSlotApplicants/",
 
