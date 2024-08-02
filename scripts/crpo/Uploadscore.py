@@ -114,6 +114,10 @@ class UploadScoresheet(login.CommonLogin, work_book.WorkBook):
         self.section4_dict = {}
         self.section4_1_dict = {}
 
+        # Make sure you have XLRD version 1.2.0 New version of xlrd does not have the xlsx option.
+        xlrd.xlsx.ensure_elementtree_imported(False, None)
+        xlrd.xlsx.Element_has_iter = True
+
     def excel_headers(self):
         self.main_headers = ['Comparison', 'Overall_Status', 'Candidate Id', 'CandidateName', 'Email', 'Test Mode',
                              'TestStatus', 'TotalMarks', 'Group1', 'S1', 'S2', 'S3', 'Group2', 'S4', 'S5', 'Group3',
