@@ -5,14 +5,15 @@ class OverallStatus(work_book.WorkBook):
 
     def __init__(self):
         super(OverallStatus, self).__init__()
+        self.Actual_Success_case = []
 
     # -------------------------------
     # Writing overall status to excel
     # -------------------------------
-    def overall_status(self, case_name, expected_success_cases, actual_success_case, start_time,
+    def overall_status(self, case_name, expected_success_cases, start_time,
                        calling_lambda, crpo_app_name, login_server, total_count, output_sheet):
         self.ws.write(0, 0, case_name, self.style23)
-        if expected_success_cases == actual_success_case:
+        if expected_success_cases == self.Actual_Success_case:
             self.ws.write(0, 1, 'Pass', self.style24)
         else:
             self.ws.write(0, 1, 'Fail', self.style25)
@@ -28,6 +29,9 @@ class OverallStatus(work_book.WorkBook):
         self.ws.write(0, 10, 'Start Time', self.style23)
         self.ws.write(0, 11, start_time, self.style26)
         self.wb_Result.save(output_paths.outputpaths[output_sheet])
+
+        print("Actual Pass Count:: ", len(self.Actual_Success_case))
+        print("Expected Pass Count:: ", len(expected_success_cases))
 
     def output_excel(self, output_file_key):
 
@@ -50,7 +54,3 @@ class OverallStatus(work_book.WorkBook):
             self.ws.write(col_row, col, output_value, self.style14)
         else:
             self.ws.write(col_row, col, output_value, self.style3)
-
-
-
-

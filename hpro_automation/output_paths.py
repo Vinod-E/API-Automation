@@ -67,9 +67,9 @@ outputpaths = {
 
     'Stack_Ranking_download_sheet': generic_output_path + crpo_common_folder + "Downloads/stackranking_{}.xlsx",
 
-    'Stack_Ranking_output_sheet': generic_output_path + crpo_common_folder + "stackranking_{}.xlsx",
+    'Stack_Ranking_output_sheet': generic_output_path + crpo_common_folder + "API_stackranking_{}.xlsx",
 
-    'Assessment_slot_output_sheet': generic_output_path + crpo_common_folder + "Assessment_Slot.xls",
+    'Assessment_slot_output_sheet': generic_output_path + crpo_common_folder + "API_Assessment_Slot.xls",
 
     # ------------------
     # Pofu output sheets

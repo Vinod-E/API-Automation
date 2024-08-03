@@ -3,8 +3,6 @@ import datetime
 import json
 import time
 import requests
-
-import credentials
 from hpro_automation.api import *
 
 
@@ -58,6 +56,7 @@ class CommonLogin(object):
                                       verify=False)
             print(login_data)
             response = login_api.json()
+            print(response)
             print(login_api.headers)
             self.get_token = response.get("Token")
 

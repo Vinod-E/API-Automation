@@ -13,8 +13,6 @@ class AssessmentSlots(login.CommonLogin):
         self.start_time = str(datetime.datetime.now())
         self.server = login_server
         self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 17)))
-        self.Actual_Success_case = []
-        self.success_case = ''
         # --------------------------------- Inheritance Class Instance -------------------------------------------------
         super(AssessmentSlots, self).__init__()
         self.overall = OverallStatus()
@@ -25,6 +23,13 @@ class AssessmentSlots(login.CommonLogin):
         self.choose_response = {}
         self.update_response = {}
         self.unassign_response = {}
+
+        self.choose_data = {}
+        self.choose_error = {}
+        self.update_data = {}
+        self.update_error = {}
+        self.dissociate_data = {}
+        self.unassign_error = {}
 
     def excel_data(self):
 
@@ -55,8 +60,15 @@ class AssessmentSlots(login.CommonLogin):
             choose_slot_api = requests.post(self.webapi, headers=self.lambda_headers,
                                             data=json.dumps(request), verify=False)
             self.choose_response = json.loads(choose_slot_api.content)
-            print(self.choose_response)
-            # print(response.get('data'))
+            print(self.choose_data)
+
+            if self.choose_response.get("data"):
+                self.choose_data = self.choose_response.get("data")
+                print(self.choose_data)
+            elif self.choose_response.get("error"):
+                self.choose_error = self.choose_response.get("error")
+                print(self.choose_error)
+
         except KeyError as e:
             print(e)
 
@@ -71,7 +83,14 @@ class AssessmentSlots(login.CommonLogin):
                                             data=json.dumps(request), verify=False)
             self.update_response = json.loads(update_slot_api.content)
             print(self.update_response)
-            # print(response.get('data'))
+
+            if self.update_response.get("data"):
+                self.update_data = self.update_response.get("data")
+                print(self.update_data)
+            elif self.update_response.get("error"):
+                self.update_error = self.update_response.get("error")
+                print(self.update_error)
+
         except KeyError as e:
             print(e)
 
@@ -88,8 +107,15 @@ class AssessmentSlots(login.CommonLogin):
                                               data=json.dumps(request), verify=False)
             self.unassign_response = json.loads(unassign_slot_api.content)
             print(self.unassign_response)
-            # data = response.get('data')
-            # print(data.get('dissociateSlotDetails'))
+
+            if self.unassign_response.get('data'):
+                unassign_data = self.unassign_response.get('data').get('dissociateSlotDetails')
+                for data in unassign_data:
+                    self.dissociate_data = data
+                    print(self.dissociate_data)
+            elif self.unassign_response.get('error'):
+                self.unassign_error = self.unassign_response.get('error')
+
         except KeyError as e:
             print(e)
 
@@ -97,53 +123,31 @@ class AssessmentSlots(login.CommonLogin):
         self.overall.output_excel('Assessment_slot_output_sheet')
 
         self.overall.validation(2, self.xl_dict[loop]['Applicant_id'],
-                                self.choose_response.get('data')['applicantId'] if self.choose_response.get('data')
-                                else 'Null')
+                                self.choose_data.get('applicantId') if self.choose_data else 'Null')
         self.overall.validation(3, self.xl_dict[loop]['assigned_slot'],
-                                str(self.choose_response.get('data')['isAssigned']) if self.choose_response.get('data')
-                                else 'Null')
+                                str(self.choose_data.get('isAssigned')) if self.choose_data else 'Null')
         self.overall.validation(4, self.xl_dict[loop]['updated_slot'],
-                                str(self.update_response.get('data')['isUpdated']) if self.update_response.get('data')
-                                else 'Null')
+                                str(self.update_data.get('isUpdated')) if self.update_data else 'Null')
+        self.overall.validation(5, self.xl_dict[loop]['dissociated'],
+                                str(self.dissociate_data.get('isDissociated')) if self.dissociate_data else 'Null')
+        self.overall.validation(6, self.xl_dict[loop]['assigned_message'],
+                                self.choose_error.get('errorDescription') if self.choose_error else 'No Message')
 
-        if self.unassign_response.get('data'):
-            for i in self.unassign_response.get('data').get('dissociateSlotDetails'):
-                self.success_case = 'Pass'
-                self.overall.validation(5, self.xl_dict[loop]['dissociated'],
-                                        str(i.get('isDissociated')) if i.get('isDissociated') is not None else 'Null')
-        else:
-            self.overall.validation(5, self.xl_dict[loop]['dissociated'], 'Null')
-            self.success_case = 'Pass'
-
-        if self.choose_response.get('error'):
-            self.overall.validation(6, self.xl_dict[loop]['assigned_message'],
-                                    self.choose_response.get('error')['errorDescription'] if self.choose_response
-                                    .get('error') else 'No Message')
-        else:
-            self.overall.validation(6, self.xl_dict[loop]['assigned_message'], 'No Message')
-
-        if self.update_response.get('data'):
+        if self.update_data:
             self.overall.validation(7, self.xl_dict[loop]['update_message'],
-                                    self.update_response.get('data').get('error') if self.update_response.get('data')
-                                    else 'No Message')
-        elif self.update_response.get('error'):
+                                    self.update_data.get('error') if self.update_data.get('error') else 'No Message')
+        elif self.update_error:
             self.overall.validation(7, self.xl_dict[loop]['update_message'],
-                                    self.update_response.get('error').get('errorDescription') if self.update_response
-                                    .get('error') else 'No Message')
-        else:
-            self.overall.validation(7, self.xl_dict[loop]['update_message'], 'No Message')
+                                    self.update_error.get('errorDescription') if self.update_error else 'elif No Message')
 
-        if self.unassign_response.get('data'):
-            for i in self.unassign_response.get('data').get('dissociateSlotDetails'):
-                self.overall.validation(8, self.xl_dict[loop]['dissociated_message'],
-                                        i.get('error') if i.get('error') else 'No Message')
-        elif self.unassign_response.get('error'):
+        if self.dissociate_data:
             self.overall.validation(8, self.xl_dict[loop]['dissociated_message'],
-                                    self.unassign_response.get('error')
-                                    .get('errorDescription') if self.unassign_response.get('error') else 'No Message')
-# ------ Success cases
-        if self.success_case == 'Pass':
-            self.Actual_Success_case.append(self.success_case)
+                                    self.dissociate_data.get('error') if
+                                    self.dissociate_data.get('error') else 'if No Message')
+        elif self.unassign_error:
+            self.overall.validation(8, self.xl_dict[loop]['dissociated_message'],
+                                    self.unassign_error.get('errorDescription') if
+                                    self.unassign_error else ' elif No Message')
 
 
 Object = AssessmentSlots()
@@ -158,11 +162,19 @@ for looping in range(0, Total_count):
     Object.unassign_slot(looping)
     Object.output_excel_status_headers(looping)
 
+    Object.choose_data = {}
+    Object.choose_error = {}
+    Object.update_data = {}
+    Object.update_error = {}
+    Object.dissociate_data = {}
+    Object.unassign_error = {}
+
 # ----------------- Overall Output Status ------------------------------------------------------
 Object.overall.main_headers = ['Comparison', 'Actual_status', 'Applicant ID', 'Choose Slot', 'Update Slot',
-                               'UnAssign Slot', 'Choose Slot Message', 'Update Slot Message', 'UnAssign Slot Message']
+                               'UnAssign Slot', 'Choose Slot Message', 'Update Slot Message',
+                               'UnAssign Slot Message']
 Object.overall.headers_with_style2 = ['Comparison', 'Actual_status']
 Object.overall.file_headers_col_row()
-Object.overall.overall_status('ASSESSMENT SLOTS', Object.Expected_success_cases, Object.Actual_Success_case,
+Object.overall.overall_status('ASSESSMENT SLOTS', Object.Expected_success_cases,
                               Object.start_time, Object.calling_lambda, 'assessmentSlots',
                               Object.server, Total_count, 'Assessment_slot_output_sheet')
