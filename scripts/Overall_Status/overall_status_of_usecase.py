@@ -54,3 +54,13 @@ class OverallStatus(work_book.WorkBook):
             self.ws.write(col_row, col, output_value, self.style14)
         else:
             self.ws.write(col_row, col, output_value, self.style3)
+
+    def write_in_excel(self, column, excel_dict, validation_api_key1,
+                       validation_api_key2, additional_message):
+
+        if validation_api_key1:
+            self.validation(column, excel_dict, validation_api_key1)
+        elif validation_api_key2:
+            self.validation(column, excel_dict, validation_api_key2)
+        else:
+            self.validation(column, excel_dict, additional_message)

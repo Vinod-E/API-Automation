@@ -139,6 +139,10 @@ non_lambda_apis = {
 
     "getEventRegistrationDates": generic_domain + "crpo/api/v1/getEventRegistrationDates",
 
+    "authenticate": generic_domain + "crpo/lip/candidate/api/v1/authenticate/",
+
+    "interview_slot_select": generic_domain + 'crpo/lip/slot/api/v1/mark_applicants_slot/',
+
     # ---------------------------------- communication history/status --------------------------------------------------
     "sendAdmitCardsToApplicants":
         generic_domain + "crpo/candidatecommunication/api/v1/sendAdmitCardsToApplicants",

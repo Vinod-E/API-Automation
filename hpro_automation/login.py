@@ -203,6 +203,24 @@ class CommonLogin(object):
         except ValueError as oauth_error:
             print(oauth_error)
 
+    def authenticate(self, request):
+        try:
+            urllib3.disable_warnings()
+            self.Non_lambda_headers['Authorization'] = 'bearer ' + self.get_token
+            request = json.loads(request)
+
+            # ------------------ API Call -------------------------------------
+            authenticate_api = requests.post(non_lambda_apis.get("authenticate"), headers=self.Non_lambda_headers,
+                                             data=json.dumps(request), verify=False)
+            response = authenticate_api.json()
+            data = response.get('data')
+            if data.get('message') == 'Authorized.':
+                print("slot captcha login api token:: ", data['message'])
+            else:
+                print(response)
+        except ValueError as oauth_error:
+            print(oauth_error)
+
     def lambda_check(self):
         # ------------------------------- getAllAppPreference / Lambda verification ------------------------------------
         try:

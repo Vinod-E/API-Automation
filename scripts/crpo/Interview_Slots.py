@@ -7,14 +7,14 @@ from hpro_automation.Config import read_excel
 from scripts.Overall_Status.overall_status_of_usecase import OverallStatus
 
 
-class AssessmentSlots(login.CommonLogin):
+class InterviewSlots(login.CommonLogin):
 
     def __init__(self):
         self.start_time = str(datetime.datetime.now())
         self.server = login_server
         self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 17)))
         # --------------------------------- Inheritance Class Instance -------------------------------------------------
-        super(AssessmentSlots, self).__init__()
+        super(InterviewSlots, self).__init__()
         self.overall = OverallStatus()
 
         # --------------------------------- Excel Data initialize variables --------------------------------------------
@@ -28,6 +28,7 @@ class AssessmentSlots(login.CommonLogin):
         self.unassign_slot_data = {}
 
         self.choose_data_applicant_id = ""
+        self.choose_assign_message = ""
         self.choose_error = ""
         self.choose_slot_assigned = ""
         self.update_data = ""
@@ -46,7 +47,7 @@ class AssessmentSlots(login.CommonLogin):
                 index = 0
             else:
                 index = 1
-            excel.excel_read(input_paths.inputpaths['assessment_slot_input_sheet'], index)
+            excel.excel_read(input_paths.inputpaths['interview_slot_input_sheet'], index)
             self.xl_dict = excel.details
             self.dict_total = excel.details
 
@@ -54,54 +55,25 @@ class AssessmentSlots(login.CommonLogin):
         except IOError:
             print("File not found or path is incorrect")
 
-    def choose_assessment_slot(self, loop):
+    def choose_interview_slot(self, loop):
         try:
-            self.slot_captcha_login_token('assessment')
-            self.verify_hash(self.xl_dict[loop]['verify_hash'])
-            self.lambda_function('assessment_slot_select')
+            self.slot_captcha_login_token('interview')
+            self.authenticate(self.xl_dict[loop]['authenticate_request'])
+            self.lambda_function('interview_slot_select')
 
             # ----------------------------------- API request -----------------------------------------------------
-            print("------------- Choose assessment slot API Call -----------------")
+            print("------------- Choose Interview slot API Call -----------------")
             request = json.loads(self.xl_dict[loop]['chooseSlot'])
-            choose_slot_api = requests.post(self.webapi, headers=self.lambda_headers,
+            choose_slot_api = requests.post(self.webapi, headers=self.Non_lambda_headers,
                                             data=json.dumps(request), verify=False)
             self.choose_response = json.loads(choose_slot_api.content)
             print(self.choose_response)
 
             if self.choose_response.get("data"):
-                self.choose_slot_data = self.choose_response.get("data")
-                self.choose_data_applicant_id = self.choose_slot_data.get('applicantId')
-                self.choose_slot_assigned = str(self.choose_slot_data.get('isAssigned'))
-                print(self.choose_data_applicant_id, self.choose_slot_assigned)
-            elif self.choose_response.get("error"):
-                error = self.choose_response.get("error")
-                self.choose_error = error.get('errorDescription')
-                print(self.choose_error)
-
-        except KeyError as e:
-            print(e)
-
-    def update_assessment_slot(self, loop):
-        try:
-            self.lambda_function('assessment_slot_update')
-
-            # ----------------------------------- API request ------------------------------------------------------
-            print("------------- Update assessment slot API Call -----------------")
-            request = json.loads(self.xl_dict[loop]['updateSlot'])
-            update_slot_api = requests.post(self.webapi, headers=self.lambda_headers,
-                                            data=json.dumps(request), verify=False)
-            self.update_response = json.loads(update_slot_api.content)
-            print(self.update_response)
-
-            if self.update_response.get("data"):
-                self.update_slot_data = self.update_response.get("data")
-                self.update_data = str(self.update_slot_data.get('isUpdated'))
-                self.update_error = self.update_slot_data.get('error')
-                print(self.update_data, self.update_error)
-            elif self.update_response.get("error"):
-                error = self.update_response.get("error")
-                self.update_error_des = error.get('errorDescription')
-                print(self.update_error_des)
+                self.choose_assign_message = (self.choose_slot_data.get('success')
+                                              .get(self.xl_dict[loop]['Applicant_id']))
+                self.choose_data_applicant_id = (self.choose_slot_data.get('success').keys())
+                print(self.choose_assign_message, self.choose_data_applicant_id)
 
         except KeyError as e:
             print(e)
@@ -153,19 +125,18 @@ class AssessmentSlots(login.CommonLogin):
                                     self.dissociate_data_error, self.unassign_error, 'No Message')
 
 
-Object = AssessmentSlots()
+Object = InterviewSlots()
 Object.excel_data()
 
 Total_count = len(Object.dict_total)
 print("Number of Rows::", Total_count)
 for looping in range(0, Total_count):
     print("Iteration Count is ::", looping)
-    Object.choose_assessment_slot(looping)
-    Object.update_assessment_slot(looping)
-    Object.unassign_slot(looping)
-    Object.output_excel_status_headers(looping)
+    Object.choose_interview_slot(looping)
+    # Object.unassign_slot(looping)
+    # Object.output_excel_status_headers(looping)
 
-# ------ Remove Dictionaries
+    # ------ Remove Dictionaries
     Object.choose_response = {}
     Object.choose_slot_data = {}
     Object.update_response = {}
