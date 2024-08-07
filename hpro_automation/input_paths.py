@@ -64,6 +64,8 @@ inputpaths = {
 
     'interview_slot_input_sheet': generic_input_path + "Crpo/Interview_slot/interview_slots.xls",
 
+    'candidate_slot_input_sheet': generic_input_path + "Crpo/Candidate_slot/candidate_slots.xls",
+
     # ------------
     # Pofu Inputs
     # ------------

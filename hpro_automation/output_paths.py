@@ -73,6 +73,8 @@ outputpaths = {
 
     'Interview_slot_output_sheet': generic_output_path + crpo_common_folder + "API_Interview_Slot.xls",
 
+    'Candidate_slot_output_sheet': generic_output_path + crpo_common_folder + "API_Candidate_Choose_Slot.xls",
+
     # ------------------
     # Pofu output sheets
     # ------------------

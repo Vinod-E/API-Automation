@@ -12,7 +12,7 @@ class InterviewSlots(login.CommonLogin):
     def __init__(self):
         self.start_time = str(datetime.datetime.now())
         self.server = login_server
-        self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 11)))
+        self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 12)))
         # --------------------------------- Inheritance Class Instance -------------------------------------------------
         super(InterviewSlots, self).__init__()
         self.overall = OverallStatus()

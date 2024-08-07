@@ -48,6 +48,8 @@ lambda_apis = {
 
     "assessment_slot_update": generic_domain + "crpo/assessment/slotmgmt/candidate/api/v1/changeSlot/",
 
+    "applicant_screen_data": generic_domain + "crpo/candidate/api/v1/getScreenData/",
+
     # ---------------------------------- communication history/status --------------------------------------------------
     "Create_Attachment": generic_domain + "common/attachment/api/v1/createAttachment/",
 
@@ -140,6 +142,10 @@ non_lambda_apis = {
     "getEventRegistrationDates": generic_domain + "crpo/api/v1/getEventRegistrationDates",
 
     "authenticate": generic_domain + "crpo/lip/candidate/api/v1/authenticate/",
+
+    "preference": generic_domain + "crpo/applicant/preference/api/v1/validate",
+
+    "save_slot": generic_domain + "crpo/applicant/preference/api/v1/save",
 
     "interview_slot_select": generic_domain + 'crpo/lip/slot/api/v1/mark_applicants_slot/',
 

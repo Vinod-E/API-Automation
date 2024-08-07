@@ -222,6 +222,24 @@ class CommonLogin(object):
         except ValueError as oauth_error:
             print(oauth_error)
 
+    def preference(self, excel_dict, request):
+        try:
+            urllib3.disable_warnings()
+            self.Non_lambda_headers['Authorization'] = 'bearer ' + self.get_token
+            request = json.loads(request)
+
+            # ------------------ API Call -------------------------------------
+            authenticate_api = requests.post(non_lambda_apis.get("preference"), headers=self.Non_lambda_headers,
+                                             data=json.dumps(request), verify=False)
+            response = authenticate_api.json()
+            data = response.get('applicantId')
+            if data == excel_dict:
+                print("slot captcha login api token validate to ID:: ", data)
+            else:
+                print(response)
+        except ValueError as oauth_error:
+            print(oauth_error)
+
     def lambda_check(self):
         # ------------------------------- getAllAppPreference / Lambda verification ------------------------------------
         try:
