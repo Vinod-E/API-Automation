@@ -216,6 +216,7 @@ class CommonLogin(object):
             data = response.get('data')
             if data.get('message') == 'Authorized.':
                 print("slot captcha login api token:: ", data['message'])
+                self.Non_lambda_headers['Authorization'] = 'bearer ' + data.get('token')
             else:
                 print(response)
         except ValueError as oauth_error:

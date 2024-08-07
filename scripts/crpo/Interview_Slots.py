@@ -12,7 +12,7 @@ class InterviewSlots(login.CommonLogin):
     def __init__(self):
         self.start_time = str(datetime.datetime.now())
         self.server = login_server
-        self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 17)))
+        self.Expected_success_cases = list(map(lambda x: 'Pass', range(0, 11)))
         # --------------------------------- Inheritance Class Instance -------------------------------------------------
         super(InterviewSlots, self).__init__()
         self.overall = OverallStatus()
@@ -22,21 +22,16 @@ class InterviewSlots(login.CommonLogin):
         self.dict_total = []
         self.choose_response = {}
         self.choose_slot_data = {}
-        self.update_response = {}
-        self.update_slot_data = {}
         self.unassign_response = {}
         self.unassign_slot_data = {}
 
-        self.choose_data_applicant_id = ""
         self.choose_assign_message = ""
+        self.choose_failed_message = ""
+        self.applicant_id = ""
         self.choose_error = ""
-        self.choose_slot_assigned = ""
-        self.update_data = ""
-        self.update_error = ""
-        self.update_error_des = ""
-        self.dissociate_data = ""
-        self.unassign_error = ""
-        self.dissociate_data_error = ""
+        self.unassign_message = ""
+        self.unassign_error_message = ""
+        self.unassign_deep_error = ""
 
     def excel_data(self):
 
@@ -64,16 +59,28 @@ class InterviewSlots(login.CommonLogin):
             # ----------------------------------- API request -----------------------------------------------------
             print("------------- Choose Interview slot API Call -----------------")
             request = json.loads(self.xl_dict[loop]['chooseSlot'])
-            choose_slot_api = requests.post(self.webapi, headers=self.Non_lambda_headers,
+            choose_slot_api = requests.post(self.webapi, headers=self.headers,
                                             data=json.dumps(request), verify=False)
             self.choose_response = json.loads(choose_slot_api.content)
             print(self.choose_response)
 
             if self.choose_response.get("data"):
-                self.choose_assign_message = (self.choose_slot_data.get('success')
-                                              .get(self.xl_dict[loop]['Applicant_id']))
-                self.choose_data_applicant_id = (self.choose_slot_data.get('success').keys())
-                print(self.choose_assign_message, self.choose_data_applicant_id)
+                self.choose_assign_message = self.choose_response.get("data").get('success')
+                self.choose_failed_message = self.choose_response.get("data").get('failed')
+                for key in self.choose_assign_message.keys():
+                    self.applicant_id = key
+                    self.choose_assign_message = self.choose_response.get("data").get('success').get(key)
+                    print(self.applicant_id)
+                    break
+                for key in self.choose_failed_message.keys():
+                    self.applicant_id = key
+                    self.choose_failed_message = self.choose_response.get("data").get('failed').get(key)
+                    print(self.applicant_id)
+                    break
+                print(self.choose_assign_message, self.choose_failed_message)
+            elif self.choose_response.get('error'):
+                self.choose_error = self.choose_response.get('error').get('errorDescription')
+                print(self.choose_error)
 
         except KeyError as e:
             print(e)
@@ -81,7 +88,8 @@ class InterviewSlots(login.CommonLogin):
     def unassign_slot(self, loop):
         try:
             self.common_login('slot')
-            self.lambda_function('assessment_unassign_slot')
+            self.lambda_function('interview_unassign_slot')
+            self.Non_lambda_headers['Authorization'] = ""
 
             # ----------------------------------- API request ---------------------------------------------------------
             print("------------- Choose Unassign slot API Call -----------------")
@@ -93,36 +101,31 @@ class InterviewSlots(login.CommonLogin):
             print(self.unassign_response)
 
             if self.unassign_response.get('data'):
-                self.unassign_slot_data = self.unassign_response.get('data').get('dissociateSlotDetails')
-                for data in self.unassign_slot_data:
-                    self.dissociate_data = str(data.get('isDissociated'))
-                    self.dissociate_data_error = data.get('error')
-                    print(self.dissociate_data, self.dissociate_data_error)
+                self.unassign_message = self.unassign_response.get('data').get('message')
+                print(self.unassign_message)
             elif self.unassign_response.get('error'):
-                error = self.unassign_response.get('error')
-                self.unassign_error = error.get('errorDescription')
-                print(self.unassign_error)
+                self.unassign_error_message = self.unassign_response.get('error').get('message')
+                print(self.unassign_error_message)
+                if self.unassign_response.get('error').get('error'):
+                    self.unassign_deep_error = self.unassign_response.get('error').get('error').get('errorDescription')
+                    print(self.unassign_deep_error)
 
         except KeyError as e:
             print(e)
 
     def output_excel_status_headers(self, loop):
-        self.overall.output_excel('Assessment_slot_output_sheet')
+        self.overall.output_excel('Interview_slot_output_sheet')
 
-        self.overall.write_in_excel(2, self.xl_dict[loop]['Applicant_id'],
-                                    self.choose_data_applicant_id, None, 'Null')
-        self.overall.write_in_excel(3, self.xl_dict[loop]['assigned_slot'],
-                                    self.choose_slot_assigned, None, 'Null')
-        self.overall.write_in_excel(4, self.xl_dict[loop]['updated_slot'],
-                                    self.update_data, None, 'Null')
-        self.overall.write_in_excel(5, self.xl_dict[loop]['dissociated'],
-                                    self.dissociate_data, None, 'Null')
-        self.overall.write_in_excel(6, self.xl_dict[loop]['assigned_message'],
+        self.overall.write_in_excel(2, int(self.xl_dict[loop]['Applicant_id']),
+                                    int(self.applicant_id), None, 'Null')
+        self.overall.write_in_excel(3, self.xl_dict[loop]['choose_Slot_Message'],
+                                    self.choose_failed_message, self.choose_assign_message, 'No Message')
+        self.overall.write_in_excel(4, self.xl_dict[loop]['choose_error_message'],
                                     self.choose_error, None, 'No Message')
-        self.overall.write_in_excel(7, self.xl_dict[loop]['update_message'],
-                                    self.update_error, self.update_error_des, 'No Message')
-        self.overall.write_in_excel(8, self.xl_dict[loop]['dissociated_message'],
-                                    self.dissociate_data_error, self.unassign_error, 'No Message')
+        self.overall.write_in_excel(5, self.xl_dict[loop]['unassign_Slot_Message'],
+                                    self.unassign_message, None, 'No Message')
+        self.overall.write_in_excel(6, self.xl_dict[loop]['Unassign_error_message'],
+                                    self.unassign_error_message, self.unassign_deep_error, 'No Message')
 
 
 Object = InterviewSlots()
@@ -133,8 +136,8 @@ print("Number of Rows::", Total_count)
 for looping in range(0, Total_count):
     print("Iteration Count is ::", looping)
     Object.choose_interview_slot(looping)
-    # Object.unassign_slot(looping)
-    # Object.output_excel_status_headers(looping)
+    Object.unassign_slot(looping)
+    Object.output_excel_status_headers(looping)
 
     # ------ Remove Dictionaries
     Object.choose_response = {}
@@ -144,22 +147,19 @@ for looping in range(0, Total_count):
     Object.unassign_response = {}
     Object.unassign_slot_data = {}
 
-    Object.choose_data_applicant_id = ""
+    Object.choose_assign_message = ""
+    Object.choose_failed_message = ""
     Object.choose_error = ""
-    Object.choose_slot_assigned = ""
-    Object.update_data = ""
-    Object.update_error = ""
-    Object.update_error_des = ""
-    Object.dissociate_data = ""
-    Object.unassign_error = ""
-    Object.dissociate_data_error = ""
+    Object.unassign_message = ""
+    Object.unassign_error_message = ""
+    Object.unassign_deep_error = ""
 
 # ----------------- Overall Output Status ------------------------------------------------------
-Object.overall.main_headers = ['Comparison', 'Actual_status', 'Applicant ID', 'Choose Slot', 'Update Slot',
-                               'UnAssign Slot', 'Choose Slot Message', 'Update Slot Message',
-                               'UnAssign Slot Message']
+Object.overall.main_headers = ['Comparison', 'Actual_status', 'Applicant ID',
+                               'Choose Slot Message', 'Choose Slot Error Messages',
+                               'UnAssign Slot Message', 'Unassign Slot Error Messages']
 Object.overall.headers_with_style2 = ['Comparison', 'Actual_status']
 Object.overall.file_headers_col_row()
-Object.overall.overall_status('ASSESSMENT SLOTS', Object.Expected_success_cases,
-                              Object.start_time, Object.calling_lambda, 'assessmentSlots',
-                              Object.server, Total_count, 'Assessment_slot_output_sheet')
+Object.overall.overall_status('INTERVIEW SLOTS', Object.Expected_success_cases,
+                              Object.start_time, Object.calling_lambda, 'interviewSlots',
+                              Object.server, Total_count, 'Interview_slot_output_sheet')
