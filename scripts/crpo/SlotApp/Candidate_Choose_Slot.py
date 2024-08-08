@@ -215,8 +215,8 @@ class CandidateSlots(login.CommonLogin):
         except KeyError as e:
             print(e)
 
-    def output_excel_status_headers(self, loop):
-        self.overall.output_excel('Candidate_slot_output_sheet')
+    def output_report_excel(self, loop):
+        self.overall.output_excel_input_output_header('Candidate_slot_output_sheet')
 
         self.overall.write_in_excel(2, self.xl_dict[loop]['Applicant_id'],
                                     int(self.applicant_id), None, 'Null')
@@ -253,7 +253,8 @@ for looping in range(0, Total_count):
     Object.re_candidate_slot_status(looping)
     Object.re_change_applicant_status(looping)
 
-    Object.output_excel_status_headers(looping)
+    Object.output_report_excel(looping)
+    Object.overall.test_case_wise_pass_or_fail()
 
     # ------ Remove Dictionaries
     Object.choose_response = {}

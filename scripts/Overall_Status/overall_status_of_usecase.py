@@ -5,6 +5,7 @@ class OverallStatus(work_book.WorkBook):
 
     def __init__(self):
         super(OverallStatus, self).__init__()
+        self.calculate_actual_pass = []
         self.Actual_Success_case = []
 
     # -------------------------------
@@ -33,7 +34,20 @@ class OverallStatus(work_book.WorkBook):
         print("Actual Pass Count:: ", len(self.Actual_Success_case))
         print("Expected Pass Count:: ", len(expected_success_cases))
 
-    def output_excel(self, output_file_key):
+    def test_case_wise_pass_or_fail(self):
+        row = self.rowsize - 1
+        # print(self.calculate_actual_pass)
+        if 'Fail' in self.calculate_actual_pass:
+            self.ws.write(row, 1, "Fail", self.style3)
+            self.calculate_actual_pass = []
+            self.wb_Result.save(output_paths.outputpaths['Candidate_slot_output_sheet'])
+        else:
+            self.ws.write(row, 1, "Pass", self.style26)
+            self.Actual_Success_case.append('Pass')
+            self.calculate_actual_pass = []
+            self.wb_Result.save(output_paths.outputpaths['Candidate_slot_output_sheet'])
+
+    def output_excel_input_output_header(self, output_file_key):
 
         self.ws.write(self.rowsize, self.col, 'Input', self.style4)
         self.rowsize += 1  # Row increment
@@ -52,8 +66,10 @@ class OverallStatus(work_book.WorkBook):
         # --------- Output
         if output_value == input_value:
             self.ws.write(col_row, col, output_value, self.style14)
+            self.calculate_actual_pass.append('Pass')
         else:
             self.ws.write(col_row, col, output_value, self.style3)
+            self.calculate_actual_pass.append('Fail')
 
     def write_in_excel(self, column, excel_dict, validation_api_key1,
                        validation_api_key2, additional_message):

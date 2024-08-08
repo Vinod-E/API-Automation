@@ -113,8 +113,8 @@ class InterviewSlots(login.CommonLogin):
         except KeyError as e:
             print(e)
 
-    def output_excel_status_headers(self, loop):
-        self.overall.output_excel('Interview_slot_output_sheet')
+    def output_report_excel(self, loop):
+        self.overall.output_excel_input_output_header('Interview_slot_output_sheet')
 
         self.overall.write_in_excel(2, int(self.xl_dict[loop]['Applicant_id']),
                                     int(self.applicant_id), None, 'Null')
@@ -137,7 +137,8 @@ for looping in range(0, Total_count):
     print("Iteration Count is ::", looping)
     Object.choose_interview_slot(looping)
     Object.unassign_slot(looping)
-    Object.output_excel_status_headers(looping)
+    Object.output_report_excel(looping)
+    Object.overall.test_case_wise_pass_or_fail()
 
     # ------ Remove Dictionaries
     Object.choose_response = {}
