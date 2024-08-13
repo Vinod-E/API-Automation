@@ -1,6 +1,6 @@
 import subprocess
-from Config.stackranking_config import *
-from Config.writeExcel import *
+from hpro_automation.Config.stackranking_config import *
+from hpro_automation.Config.writeExcel import *
 import datetime
 import time
 

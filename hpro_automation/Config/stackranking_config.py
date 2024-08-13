@@ -1,8 +1,8 @@
 import requests
 import json
-import output_paths
-import input_paths
-import api
+from hpro_automation import output_paths
+from hpro_automation import input_paths
+from hpro_automation import api
 
 
 class AllConfigurations:
